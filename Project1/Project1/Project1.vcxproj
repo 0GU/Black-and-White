@@ -34,6 +34,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,7 @@
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

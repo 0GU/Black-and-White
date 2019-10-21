@@ -29,7 +29,8 @@ CSceneTitle::~CSceneTitle()
 //ゲームタイトル初期化メソッド
 void CSceneTitle::InitScene()
 {
-
+	//CObjTitle* p = new CObjTitle();
+	//Objs::InsertObj(p, OBJ = TITLE, 1);
 }
 
 //ゲームタイトル実行メソッド
