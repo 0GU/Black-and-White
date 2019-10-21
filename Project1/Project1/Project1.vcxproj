@@ -34,6 +34,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -119,6 +121,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
