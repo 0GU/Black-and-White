@@ -65,4 +65,4 @@ struct UserData
 #define SET_GAME_START CSceneTitle  
 //-----------------------------------------------
 
-//テストだよー
+//テストだよ～～
