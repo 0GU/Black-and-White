@@ -35,7 +35,7 @@
     <ClInclude Include="ObjMouse.h" />
     <ClInclude Include="ObjReversibleMain.h" />
     <ClInclude Include="ObjTitle.h" />
-    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneReversibleMain.h" />
     <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +55,7 @@
     <ClCompile Include="ObjMouse.cpp" />
     <ClCompile Include="ObjReversibleMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneReversibleMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
