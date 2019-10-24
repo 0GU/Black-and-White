@@ -8,6 +8,7 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_TITLE,
 	OBJ_REVERSIBLEMAIN,
+	OBJ_MOUSE,
 };
 //------------------------------------------------
 
@@ -59,12 +60,12 @@ struct UserData
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
-#include "ReversibleSceneMain.h"
+#include "SceneReversibleMain.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle  
+#define SET_GAME_START CSceneReversibleMain
 //-----------------------------------------------
 
 //テストだよ～～

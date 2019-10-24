@@ -5,7 +5,7 @@
 #include"GameL/SceneManager.h"
 
 #include"ObjMouse.h"
-#include"ReversibleSceneMain.h"
+#include"SceneReversibleMain.h"
 
 //使用するネームスペース
 using namespace GameL;
