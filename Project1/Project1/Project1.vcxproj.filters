@@ -75,7 +75,7 @@
     <ClInclude Include="SceneReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClInclude>
-    <ClInclude Include="UtinityModule.h">
+    <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,7 +134,7 @@
     <ClCompile Include="SceneReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClCompile>
-    <ClCompile Include="UtinityModule.cpp">
+    <ClCompile Include="UtilityModule.cpp">
       <Filter>ソース ファイル\関数</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,7 @@
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
+#include "ObjMouse.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -25,9 +26,12 @@ void CObjReversibleMain::Init()
 }
 
 //アクション
-void CObjReversibleMain::Action()
+void CObjMouse::Action()
 {
-
+	if (160<=m_mou_x&&640>=m_mou_x&&60<=m_mou_y&&540>=m_mou_y)
+	{
+		
+	}
 }
 
 //ドロー
