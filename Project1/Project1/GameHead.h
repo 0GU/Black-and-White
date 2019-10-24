@@ -59,7 +59,7 @@ struct UserData
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
-#include "ReversibleSceneMain.h"
+#include "SceneReversibleMain.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
