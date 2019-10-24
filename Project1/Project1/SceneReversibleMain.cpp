@@ -38,6 +38,9 @@ void CSceneReversibleMain::InitScene()
 	CObjReversibleMain* p = new CObjReversibleMain();
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
 
+	CObjMouse* c = new CObjMouse();
+	Objs::InsertObj(c, OBJ_MOUSE, 1);
+
 
 }
 

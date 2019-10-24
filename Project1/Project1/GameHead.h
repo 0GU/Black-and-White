@@ -56,6 +56,7 @@ struct UserData
 //ゲームシーンオブジェクトヘッダ------------------
 #include"ObjTitle.h"
 #include"ObjReversibleMain.h"
+#include"ObjMouse.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
