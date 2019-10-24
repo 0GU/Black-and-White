@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\リバーシブル">
+      <UniqueIdentifier>{9d11c6c5-7a1e-4474-afef-2920fde82c0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -60,14 +63,14 @@
     <ClInclude Include="SceneTitle.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ObjReversibleMain.h">
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClInclude>
     <ClInclude Include="ObjMouse.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjReversibleMain.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ReversibleSceneMain.h">
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,14 +119,14 @@
     <ClCompile Include="SceneTitle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ObjReversibleMain.cpp">
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClCompile>
     <ClCompile Include="ObjMouse.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjReversibleMain.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ReversibleSceneMain.cpp">
+      <Filter>ソース ファイル\リバーシブル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
