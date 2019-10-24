@@ -33,6 +33,7 @@ void CSceneReversibleMain::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImage(L"パズルパネル黒5×5用.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"パネル白(96x96).png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"白背景.png", 2, TEX_SIZE_512);
 
 
 	CObjReversibleMain* p = new CObjReversibleMain();
