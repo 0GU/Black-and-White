@@ -1,5 +1,7 @@
 #pragma once
 
-int MousePosX();
+void MousePosX(float x);
 
-int MousePosY();
+void MousePosY(float y);
+
+bool MouseDownL();

@@ -3,18 +3,20 @@
 #include "UtilityModule.h"
 #include"GameL/WinInputs.h"
 
-int MousePosX()
+void MousePosX(float x)
 {
-	float m_mou_x;
-	m_mou_x = (float)Input::GetPosX();
-	return m_mou_x;
+	x = (float)Input::GetPosX();
 }
 
-int MousePosY()
+void MousePosY(float y)
 //マウスの位置を取得Y
 {
-	float m_mou_y;
-	m_mou_y = (float)Input::GetPosY();
-	return m_mou_y;
+	y = (float)Input::GetPosY();
 }
 
+bool MouseDownL()
+{
+	bool m_mou_l;
+	 m_mou_l = Input::GetMouButtonL();
+	 return m_mou_l;
+}

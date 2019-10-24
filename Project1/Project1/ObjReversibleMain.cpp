@@ -5,7 +5,7 @@
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
-#include "ObjMouse.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -28,11 +28,60 @@ void CObjReversibleMain::Init()
 //アクション
 void CObjReversibleMain::Action()
 {
-	x = MousePosX;
-	y = MousePosY;
+	int sx=0, sy=0;
+	int lx, ly;
+	x = (float)Input::GetPosX();
+	y = (float)Input::GetPosY();
+	
+	//当たり判定
 	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
-		
+		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
+		{
+			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
+			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
+			for (int m = 0; m < 5; m++)
+			{
+				switch (m)
+				{
+				case 0:
+					lx = sx;
+					ly = sy-1;
+					break;
+				case 1:
+					lx = sx-1;
+					ly = sy;
+					break;
+				case 2:
+					lx = sx;
+					ly = sy;
+					break;
+				case 3:
+					lx = sx+1;
+					ly = sy;
+					break;
+				case 4:
+					lx = sx;
+					ly = sy+1;
+					break;
+				}
+				if(lx>=0&&ly>=0&& lx <= 4 && ly <= 4)
+				{
+					if (stage[lx][ly] == 0)
+					{
+						stage[lx][ly] = 1;
+					}
+					else if (stage[lx][ly] == 1)
+					{
+						stage[lx][ly] = 0;
+					}
+				}
+			}
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+		}
 	}
 }
 
