@@ -12,27 +12,28 @@
 using namespace GameL;
 
 //使用するヘッダー
-#include "SceneMain.h"
+#include "ReversibleSceneMain.h"
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneMain::CSceneMain()
+CSReversibleSceneMain::CSReversibleSceneMain()
 {
 
 }
 
 //デストラクタ
-CSceneMain::~CSceneMain()
+CSReversibleSceneMain::~CSReversibleSceneMain()
 {
 
 }
 
 //ゲームメイン初期化メソッド
-void CSceneMain::InitScene()
+void CSReversibleSceneMain::InitScene()
 {
 	//グラフィック読み込み
-	//Draw::LoadImage(L" ", 0, TEX_SIZE_512);
-	
+	Draw::LoadImage(L"パズルパネル黒5×5用.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"パネル白(96x96).png", 1, TEX_SIZE_512);
+
 
 	//CObjMain* p = new CObjMain();
 	//Objs::InsertObj(p, OBJ_MAIN, 1);
@@ -42,7 +43,7 @@ void CSceneMain::InitScene()
 }
 
 //ゲームメイン実行メソッド
-void CSceneMain::Scene()
+void CSReversibleSceneMain::Scene()
 {
 
 }

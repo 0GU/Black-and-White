@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //シーン：ゲームタイトル
-class CSceneMain :public CScene
+class CSReversibleSceneMain :public CScene
 {
 public:
-	CSceneMain();
-	~CSceneMain();
+	CSReversibleSceneMain();
+	~CSReversibleSceneMain();
 	void InitScene();//ゲームタイトルの初期化メソッド
 	void Scene();	 //ゲームタイトルの実行中メソッド
 private:
