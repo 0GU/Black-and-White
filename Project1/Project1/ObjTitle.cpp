@@ -24,5 +24,5 @@ void CObjTitle::Action()
 //ÉhÉçÅ[
 void CObjTitle::Draw()
 {
-
+	
 }
