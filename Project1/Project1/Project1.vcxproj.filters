@@ -19,18 +19,6 @@
     <Filter Include="ソース ファイル\関数">
       <UniqueIdentifier>{c1a38eb2-53cd-4f31-a5b8-30a940a698ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Mode Select">
-      <UniqueIdentifier>{062a29ca-f860-4d39-b6cb-58df5fac2e73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Game Select">
-      <UniqueIdentifier>{a8dddc79-72ab-4dd5-b0c6-145be57c6404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Stage Select">
-      <UniqueIdentifier>{d9d339d1-7182-4c52-a205-1a325934506f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Gallery">
-      <UniqueIdentifier>{98127722-f691-49e9-b9b5-36037e0e41f4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -111,6 +99,9 @@
     <ClInclude Include="SceneStageSelect.h">
       <Filter>ソース ファイル\Stage Select</Filter>
     </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソース ファイル\関数</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -190,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="SceneStageSelect.cpp">
       <Filter>ソース ファイル\Stage Select</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ソース ファイル\関数</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

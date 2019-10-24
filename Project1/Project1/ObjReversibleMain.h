@@ -13,8 +13,8 @@ public:
 	void Init();    //イニシャライズ
 	void Action();  //アクション
 	void Draw();    //ドロー
-
+	int x, y;
 private:
 	int stage[5][5];
-
+	
 };
