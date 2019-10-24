@@ -26,9 +26,11 @@ void CObjReversibleMain::Init()
 }
 
 //ƒAƒNƒVƒ‡ƒ“
-void CObjMouse::Action()
+void CObjReversibleMain::Action()
 {
-	if (160<=m_mou_x&&640>=m_mou_x&&60<=m_mou_y&&540>=m_mou_y)
+	x = MousePosX;
+	y = MousePosY;
+	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
 		
 	}
