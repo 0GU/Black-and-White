@@ -9,6 +9,10 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_REVERSIBLEMAIN,
 	OBJ_MOUSE,
+	OBJ_MODESELECT,
+	OBJ_GAMESELECT,
+	OBJ_GALLLERY,
+	OBJ_STAGESELECT,
 };
 //------------------------------------------------
 
@@ -54,14 +58,22 @@ struct UserData
 //------------------------------------------------
 
 //ゲームシーンオブジェクトヘッダ------------------
-#include"ObjTitle.h"
-#include"ObjReversibleMain.h"
-#include"ObjMouse.h"
+#include "ObjTitle.h"
+#include "ObjReversibleMain.h"
+#include "ObjMouse.h"
+#include "ObjModeSelect.h"
+#include "ObjGameSelect.h"
+#include "ObjGallery.h"
+#include "ObjStageSelect.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
 #include "SceneReversibleMain.h"
+#include "SceneModeSelect.h"
+#include "SceneGameSelect.h"
+#include "SceneGallery.h"
+#include "SceneStageSelect.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
