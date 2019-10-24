@@ -35,11 +35,10 @@ void CSReversibleSceneMain::InitScene()
 	Draw::LoadImage(L"パネル白(96x96).png", 1, TEX_SIZE_512);
 
 
-	//CObjMain* p = new CObjMain();
-	//Objs::InsertObj(p, OBJ_MAIN, 1);
+	ObjReversibleMain* p = new ObjReversibleMain();
+	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
 
-	//CObjChar* c = new CObjChar();
-	//Objs::InsertObj(c, OBJ_CHAR, 1);
+	
 }
 
 //ゲームメイン実行メソッド
