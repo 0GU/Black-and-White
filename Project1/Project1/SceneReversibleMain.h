@@ -6,13 +6,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン：ゲームタイトル
+//シーン：Reversibleメイン
 class CSceneReversibleMain :public CScene
 {
 public:
 	CSceneReversibleMain();
 	~CSceneReversibleMain();
-	void InitScene();//ゲームタイトルの初期化メソッド
-	void Scene();	 //ゲームタイトルの実行中メソッド
+	void InitScene();//Reversibleメインの初期化メソッド
+	void Scene();	 //Reversibleメインの実行中メソッド
 private:
 };

@@ -5,13 +5,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン：ゲームタイトル
+//シーン：ステージセレクト
 class CSceneStageSelect :public CScene
 {
 public:
 	CSceneStageSelect();
 	~CSceneStageSelect();
-	void InitScene();//ゲームタイトルの初期化メソッド
-	void Scene();	 //ゲームタイトルの実行中メソッド
+	void InitScene();//ステージセレクトの初期化メソッド
+	void Scene();	 //ステージセレクトの実行中メソッド
 private:
 };
