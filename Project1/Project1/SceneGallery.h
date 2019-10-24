@@ -5,13 +5,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン：ゲームタイトル
+//シーン：ギャラリー
 class CSceneGallery :public CScene
 {
 public:
 	CSceneGallery();
 	~CSceneGallery();
-	void InitScene();//ゲームタイトルの初期化メソッド
-	void Scene();	 //ゲームタイトルの実行中メソッド
+	void InitScene();//ギャラリーの初期化メソッド
+	void Scene();	 //ギャラリーの実行中メソッド
 private:
 };
