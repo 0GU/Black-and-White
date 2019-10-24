@@ -5,13 +5,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン：ゲームタイトル
+//シーン：モードセレクト
 class CSceneModeSelect :public CScene
 {
 public:
 	CSceneModeSelect();
 	~CSceneModeSelect();
-	void InitScene();//ゲームタイトルの初期化メソッド
-	void Scene();	 //ゲームタイトルの実行中メソッド
+	void InitScene();//モードセレクトの初期化メソッド
+	void Scene();	 //モードセレクトの実行中メソッド
 private:
 };
