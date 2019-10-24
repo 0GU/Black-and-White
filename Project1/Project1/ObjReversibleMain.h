@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjReversibleMain : public CObj
 {
 public:
-	CObjReversibleMain(int map[5][5]);
+	CObjReversibleMain() {};
 	~CObjReversibleMain() {};
 	void Init();    //イニシャライズ
 	void Action();  //アクション
