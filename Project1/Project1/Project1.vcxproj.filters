@@ -5,6 +5,10 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -15,17 +19,13 @@
     <Filter Include="ソース ファイル\関数">
       <UniqueIdentifier>{c1a38eb2-53cd-4f31-a5b8-30a940a698ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
-      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\Audio.h">
       <Filter>リソース ファイル</Filter>
@@ -74,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="SceneReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="UtinityModule.h">
+      <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="SceneReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="UtinityModule.cpp">
+      <Filter>ソース ファイル\関数</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

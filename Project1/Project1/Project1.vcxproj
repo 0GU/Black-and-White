@@ -37,6 +37,7 @@
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneReversibleMain.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="UtinityModule.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp" />
@@ -57,6 +58,7 @@
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneReversibleMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="UtinityModule.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
