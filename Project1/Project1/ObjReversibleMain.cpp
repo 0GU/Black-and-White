@@ -60,12 +60,12 @@ void CObjReversibleMain::Draw()
 				if (stage[i][j] == 0)
 				{
 					//白パネル
-					Draw::Draw(0, &src, &dst, c, 0.0f);
+					Draw::Draw(1, &src, &dst, c, 0.0f);
 				}
 				else if (stage[i][j] == 1)
 				{
 					//黒パネル
-					Draw::Draw(1, &src, &dst, c, 0.0f);
+					Draw::Draw(0, &src, &dst, c, 0.0f);
 				}
 			
 		}
