@@ -31,14 +31,14 @@ void CObjGameSelect::Draw()
 	RECT_F dst; //ï`âÊêÊï\é¶à íu
 
 	//îwåiï\é¶
-	src.m_top = 200.0f;
-	src.m_left = 20.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 400.0f;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 560.0f;
+	src.m_bottom = 120.0f;
+	dst.m_top = 30.0f;
+	dst.m_left = 120.0f;
 	dst.m_right = 600.0;
-	dst.m_bottom = 90.0;
+	dst.m_bottom = 150.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 
