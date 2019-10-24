@@ -39,6 +39,17 @@ void CObjReversibleMain::Draw()
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 
+	//背景表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 800.0f;
+	src.m_bottom = 600.0f;
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 800.0;
+	dst.m_bottom = 600.0;
+	Draw::Draw(2, &src, &dst, c, 0.0f);
+
 	//マップチップによるblock設置
 	//切り取り位置の設定
 	src.m_top = 0.0f;
