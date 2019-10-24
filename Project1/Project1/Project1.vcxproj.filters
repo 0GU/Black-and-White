@@ -5,6 +5,10 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -15,17 +19,25 @@
     <Filter Include="ソース ファイル\関数">
       <UniqueIdentifier>{c1a38eb2-53cd-4f31-a5b8-30a940a698ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="ソース ファイル\Mode Select">
+      <UniqueIdentifier>{062a29ca-f860-4d39-b6cb-58df5fac2e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game Select">
+      <UniqueIdentifier>{a8dddc79-72ab-4dd5-b0c6-145be57c6404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Stage Select">
+      <UniqueIdentifier>{d9d339d1-7182-4c52-a205-1a325934506f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Gallery">
+      <UniqueIdentifier>{98127722-f691-49e9-b9b5-36037e0e41f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
-      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\Audio.h">
       <Filter>リソース ファイル</Filter>
@@ -74,6 +86,30 @@
     </ClInclude>
     <ClInclude Include="SceneReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjModeSelect.h">
+      <Filter>ソース ファイル\Mode Select</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneModeSelect.h">
+      <Filter>ソース ファイル\Mode Select</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameSelect.h">
+      <Filter>ソース ファイル\Game Select</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameSelect.h">
+      <Filter>ソース ファイル\Game Select</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGallery.h">
+      <Filter>ソース ファイル\Gallery</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGallery.h">
+      <Filter>ソース ファイル\Gallery</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStageSelect.h">
+      <Filter>ソース ファイル\Stage Select</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStageSelect.h">
+      <Filter>ソース ファイル\Stage Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +166,30 @@
     </ClCompile>
     <ClCompile Include="SceneReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModeSelect.cpp">
+      <Filter>ソース ファイル\Mode Select</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModeSelect.cpp">
+      <Filter>ソース ファイル\Mode Select</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameSelect.cpp">
+      <Filter>ソース ファイル\Game Select</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameSelect.cpp">
+      <Filter>ソース ファイル\Game Select</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGallery.cpp">
+      <Filter>ソース ファイル\Gallery</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGallery.cpp">
+      <Filter>ソース ファイル\Gallery</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjStageSelect.cpp">
+      <Filter>ソース ファイル\Stage Select</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStageSelect.cpp">
+      <Filter>ソース ファイル\Stage Select</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
