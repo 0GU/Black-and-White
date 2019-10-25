@@ -160,7 +160,7 @@ void CObjReversibleMain::Draw()
 
 	//stage‚Ì•`‰æ
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 480, 12, cc);
+	Font::StrDraw(L"stage1", 30, 480, 12, f);
 
 	for (int i = 0; i < 5; i++)
 	{
