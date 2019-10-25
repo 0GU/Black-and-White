@@ -36,12 +36,7 @@ void CSceneReversibleMain::InitScene()
 	Draw::LoadImage(L"白背景.png", 2, TEX_SIZE_512);
 	Draw::LoadImage(L"ヒントボタン.png", 3, TEX_SIZE_512);
 
-	//音楽情報の読み込み
-	Audio::LoadAudio(0, L"ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);
 
-	//BGM再生
-	float Volume = Audio::VolumeMaster(-0.3f);
-	Audio::Start(0);
 
 	CObjReversibleMain* p = new CObjReversibleMain();
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
