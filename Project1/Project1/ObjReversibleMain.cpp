@@ -24,7 +24,7 @@ void CObjReversibleMain::Init()
 	};
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
-
+	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 	hint = false;
 
 }
@@ -85,6 +85,15 @@ void CObjReversibleMain::Action()
 			{
 
 			}
+		}
+	}
+
+	//リセットボタン当たり判定
+	if (660 <= x && 780 >= x && 440 <= y && 550 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 		}
 	}
 
