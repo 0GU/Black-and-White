@@ -6,6 +6,7 @@
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include "UtilityModule.h"
+#include"GameL\DrawFont.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -112,6 +113,9 @@ void CObjReversibleMain::Draw()
 	src.m_right = 96.0f;
 	src.m_bottom = 96.0f;
 
+	//stageの描画
+	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+	Font::StrDraw(L"stage1", 30, 480, 12, cc);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -136,4 +140,5 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
+
 }
