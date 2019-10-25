@@ -2,11 +2,14 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
+#include"GameL/Audio.h"
 #include "UtilityModule.h"
 #include"GameL\DrawFont.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -24,6 +27,9 @@ void CObjReversibleMain::Init()
 	};
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
+	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
+	hint = false;
+
 }
 
 //アクション
@@ -33,12 +39,17 @@ void CObjReversibleMain::Action()
 	int lx, ly;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-	
+
+
+
 	//当たり判定
 	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
 		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
 		{
+			//SEを鳴らす
+			Audio::Start(1);
+
 			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
 			for (int m = 0; m < 5; m++)
@@ -84,6 +95,39 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
+
+	//リセットボタン当たり判定
+	if (660 <= x && 780 >= x && 440 <= y && 550 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+	
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+
+		}
+	}
+
+	//ヒントボタン当たり判定
+	if (650 <= x && 770 >= x && 250 <= y && 350 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+
+			hint = true;
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+		}
+	}
 }
 
 //ドロー
@@ -91,6 +135,7 @@ void CObjReversibleMain::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -140,5 +185,4 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
-
 }
