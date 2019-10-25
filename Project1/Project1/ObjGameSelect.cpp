@@ -33,8 +33,8 @@ void CObjGameSelect::Draw()
 	//îwåiï\é¶
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 120.0f;
+	src.m_right = 561.0f;
+	src.m_bottom = 135.0f;
 	dst.m_top = 30.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 600.0;
