@@ -6,6 +6,7 @@
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
+#include"GameL/Audio.h"
 
 
 //使用するネームスペース
@@ -37,11 +38,16 @@ void CObjReversibleMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+
+
 	//当たり判定
 	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
 		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
 		{
+			//SEを鳴らす
+			Audio::Start(1);
+
 			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
 			for (int m = 0; m < 5; m++)
@@ -93,7 +99,15 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+	
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+
 		}
 	}
 
@@ -102,7 +116,14 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+
 			hint = true;
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 		}
 	}
 }

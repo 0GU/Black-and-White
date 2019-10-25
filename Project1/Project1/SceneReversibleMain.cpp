@@ -40,6 +40,9 @@ void CSceneReversibleMain::InitScene()
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);
 
+	//SE情報の登録
+	Audio::LoadAudio(1, L"クリックSE.wav", EFFECT);
+
 	//BGM再生
 	float Volume = Audio::VolumeMaster(-0.3f);
 	Audio::Start(0);
