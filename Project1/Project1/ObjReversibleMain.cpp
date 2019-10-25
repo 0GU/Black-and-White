@@ -136,4 +136,16 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
+
+	//ヒントボタン表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 120.0f;
+	src.m_bottom = 100.0f;
+	dst.m_top = 250.0f;
+	dst.m_left = 660.0f;
+	dst.m_right = dst.m_left + 120.0f;
+	dst.m_bottom = dst.m_top + 100.0f;
+	Draw::Draw(3, &src, &dst, c, 0.0f);
+
 }
