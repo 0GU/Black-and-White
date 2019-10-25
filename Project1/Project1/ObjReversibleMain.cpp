@@ -6,6 +6,9 @@
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
+#include"GameL/Audio.h"
+#include "UtilityModule.h"
+#include"GameL\DrawFont.h"
 #include "UtilityModule.h"
 
 
@@ -38,11 +41,16 @@ void CObjReversibleMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+
+
 	//当たり判定
 	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
 		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
 		{
+			//SEを鳴らす
+			Audio::Start(1);
+
 			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
 			for (int m = 0; m < 5; m++)
@@ -99,7 +107,15 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+	
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+
 		}
 	}
 
@@ -108,7 +124,14 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+
 			hint = true;
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 		}
 	}
 }
@@ -141,6 +164,9 @@ void CObjReversibleMain::Draw()
 	src.m_right = 96.0f;
 	src.m_bottom = 96.0f;
 
+	//stageの描画
+	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+	Font::StrDraw(L"stage1", 30, 480, 12, f);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -165,34 +191,4 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
-
-	//ヒントボタン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 120.0f;
-	src.m_bottom = 100.0f;
-	dst.m_top = 250.0f;
-	dst.m_left = 660.0f;
-	dst.m_right = dst.m_left + 120.0f;
-	dst.m_bottom = dst.m_top + 100.0f;
-	Draw::Draw(3, &src, &dst, c, 0.0f);
-
-
-	//ヒントテキスト表示
-	Font::StrDraw(L"Hint", 50, 250, 30, f);
-
-	if (hint == true)
-		Font::StrDraw(L"AAA", 20,280,30, f);
-
-	//リセットボタン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 120.0f;
-	src.m_bottom = 100.0f;
-	dst.m_top = 440.0f;
-	dst.m_left = 660.0f;
-	dst.m_right = dst.m_left + 120.0f;
-	dst.m_bottom = dst.m_top + 100.0f;
-	Draw::Draw(4, &src, &dst, c, 0.0f);
-
 }
