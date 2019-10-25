@@ -33,6 +33,7 @@
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjGallery.h" />
+    <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGameSelect.h" />
     <ClInclude Include="ObjModeSelect.h" />
     <ClInclude Include="ObjMouse.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="ObjStageSelect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGallery.h" />
+    <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameSelect.h" />
     <ClInclude Include="SceneModeSelect.h" />
     <ClInclude Include="SceneReversibleMain.h" />
@@ -62,6 +64,7 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjGallery.cpp" />
+    <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGameSelect.cpp" />
     <ClCompile Include="ObjModeSelect.cpp" />
     <ClCompile Include="ObjMouse.cpp" />
@@ -69,6 +72,7 @@
     <ClCompile Include="ObjStageSelect.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGallery.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameSelect.cpp" />
     <ClCompile Include="SceneModeSelect.cpp" />
     <ClCompile Include="SceneReversibleMain.cpp" />
