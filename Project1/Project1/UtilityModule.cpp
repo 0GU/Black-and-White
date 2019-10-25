@@ -3,3 +3,29 @@
 #include "UtilityModule.h"
 #include"GameL/WinInputs.h"
 
+int ReversibleClearCheck(int rcc[5][5])
+{
+	int Check[5][5] =
+	{
+		{1,1,1,1,1},
+		{1,1,1,1,1},
+		{1,1,1,1,1},
+		{1,1,1,1,1},
+		{1,1,1,1,1},
+	};
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (rcc[i][j]!=Check[i][j])
+			{
+				return false;
+			}
+			else if (i==4&&j==4)
+			{
+				return true;
+			}
+		}
+	}
+}

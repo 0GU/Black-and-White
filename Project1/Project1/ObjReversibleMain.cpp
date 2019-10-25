@@ -6,6 +6,7 @@
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
+#include "UtilityModule.h"
 
 
 //使用するネームスペース
@@ -85,6 +86,11 @@ void CObjReversibleMain::Action()
 			{
 
 			}
+			if (ReversibleClearCheck(stage)==true)
+			{
+				Scene::SetScene(new CSceneReversibleMain);
+			}
+			
 		}
 	}
 
