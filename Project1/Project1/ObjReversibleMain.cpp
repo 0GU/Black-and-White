@@ -2,6 +2,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
@@ -23,6 +24,9 @@ void CObjReversibleMain::Init()
 	};
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
+
+	hint = false;
+
 }
 
 //アクション
@@ -32,7 +36,7 @@ void CObjReversibleMain::Action()
 	int lx, ly;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-	
+
 	//当たり判定
 	if (160<=x&&640>=x&&60<=y&&540>=y)
 	{
@@ -83,6 +87,15 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
+
+	//ヒントボタン当たり判定
+	if (650 <= x && 770 >= x && 250 <= y && 350 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			hint = true;
+		}
+	}
 }
 
 //ドロー
@@ -90,6 +103,7 @@ void CObjReversibleMain::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -147,5 +161,13 @@ void CObjReversibleMain::Draw()
 	dst.m_right = dst.m_left + 120.0f;
 	dst.m_bottom = dst.m_top + 100.0f;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
+
+
+	//ヒントテキスト表示
+	Font::StrDraw(L"Hint", 50, 250, 30, f);
+
+	if (hint == true)
+		Font::StrDraw(L"AAA", 20,280,30, f);
+
 
 }
