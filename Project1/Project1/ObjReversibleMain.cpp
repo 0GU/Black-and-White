@@ -49,6 +49,9 @@ void CObjReversibleMain::Action()
 			//SEを鳴らす
 			Audio::Start(1);
 
+			//Countを減らす
+			Clear_count--;
+
 			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
 			for (int m = 0; m < 5; m++)
@@ -105,7 +108,7 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-	
+			Clear_count = 22;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
@@ -223,4 +226,14 @@ void CObjReversibleMain::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 
+		Font::StrDraw(L"Count", 675, 45, 32, f);
+
+		//Countの値を文字列化
+		wchar_t str[128];
+		swprintf(str, L"%d", Clear_count);
+
+		if(Clear_count>=10)
+			Font::StrDraw(str, 700, 80, 32, f);
+		else if(Clear_count<=9)
+			Font::StrDraw(str, 710, 80, 32, f);
 }
