@@ -1,14 +1,12 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
-#include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include"GameL/Audio.h"
-#include "UtilityModule.h"
-#include"GameL\DrawFont.h"
 #include "UtilityModule.h"
 
 
@@ -30,7 +28,7 @@ void CObjReversibleMain::Init()
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 	hint = false;
-
+	Clear_count = 22;
 }
 
 //アクション
@@ -50,6 +48,9 @@ void CObjReversibleMain::Action()
 		{
 			//SEを鳴らす
 			Audio::Start(1);
+
+			//Countを減らす
+			Clear_count--;
 
 			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
@@ -103,11 +104,11 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定
-	if (660 <= x && 780 >= x && 440 <= y && 550 >= y)
+	if (650 <= x && 770 >= x && 430 <= y && 530 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-	
+			Clear_count = 22;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
@@ -191,4 +192,48 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
+		//ヒントボタン
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 100.0f;
+		//表示
+		//プログラムの問題でx値を10fずらしてます
+		dst.m_top = 250.0f;
+		dst.m_left = 660.0f;
+		dst.m_right = 780.0;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(3, &src, &dst, c, 0.0f);
+
+		//ヒントの表示
+		if (hint==true)
+		{
+			Font::StrDraw(L"AAA", 50, 200, 40, f);
+		}
+
+		//リセットボタン
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 100.0f;
+		//表示
+		//プログラムの問題でx値y値10fずらしています
+		dst.m_top = 440.0f;
+		dst.m_left = 660.0f;
+		dst.m_right = 780.0f;
+		dst.m_bottom = 540.0f;
+		Draw::Draw(4, &src, &dst, c, 0.0f);
+
+		Font::StrDraw(L"Count", 675, 45, 32, f);
+
+		//Countの値を文字列化
+		wchar_t str[128];
+		swprintf(str, L"%d", Clear_count);
+
+		if(Clear_count>=10)
+			Font::StrDraw(str, 700, 80, 32, f);
+		else if(Clear_count<=9)
+			Font::StrDraw(str, 710, 80, 32, f);
 }
