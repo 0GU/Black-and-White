@@ -103,7 +103,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定
-	if (660 <= x && 780 >= x && 440 <= y && 550 >= y)
+	if (650 <= x && 770 >= x && 430 <= y && 530 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -191,4 +191,32 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
+		//ヒントボタン
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 100.0f;
+		//表示
+		//プログラムの問題でx値を10fずらしてます
+		dst.m_top = 250.0f;
+		dst.m_left = 660.0f;
+		dst.m_right = 780.0;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(3, &src, &dst, c, 0.0f);
+
+		//リセットボタン
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 100.0f;
+		//表示
+		//プログラムの問題でx値y値10fずらしています
+		dst.m_top = 440.0f;
+		dst.m_left = 660.0f;
+		dst.m_right = 780.0f;
+		dst.m_bottom = 540.0f;
+		Draw::Draw(4, &src, &dst, c, 0.0f);
+
 }
