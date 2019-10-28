@@ -1,14 +1,12 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
-#include "GameL\SceneManager.h"
 #include "GameL\SceneObjManager.h"
+#include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include"GameL/Audio.h"
-#include "UtilityModule.h"
-#include"GameL\DrawFont.h"
 #include "UtilityModule.h"
 
 
