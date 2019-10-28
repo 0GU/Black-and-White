@@ -203,6 +203,12 @@ void CObjReversibleMain::Draw()
 		dst.m_bottom = 350.0f;
 		Draw::Draw(3, &src, &dst, c, 0.0f);
 
+		//ヒントの表示
+		if (hint==true)
+		{
+			Font::StrDraw(L"AAA", 50, 200, 40, f);
+		}
+
 		//リセットボタン
 		//切り取り
 		src.m_top = 0.0f;
