@@ -31,7 +31,7 @@ CSceneGameSelect::~CSceneGameSelect()
 void CSceneGameSelect::InitScene()
 {
 	//グラフィック読み込み
-	Draw::LoadImage(L"まとめ画像1.png", 0, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像1.png", 5, TEX_SIZE_512);
 
 
 	/*Draw::LoadImage(L"", 0, TEX_SIZE_512);
