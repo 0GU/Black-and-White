@@ -28,7 +28,7 @@ void CObjReversibleMain::Init()
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 	hint = false;
-
+	Clear_count = 22;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
