@@ -54,5 +54,22 @@ void CObjGameSelect::Draw()
 	dst.m_right = 660.0f;
 	dst.m_bottom = 135.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
+	src.m_bottom = 136.0f;
+	dst.m_top = 360.0f;
+	dst.m_left = 160.0f;
+	dst.m_right = 640.0;
+	dst.m_bottom = 480.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);//ƒMƒƒƒ‰ƒŠ[
+
+	//”wŒi•\¦
+	src.m_top = 134.0f;
+	src.m_left = 0.0f;
+	src.m_right = 561.0f;
+	src.m_bottom = 270.0f;
+	dst.m_top = 119.0f;
+	dst.m_left = 160.0f;
+	dst.m_right = 640.0;
+	dst.m_bottom = 240.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);//ƒMƒƒƒ‰ƒŠ[
 
 }

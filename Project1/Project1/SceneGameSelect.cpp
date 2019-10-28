@@ -30,6 +30,8 @@ CSceneGameSelect::~CSceneGameSelect()
 //ゲームタイトル初期化メソッド
 void CSceneGameSelect::InitScene()
 {
+	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
+	
 	//グラフィック読み込み
 	Draw::LoadImage(L"まとめ画像1.png", 5, TEX_SIZE_512);
 
@@ -38,7 +40,7 @@ void CSceneGameSelect::InitScene()
 	
 	CObjGameSelect* p = new CObjGameSelect();
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
-	*/
+	
 	
 }
 
