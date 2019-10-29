@@ -9,7 +9,7 @@ using namespace GameL;
 class CSceneGameClear :public CScene
 {
 public:
-	CSceneGameClear();
+	CSceneGameClear() ;
 	~CSceneGameClear();
 	void InitScene();//モードセレクトの初期化メソッド
 	void Scene();	 //モードセレクトの実行中メソッド

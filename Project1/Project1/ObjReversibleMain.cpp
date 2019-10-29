@@ -192,7 +192,7 @@ void CObjReversibleMain::Draw()
 			
 		}
 	}
-		//ヒントボタン
+		//ヒントボタン-----------------------------------------------
 		//切り取り
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -212,7 +212,7 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(L"AAA", 50, 200, 40, f);
 		}
 
-		//リセットボタン
+		//リセットボタン--------------------------------------------
 		//切り取り
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -228,7 +228,7 @@ void CObjReversibleMain::Draw()
 
 		Font::StrDraw(L"Count", 675, 45, 32, f);
 
-		//Countの値を文字列化
+		//Countの値を文字列化---------------------------------------
 		wchar_t str[128];
 		swprintf(str, L"%d", Clear_count);
 
@@ -236,4 +236,7 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(str, 700, 80, 32, f);
 		else if(Clear_count<=9)
 			Font::StrDraw(str, 710, 80, 32, f);
+		//シーン描画：GameClear!
+
+
 }
