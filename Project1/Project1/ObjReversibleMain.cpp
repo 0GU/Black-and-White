@@ -97,7 +97,7 @@ void CObjReversibleMain::Action()
 			}
 			if (ReversibleClearCheck(stage)==true)
 			{
-				Scene::SetScene(new CSceneReversibleMain);
+				
 			}
 			
 		}
