@@ -14,11 +14,11 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 	float x, y;
-	bool hint;
+	
 
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
 	int Clear_count;
-	
+	bool flag[3];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
 };
