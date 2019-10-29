@@ -111,10 +111,40 @@ void CObjReversibleMain::Action()
 			
 		}
 	}
-
 	//GameClear時の判定
+	if (flag[1] == true)
+	{
+		//StageSELECTへ戻るボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		{
 
+		}
+	}
 	//GameOver時の判定
+	if (flag[2]==true)
+	{
+		//Yesボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				Clear_count = 22;
+				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				flag[2] = false;
+			}
+		}
+		//Noボタン判定
+		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+		{
+
+		}
+	}
 
 	//リセットボタン当たり判定
 	if (650 <= x && 770 >= x && 430 <= y && 530 >= y&&flag[1] == false && flag[2] == false)
@@ -222,7 +252,9 @@ void CObjReversibleMain::Draw()
 		//ヒントの表示
 		if (flag[0]==true)
 		{
-			Font::StrDraw(L"AAA", 50, 200, 40, f);
+			Font::StrDraw(L"最短手数", 20, 200, 32, f);
+			Font::StrDraw(L"6手",40 , 260, 32, f);
+			
 		}
 
 		//リセットボタン
