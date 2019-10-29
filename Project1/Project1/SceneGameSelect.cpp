@@ -41,7 +41,7 @@ void CSceneGameSelect::InitScene()
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);*/
 	
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
-	*/
+	
 	
 }
 
