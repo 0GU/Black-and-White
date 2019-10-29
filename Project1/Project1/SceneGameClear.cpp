@@ -30,9 +30,8 @@ CSceneGameClear::~CSceneGameClear()
 //ゲームタイトル初期化メソッド
 void CSceneGameClear::InitScene()
 {
-	//Draw::LoadImage(L"Game Clear!!.png", 0, TEX_SIZE_512);
-	Draw::LoadImage(L"ステージ選択へ戻る.png", 1, TEX_SIZE_512);
-	Draw::LoadImage(L"白背景.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像2.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"白背景.png", 1, TEX_SIZE_512);
 
 
 	CObjGameClear* p = new CObjGameClear();
