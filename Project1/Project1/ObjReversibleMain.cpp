@@ -27,7 +27,11 @@ void CObjReversibleMain::Init()
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
-	hint = false;
+	
+	bool flag_set[3] =
+	{ false,false,false };
+	memcpy(flag, flag_set, sizeof(bool)*(3));
+
 	Clear_count = 22;
 }
 
@@ -42,7 +46,7 @@ void CObjReversibleMain::Action()
 
 
 	//当たり判定
-	if (160<=x&&640>=x&&60<=y&&540>=y)
+	if (160<=x&&640>=x&&60<=y&&540>=y&&flag[1]==false&&flag[2]==false)
 	{
 		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
 		{
@@ -95,16 +99,55 @@ void CObjReversibleMain::Action()
 			{
 
 			}
+
 			if (ReversibleClearCheck(stage)==true)
 			{
-				Scene::SetScene(new CSceneReversibleMain);
+				flag[1] = true;
 			}
+			else if (ReversibleClearCheck(stage) == false&&Clear_count==0)
+				{
+					flag[2] = true;
+				}
 			
+		}
+	}
+	//GameClear時の判定
+	if (flag[1] == true)
+	{
+		//StageSELECTへ戻るボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		{
+
+		}
+	}
+	//GameOver時の判定
+	if (flag[2]==true)
+	{
+		//Yesボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				Clear_count = 22;
+				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				flag[2] = false;
+			}
+		}
+		//Noボタン判定
+		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+		{
+
 		}
 	}
 
 	//リセットボタン当たり判定
-	if (650 <= x && 770 >= x && 430 <= y && 530 >= y)
+	if (650 <= x && 770 >= x && 430 <= y && 530 >= y&&flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -121,12 +164,12 @@ void CObjReversibleMain::Action()
 	}
 
 	//ヒントボタン当たり判定
-	if (650 <= x && 770 >= x && 250 <= y && 350 >= y)
+	if (650 <= x && 770 >= x && 250 <= y && 350 >= y&& flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
 
-			hint = true;
+			flag[0] = true;
 			//SEを鳴らす
 			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
@@ -207,9 +250,11 @@ void CObjReversibleMain::Draw()
 		Draw::Draw(3, &src, &dst, c, 0.0f);
 
 		//ヒントの表示
-		if (hint==true)
+		if (flag[0]==true)
 		{
-			Font::StrDraw(L"AAA", 50, 200, 40, f);
+			Font::StrDraw(L"最短手数", 20, 200, 32, f);
+			Font::StrDraw(L"6手",40 , 260, 32, f);
+			
 		}
 
 		//リセットボタン--------------------------------------------
