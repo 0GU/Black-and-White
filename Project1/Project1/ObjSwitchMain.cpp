@@ -18,11 +18,11 @@ void CObjSwitchMain::Init()
 {
 	int stage_data[5][5] =
 	{
-		{0,1,1,0,1},
-		{1,0,1,1,0},
-		{1,1,0,1,0},
-		{1,0,0,0,1},
-		{0,1,1,1,1},
+		{1,0,1,0,1},
+		{0,0,0,1,0},
+		{0,0,1,0,0},
+		{0,1,0,0,0},
+		{1,0,1,0,1},
 	};
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
@@ -46,7 +46,7 @@ void CObjSwitchMain::Action()
 
 
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y &&(( ((int)(y - 60) / 96)%2==0&& ((int)(x - 160) / 96) % 2 ==1)|| (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 		{
@@ -275,7 +275,7 @@ void CObjSwitchMain::Draw()
 
 	//Countの値を文字列化---------------------------------------
 	wchar_t str[128];
-	swprintf(str, L"%d", Clear_count);
+	swprintf_s(str, L"%d", Clear_count);
 
 	if (Clear_count >= 10)
 		Font::StrDraw(str, 700, 80, 32, f);
