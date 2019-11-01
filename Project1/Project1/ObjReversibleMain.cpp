@@ -284,12 +284,12 @@ void CObjReversibleMain::Draw()
 		//ÉVÅ[Éìï`âÊÅFGameClear!------------------------------------
 		if (flag[1] == true)
 		{
-			src.m_top = 250.0f;
+			src.m_top = 249.0f;
 			src.m_left = 0.0f;
-			src.m_right = 559.0f;
-			src.m_bottom = 370.0f;
+			src.m_right = 560.0f;
+			src.m_bottom = 372.0f;
 			dst.m_top = 150.0f;
-			dst.m_left = 100.0f;
+			dst.m_left = 130.0f;
 			dst.m_right = 690.0;
 			dst.m_bottom = 270.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
@@ -300,7 +300,7 @@ void CObjReversibleMain::Draw()
 			src.m_bottom = 610.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
-			dst.m_right = 370.0;
+			dst.m_right = 690.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
