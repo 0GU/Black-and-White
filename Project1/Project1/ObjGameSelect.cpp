@@ -18,7 +18,7 @@ void CObjGameSelect::Init()
 //アクション
 void CObjGameSelect::Action()
 {
-
+	   	 
 }
 
 //ドロー

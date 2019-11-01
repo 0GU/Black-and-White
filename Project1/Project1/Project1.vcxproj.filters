@@ -34,6 +34,9 @@
     <Filter Include="ソース ファイル\Game Clear">
       <UniqueIdentifier>{a886abd4-a4e2-4923-ac70-a6e49d18a03b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Switch Panel">
+      <UniqueIdentifier>{61c42c01-1663-499c-93ba-fefc640db549}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -123,6 +126,12 @@
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\Game Clear</Filter>
     </ClInclude>
+    <ClInclude Include="ObjSwitchMain.h">
+      <Filter>ソース ファイル\Switch Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSwitchMain.h">
+      <Filter>ソース ファイル\Switch Panel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -211,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\Game Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjSwitchMain.cpp">
+      <Filter>ソース ファイル\Switch Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSwitchMain.cpp">
+      <Filter>ソース ファイル\Switch Panel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
