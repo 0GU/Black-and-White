@@ -7,13 +7,14 @@ using namespace GameL;
 //オブジェクト：ゲームセレクト
 class CObjGameSelect : public CObj
 {
-public:
-	CObjGameSelect() {};
-	~CObjGameSelect() {};
-	void Init();	//イニシャライズ
-	void Action();	//アクション
-	void Draw();	//ドロー
-private:
+	public:
+		CObjGameSelect() {};
+		~CObjGameSelect() {};
+		void Init();	//イニシャライズ
+		void Action();	//アクション
+		void Draw();	//ドロー
+		float x, y;
+	private:
 
 
 };

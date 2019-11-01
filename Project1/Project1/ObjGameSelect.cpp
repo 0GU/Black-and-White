@@ -19,6 +19,9 @@ void CObjGameSelect::Init()
 void CObjGameSelect::Action()
 {
 
+
+
+
 }
 
 //ÉhÉçÅ[
