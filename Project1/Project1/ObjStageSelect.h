@@ -13,7 +13,8 @@ public:
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー
+	float x, y;
 private:
-
+	//bool flag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
 
 };
