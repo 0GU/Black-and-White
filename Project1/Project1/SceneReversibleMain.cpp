@@ -36,8 +36,8 @@ void CSceneReversibleMain::InitScene()
 	Draw::LoadImage(L"白背景.png", 2, TEX_SIZE_512);
 	Draw::LoadImage(L"ヒントボタン.png", 3, TEX_SIZE_512);
 	Draw::LoadImage(L"リセットボタン.png", 4, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像2.png", 5, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/仮アニメーションまとめ.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"まとめ画像/まとめ画像2.png", 5, TEX_SIZE_512);
 
 
 	//音楽情報の読み込み

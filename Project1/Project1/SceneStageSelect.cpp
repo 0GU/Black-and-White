@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\Audio.h"
+#include"GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -29,8 +30,10 @@ CSceneStageSelect::~CSceneStageSelect()
 //ゲームタイトル初期化メソッド
 void CSceneStageSelect::InitScene()
 {
-	//CObjStageSelect* p = new CObjStageSelect();
-	//Objs::InsertObj(p, OBJ_STAGESELECT, 1);
+
+	Draw::LoadImageW(L"まとめ画像1.png", 0, TEX_SIZE_512);
+	CObjStageSelect* p = new CObjStageSelect();
+	Objs::InsertObj(p, OBJ_STAGESELECT, 1);
 }
 
 //ゲームタイトル実行メソッド
