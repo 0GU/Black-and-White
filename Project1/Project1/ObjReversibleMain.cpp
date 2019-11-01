@@ -305,7 +305,7 @@ void CObjReversibleMain::Draw()
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
 
-		//GameOver------------------------------------
+		//GameOver---------------------------------------------------
 		if (flag[2] == true)
 		{
 			//GameOver•\Ž¦
