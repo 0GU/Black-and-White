@@ -38,6 +38,7 @@ void CSceneReversibleMain::InitScene()
 	Draw::LoadImage(L"リセットボタン.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像2.png", 5, TEX_SIZE_512);
 
+
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);
 

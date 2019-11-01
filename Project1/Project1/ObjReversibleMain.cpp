@@ -115,7 +115,7 @@ void CObjReversibleMain::Action()
 	if (flag[1] == true)
 	{
 		//StageSELECT‚Ö–ß‚éƒ{ƒ^ƒ“”»’è
-		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
 
 		}
@@ -301,6 +301,41 @@ void CObjReversibleMain::Draw()
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 690.0;
+			dst.m_bottom = 490.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+		}
+
+		//GameOver------------------------------------
+		if (flag[2] == true)
+		{
+			//GameOver•\Ž¦
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 580.0f;
+			src.m_bottom = 250.0f;
+			dst.m_top = 70.0f;
+			dst.m_left = 110.0f;
+			dst.m_right = 690.0;
+			dst.m_bottom = 320.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 240.0f;
+			src.m_bottom = 120.0f;
+			dst.m_top = 370.0f;
+			dst.m_left = 130.0f;
+			dst.m_right = 370.0;
+			dst.m_bottom = 490.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 240.0f;
+			src.m_bottom = 120.0f;
+			dst.m_top = 370.0f;
+			dst.m_left = 410.0f;
+			dst.m_right = 650.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
