@@ -30,7 +30,7 @@ void CObjReversibleMain::Init()
 	
 	bool flag_set[4] =
 	{ false,false,false,false };
-	memcpy(flag, flag_set, sizeof(bool)*(3));
+	memcpy(flag, flag_set, sizeof(bool)*(4));
 
 	Clear_count = 22;
 }
@@ -218,42 +218,42 @@ void CObjReversibleMain::Action()
 				}
 		}
 	}
-	if (flag[3]==true)
+	if (flag[3] == true)
 	{
-	//Yesボタン判定
-	if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
-	{
-		if (Input::GetMouButtonL() == true)
+		//Yesボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
-			Clear_count = 22;
-			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+			if (Input::GetMouButtonL() == true)
 			{
+				Clear_count = 22;
+				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
 
+				}
+				Scene::SetScene(new CSceneStageSelect());
+				flag[3] = false;
 			}
-			Scene::SetScene(new CSceneStageSelect());
-			flag[3] = false;
 		}
-	}
-	//Noボタン判定
-	if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
-	{
-
-		if (Input::GetMouButtonL() == true)
+		//Noボタン判定
+		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
 		{
 
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+			if (Input::GetMouButtonL() == true)
 			{
 
-			}
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
 
-			flag[3] = false;
+				}
+
+				flag[3] = false;
+			}
 		}
-	}
 	}
 }
 
@@ -348,6 +348,21 @@ void CObjReversibleMain::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 
+		//ヒントボタン-----------------------------------------------
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 100.0f;
+		//表示
+		//プログラムの問題でx値を10fずらしてます
+		dst.m_top = 250.0f;
+		dst.m_left = 660.0f;
+		dst.m_right = 780.0;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(3, &src, &dst, c, 0.0f);
+
+		//Countの文字表示----------------------------------------------
 		Font::StrDraw(L"Count", 675, 45, 32, f);
 
 		//Countの値を文字列化---------------------------------------
@@ -399,20 +414,20 @@ void CObjReversibleMain::Draw()
 		//Yes・Noボタンの描画
 		if (flag[2] == true || flag[3] == true)
 		{
-			src.m_top = 0.0f;
+			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 240.0f;
-			src.m_bottom = 120.0f;
+			src.m_right = 239.0f;
+			src.m_bottom = 939.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 370.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 240.0f;
-			src.m_bottom = 120.0f;
+			src.m_top = 820.0f;
+			src.m_left = 239.0f;
+			src.m_right = 478.0f;
+			src.m_bottom = 939.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;
