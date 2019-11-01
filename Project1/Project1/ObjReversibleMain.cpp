@@ -204,7 +204,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
-	if (x >= 20 && x <= 140 && y >= 20 && y <= 120)
+	if (x >= 30 && x <= 130 && y >= 60 && y <= 160)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -287,7 +287,7 @@ void CObjReversibleMain::Draw()
 
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 480, 12, f);
+	Font::StrDraw(L"stage1", 30, 480, 36, f);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -348,19 +348,19 @@ void CObjReversibleMain::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 
-		//ヒントボタン-----------------------------------------------
+		//StageSelectボタン-----------------------------------------------
 		//切り取り
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 120.0f;
-		src.m_bottom = 100.0f;
+		src.m_top = 820.0f;
+		src.m_left = 478.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 920.0f;
 		//表示
 		//プログラムの問題でx値を10fずらしてます
-		dst.m_top = 250.0f;
-		dst.m_left = 660.0f;
-		dst.m_right = 780.0;
-		dst.m_bottom = 350.0f;
-		Draw::Draw(3, &src, &dst, c, 0.0f);
+		dst.m_top = 60.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 130.0;
+		dst.m_bottom = 160.0f;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 		//Countの文字表示----------------------------------------------
 		Font::StrDraw(L"Count", 675, 45, 32, f);
