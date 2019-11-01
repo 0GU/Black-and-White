@@ -28,8 +28,8 @@ void CObjReversibleMain::Init()
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 	
-	bool flag_set[3] =
-	{ false,false,false };
+	bool flag_set[4] =
+	{ false,false,false,false };
 	memcpy(flag, flag_set, sizeof(bool)*(3));
 
 	Clear_count = 22;
@@ -38,17 +38,17 @@ void CObjReversibleMain::Init()
 //アクション
 void CObjReversibleMain::Action()
 {
-	int sx=0, sy=0;
+	int sx = 0, sy = 0;
 	int lx, ly;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
 
 
-	//当たり判定
-	if (160<=x&&640>=x&&60<=y&&540>=y&&flag[1]==false&&flag[2]==false)
+	//当たり判定-----------------------------------------------------------------------
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false && flag[3] == false)
 	{
-		if ( Input::GetMouButtonL()== true)    //左クリック時パネルを反転させる
+		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -64,10 +64,10 @@ void CObjReversibleMain::Action()
 				{
 				case 0:
 					lx = sx;
-					ly = sy-1;
+					ly = sy - 1;
 					break;
 				case 1:
-					lx = sx-1;
+					lx = sx - 1;
 					ly = sy;
 					break;
 				case 2:
@@ -75,15 +75,15 @@ void CObjReversibleMain::Action()
 					ly = sy;
 					break;
 				case 3:
-					lx = sx+1;
+					lx = sx + 1;
 					ly = sy;
 					break;
 				case 4:
 					lx = sx;
-					ly = sy+1;
+					ly = sy + 1;
 					break;
 				}
-				if(lx>=0&&ly>=0&& lx <= 4 && ly <= 4)
+				if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 				{
 					if (stage[lx][ly] == 0)
 					{
@@ -100,28 +100,39 @@ void CObjReversibleMain::Action()
 
 			}
 
-			if (ReversibleClearCheck(stage)==true)
+			if (ReversibleClearCheck(stage) == true)
 			{
 				flag[1] = true;
 			}
-			else if (ReversibleClearCheck(stage) == false&&Clear_count==0)
-				{
-					flag[2] = true;
-				}
-			
-		}
-	}
-	//GameClear時の判定
-	if (flag[1] == true)
-	{
-		//StageSELECTへ戻るボタン判定
-		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
-		{
+			else if (ReversibleClearCheck(stage) == false && Clear_count == 0)
+			{
+				flag[2] = true;
+			}
 
 		}
 	}
-	//GameOver時の判定
-	if (flag[2]==true)
+	//GameClear時の判定---------------------------------------------------------------------
+	if (flag[1] == true)
+	{
+		//StageSelectへ戻るボタン判定
+		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Scene::SetScene(new CSceneStageSelect());
+
+			}
+
+		}
+	}
+	//GameOver時の判定-----------------------------------------------------------------------
+	if (flag[2] == true)
 	{
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
@@ -143,11 +154,24 @@ void CObjReversibleMain::Action()
 		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
 		{
 
+			if (Input::GetMouButtonL() == true)
+			{
+
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Scene::SetScene(new CSceneStageSelect());
+				flag[2] = false;
+			}
 		}
+
 	}
 
-	//リセットボタン当たり判定
-	if (650 <= x && 770 >= x && 430 <= y && 530 >= y&&flag[1] == false && flag[2] == false)
+	//リセットボタン当たり判定-------------------------------------------------------------
+	if (650 <= x && 770 >= x && 430 <= y && 530 >= y && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -163,8 +187,8 @@ void CObjReversibleMain::Action()
 		}
 	}
 
-	//ヒントボタン当たり判定
-	if (650 <= x && 770 >= x && 250 <= y && 350 >= y&& flag[1] == false && flag[2] == false)
+	//ヒントボタン当たり判定----------------------------------------------------------------
+	if (650 <= x && 770 >= x && 250 <= y && 350 >= y && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -177,6 +201,59 @@ void CObjReversibleMain::Action()
 
 			}
 		}
+	}
+
+	//StageSelectへ戻るボタン判定------------------------------------------------------------
+	if (x >= 20 && x <= 140 && y >= 20 && y <= 120)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			flag[3] = true;
+
+			//SEを鳴らす
+			Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+		}
+	}
+	if (flag[3]==true)
+	{
+	//Yesボタン判定
+	if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			Clear_count = 22;
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Scene::SetScene(new CSceneStageSelect());
+			flag[3] = false;
+		}
+	}
+	//Noボタン判定
+	if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+	{
+
+		if (Input::GetMouButtonL() == true)
+		{
+
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+
+			flag[3] = false;
+		}
+	}
 	}
 }
 
@@ -208,7 +285,7 @@ void CObjReversibleMain::Draw()
 	src.m_right = 96.0f;
 	src.m_bottom = 96.0f;
 
-	//stageの描画
+	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	Font::StrDraw(L"stage1", 30, 480, 12, f);
 
@@ -252,8 +329,8 @@ void CObjReversibleMain::Draw()
 		//ヒントの表示
 		if (flag[0]==true)
 		{
-			Font::StrDraw(L"最短手数", 20, 200, 32, f);
-			Font::StrDraw(L"6手",40 , 260, 32, f);
+			Font::StrDraw(L"最短手数", 20, 260, 32, f);
+			Font::StrDraw(L"6手",40 , 320, 32, f);
 			
 		}
 
@@ -318,7 +395,10 @@ void CObjReversibleMain::Draw()
 			dst.m_right = 690.0;
 			dst.m_bottom = 320.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
-
+		}
+		//Yes・Noボタンの描画
+		if (flag[2] == true || flag[3] == true)
+		{
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 240.0f;
@@ -339,5 +419,6 @@ void CObjReversibleMain::Draw()
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
+		
 
 }
