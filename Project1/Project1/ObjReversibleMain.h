@@ -21,4 +21,9 @@ private:
 	int stage_reset[5][5];
 	int Clear_count;
 	bool flag[3];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
+
+	//アニメーション変更用
+	int m_ani_flame;
+	int change_panel[5][5];
+	bool m_change;
 };
