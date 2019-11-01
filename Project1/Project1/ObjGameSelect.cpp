@@ -18,6 +18,12 @@ void CObjGameSelect::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjGameSelect::Action()
 {
+	int sx = 0, sy = 0;
+	int lx, ly;
+	x = (float)Input::GetPosX();
+	y = (float)Input::GetPosY();
+
+
 
 }
 
