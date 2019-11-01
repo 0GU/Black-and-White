@@ -14,6 +14,7 @@ enum OBJ_NAME
 	OBJ_GALLLERY,
 	OBJ_STAGESELECT,
 	OBJ_GAMECLEAR,
+	OBJ_SWITCHMAIN,
 };
 //------------------------------------------------
 
@@ -67,6 +68,7 @@ struct UserData
 #include "ObjGallery.h"
 #include "ObjStageSelect.h"
 #include"ObjGameClear.h"
+#include"ObjSwitchMain.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -77,6 +79,7 @@ struct UserData
 #include "SceneGallery.h"
 #include "SceneStageSelect.h"
 #include"SceneGameClear.h"
+#include"SceneSwitchMain.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
