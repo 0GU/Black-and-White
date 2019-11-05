@@ -376,7 +376,7 @@ void CObjReversibleMain::Draw()
 
 		//Count‚Ì’l‚ð•¶Žš—ñ‰»---------------------------------------
 		wchar_t str[128];
-		swprintf(str, L"%d", Clear_count);
+		swprintf_s(str, L"%d", Clear_count);
 
 		if(Clear_count>=10)
 			Font::StrDraw(str, 700, 80, 32, f);
