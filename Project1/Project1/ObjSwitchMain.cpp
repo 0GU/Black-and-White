@@ -258,6 +258,16 @@ void CObjSwitchMain::Draw()
 				//黒パネル
 				Draw::Draw(0, &src, &dst, c, 0.0f);
 			}
+			else if (stage[i][j] == 3)
+			{
+				//黒パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 2)
+			{
+				//黒パネル
+				Draw::Draw(7, &src, &dst, c, 0.0f);
+			}
 
 		}
 	}
