@@ -29,3 +29,25 @@ int ReversibleClearCheck(int rcc[5][5])
 		}
 	}
 }
+
+void LoadRPStage(int StaNum, int *Stage)
+{
+	int Stage3[5][5] =
+	{
+	{0,1,1,0,1},
+	{1,0,1,1,0},
+	{1,1,0,1,0},
+	{1,0,0,0,1},
+	{0,1,1,1,1},
+	};
+	switch (StaNum)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		memcpy(Stage, Stage3, sizeof(int)*(5 * 5));
+		break;
+	}
+}

@@ -42,6 +42,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
+	int RPStageSelect[3];
 	
 };
 //------------------------------------------------

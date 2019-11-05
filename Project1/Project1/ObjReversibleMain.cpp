@@ -3,7 +3,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
-
+#include "GameL\UserData.h"
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include"GameL/Audio.h"
@@ -16,14 +16,26 @@ using namespace GameL;
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
-	int stage_data[5][5] =
+	StageSlect = -1;
+	for (int i = 0; i < 3; i++)
 	{
-		{0,1,1,0,1},
-		{1,0,1,1,0},
-		{1,1,0,1,0},
-		{1,0,0,0,1},
-		{0,1,1,1,1},
-	};
+		((UserData*)Save::GetData())->RPStageSelect[i] = 0;
+	}
+
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->RPStageSelect[i] ==1)
+		{
+			StageSlect = i;
+		}
+	}
+
+
+	int stage_data[5][5];
+
+	LoadRPStage(StageSlect, *stage_data);
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
