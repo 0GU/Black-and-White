@@ -281,11 +281,11 @@ void CObjReversibleMain::Draw()
 
 	//マップチップによるblock設置
 	//切り取り位置の設定
-	/*src.m_top = 0.0f;
+	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 96.0f;
 	src.m_bottom = 96.0f;
-	*/
+	
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	Font::StrDraw(L"stage1", 30, 480, 36, f);
@@ -302,21 +302,21 @@ void CObjReversibleMain::Draw()
 				dst.m_bottom = dst.m_top + 96.0;
 				if (stage[i][j] == 0)
 				{
-					src.m_top = 0.0f + (stage[i][j] % 2) * 240;
+					/*src.m_top = 0.0f + (stage[i][j] % 2) * 240;
 					src.m_left = 0.0f + m_ani_flame * 96;
 					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;
+					src.m_bottom = 120.0f + src.m_top;*/
 					//白パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
+					Draw::Draw(1, &src, &dst, c, 0.0f);
 				}
 				else if (stage[i][j] == 1)
 				{
-					src.m_top = 12.0f + (stage[i][j] % 2) * 240;
+					/*src.m_top = 12.0f + (stage[i][j] % 2) * 240;
 					src.m_left = 0.0f + m_ani_flame * 96;
 					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;
+					src.m_bottom = 120.0f + src.m_top;*/
 					//黒パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
+					Draw::Draw(0, &src, &dst, c, 0.0f);
 				}
 			
 		}
