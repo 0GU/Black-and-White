@@ -87,6 +87,7 @@ struct UserData
 #define SET_GAME_START CSceneStageSelect
 
 
+
 //-----------------------------------------------
 
 //ƒeƒXƒg‚¾‚æ``
