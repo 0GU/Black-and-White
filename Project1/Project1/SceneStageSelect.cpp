@@ -31,7 +31,7 @@ CSceneStageSelect::~CSceneStageSelect()
 void CSceneStageSelect::InitScene()
 {
 
-	Draw::LoadImageW(L"�܂Ƃ߉摜1.png", 0, TEX_SIZE_512);
+	Draw::LoadImageW(L"�܂Ƃ߉摜/�܂Ƃ߉摜1.png", 0, TEX_SIZE_512);
 	CObjStageSelect* p = new CObjStageSelect();
 	Objs::InsertObj(p, OBJ_STAGESELECT, 1);
 }

@@ -18,11 +18,11 @@ void CObjSwitchMain::Init()
 {
 	int stage_data[5][5] =
 	{
-		{1,0,1,0,1},
-		{0,0,0,1,0},
-		{0,0,1,0,0},
-		{0,1,0,0,0},
-		{1,0,1,0,1},
+		{1,2,1,2,1},
+		{3,0,2,1,3},
+		{0,3,1,3,0},
+		{3,1,2,0,3},
+		{1,2,1,2,1},
 	};
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
@@ -32,7 +32,7 @@ void CObjSwitchMain::Init()
 	{ false,false,false };
 	memcpy(flag, flag_set, sizeof(bool)*(3));
 
-	Clear_count = 22;
+	Clear_count = 12;
 }
 
 //アクション
@@ -46,7 +46,7 @@ void CObjSwitchMain::Action()
 
 
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y &&(( ((int)(y - 60) / 96)%2==0&& ((int)(x - 160) / 96) % 2 ==1)|| (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 		{
@@ -56,55 +56,71 @@ void CObjSwitchMain::Action()
 			//Countを減らす
 			Clear_count--;
 
-			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
-			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
-			for (int m = 0; m < 5; m++)
+			sy = (int)(y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
+			sx = (int)(x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
+			for (int m = 0; m < 2; m++)
 			{
-				switch (m)
+				switch (stage[sy][sx])
 				{
-				case 0:
-					lx = sx;
-					ly = sy - 1;
-					break;
-				case 1:
-					lx = sx - 1;
-					ly = sy;
-					break;
 				case 2:
-					lx = sx;
-					ly = sy;
+					switch (m)
+					{
+					case 0://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 1://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					}
 					break;
 				case 3:
-					lx = sx + 1;
-					ly = sy;
-					break;
-				case 4:
-					lx = sx;
-					ly = sy + 1;
+					switch (m)
+					{
+						/*case 0://左
+							ly = sy;
+							lx = sx - 1;
+							break;*/
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+
+					case 1://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+						/*case 4://右
+							ly = sy;
+							lx = sx + 1;
+							break;*/
+					}
 					break;
 				}
-				if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
-				{
-					if (stage[lx][ly] == 0)
+					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
 					{
-						stage[lx][ly] = 1;
+						if (stage[ly][lx] == 0)
+						{
+							stage[ly][lx] = 1;
+						}
+						else if (stage[ly][lx] == 1)
+						{
+							stage[ly][lx] = 0;
+						}
 					}
-					else if (stage[lx][ly] == 1)
-					{
-						stage[lx][ly] = 0;
-					}
-				}
+				
 			}
 			while (Input::GetMouButtonL() == true)
 			{
 
 			}
 
-			if (ReversibleClearCheck(stage) == true)
+			if (SwitchClearCheck(stage) == true)
 			{
 				flag[1] = true;
 			}
-			else if (ReversibleClearCheck(stage) == false && Clear_count == 0)
+			else if (SwitchClearCheck(stage) == false && Clear_count == 0)
 			{
 				flag[2] = true;
 			}
@@ -117,7 +133,17 @@ void CObjSwitchMain::Action()
 		//StageSELECTへ戻るボタン判定
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
+			if (Input::GetMouButtonL() == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
 
+				}
+				Scene::SetScene(new CSceneGameSelect());
+
+			}
 		}
 	}
 	//GameOver時の判定
@@ -128,7 +154,7 @@ void CObjSwitchMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				Clear_count = 22;
+				Clear_count = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//SEを鳴らす
 				Audio::Start(1);
@@ -151,7 +177,7 @@ void CObjSwitchMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			Clear_count = 22;
+			Clear_count = 12;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
@@ -231,6 +257,16 @@ void CObjSwitchMain::Draw()
 			{
 				//黒パネル
 				Draw::Draw(0, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 3)
+			{
+				//黒パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 2)
+			{
+				//黒パネル
+				Draw::Draw(7, &src, &dst, c, 0.0f);
 			}
 
 		}
