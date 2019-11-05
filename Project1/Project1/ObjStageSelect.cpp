@@ -3,7 +3,7 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
-
+#include "GameL/UserData.h"
 #include"GameHead.h"
 #include"ObjStageSelect.h"
 #include"ObjReversibleMain.h"
@@ -30,8 +30,12 @@ void CObjStageSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-
-
+			for (int i = 0; i < 3; i++)
+			{
+				((UserData*)Save::GetData())->RPStageSelect[i] = 0;
+			}
+			((UserData*)Save::GetData())->RPStageSelect[2] = 1;
+			Save::Seve();
 			Scene::SetScene(new CSceneReversibleMain());
 
 
