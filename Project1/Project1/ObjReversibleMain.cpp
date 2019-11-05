@@ -33,7 +33,7 @@ void CObjReversibleMain::Init()
 	memcpy(flag, flag_set, sizeof(bool)*(4));
 
 	Clear_count = 22;
-	m_ani_flame = 1;
+	m_ani_flame = 0;
 }
 
 //アクション
@@ -296,27 +296,27 @@ void CObjReversibleMain::Draw()
 		{
 			
 				//表示位置の設定
-				dst.m_top = i * 96.0f+60.0f;
+				dst.m_top = i * 96.0f+60.0f-12.0f;
 				dst.m_left = j * 96.0f+160.0f;
 				dst.m_right = dst.m_left + 96.0;
-				dst.m_bottom = dst.m_top + 96.0;
+				dst.m_bottom = dst.m_top + 120.0;
 				if (stage[i][j] == 0)
 				{
-					/*src.m_top = 0.0f + (stage[i][j] % 2) * 240;
+					src.m_top = 120.0f;
 					src.m_left = 0.0f + m_ani_flame * 96;
 					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;*/
+					src.m_bottom = 120.0f + src.m_top;
 					//白パネル
-					Draw::Draw(1, &src, &dst, c, 0.0f);
+					Draw::Draw(6, &src, &dst, c, 0.0f);
 				}
 				else if (stage[i][j] == 1)
 				{
-					/*src.m_top = 12.0f + (stage[i][j] % 2) * 240;
+					src.m_top = 0.0f;
 					src.m_left = 0.0f + m_ani_flame * 96;
 					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;*/
+					src.m_bottom = 120.0f + src.m_top;
 					//黒パネル
-					Draw::Draw(0, &src, &dst, c, 0.0f);
+					Draw::Draw(6, &src, &dst, c, 0.0f);
 				}
 			
 		}
