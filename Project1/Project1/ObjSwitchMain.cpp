@@ -32,7 +32,7 @@ void CObjSwitchMain::Init()
 	{ false,false,false };
 	memcpy(flag, flag_set, sizeof(bool)*(3));
 
-	Clear_count = 22;
+	Clear_count = 12;
 }
 
 //アクション
@@ -116,11 +116,11 @@ void CObjSwitchMain::Action()
 
 			}
 
-			if (ReversibleClearCheck(stage) == true)
+			if (SwitchClearCheck(stage) == true)
 			{
 				flag[1] = true;
 			}
-			else if (ReversibleClearCheck(stage) == false && Clear_count == 0)
+			else if (SwitchClearCheck(stage) == false && Clear_count == 0)
 			{
 				flag[2] = true;
 			}
@@ -133,7 +133,17 @@ void CObjSwitchMain::Action()
 		//StageSELECTへ戻るボタン判定
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
+			if (Input::GetMouButtonL() == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
 
+				}
+				Scene::SetScene(new CSceneGameSelect());
+
+			}
 		}
 	}
 	//GameOver時の判定
@@ -144,7 +154,7 @@ void CObjSwitchMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				Clear_count = 22;
+				Clear_count = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//SEを鳴らす
 				Audio::Start(1);
@@ -167,7 +177,7 @@ void CObjSwitchMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			Clear_count = 22;
+			Clear_count = 12;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
