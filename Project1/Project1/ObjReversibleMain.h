@@ -25,6 +25,8 @@ private:
 	int m_ani_flame;
 	int change_panel[5][5];
 	bool m_change;
+	bool time_flag;
+	int m_time;
 	//フラグ管理用
 	bool flag[4];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…	Yes・Noフラグ
 };

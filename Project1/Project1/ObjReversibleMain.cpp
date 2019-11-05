@@ -46,6 +46,7 @@ void CObjReversibleMain::Init()
 
 	Clear_count = 22;
 	m_ani_flame = 0;
+	m_time = 0;
 }
 
 //アクション
@@ -100,11 +101,11 @@ void CObjReversibleMain::Action()
 				{
 					if (stage[lx][ly] == 0)
 					{
-						stage[lx][ly] = 1;
+						stage[lx][ly] = 2;
 					}
 					else if (stage[lx][ly] == 1)
 					{
-						stage[lx][ly] = 0;
+						stage[lx][ly] = 3;
 					}
 				}
 			}
@@ -123,7 +124,57 @@ void CObjReversibleMain::Action()
 			}
 
 		}
+		
+
+	
+	
 	}
+	time_flag = true;
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (stage[i][j] == 2)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 5) {
+					m_ani_flame++;
+					m_time = 0;
+				}
+
+				if (m_ani_flame == 8)
+				{
+					stage[i][j] = 1;
+				}
+
+			}
+			if (stage[i][j] == 3)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 5) {
+					m_ani_flame++;
+					m_time = 0;
+				}if (m_ani_flame == 8)
+				{
+					stage[i][j] = 0;
+				}
+
+			}
+		}
+	}
+
+	if (m_ani_flame == 8)
+		m_ani_flame = 0;
+
 	//GameClear時の判定---------------------------------------------------------------------
 	if (flag[1] == true)
 	{
@@ -273,6 +324,9 @@ void CObjReversibleMain::Action()
 //ドロー
 void CObjReversibleMain::Draw()
 {
+	int AniData[8]{
+		0,1,2,3,7,6,5,4,
+	};
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
@@ -314,8 +368,8 @@ void CObjReversibleMain::Draw()
 				dst.m_bottom = dst.m_top + 120.0;
 				if (stage[i][j] == 0)
 				{
-					src.m_top = 120.0f;
-					src.m_left = 0.0f + m_ani_flame * 96;
+					src.m_top = 120.0;
+					src.m_left = 0.0f;
 					src.m_right = 96.0f + src.m_left;
 					src.m_bottom = 120.0f + src.m_top;
 					//白パネル
@@ -323,8 +377,26 @@ void CObjReversibleMain::Draw()
 				}
 				else if (stage[i][j] == 1)
 				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f + m_ani_flame * 96;
+					src.m_top = 0.0f ;
+					src.m_left = 0.0f;
+					src.m_right = 96.0f + src.m_left;
+					src.m_bottom = 120.0f + src.m_top;
+					//黒パネル
+					Draw::Draw(6, &src, &dst, c, 0.0f);
+				}
+				if (stage[i][j] == 2)
+				{
+					src.m_top = 120.0f- (AniData[m_ani_flame]/4)*120;
+					src.m_left = 0.0f +( AniData[m_ani_flame]%4) * 96;
+					src.m_right = 96.0f + src.m_left;
+					src.m_bottom = 120.0f + src.m_top;
+					//白パネル
+					Draw::Draw(6, &src, &dst, c, 0.0f);
+				}
+				else if (stage[i][j] == 3)
+				{
+					src.m_top = 0.0f+ (AniData[m_ani_flame]/4)*120;
+					src.m_left = 0.0f +( AniData[m_ani_flame]%4) * 96;
 					src.m_right = 96.0f + src.m_left;
 					src.m_bottom = 120.0f + src.m_top;
 					//黒パネル
