@@ -46,7 +46,7 @@ void CSceneReversibleMain::InitScene()
 	Audio::LoadAudio(1, L"ƒNƒŠƒbƒNSE.wav", EFFECT);
 
 	//BGMÄ¶
-	float Volume = Audio::VolumeMaster(-0.3f);
+	float Volume = Audio::VolumeMaster(0.7f);
 	Audio::Start(0);
 
 	CObjReversibleMain* p = new CObjReversibleMain();
