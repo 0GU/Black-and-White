@@ -33,7 +33,7 @@ void CObjReversibleMain::Init()
 	}
 
 
-	int stage_data[5][5];
+	int stage_data[5][5] = {};
 
 	LoadRPStage(StageSlect, *stage_data);
 	//マップデータをコピー
