@@ -56,7 +56,6 @@ int SwitchClearCheck(int rcc[5][5])
 		}
 	}
 }
-}
 
 void LoadRPStage(int StaNum, int *Stage)
 {
