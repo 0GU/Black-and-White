@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 
+#include"GameHead.h"
 #include"ObjGameSelect.h"
 
 //使用するネームスペース
@@ -18,7 +19,19 @@ void CObjGameSelect::Init()
 //アクション
 void CObjGameSelect::Action()
 {
-	   	 
+	x = (float)Input::GetPosX();
+	y = (float)Input::GetPosY();
+
+	//RSGのステージセレクトへ移動
+	if (400 <= x && 700 >= x && 100 <= y && 490 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			Scene::SetScene(new CSceneStageSelect());
+
+		}
+	}
+
 }
 
 //ドロー
