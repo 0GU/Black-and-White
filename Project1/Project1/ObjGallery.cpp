@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 
+#include"GameHead.h"
 #include"ObjGallery.h"
 
 //使用するネームスペース

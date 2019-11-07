@@ -29,8 +29,8 @@ CSceneGallery::~CSceneGallery()
 //ゲームタイトル初期化メソッド
 void CSceneGallery::InitScene()
 {
-	//CObjGallery* p = new CObjGallery();
-	//Objs::InsertObj(p, OBJ_GALLERY, 1);
+	CObjGallery* p = new CObjGallery();
+	Objs::InsertObj(p, OBJ_GALLERY, 1);
 }
 
 //ゲームタイトル実行メソッド

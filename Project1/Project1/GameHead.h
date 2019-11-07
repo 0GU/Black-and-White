@@ -11,7 +11,7 @@ enum OBJ_NAME
 	OBJ_MOUSE,
 	OBJ_MODESELECT,
 	OBJ_GAMESELECT,
-	OBJ_GALLLERY,
+	OBJ_GALLERY,
 	OBJ_STAGESELECT,
 	OBJ_GAMECLEAR,
 	OBJ_SWITCHMAIN,
@@ -85,7 +85,7 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneStageSelect
+#define SET_GAME_START CSceneTitle
 
 
 //-----------------------------------------------
