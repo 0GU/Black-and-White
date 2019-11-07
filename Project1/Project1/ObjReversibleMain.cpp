@@ -47,6 +47,7 @@ void CObjReversibleMain::Init()
 	Clear_count = 22;
 	m_ani_flame = 0;
 	m_time = 0;
+	m_change = true;
 }
 
 //アクション
@@ -62,69 +63,66 @@ void CObjReversibleMain::Action()
 	//当たり判定-----------------------------------------------------------------------
 	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false && flag[3] == false)
 	{
-		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
+		if (m_change == true)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-
-			//Countを減らす
-			Clear_count--;
-
-			sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
-			sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
-			for (int m = 0; m < 5; m++)
+			if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 			{
-				switch (m)
+				m_change = false;	//反転中はほかのパネルを反転できないようにする
+
+				//SEを鳴らす
+				Audio::Start(1);
+
+				//Countを減らす
+				Clear_count--;
+
+				sx = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
+				sy = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
+				for (int m = 0; m < 5; m++)
 				{
-				case 0:
-					lx = sx;
-					ly = sy - 1;
-					break;
-				case 1:
-					lx = sx - 1;
-					ly = sy;
-					break;
-				case 2:
-					lx = sx;
-					ly = sy;
-					break;
-				case 3:
-					lx = sx + 1;
-					ly = sy;
-					break;
-				case 4:
-					lx = sx;
-					ly = sy + 1;
-					break;
+					switch (m)
+					{
+					case 0:
+						lx = sx;
+						ly = sy - 1;
+						break;
+					case 1:
+						lx = sx - 1;
+						ly = sy;
+						break;
+					case 2:
+						lx = sx;
+						ly = sy;
+						break;
+					case 3:
+						lx = sx + 1;
+						ly = sy;
+						break;
+					case 4:
+						lx = sx;
+						ly = sy + 1;
+						break;
+					}
+					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+					{
+						//反転中を示す値に変更する
+						if (stage[lx][ly] == 0)
+						{
+							stage[lx][ly] = 2;
+						}
+						else if (stage[lx][ly] == 1)
+						{
+
+							stage[lx][ly] = 3;
+						}
+					}
 				}
-				if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+				while (Input::GetMouButtonL() == true)
 				{
-					if (stage[lx][ly] == 0)
-					{
-						stage[lx][ly] = 2;
-					}
-					else if (stage[lx][ly] == 1)
-					{
-						stage[lx][ly] = 3;
-					}
+
 				}
-			}
-			while (Input::GetMouButtonL() == true)
-			{
 
 			}
-
-			if (ReversibleClearCheck(stage) == true)
-			{
-				flag[1] = true;
-			}
-			else if (ReversibleClearCheck(stage) == false && Clear_count == 0)
-			{
-				flag[2] = true;
-			}
-
 		}
-		
 
 	
 	
@@ -142,7 +140,7 @@ void CObjReversibleMain::Action()
 					m_time++;
 					time_flag = false;
 				}
-				if (m_time == 5) {
+				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
 				}
@@ -160,7 +158,7 @@ void CObjReversibleMain::Action()
 					m_time++;
 					time_flag = false;
 				}
-				if (m_time == 5) {
+				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
 				}if (m_ani_flame == 8)
@@ -171,9 +169,21 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
+				
 
 	if (m_ani_flame == 8)
+	{
 		m_ani_flame = 0;
+		m_change = true;
+		if (ReversibleClearCheck(stage) == true)
+			{
+				flag[1] = true;
+			}
+		else if (ReversibleClearCheck(stage) == false && Clear_count == 0&&m_change==true)
+			{
+				flag[2] = true;
+			}
+	}
 
 	//GameClear時の判定---------------------------------------------------------------------
 	if (flag[1] == true)
@@ -387,8 +397,8 @@ void CObjReversibleMain::Draw()
 				if (stage[i][j] == 2)
 				{
 					src.m_top = 120.0f- (AniData[m_ani_flame]/4)*120;
-					src.m_left = 0.0f +( AniData[m_ani_flame]%4) * 96;
-					src.m_right = 96.0f + src.m_left;
+					src.m_left = 96.0f +( AniData[m_ani_flame]%4) * 96;
+					src.m_right = src.m_left-96.0f;
 					src.m_bottom = 120.0f + src.m_top;
 					//白パネル
 					Draw::Draw(6, &src, &dst, c, 0.0f);
