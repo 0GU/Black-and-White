@@ -42,6 +42,7 @@
     <ClInclude Include="ObjReversibleMain.h" />
     <ClInclude Include="ObjStageSelect.h" />
     <ClInclude Include="ObjSwitchMain.h" />
+    <ClInclude Include="ObjSwitchSelect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGallery.h" />
     <ClInclude Include="SceneGameClear.h">
@@ -52,6 +53,7 @@
     <ClInclude Include="SceneReversibleMain.h" />
     <ClInclude Include="SceneStageSelect.h" />
     <ClInclude Include="SceneSwitchMain.h" />
+    <ClInclude Include="SceneSwitchSelect.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="UtilityModule.h" />
   </ItemGroup>
@@ -79,6 +81,7 @@
     <ClCompile Include="ObjReversibleMain.cpp" />
     <ClCompile Include="ObjStageSelect.cpp" />
     <ClCompile Include="ObjSwitchMain.cpp" />
+    <ClCompile Include="ObjSwitchSelect.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGallery.cpp" />
     <ClCompile Include="SceneGameClear.cpp">
@@ -89,6 +92,7 @@
     <ClCompile Include="SceneReversibleMain.cpp" />
     <ClCompile Include="SceneStageSelect.cpp" />
     <ClCompile Include="SceneSwitchMain.cpp" />
+    <ClCompile Include="SceneSwitchSelect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>

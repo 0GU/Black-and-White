@@ -3,7 +3,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
-
+#include "GameL/UserData.h"
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
 #include"GameL/Audio.h"
@@ -16,14 +16,26 @@ using namespace GameL;
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
-	int stage_data[5][5] =
+	StageSlect = -1;
+	for (int i = 0; i < 3; i++)
 	{
-		{1,2,1,2,1},
-		{3,0,2,1,3},
-		{0,3,1,3,0},
-		{3,1,2,0,3},
-		{1,2,1,2,1},
-	};
+		((UserData*)Save::GetData())->SPStageSelect[i] = false;
+	}
+
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->SPStageSelect[i] == true)
+		{
+			StageSlect = i;
+		}
+	}
+
+
+	int stage_data[5][5] = {};
+
+	LoadSPStage(StageSlect, *stage_data);
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
@@ -141,7 +153,7 @@ void CObjSwitchMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneGameSelect());
+				Scene::SetScene(new CSceneSwitchSelect());
 
 			}
 		}
@@ -168,7 +180,18 @@ void CObjSwitchMain::Action()
 		//Noボタン判定
 		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
 		{
+			if (Input::GetMouButtonL() == true)
+			{
 
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Scene::SetScene(new CSceneSwitchSelect());
+				flag[2] = false;
+			}
 		}
 	}
 
