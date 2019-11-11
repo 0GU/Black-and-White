@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\Audio.h"
+#include "GameL\DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -31,6 +32,7 @@ void CSceneTitle::InitScene()
 	CObjTitle* p = new CObjTitle();
 	Objs::InsertObj(p, OBJ_TITLE, 1);
 
+	Draw::LoadImage(L"タイトル.png", 0, TEX_SIZE_512);
 
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
