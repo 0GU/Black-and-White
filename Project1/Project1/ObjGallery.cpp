@@ -37,6 +37,20 @@ void CObjGallery::Action()
 		}
 	}
 
+
+	//右矢印
+	if (700 <= x &&775 >= x && 240 <= y && 360 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Scene::SetScene(new CSceneModeSelect());
+
+		}
+	}
 }
 
 //ドロー
@@ -58,5 +72,27 @@ void CObjGallery::Draw()
 	dst.m_right = 125.0;
 	dst.m_bottom = 135.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	//矢印ボタン
+	src.m_top = 0.0f;
+	src.m_left = 559.0f;
+	src.m_right = 639.0f;
+	src.m_bottom = 140.0f;
+	dst.m_top = 245.0f;
+	dst.m_left = 700.0f;
+	dst.m_right = 775.0;
+	dst.m_bottom = 365.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	//仮枠
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 512.0f;
+	src.m_bottom = 512.0f;
+	dst.m_top = 50.0f;
+	dst.m_left = 145.0f;
+	dst.m_right = 657.0f;
+	dst.m_bottom = 560.0f;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 }
