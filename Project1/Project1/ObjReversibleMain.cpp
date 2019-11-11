@@ -16,17 +16,19 @@ using namespace GameL;
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
+
+
 	StageSlect = -1;
 	for (int i = 0; i < 3; i++)
 	{
-		((UserData*)Save::GetData())->RPStageSelect[i] = 0;
+		((UserData*)Save::GetData())->RPStageSelect[i] = false;
 	}
 
 	Save::Open();
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (((UserData*)Save::GetData())->RPStageSelect[i] ==1)
+		if (((UserData*)Save::GetData())->RPStageSelect[i] ==true)
 		{
 			StageSlect = i;
 		}
@@ -60,7 +62,7 @@ void CObjReversibleMain::Action()
 
 
 
-	//当たり判定-----------------------------------------------------------------------
+	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false && flag[3] == false)
 	{
 		if (m_change == true)
@@ -185,7 +187,7 @@ void CObjReversibleMain::Action()
 			}
 	}
 
-	//GameClear時の判定---------------------------------------------------------------------
+	//GameClear時の判定-----------------------------------------------------------------------------------------------
 	if (flag[1] == true)
 	{
 		//StageSelectへ戻るボタン判定
@@ -205,7 +207,7 @@ void CObjReversibleMain::Action()
 
 		}
 	}
-	//GameOver時の判定-----------------------------------------------------------------------
+	//GameOver時の判定--------------------------------------------------------------------------------------------------
 	if (flag[2] == true)
 	{
 		//Yesボタン判定
