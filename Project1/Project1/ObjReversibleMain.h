@@ -19,7 +19,9 @@ public:
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
-	int Clear_count;
+	//count管理用
+	int count[2];  //[0]…PerfectClearcount [1]…Clearcount
+	//ステージ読み込み用
 	int StageSlect;
 	//アニメーション変更用
 	int m_ani_flame;
@@ -28,5 +30,5 @@ private:
 	bool time_flag;
 	int m_time;
 	//フラグ管理用
-	bool flag[4];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…	Yes・Noフラグ
+	bool flag[5];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…	Yes・Noフラグ
 };
