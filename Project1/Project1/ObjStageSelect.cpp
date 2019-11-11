@@ -28,12 +28,15 @@ void CObjStageSelect::Action()
 	//right値が描画とズレていた為調整
 	if (120 <= x && 670 >= x && 420 <= y && 510 >= y )
 	{
+
+		//この場所を左クリックでリバーシブルのステージセレクトへ
 		if (Input::GetMouButtonL() == true)
 		{
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->RPStageSelect[i] = 0;
 			}
+			//
 			((UserData*)Save::GetData())->RPStageSelect[2] = 1;
 			Save::Seve();
 			Scene::SetScene(new CSceneReversibleMain());
