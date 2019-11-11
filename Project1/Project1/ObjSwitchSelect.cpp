@@ -67,14 +67,27 @@ void CObjSwitchSelect::Draw()
 	RECT_F src; //ï`âÊå≥êÿÇËéÊÇËà íuÇÃê›íË
 	RECT_F dst; //ï`âÊêÊï\é¶à íu
 
-
-	src.m_top = 448.0f;
+	src.m_top = 267.0f;
 	src.m_left = 0.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 540.0f;
-	dst.m_top = 420.0f;
+	src.m_right = 561.0f;
+	src.m_bottom = 359.0f;
+	dst.m_top = 180.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;
+	dst.m_bottom = 270.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	src.m_top = 358.0f;
+	src.m_left = 0.0f;
+	src.m_right = 560.0f;
+	src.m_bottom = 449.0f;
+	dst.m_top = 300.0f;
+	dst.m_bottom = 390.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	src.m_top = 448.0f;
+	src.m_bottom = 540.0f;
+	dst.m_top = 420.0f;
 	dst.m_bottom = 510.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
