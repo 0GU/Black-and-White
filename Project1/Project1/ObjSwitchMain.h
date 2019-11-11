@@ -20,5 +20,7 @@ private:
 	int stage[5][5];
 	int stage_reset[5][5];
 	int Clear_count;
+	int StageSlect;
+
 	bool flag[3];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
 };

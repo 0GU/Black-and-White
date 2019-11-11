@@ -78,3 +78,25 @@ void LoadRPStage(int StaNum, int *Stage)
 		break;
 	}
 }
+
+void LoadSPStage(int StaNum, int *Stage)
+{
+	int SPStage3[5][5] =
+	{
+		{1,2,1,2,1},
+		{3,0,2,1,3},
+		{0,3,1,3,0},
+		{3,1,2,0,3},
+		{1,2,1,2,1},
+	};
+	switch (StaNum)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		memcpy(Stage, SPStage3, sizeof(int)*(5 * 5));
+		break;
+	}
+}

@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_STAGESELECT,
 	OBJ_GAMECLEAR,
 	OBJ_SWITCHMAIN,
+	OBJ_SWITCHSELECT,
 };
 //------------------------------------------------
 
@@ -43,7 +44,8 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 	int RPStageSelect[3];
-	
+	bool SPStageSelect[3];
+
 };
 //------------------------------------------------
 
@@ -70,6 +72,7 @@ struct UserData
 #include "ObjStageSelect.h"
 #include"ObjGameClear.h"
 #include"ObjSwitchMain.h"
+#include "ObjSwitchSelect.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -81,6 +84,7 @@ struct UserData
 #include "SceneStageSelect.h"
 #include"SceneGameClear.h"
 #include"SceneSwitchMain.h"
+#include "SceneSwitchSelect.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

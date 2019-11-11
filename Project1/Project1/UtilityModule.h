@@ -9,3 +9,6 @@ int ReversibleClearCheck(int rcc[5][5]);
 
 //Reversible Panel Stage	“Ç‚İ‚İ—pŠÖ”
 void LoadRPStage(int StaNum, int *Stage);
+
+//Switch Panel Stage	“Ç‚İ‚İ—pŠÖ”
+void LoadSPStage(int StaNum, int *Stage);
