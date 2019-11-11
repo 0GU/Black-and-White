@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 
+#include"GameHead.h"
 #include"ObjGameSelect.h"
 
 //使用するネームスペース
@@ -18,7 +19,45 @@ void CObjGameSelect::Init()
 //アクション
 void CObjGameSelect::Action()
 {
-	   	 
+	x = (float)Input::GetPosX();
+	y = (float)Input::GetPosY();
+
+	//スイッチのステージセレクトへ移動
+	if (100 <= x && 700 >= x && 200 <= y && 292 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+
+			Scene::SetScene(new CSceneSwitchMain());
+
+		}
+	}
+	//リバーシブルのステージセレクトへ移動
+	if (100 <= x && 700 >= x && 400 <= y && 492 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				
+			}
+			Scene::SetScene(new CSceneStageSelect());
+		}
+	}
+	//戻るボタン
+	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Scene::SetScene(new CSceneModeSelect());
+
+		}
+	}
+
 }
 
 //ドロー

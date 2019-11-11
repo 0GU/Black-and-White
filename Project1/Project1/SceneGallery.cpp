@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\Audio.h"
+#include "GameL\DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -29,8 +30,10 @@ CSceneGallery::~CSceneGallery()
 //ゲームタイトル初期化メソッド
 void CSceneGallery::InitScene()
 {
-	//CObjGallery* p = new CObjGallery();
-	//Objs::InsertObj(p, OBJ_GALLERY, 1);
+	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
+
+	CObjGallery* p = new CObjGallery();
+	Objs::InsertObj(p, OBJ_GALLERY, 1);
 }
 
 //ゲームタイトル実行メソッド

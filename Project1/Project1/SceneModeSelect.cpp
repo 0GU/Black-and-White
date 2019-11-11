@@ -33,6 +33,8 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"ギャラリー画面(移行用).png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"ゲームセレクト画面(移行用).png", 1, TEX_SIZE_512);
 
+	//SE情報の登録
+	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
 
 	CObjModeSelect* p = new CObjModeSelect();
 	Objs::InsertObj(p, OBJ_MODESELECT, 1);

@@ -3,7 +3,10 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
+#include"GameL/Audio.h"
 
+#include"GameHead.h"
+#include"UtilityModule.h"
 #include"ObjModeSelect.h"
 
 //使用するネームスペース
@@ -18,7 +21,37 @@ void CObjModeSelect::Init()
 //アクション
 void CObjModeSelect::Action()
 {
+	x = (float)Input::GetPosX();
+	y = (float)Input::GetPosY();
+	if (120 <= x && 680 >= x && 330 <= y && 465 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
 
+			}
+			Scene::SetScene(new CSceneGallery());
+		}
+
+	}
+
+	if (120 <= x && 680 >= x && 135 <= y && 265 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Scene::SetScene(new CSceneGameSelect());
+		}
+
+	}
 }
 
 //ドロー
@@ -33,8 +66,8 @@ void CObjModeSelect::Draw()
 	//背景表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 120.0f;
+	src.m_right = 561.0f;
+	src.m_bottom = 135.0f;
 	dst.m_top = 330.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;

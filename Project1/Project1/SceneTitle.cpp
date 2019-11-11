@@ -11,7 +11,6 @@
 using namespace GameL;
 
 //使用するヘッダー
-#include "SceneReversibleMain.h"
 #include "GameHead.h"
 
 //コンストラクタ
@@ -29,8 +28,12 @@ CSceneTitle::~CSceneTitle()
 //ゲームタイトル初期化メソッド
 void CSceneTitle::InitScene()
 {
-	//CObjTitle* p = new CObjTitle();
-	//Objs::InsertObj(p, OBJ = TITLE, 1);
+	CObjTitle* p = new CObjTitle();
+	Objs::InsertObj(p, OBJ_TITLE, 1);
+
+
+	//SE情報の登録
+	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
 }
 
 //ゲームタイトル実行メソッド
