@@ -6,6 +6,7 @@
 
 #include"GameHead.h"
 #include"ObjGameSelect.h"
+#include "ObjSwitchSelect.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -32,7 +33,7 @@ void CObjGameSelect::Action()
 
 			}
 
-			Scene::SetScene(new CSceneSwitchMain());
+			Scene::SetScene(new CSceneSwitchSelect());
 
 		}
 	}
