@@ -7,5 +7,8 @@ int ReversibleClearCheck(int rcc[5][5]);
 int SwitchClearCheck(int rcc[5][5]);
 int ReversibleClearCheck(int rcc[5][5]);
 
-//Reversible Panel Stage	“Ç‚İ‚İ—pŠÖ”
+//Reversible Panel Stage“Ç‚İ‚İ—pŠÖ”
 void LoadRPStage(int StaNum, int *Stage);
+
+//Reversible Panel Count“Ç‚İ‚İ—pŠÖ”
+void LoadRPCount(int StaNum, int *Count);
