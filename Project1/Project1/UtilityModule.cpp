@@ -109,7 +109,6 @@ void LoadSPStage(int StaNum, int *Stage)
 		break;
 	}
 }
-}
 
 //LoadRPCountä÷êî------------------------------------------------------------------------------
 void LoadRPCount(int StaNum,int *Count)
