@@ -252,7 +252,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定-------------------------------------------------------------
-	if (650 <= x && 770 >= x && 430 <= y && 530 >= y && flag[1] == false && flag[2] == false)
+	if (650 <= x && 770 >= x && 430 <= y && 530 >= y && flag[1] == false && flag[2] == false&& m_ani_flame == 0)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
