@@ -73,7 +73,7 @@ void CObjGameSelect::Draw()
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 
-	//GAME SELECT表示
+	//GAME SELECT表示-----------------------------------------------------
 	src.m_top = 135.0f;
 	src.m_left = 1.0f;
 	src.m_right = 560.0f;
@@ -84,7 +84,7 @@ void CObjGameSelect::Draw()
 	dst.m_bottom = 155.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//SwitchPanel表示
+	//SwitchPanel表示-----------------------------------------------------
 	src.m_top = 658.0f;
 	src.m_left = 0.0f;
 	src.m_right = 600.0f;
@@ -95,7 +95,7 @@ void CObjGameSelect::Draw()
 	dst.m_bottom = 292.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//ReversiblePanel
+	//ReversiblePanel-----------------------------------------------------
 	src.m_top = 746.0f;
 	src.m_left = 0.0f;
 	src.m_right = 600.0f;
@@ -107,7 +107,7 @@ void CObjGameSelect::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 
-	//戻るボタン
+	//戻るボタン-----------------------------------------------------------
 	src.m_top = 139.0f;
 	src.m_left = 559.0f;
 	src.m_right = 679.0f;

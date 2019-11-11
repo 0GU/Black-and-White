@@ -27,6 +27,8 @@ void CObjStageSelect::Action()
 	//right値が描画とズレていた為調整
 	if (120 <= x && 670 >= x && 420 <= y && 510 >= y )
 	{
+
+		//この場所を左クリックでリバーシブルのステージセレクトへ
 		if (Input::GetMouButtonL() == true)
 		{
 			while (Input::GetMouButtonL() == true)

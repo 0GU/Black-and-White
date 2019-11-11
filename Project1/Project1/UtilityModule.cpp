@@ -3,6 +3,9 @@
 #include "UtilityModule.h"
 #include"GameL/WinInputs.h"
 
+
+//ReversibleClearCheck関数------------------------------------------------------------------
+//リバーシブルパネルがすべて1(黒パネル)になった時の対応
 int ReversibleClearCheck(int rcc[5][5])
 {
 	int Check[5][5] =
@@ -13,6 +16,7 @@ int ReversibleClearCheck(int rcc[5][5])
 		{1,1,1,1,1},
 		{1,1,1,1,1},
 	};
+
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -30,6 +34,9 @@ int ReversibleClearCheck(int rcc[5][5])
 	}
 }
 
+
+
+//SwitchClearCheck関数---------------------------------------------------------------------
 int SwitchClearCheck(int rcc[5][5])
 {
 	int Check[5][5] =
@@ -57,6 +64,8 @@ int SwitchClearCheck(int rcc[5][5])
 	}
 }
 
+
+//LoadRPStage関数---------------------------------------------------------------------------
 void LoadRPStage(int StaNum, int *Stage)
 {
 	int Stage3[5][5] =
