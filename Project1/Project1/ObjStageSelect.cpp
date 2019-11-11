@@ -29,11 +29,15 @@ void CObjStageSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 			for (int i = 0; i < 3; i++)
 			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = 0;
+				((UserData*)Save::GetData())->RPStageSelect[i] = false;
 			}
-			((UserData*)Save::GetData())->RPStageSelect[2] = 1;
+			((UserData*)Save::GetData())->RPStageSelect[2] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneReversibleMain());
 

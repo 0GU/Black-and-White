@@ -19,14 +19,14 @@ void CObjReversibleMain::Init()
 	StageSlect = -1;
 	for (int i = 0; i < 3; i++)
 	{
-		((UserData*)Save::GetData())->RPStageSelect[i] = 0;
+		((UserData*)Save::GetData())->RPStageSelect[i] = false;
 	}
 
 	Save::Open();
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (((UserData*)Save::GetData())->RPStageSelect[i] ==1)
+		if (((UserData*)Save::GetData())->RPStageSelect[i] ==true)
 		{
 			StageSlect = i;
 		}

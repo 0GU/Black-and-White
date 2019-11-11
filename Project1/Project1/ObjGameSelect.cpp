@@ -27,6 +27,10 @@ void CObjGameSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 
 			Scene::SetScene(new CSceneSwitchMain());
 
@@ -37,9 +41,9 @@ void CObjGameSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			if (Input::GetMouButtonL() == true)
+			while (Input::GetMouButtonL() == true)
 			{
-				
+
 			}
 			Scene::SetScene(new CSceneStageSelect());
 		}

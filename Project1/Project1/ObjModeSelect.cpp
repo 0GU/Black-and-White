@@ -29,10 +29,11 @@ void CObjModeSelect::Action()
 		{
 			//SE‚ð–Â‚ç‚·
 			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
+				while (Input::GetMouButtonL() == true)
+				{
+					
+				}
 
-			}
 			Scene::SetScene(new CSceneGallery());
 		}
 
