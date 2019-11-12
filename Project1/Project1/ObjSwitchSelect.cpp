@@ -25,39 +25,50 @@ void CObjSwitchSelect::Action()
 
 
 	//rightílÇ™ï`âÊÇ∆ÉYÉåÇƒÇ¢ÇΩà◊í≤êÆ
-	if (120 <= x && 670 >= x && 180 <= y && 270 >= y)
+	if (120 <= x && 670 >= x && 180 <= y && 270 >= y)//stage1
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
 			}
-			((UserData*)Save::GetData())->SPStageSelect[0] = true;
+			((UserData*)Save::GetData())->SPStageSelect[2] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneSwitchMain());
-
 		}
 	}
-	else if (120 <= x && 670 >= x && 300 <= y && 390 >= y)
+	else if (120 <= x && 670 >= x && 300 <= y && 390 >= y)//stage2
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
 			}
-			((UserData*)Save::GetData())->SPStageSelect[1] = true;
+			((UserData*)Save::GetData())->SPStageSelect[2] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneSwitchMain());
 
+
 		}
 	}
-
-	else if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
+	else if (120 <= x && 670 >= x && 420 <= y && 510 >= y)//stage3
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
