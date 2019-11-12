@@ -25,7 +25,36 @@ void CObjSwitchSelect::Action()
 
 
 	//right値が描画とズレていた為調整
-	if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
+	if (120 <= x && 670 >= x && 180 <= y && 270 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				((UserData*)Save::GetData())->SPStageSelect[i] = false;
+			}
+			((UserData*)Save::GetData())->SPStageSelect[0] = true;
+			Save::Seve();
+			Scene::SetScene(new CSceneSwitchMain());
+
+		}
+	}
+	else if (120 <= x && 670 >= x && 300 <= y && 390 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				((UserData*)Save::GetData())->SPStageSelect[i] = false;
+			}
+			((UserData*)Save::GetData())->SPStageSelect[1] = true;
+			Save::Seve();
+			Scene::SetScene(new CSceneSwitchMain());
+
+		}
+	}
+
+	else if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -67,6 +96,7 @@ void CObjSwitchSelect::Draw()
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 
+	//STAGE1
 	src.m_top = 267.0f;
 	src.m_left = 0.0f;
 	src.m_right = 561.0f;
@@ -77,6 +107,7 @@ void CObjSwitchSelect::Draw()
 	dst.m_bottom = 270.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
+	//STAGE2
 	src.m_top = 358.0f;
 	src.m_left = 0.0f;
 	src.m_right = 560.0f;
@@ -85,6 +116,7 @@ void CObjSwitchSelect::Draw()
 	dst.m_bottom = 390.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
+	//STAGE3
 	src.m_top = 448.0f;
 	src.m_bottom = 540.0f;
 	dst.m_top = 420.0f;
