@@ -215,6 +215,8 @@ void CObjReversibleMain::Action()
 	//GameOverŽž‚Ì”»’è--------------------------------------------------------------------------------------------------
 	if (flag[2] == true)
 	{
+		//BGM’âŽ~
+		Audio::Stop(0);
 		//Yesƒ{ƒ^ƒ“”»’è
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -222,6 +224,8 @@ void CObjReversibleMain::Action()
 			{
 				count[1] = 22;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//BGMÄÄ¶
+				Audio::Start(0);
 				//SE‚ð–Â‚ç‚·
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)

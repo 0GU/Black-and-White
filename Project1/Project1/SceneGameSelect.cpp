@@ -32,6 +32,9 @@ void CSceneGameSelect::InitScene()
 {
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
 
+	//SEî•ñ‚Ì“o˜^
+	Audio::LoadAudio(1, L"Sound/ƒNƒŠƒbƒNSE.wav", EFFECT);
+
 	CObjGameSelect* p = new CObjGameSelect();
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
 

@@ -3,6 +3,7 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
+#include"GameL/Audio.h"
 
 #include"GameHead.h"
 #include"ObjGameSelect.h"
@@ -28,6 +29,8 @@ void CObjGameSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -42,6 +45,8 @@ void CObjGameSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -54,6 +59,8 @@ void CObjGameSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
