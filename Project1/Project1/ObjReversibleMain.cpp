@@ -131,6 +131,70 @@ void CObjReversibleMain::Action()
 	}
 	time_flag = true;
 
+	for (int m = 0; m < 5; m++)
+	{
+		switch (m)
+		{
+		case 0:
+			lx = sx;
+			ly = sy - 1;
+			break;
+		case 1:
+			lx = sx - 1;
+			ly = sy;
+			break;
+		case 2:
+			lx = sx;
+			ly = sy;
+			break;
+		case 3:
+			lx = sx + 1;
+			ly = sy;
+			break;
+		case 4:
+			lx = sx;
+			ly = sy + 1;
+			break;
+		}
+		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+		{
+			if (stage[sx][sy] == 2)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 3) {
+					m_ani_flame++;
+					m_time = 0;
+				}
+
+				if (m_ani_flame == 8)
+				{
+					stage[sx][sy] = 1;
+				}
+
+			}
+			if (stage[sx][sy] == 3)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 3) {
+					m_ani_flame++;
+					m_time = 0;
+				}if (m_ani_flame == 8)
+				{
+					stage[sx][sy] = 0;
+				}
+
+			}
+
+		}
+	}
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -215,6 +279,8 @@ void CObjReversibleMain::Action()
 	//GameOverŽž‚Ì”»’è--------------------------------------------------------------------------------------------------
 	if (flag[2] == true)
 	{
+		//BGM’âŽ~
+		Audio::Stop(0);
 		//Yesƒ{ƒ^ƒ“”»’è
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -222,6 +288,8 @@ void CObjReversibleMain::Action()
 			{
 				count[1] = 22;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//BGMÄÄ¶
+				Audio::Start(0);
 				//SE‚ð–Â‚ç‚·
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
