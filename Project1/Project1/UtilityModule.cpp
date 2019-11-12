@@ -88,6 +88,7 @@ void LoadRPStage(int StaNum, int *Stage)
 	}
 }
 
+//LoadSPStageä÷êî---------------------------------------------------------------------------
 void LoadSPStage(int StaNum, int *Stage)
 {
 	int SPStage3[5][5] =
