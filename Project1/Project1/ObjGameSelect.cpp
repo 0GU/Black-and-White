@@ -89,7 +89,7 @@ void CObjGameSelect::Draw()
 	src.m_top = 658.0f;
 	src.m_left = 0.0f;
 	src.m_right = 600.0f;
-	src.m_bottom = 750.0f;
+	src.m_bottom = 748.0f;
 	dst.m_top = 200.0f;
 	dst.m_left = 100.0f;
 	dst.m_right = 700.0;
@@ -97,7 +97,7 @@ void CObjGameSelect::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//ReversiblePanel-----------------------------------------------------
-	src.m_top = 746.0f;
+	src.m_top = 747.0f;
 	src.m_left = 0.0f;
 	src.m_right = 600.0f;
 	src.m_bottom = 838.0f;
