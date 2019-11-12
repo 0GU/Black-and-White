@@ -148,3 +148,20 @@ void LoadRPCount(int StaNum,int *Count)
 		break;
 	}
 }
+
+//LoadSPCountä÷êî------------------------------------------------------------------------------
+void LoadSPCount(int StaNum, int *Count)
+{
+	int Count3[2] = { 6,12 };
+
+	switch (StaNum)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		memcpy(Count, Count3, sizeof(int)*(2));
+		break;
+	}
+}

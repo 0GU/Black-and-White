@@ -37,7 +37,7 @@ void CObjSwitchSelect::Action()
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
 			}
-			((UserData*)Save::GetData())->SPStageSelect[2] = true;
+			((UserData*)Save::GetData())->SPStageSelect[0] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneSwitchMain());
 		}
@@ -54,10 +54,9 @@ void CObjSwitchSelect::Action()
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
 			}
-			((UserData*)Save::GetData())->SPStageSelect[2] = true;
+			((UserData*)Save::GetData())->SPStageSelect[1] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneSwitchMain());
-
 
 		}
 	}
@@ -76,8 +75,7 @@ void CObjSwitchSelect::Action()
 			((UserData*)Save::GetData())->SPStageSelect[2] = true;
 			Save::Seve();
 			Scene::SetScene(new CSceneSwitchMain());
-
-
+			
 		}
 	}
 

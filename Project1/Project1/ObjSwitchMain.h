@@ -22,5 +22,5 @@ private:
 	int Clear_count;
 	int StageSlect;
 
-	bool flag[3];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
+	bool flag[5];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
 };

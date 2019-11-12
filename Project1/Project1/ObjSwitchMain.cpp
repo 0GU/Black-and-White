@@ -3,10 +3,10 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
-#include "GameL/UserData.h"
+#include "GameL\UserData.h"
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
-#include"GameL/Audio.h"
+#include"GameL\Audio.h"
 #include "UtilityModule.h"
 
 
@@ -16,6 +16,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
+
+
 	StageSlect = -1;
 	for (int i = 0; i < 3; i++)
 	{
@@ -36,15 +38,16 @@ void CObjSwitchMain::Init()
 	int stage_data[5][5] = {};
 
 	LoadSPStage(StageSlect, *stage_data);
+
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 
-	bool flag_set[3] =
-	{ false,false,false };
-	memcpy(flag, flag_set, sizeof(bool)*(3));
-
+	bool flag_set[5] =
+	{ false,false,false,false,false, };
+	memcpy(flag, flag_set, sizeof(bool)*(5));
 	Clear_count = 12;
+
 }
 
 //アクション
@@ -54,7 +57,6 @@ void CObjSwitchMain::Action()
 	int lx, ly;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-
 
 
 	//当たり判定
