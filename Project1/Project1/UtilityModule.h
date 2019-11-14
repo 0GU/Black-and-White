@@ -12,3 +12,6 @@ void LoadRPStage(int StaNum, int *Stage);
 
 //Reversible Panel Count“Ç‚İ‚İ—pŠÖ”
 void LoadRPCount(int StaNum, int *Count);
+
+//Switch Panel Count“Ç‚İ‚İ—p•Ï”
+void LoadSPCount(int StaNum, int *Count);

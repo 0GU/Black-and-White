@@ -38,7 +38,7 @@ void CObjSwitchMain::Init()
 	int stage_data[5][5] = {};
 
 	LoadSPStage(StageSlect, *stage_data);
-	LoadRPCount(StageSlect, count);
+	LoadSPCount(StageSlect, count);
 	count[0] = count[1] - count[0];
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
@@ -47,7 +47,7 @@ void CObjSwitchMain::Init()
 	bool flag_set[5] =
 	{ false,false,false,false,false};
 	memcpy(flag, flag_set, sizeof(bool)*(5));
-	Clear_count = 12;
+	
 
 }
 
@@ -69,7 +69,7 @@ void CObjSwitchMain::Action()
 			Audio::Start(1);
 
 			//Countを減らす
-			Clear_count--;
+			count[1]--;
 
 			sy = (int)(y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
 			sx = (int)(x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
@@ -135,7 +135,7 @@ void CObjSwitchMain::Action()
 			{
 				flag[1] = true;
 			}
-			else if (SwitchClearCheck(stage) == false && Clear_count == 0)
+			else if (SwitchClearCheck(stage) == false && count[1] == 0)
 			{
 				flag[2] = true;
 			}
@@ -164,12 +164,13 @@ void CObjSwitchMain::Action()
 	//GameOver時の判定
 	if (flag[2] == true)
 	{
+		Audio::Stop(0);
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				Clear_count = 12;
+				count[1] = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//SEを鳴らす
 				Audio::Start(1);
@@ -203,7 +204,7 @@ void CObjSwitchMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			Clear_count = 12;
+			count[1] = 12;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
@@ -403,11 +404,11 @@ void CObjSwitchMain::Draw()
 
 	//Countの値を文字列化---------------------------------------
 	wchar_t str[128];
-	swprintf_s(str, L"%d", Clear_count);
+	swprintf_s(str, L"%d", count[1]);
 
-	if (Clear_count >= 10)
+	if (count[1] >= 10)
 		Font::StrDraw(str, 700, 80, 32, f);
-	else if (Clear_count <= 9)
+	else if (count[1] <= 9)
 		Font::StrDraw(str, 710, 80, 32, f);
 	//シーン描画：GameClear!------------------------------------
 	if (flag[1] == true)
