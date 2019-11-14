@@ -16,5 +16,9 @@ public:
 
 private:
 	float x, y;
+	int Gright;
+	int Gleft;
+	
+	
 
 };
