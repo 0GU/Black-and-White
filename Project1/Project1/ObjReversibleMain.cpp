@@ -254,6 +254,7 @@ void CObjReversibleMain::Action()
 		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_change==true)
 			{
 				flag[2] = true;
+				Audio::Start(2);
 			}
 	}
 

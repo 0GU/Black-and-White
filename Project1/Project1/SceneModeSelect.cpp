@@ -36,6 +36,8 @@ void CSceneModeSelect::InitScene()
 	//SEî•ñ‚Ì“o˜^
 	Audio::LoadAudio(1, L"Sound/ƒNƒŠƒbƒNSE.wav", EFFECT);
 
+	
+
 	CObjModeSelect* p = new CObjModeSelect();
 	Objs::InsertObj(p, OBJ_MODESELECT, 1);
 }

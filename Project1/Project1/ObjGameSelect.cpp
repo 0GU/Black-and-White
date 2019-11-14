@@ -60,7 +60,7 @@ void CObjGameSelect::Action()
 		if (Input::GetMouButtonL() == true)
 		{
 			//SE‚ð–Â‚ç‚·
-			Audio::Start(1);
+			Audio::Start(2);
 			while (Input::GetMouButtonL() == true)
 			{
 
