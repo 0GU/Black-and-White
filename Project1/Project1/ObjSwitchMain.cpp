@@ -317,6 +317,12 @@ void CObjSwitchMain::Draw()
 
 	//stage‚Ì•`‰æ
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+
+	if (count[1] == count[0])
+	{
+		Font::StrDraw(L"Perfect!", 100, 10, 32, f);
+	}
+
 	switch (StageSlect)
 	{
 		case 0:
