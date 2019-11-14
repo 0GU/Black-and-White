@@ -13,7 +13,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjGallery::Init()
 {
-
+	Gright = 1;
+	Gleft = 0;
 }
 
 //アクション
@@ -37,18 +38,38 @@ void CObjGallery::Action()
 		}
 	}
 
-
-	//右矢印
-	if (700 <= x &&775 >= x && 240 <= y && 360 >= y)
+	if (Gright == 1)
 	{
-		if (Input::GetMouButtonL() == true)
+		//右矢印
+		if (700 <= x && 775 >= x && 240 <= y && 360 >= y)
 		{
-			while (Input::GetMouButtonL() == true)
+			if (Input::GetMouButtonL() == true)
 			{
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Gright = 0;
+				Gleft = 1;
 
 			}
-			Scene::SetScene(new CSceneModeSelect());
+		}
+	}
+	if (Gleft == 1)
+	{
+		//左矢印
+		if (23 <= x && 101 >= x && 240 <= y && 360 >= y)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				while (Input::GetMouButtonL() == true)
+				{
 
+				}
+				Gleft = 0;
+				Gright = 1;
+
+			}
 		}
 	}
 }
@@ -72,27 +93,54 @@ void CObjGallery::Draw()
 	dst.m_right = 125.0;
 	dst.m_bottom = 135.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (Gright == 1)
+	{
+		//矢印ボタン
+		src.m_top = 0.0f;
+		src.m_left = 559.0f;
+		src.m_right = 639.0f;
+		src.m_bottom = 140.0f;
+		dst.m_top = 245.0f;
+		dst.m_left = 700.0f;
+		dst.m_right = 775.0;
+		dst.m_bottom = 365.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//矢印ボタン
-	src.m_top = 0.0f;
-	src.m_left = 559.0f;
-	src.m_right = 639.0f;
-	src.m_bottom = 140.0f;
-	dst.m_top = 245.0f;
-	dst.m_left = 700.0f;
-	dst.m_right = 775.0;
-	dst.m_bottom = 365.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+		//仮枠
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 512.0f;
+		src.m_bottom = 512.0f;
+		dst.m_top = 50.0f;
+		dst.m_left = 145.0f;
+		dst.m_right = 657.0f;
+		dst.m_bottom = 560.0f;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
 
-	//仮枠
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
-	dst.m_top = 50.0f;
-	dst.m_left = 145.0f;
-	dst.m_right = 657.0f;
-	dst.m_bottom = 560.0f;
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	if (Gleft == 1)
+	{
+		//左矢印ボタン
+		src.m_top = 0.0f;
+		src.m_left = 638.0f;
+		src.m_right = 718.0f;
+		src.m_bottom = 140.0f;
+		dst.m_top = 245.0f;
+		dst.m_left = 26.0f;
+		dst.m_right = 101.0;
+		dst.m_bottom = 365.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+
+		//仮枠
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 512.0f;
+		src.m_bottom = 512.0f;
+		dst.m_top = 50.0f;
+		dst.m_left = 145.0f;
+		dst.m_right = 657.0f;
+		dst.m_bottom = 560.0f;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
 
 }
