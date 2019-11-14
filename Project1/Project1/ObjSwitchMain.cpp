@@ -266,7 +266,12 @@ void CObjSwitchMain::Action()
 	//GameOver時の判定
 	if (flag[2] == true)
 	{
+		//BGM停止
 		Audio::Stop(0);
+
+		//ゲームオーバー
+		Audio::Start(2);
+
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -274,14 +279,18 @@ void CObjSwitchMain::Action()
 			{
 				count[1] = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//BGM停止
+				Audio::Start(0);
 				//SEを鳴らす
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
 				{
-
+					
 				}
 				flag[2] = false;
+				Audio::Start(0);
 			}
+			
 		}
 		//Noボタン判定
 		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
@@ -410,7 +419,25 @@ void CObjSwitchMain::Draw()
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 480, 12, f);
+
+	if (count[1] == count[0])
+	{
+		Font::StrDraw(L"Perfect!", 100, 10, 32, f);
+	}
+
+	switch (StageSlect)
+	{
+		case 0:
+			Font::StrDraw(L"stage1", 30, 470, 36, f);
+			break;
+		case 1:
+			Font::StrDraw(L"stage2", 30, 470, 36, f);
+			break;
+		case 2:
+			Font::StrDraw(L"stage3", 30, 470, 36, f);
+			break;
+
+	}
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -591,8 +618,8 @@ void CObjSwitchMain::Draw()
 		{
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 239.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 240.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 370.0;
@@ -601,8 +628,8 @@ void CObjSwitchMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 478.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 480.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;

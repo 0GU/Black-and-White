@@ -30,6 +30,8 @@ CSceneStageSelect::~CSceneStageSelect()
 //ゲームタイトル初期化メソッド
 void CSceneStageSelect::InitScene()
 {
+	//SE情報の登録
+	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
 
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	CObjStageSelect* p = new CObjStageSelect();
