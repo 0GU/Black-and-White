@@ -3,10 +3,10 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
-#include "GameL/UserData.h"
+#include "GameL\UserData.h"
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
-#include"GameL/Audio.h"
+#include"GameL\Audio.h"
 #include "UtilityModule.h"
 
 
@@ -16,6 +16,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
+
+
 	StageSlect = -1;
 	for (int i = 0; i < 3; i++)
 	{
@@ -36,15 +38,16 @@ void CObjSwitchMain::Init()
 	int stage_data[5][5] = {};
 
 	LoadSPStage(StageSlect, *stage_data);
+
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 
-	bool flag_set[3] =
-	{ false,false,false };
-	memcpy(flag, flag_set, sizeof(bool)*(3));
-
+	bool flag_set[5] =
+	{ false,false,false,false,false, };
+	memcpy(flag, flag_set, sizeof(bool)*(5));
 	Clear_count = 12;
+
 }
 
 //アクション
@@ -56,9 +59,8 @@ void CObjSwitchMain::Action()
 	y = (float)Input::GetPosY();
 
 
-
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false&& flag[3] == false)
 	{
 		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 		{
@@ -227,6 +229,57 @@ void CObjSwitchMain::Action()
 			}
 		}
 	}
+	//StageSelectへ戻るボタン判定------------------------------------------------------------
+	if (x >= 30 && x <= 130 && y >= 60 && y <= 160 && flag[1] == false && flag[2] == false)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			flag[3] = true;
+
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+		}
+	}
+	if (flag[3] == true)
+	{
+		//Yesボタン判定
+		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		{
+			if (Input::GetMouButtonL() == true)
+			{
+				//SEを鳴らす
+				Audio::Stop(1);
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Scene::SetScene(new CSceneSwitchSelect());
+			}
+		}
+		//Noボタン判定
+		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+		{
+
+			if (Input::GetMouButtonL() == true)
+			{
+
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+
+				flag[3] = false;
+			}
+		}
+	}
+
 }
 
 //ドロー
@@ -330,6 +383,21 @@ void CObjSwitchMain::Draw()
 	dst.m_bottom = 540.0f;
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 
+	//StageSelectボタン-----------------------------------------------
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 478.0f;
+	src.m_right = 600.0f;
+	src.m_bottom = 920.0f;
+	//表示
+	//プログラムの問題でx値を10fずらしてます
+	dst.m_top = 60.0f;
+	dst.m_left = 30.0f;
+	dst.m_right = 130.0;
+	dst.m_bottom = 160.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+
 	Font::StrDraw(L"Count", 675, 45, 32, f);
 
 	//Countの値を文字列化---------------------------------------
@@ -377,26 +445,31 @@ void CObjSwitchMain::Draw()
 		dst.m_right = 690.0;
 		dst.m_bottom = 320.0;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
-
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 240.0f;
-		src.m_bottom = 120.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 370.0;
-		dst.m_bottom = 490.0;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
-
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 240.0f;
-		src.m_bottom = 120.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 410.0f;
-		dst.m_right = 650.0;
-		dst.m_bottom = 490.0;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
+		//Yes・Noボタンの描画
+		if (flag[2] == true || flag[3] == true)
+		{
+			src.m_top = 820.0f;
+			src.m_left = 0.0f;
+			src.m_right = 239.0f;
+			src.m_bottom = 939.0f;
+			dst.m_top = 370.0f;
+			dst.m_left = 130.0f;
+			dst.m_right = 370.0;
+			dst.m_bottom = 490.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+
+			src.m_top = 820.0f;
+			src.m_left = 239.0f;
+			src.m_right = 478.0f;
+			src.m_bottom = 939.0f;
+			dst.m_top = 370.0f;
+			dst.m_left = 410.0f;
+			dst.m_right = 650.0;
+			dst.m_bottom = 490.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+		}
+
+	
 
 }
