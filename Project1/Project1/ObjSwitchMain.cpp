@@ -164,6 +164,7 @@ void CObjSwitchMain::Action()
 	//GameOver‚Ì”»’è
 	if (flag[2] == true)
 	{
+		//BGM’â~
 		Audio::Stop(0);
 
 		//ƒQ[ƒ€ƒI[ƒo[
@@ -176,6 +177,8 @@ void CObjSwitchMain::Action()
 			{
 				count[1] = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//BGM’â~
+				Audio::Start(0);
 				//SE‚ğ–Â‚ç‚·
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
@@ -320,7 +323,19 @@ void CObjSwitchMain::Draw()
 
 	//stage‚Ì•`‰æ
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 480, 12, f);
+	switch (StageSlect)
+	{
+		case 0:
+			Font::StrDraw(L"stage1", 30, 470, 36, f);
+			break;
+		case 1:
+			Font::StrDraw(L"stage2", 30, 470, 36, f);
+			break;
+		case 2:
+			Font::StrDraw(L"stage3", 30, 470, 36, f);
+			break;
+
+	}
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -459,8 +474,8 @@ void CObjSwitchMain::Draw()
 		{
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 239.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 240.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 370.0;
@@ -469,8 +484,8 @@ void CObjSwitchMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 478.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 480.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;

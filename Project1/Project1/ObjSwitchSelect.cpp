@@ -4,6 +4,8 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include "GameL/UserData.h"
+#include"GameL/Audio.h"
+
 #include"GameHead.h"
 #include"ObjSwitchSelect.h"
 #include"ObjSwitchMain.h"
@@ -29,6 +31,8 @@ void CObjSwitchSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -46,6 +50,8 @@ void CObjSwitchSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -64,6 +70,8 @@ void CObjSwitchSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -84,6 +92,8 @@ void CObjSwitchSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
