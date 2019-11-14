@@ -34,6 +34,10 @@ void CObjTitle::Action()
 				{
 
 				}
+				for (int i = 0; i <= 250000000; i++)
+				{
+
+				}
 				Scene::SetScene(new CSceneModeSelect());
 			}
 		}
