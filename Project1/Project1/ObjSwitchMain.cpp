@@ -166,6 +166,10 @@ void CObjSwitchMain::Action()
 	{
 		//BGM停止
 		Audio::Stop(0);
+
+		//ゲームオーバー
+		Audio::Start(2);
+
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -179,10 +183,12 @@ void CObjSwitchMain::Action()
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
 				{
-
+					
 				}
 				flag[2] = false;
+				Audio::Start(0);
 			}
+			
 		}
 		//Noボタン判定
 		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
