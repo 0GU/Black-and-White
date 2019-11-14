@@ -4,6 +4,8 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include "GameL/UserData.h"
+#include"GameL/Audio.h"
+
 #include"GameHead.h"
 #include"ObjStageSelect.h"
 #include"ObjReversibleMain.h"
@@ -31,6 +33,8 @@ void CObjStageSelect::Action()
 		//この場所を左クリックでリバーシブルのステージセレクトへ
 		if (Input::GetMouButtonL() == true)
 		{
+			//SEを鳴らす
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -52,6 +56,8 @@ void CObjStageSelect::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SEを鳴らす
+			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
 
