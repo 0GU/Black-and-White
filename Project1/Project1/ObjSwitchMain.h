@@ -22,6 +22,16 @@ private:
 	int Clear_count;
 	int count[2];  //[0]…PerfectClearcount [1]…Clearcount
 	int StageSlect;
-	
+
+	int sx, sy;		//マウスを押した位置を保存
+
+	//アニメーション変更用
+	int m_ani_flame;
+	int change_panel[5][5];
+	bool m_change;
+	bool time_flag;
+	int m_time;
+	float r;		//アニメーションの角度変更用
+
 	bool flag[5];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ
 };
