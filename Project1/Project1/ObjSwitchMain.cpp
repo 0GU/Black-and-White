@@ -38,13 +38,14 @@ void CObjSwitchMain::Init()
 	int stage_data[5][5] = {};
 
 	LoadSPStage(StageSlect, *stage_data);
-
+	LoadRPCount(StageSlect, count);
+	count[0] = count[1] - count[0];
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 
 	bool flag_set[5] =
-	{ false,false,false,false,false, };
+	{ false,false,false,false,false};
 	memcpy(flag, flag_set, sizeof(bool)*(5));
 	Clear_count = 12;
 

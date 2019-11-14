@@ -152,13 +152,17 @@ void LoadRPCount(int StaNum,int *Count)
 //LoadSPCountä÷êî------------------------------------------------------------------------------
 void LoadSPCount(int StaNum, int *Count)
 {
+	int Count1[2] = { 6,12 };
+	int Count2[2] = { 6,12 };
 	int Count3[2] = { 6,12 };
 
 	switch (StaNum)
 	{
 	case 0:
+		memcpy(Count, Count1, sizeof(int)*(2));
 		break;
 	case 1:
+		memcpy(Count, Count2, sizeof(int)*(2));
 		break;
 	case 2:
 		memcpy(Count, Count3, sizeof(int)*(2));
