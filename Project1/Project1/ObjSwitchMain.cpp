@@ -163,6 +163,8 @@ void CObjSwitchMain::Action()
 	//GameOverŽž‚Ì”»’è
 	if (flag[2] == true)
 	{
+		//BGM’âŽ~
+		Audio::Stop(0);
 		//Yesƒ{ƒ^ƒ“”»’è
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -170,6 +172,8 @@ void CObjSwitchMain::Action()
 			{
 				Clear_count = 12;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+				//BGM’âŽ~
+				Audio::Start(0);
 				//SE‚ð–Â‚ç‚·
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
@@ -451,8 +455,8 @@ void CObjSwitchMain::Draw()
 		{
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 239.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 240.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 370.0;
@@ -461,8 +465,8 @@ void CObjSwitchMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 478.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 480.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;
