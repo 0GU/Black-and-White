@@ -50,12 +50,13 @@ void CObjReversibleMain::Init()
 	m_ani_flame = 0;
 	m_time = 0;
 	m_change = true;
+	sx = 0;
+	sy = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
 void CObjReversibleMain::Action()
 {
-	int sx = 0, sy = 0;
 	int lx, ly;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
@@ -158,7 +159,7 @@ void CObjReversibleMain::Action()
 		}
 		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 		{
-			if (stage[sx][sy] == 2)
+			if (stage[lx][ly] == 2)
 			{
 				if (time_flag == true)
 				{
@@ -172,11 +173,11 @@ void CObjReversibleMain::Action()
 
 				if (m_ani_flame == 8)
 				{
-					stage[sx][sy] = 1;
+					stage[lx][ly] = 1;
 				}
 
 			}
-			if (stage[sx][sy] == 3)
+			if (stage[lx][ly] == 3)
 			{
 				if (time_flag == true)
 				{
@@ -188,13 +189,13 @@ void CObjReversibleMain::Action()
 					m_time = 0;
 				}if (m_ani_flame == 8)
 				{
-					stage[sx][sy] = 0;
+					stage[lx][ly] = 0;
 				}
 
 			}
 
 		}
-	}
+	}/*
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -235,7 +236,7 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
-				
+		*/		
 
 	if (m_ani_flame == 8)
 	{
