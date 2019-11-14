@@ -44,10 +44,10 @@ void CSceneSwitchMain::InitScene()
 	Audio::LoadAudio(0, L"Sound/ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//SE情報の登録
-	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
+	Audio::LoadAudio(1, L"Sound/クリックSE.wav",  EFFECT);
+	Audio::LoadAudio(2, L"Sound/GameOverTin.wav", EFFECT);
 
 	//BGM再生
-	float Volume = Audio::VolumeMaster(-0.3f);
 	Audio::Start(0);
 
 	CObjSwitchMain* p = new CObjSwitchMain();
