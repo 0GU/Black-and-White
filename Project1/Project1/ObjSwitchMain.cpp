@@ -317,7 +317,19 @@ void CObjSwitchMain::Draw()
 
 	//stage‚Ì•`‰æ
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 480, 12, f);
+	switch (StageSlect)
+	{
+		case 0:
+			Font::StrDraw(L"stage1", 30, 470, 36, f);
+			break;
+		case 1:
+			Font::StrDraw(L"stage2", 30, 470, 36, f);
+			break;
+		case 2:
+			Font::StrDraw(L"stage3", 30, 470, 36, f);
+			break;
+
+	}
 
 	for (int i = 0; i < 5; i++)
 	{
