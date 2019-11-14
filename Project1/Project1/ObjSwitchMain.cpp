@@ -138,6 +138,7 @@ void CObjSwitchMain::Action()
 			else if (SwitchClearCheck(stage) == false && count[1] == 0)
 			{
 				flag[2] = true;
+				Audio::Start(2);
 			}
 
 		}
@@ -164,11 +165,12 @@ void CObjSwitchMain::Action()
 	//GameOver時の判定
 	if (flag[2] == true)
 	{
+
+		
 		//BGM停止
 		Audio::Stop(0);
 
-		//ゲームオーバー
-		Audio::Start(2);
+
 
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)

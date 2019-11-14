@@ -34,11 +34,11 @@
     <Filter Include="ソース ファイル\Game Clear">
       <UniqueIdentifier>{a886abd4-a4e2-4923-ac70-a6e49d18a03b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Switch Panel">
-      <UniqueIdentifier>{61c42c01-1663-499c-93ba-fefc640db549}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Switch Select">
       <UniqueIdentifier>{6f1b8cca-ed37-4991-afbc-cfc3c3af76a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Switch Panel">
+      <UniqueIdentifier>{61c42c01-1663-499c-93ba-fefc640db549}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
