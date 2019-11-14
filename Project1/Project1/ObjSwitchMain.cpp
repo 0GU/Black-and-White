@@ -48,14 +48,19 @@ void CObjSwitchMain::Init()
 	{ false,false,false,false,false};
 	memcpy(flag, flag_set, sizeof(bool)*(5));
 	
-
+	m_ani_flame = 0;
+	m_time = 0;
+	m_change = true;
+	sx = 0;
+	sy = 0;
+	r = 0.0f;
 }
 
 //アクション
 void CObjSwitchMain::Action()
 {
-	int sx = 0, sy = 0;
-	int lx, ly;
+	int lx = 0;
+	int ly = 0;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
@@ -63,85 +68,182 @@ void CObjSwitchMain::Action()
 	//当たり判定
 	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false&& flag[3] == false)
 	{
-		if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
+		if (m_change == true)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
 
-			//Countを減らす
-			count[1]--;
-
-			sy = (int)(y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
-			sx = (int)(x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
-			for (int m = 0; m < 2; m++)
+			if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 			{
-				switch (stage[sy][sx])
+				m_change = false;	//反転中はほかのパネルを反転できないようにする
+
+				//SEを鳴らす
+				Audio::Start(1);
+
+				//Countを減らす
+				count[1]--;
+
+				sy = (int)(y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
+				sx = (int)(x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
+				for (int m = 0; m < 2; m++)
 				{
-				case 2:
-					switch (m)
+					switch (stage[sy][sx])
 					{
-					case 0://左
-						ly = sy;
-						lx = sx - 1;
-						break;
-					case 1://右
-						ly = sy;
-						lx = sx + 1;
-						break;
-					}
-					break;
-				case 3:
-					switch (m)
-					{
-						/*case 0://左
+					case 2:
+						switch (m)
+						{
+						case 0://左
 							ly = sy;
 							lx = sx - 1;
-							break;*/
-					case 0://上
-						ly = sy - 1;
-						lx = sx;
-						break;
-
-					case 1://下
-						ly = sy + 1;
-						lx = sx;
-						break;
-						/*case 4://右
+							break;
+						case 1://右
 							ly = sy;
 							lx = sx + 1;
-							break;*/
+							break;
+						}
+						break;
+					case 3:
+						switch (m)
+						{
+							/*case 0://左
+								ly = sy;
+								lx = sx - 1;
+								break;*/
+						case 0://上
+							ly = sy - 1;
+							lx = sx;
+							break;
+
+						case 1://下
+							ly = sy + 1;
+							lx = sx;
+							break;
+							/*case 4://右
+								ly = sy;
+								lx = sx + 1;
+								break;*/
+						}
+						break;
 					}
-					break;
-				}
 					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
 					{
 						if (stage[ly][lx] == 0)
 						{
-							stage[ly][lx] = 1;
+							stage[ly][lx] = 4;
 						}
 						else if (stage[ly][lx] == 1)
 						{
-							stage[ly][lx] = 0;
+							stage[ly][lx] = 5;
 						}
 					}
-				
-			}
-			while (Input::GetMouButtonL() == true)
-			{
+
+				}
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+
 
 			}
+		}
+	}
 
-			if (SwitchClearCheck(stage) == true)
+	time_flag = true;
+
+	for (int m = 0; m < 2; m++)
+	{
+		switch (stage[sy][sx])
+		{
+		case 2:
+			switch (m)
 			{
-				flag[1] = true;
+			case 0://左
+				ly = sy;
+				lx = sx - 1;
+				break;
+			case 1://右
+				ly = sy;
+				lx = sx + 1;
+				break;
 			}
-			else if (SwitchClearCheck(stage) == false && count[1] == 0)
+			break;
+		case 3:
+			switch (m)
 			{
-				flag[2] = true;
+				/*case 0://左
+					ly = sy;
+					lx = sx - 1;
+					break;*/
+			case 0://上
+				ly = sy - 1;
+				lx = sx;
+				break;
+
+			case 1://下
+				ly = sy + 1;
+				lx = sx;
+				break;
+				/*case 4://右
+					ly = sy;
+					lx = sx + 1;
+					break;*/
+			}
+			break;
+		}
+		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+		{
+			if (stage[ly][lx] == 4)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 3) {
+					m_ani_flame++;
+					m_time = 0;
+				}
+
+				if (m_ani_flame == 3)
+				{
+					stage[ly][lx] = 1;
+				}
+
+			}
+			if (stage[ly][lx] == 5)
+			{
+				if (time_flag == true)
+				{
+					m_time++;
+					time_flag = false;
+				}
+				if (m_time == 3) {
+					m_ani_flame++;
+					m_time = 0;
+				}if (m_ani_flame == 3)
+				{
+					stage[ly][lx] = 0;
+				}
+
 			}
 
 		}
+
 	}
+	if (m_ani_flame == 3)
+	{
+		m_ani_flame = 0;
+		m_change = true;
+
+		if (SwitchClearCheck(stage) == true)
+		{
+			flag[1] = true;
+		}
+		else if (SwitchClearCheck(stage) == false && count[1] == 0 && m_change == true)
+		{
+			flag[2] = true;
+		}
+
+	}
+
 	//GameClear時の判定
 	if (flag[1] == true)
 	{
@@ -305,12 +407,6 @@ void CObjSwitchMain::Draw()
 	dst.m_bottom = 600.0;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	//マップチップによるblock設置
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 96.0f;
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
@@ -320,6 +416,29 @@ void CObjSwitchMain::Draw()
 	{
 		for (int j = 0; j < 5; j++)
 		{
+			//上下左右でアニメーションの角度を変えるやつ
+			if (sy == i - 1 && sx == j)
+			{
+				r = 90.0f;
+			}
+			else if (sy == i && sx == j - 1)
+			{
+				r = 180.0f;
+			}
+			else if (sy == i + 1 && sx == j)
+			{
+				r = 270.0f;
+			}
+			else if (sy == i && sx == j + 1 )
+			{
+				r = 0.0f;
+			}
+
+			//切り取り位置の設定
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 96.0f;
+			src.m_bottom = 96.0f;
 
 			//表示位置の設定
 			dst.m_top = i * 96.0f + 60.0f;
@@ -338,15 +457,34 @@ void CObjSwitchMain::Draw()
 			}
 			else if (stage[i][j] == 3)
 			{
-				//黒パネル
+				//縦スイッチ
 				Draw::Draw(6, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == 2)
 			{
-				//黒パネル
+				//横スイッチ
 				Draw::Draw(7, &src, &dst, c, 0.0f);
 			}
+			else if (stage[i][j] == 4)
+			{
+				//黒パネル
+				src.m_top = 0.0f;
+				src.m_left = 0.0f + (m_ani_flame * 96.0f);
+				src.m_right = src.m_left + 96.0f;
+				src.m_bottom = 96.0f;
 
+				Draw::Draw(8, &src, &dst, c, r);
+			}
+			else if (stage[i][j] == 5)
+			{
+				//黒パネル
+				src.m_top = 96.0f;
+				src.m_left = 0.0f + (m_ani_flame * 96.0f);
+				src.m_right = src.m_left + 96.0f;
+				src.m_bottom = src.m_top + 96.0f;
+
+				Draw::Draw(8, &src, &dst, c, r);
+			}
 		}
 	}
 	//ヒントボタン-----------------------------------------------
