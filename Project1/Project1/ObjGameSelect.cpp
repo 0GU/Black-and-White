@@ -36,7 +36,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
-			Sleep(300);
+			Sleep(100);
 			Scene::SetScene(new CSceneSwitchSelect());
 
 		}
@@ -52,7 +52,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
-			Sleep(300);
+			Sleep(100);
 			Scene::SetScene(new CSceneStageSelect());
 		}
 	}
@@ -67,7 +67,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
-			Sleep(500);
+			Sleep(200);
 			Scene::SetScene(new CSceneModeSelect());
 
 		}

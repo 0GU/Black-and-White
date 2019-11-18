@@ -37,7 +37,7 @@ void CObjGallery::Action()
 			{				
 								
 			}
-			Sleep(500);
+			Sleep(200);
 			Scene::SetScene(new CSceneModeSelect());
 
 		}
@@ -55,7 +55,7 @@ void CObjGallery::Action()
 				{
 
 				}
-				Sleep(300);
+				Sleep(100);
 				Gright = 0;
 				Gleft = 1;
 
@@ -74,7 +74,7 @@ void CObjGallery::Action()
 				{
 
 				}
-				Sleep(300);
+				Sleep(100);
 				Gleft = 0;
 				Gright = 1;
 
