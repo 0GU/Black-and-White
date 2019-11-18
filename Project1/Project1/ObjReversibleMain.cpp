@@ -40,6 +40,8 @@ void CObjReversibleMain::Init()
 	LoadRPStage(StageSlect, *stage_data);
 	LoadRPCount(StageSlect, count);
 	count[0] = count[1] - count[0];
+	//カウントリセット用に初期カウントを保存する
+	count[2] = count[1];
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
@@ -195,48 +197,7 @@ void CObjReversibleMain::Action()
 			}
 
 		}
-	}/*
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			if (stage[i][j] == 2)
-			{
-				if (time_flag == true)
-				{
-					m_time++;
-					time_flag = false;
-				}
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}
-
-				if (m_ani_flame == 8)
-				{
-					stage[i][j] = 1;
-				}
-
-			}
-			if (stage[i][j] == 3)
-			{
-				if (time_flag == true)
-				{
-					m_time++;
-					time_flag = false;
-				}
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}if (m_ani_flame == 8)
-				{
-					stage[i][j] = 0;
-				}
-
-			}
-		}
 	}
-		*/		
 
 	if (m_ani_flame == 8)
 	{
@@ -326,7 +287,7 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			count[1] = 22;
+			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);

@@ -68,7 +68,16 @@ int SwitchClearCheck(int rcc[5][5])
 //LoadRPStageä÷êî---------------------------------------------------------------------------
 void LoadRPStage(int StaNum, int *Stage)
 {
-	int Stage3[5][5] =
+	int Stage1[5][5] =
+	{
+	{1,1,1,0,1},
+	{1,0,0,0,0},
+	{0,0,0,1,1},
+	{1,0,0,0,0},
+	{1,1,1,0,1},
+	};
+
+	int Stage2[5][5] =
 	{
 	{0,1,1,0,1},
 	{1,0,1,1,0},
@@ -76,11 +85,23 @@ void LoadRPStage(int StaNum, int *Stage)
 	{1,0,0,0,1},
 	{0,1,1,1,1},
 	};
+
+	int Stage3[5][5] =
+	{
+	{1,0,1,0,1},
+	{1,0,1,1,1},
+	{1,1,1,1,1},
+	{1,0,1,1,1},
+	{1,0,1,0,1},
+	};
+
 	switch (StaNum)
 	{
 	case 0:
+		memcpy(Stage, Stage1, sizeof(int)*(5 * 5));
 		break;
 	case 1:
+		memcpy(Stage, Stage2, sizeof(int)*(5 * 5));
 		break;
 	case 2:
 		memcpy(Stage, Stage3, sizeof(int)*(5 * 5));
@@ -135,13 +156,19 @@ void LoadSPStage(int StaNum, int *Stage)
 //LoadRPCountä÷êî------------------------------------------------------------------------------
 void LoadRPCount(int StaNum,int *Count)
 {
-	int Count3[2] = { 6,22 };
+	int Count1[2] = { 3,6 };
+
+	int Count2[2] = { 6,22 };
+
+	int Count3[2] = { 12,22 };
 
 	switch (StaNum)
 	{
 	case 0:
+		memcpy(Count, Count1, sizeof(int)*(2));
 		break;
 	case 1:
+		memcpy(Count, Count2, sizeof(int)*(2));
 		break;
 	case 2:
 		memcpy(Count, Count3, sizeof(int)*(2));

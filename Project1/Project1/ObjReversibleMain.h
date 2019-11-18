@@ -20,7 +20,7 @@ private:
 	int stage[5][5];
 	int stage_reset[5][5];
 	//count管理用
-	int count[2];  //[0]…PerfectClearcount [1]…Clearcount
+	int count[3];  //[0]…最短手数判定用 [1]…手数表示用 [2]…手数リセット用
 	//ステージ読み込み用
 	int StageSlect;
 	//アニメーション変更用
