@@ -9,6 +9,7 @@
 #include"GameHead.h"
 #include"ObjStageSelect.h"
 #include"ObjReversibleMain.h"
+#include"Windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -85,6 +86,7 @@ void CObjStageSelect::Action()
 			{
 
 			}
+			Sleep(300);
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->RPStageSelect[i] = false;
@@ -103,11 +105,12 @@ void CObjStageSelect::Action()
 		if (Input::GetMouButtonL() == true)
 		{
 			//SEを鳴らす
-			Audio::Start(1);
+			Audio::Start(2);
 			while (Input::GetMouButtonL() == true)
 			{
 
 			}
+			Sleep(500);
 			Scene::SetScene(new CSceneGameSelect());
 
 		}

@@ -8,6 +8,7 @@
 #include"GameHead.h"
 #include"ObjGameSelect.h"
 #include "ObjSwitchSelect.h"
+#include"Windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -35,7 +36,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
-
+			Sleep(300);
 			Scene::SetScene(new CSceneSwitchSelect());
 
 		}
@@ -51,6 +52,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
+			Sleep(300);
 			Scene::SetScene(new CSceneStageSelect());
 		}
 	}
@@ -65,6 +67,7 @@ void CObjGameSelect::Action()
 			{
 
 			}
+			Sleep(500);
 			Scene::SetScene(new CSceneModeSelect());
 
 		}

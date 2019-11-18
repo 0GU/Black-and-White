@@ -37,7 +37,7 @@ void CObjTitle::Action()
 				{
 
 				}
-				Sleep(700);
+				Sleep(500);
 			
 				Scene::SetScene(new CSceneModeSelect());
 				
