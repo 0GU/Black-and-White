@@ -236,25 +236,29 @@ void CObjSwitchMain::Action()
 			if (SwitchClearCheck(stage) == true)
 			{
 				flag[1] = true;
+				Audio::Start(3);
 			}
 			else if (SwitchClearCheck(stage) == false && count[1] == 0)
 			{
 				flag[2] = true;
 				Audio::Start(2);
 			}
+			
 
 	}
 
 	//GameClearŽž‚Ì”»’è
 	if (flag[1] == true)
 	{
+		//BGM’âŽ~
+		Audio::Stop(0);
+
 		//StageSELECT‚Ö–ß‚éƒ{ƒ^ƒ“”»’è
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				//SE‚ð–Â‚ç‚·
-				Audio::Start(1);
+
 				while (Input::GetMouButtonL() == true)
 				{
 
