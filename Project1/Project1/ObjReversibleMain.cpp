@@ -16,16 +16,16 @@ using namespace GameL;
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
-
-
+	//ステージの読み込み処理
 	StageSlect = -1;
+	//データの読み込み前にフラグを全てfalseにする
 	for (int i = 0; i < 3; i++)
 	{
 		((UserData*)Save::GetData())->RPStageSelect[i] = false;
 	}
 
 	Save::Open();
-
+	//フラグが立っている番号をStageSlectに保存
 	for (int i = 0; i < 3; i++)
 	{
 		if (((UserData*)Save::GetData())->RPStageSelect[i] ==true)
@@ -35,19 +35,25 @@ void CObjReversibleMain::Init()
 	}
 
 
-	int stage_data[5][5] = {};
+	int stage_data[5][5] = {};   //ステージ用配列
 
+	//ステージ読み込み用関数
 	LoadRPStage(StageSlect, *stage_data);
+	//カウント読み込み用関数
 	LoadRPCount(StageSlect, count);
 	//カウントリセット用に初期カウントを保存する
 	count[2] = count[1];
+
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
+	//リセット用配列にコピー
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 	
+	//フラグを初期化
 	bool flag_set[5] =
 	{ false,false,false,false,false};
 	memcpy(flag, flag_set, sizeof(bool)*(5));
+
 	m_ani_flame = 0;
 	m_time = 0;
 	m_change = true;
@@ -58,7 +64,9 @@ void CObjReversibleMain::Init()
 //アクション
 void CObjReversibleMain::Action()
 {
-	int lx, ly;
+	int lx, ly;//反転処理用変数
+
+	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
@@ -85,27 +93,28 @@ void CObjReversibleMain::Action()
 				{
 					switch (m)
 					{
-					case 0:
+					case 0://上
 						lx = sx;
 						ly = sy - 1;
 						break;
-					case 1:
+					case 1://左
 						lx = sx - 1;
 						ly = sy;
 						break;
-					case 2:
+					case 2://クリックした場所
 						lx = sx;
 						ly = sy;
 						break;
-					case 3:
+					case 3://右
 						lx = sx + 1;
 						ly = sy;
 						break;
-					case 4:
+					case 4://下
 						lx = sx;
 						ly = sy + 1;
 						break;
 					}
+					//反転処理の準備
 					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 					{
 						//反転中を示す値に変更する
@@ -399,7 +408,9 @@ void CObjReversibleMain::Draw()
 	
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-	Font::StrDraw(L"stage1", 30, 470, 36, f);
+	wchar_t str1[128];
+	swprintf_s(str1, L"STAGE%d",StageSlect+1);
+	Font::StrDraw(str1, 30, 470, 36, f);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -469,11 +480,11 @@ void CObjReversibleMain::Draw()
 		{
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
 
-			wchar_t str1[128];
-			swprintf_s(str1, L"%d手", count[0]);
+			wchar_t str2[128];
+			swprintf_s(str2, L"%d手", count[0]);
 
 			
-			Font::StrDraw(str1,40 , 320, 32, f);
+			Font::StrDraw(str2,40 , 320, 32, f);
 			
 		}
 
@@ -509,35 +520,38 @@ void CObjReversibleMain::Draw()
 		Font::StrDraw(L"Count", 675, 45, 32, f);
 
 		//Countの値を文字列化---------------------------------------
-		wchar_t str[128];
-		swprintf_s(str, L"%d", count[1]);
+		wchar_t str3[128];
+		swprintf_s(str3, L"%d", count[1]);
 
 		if(count[1]>=10)
-			Font::StrDraw(str, 700, 80, 32, f);
+			Font::StrDraw(str3, 700, 80, 32, f);
 		else if(count[1]<=9)
-			Font::StrDraw(str, 710, 80, 32, f);
+			Font::StrDraw(str3, 710, 80, 32, f);
 		//シーン描画：GameClear!------------------------------------
 		if (flag[1] == true)
 		{
-			src.m_top = 249.0f;
-			src.m_left = 0.0f;
-			src.m_right = 560.0f;
-			src.m_bottom = 372.0f;
-			dst.m_top = 150.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 690.0;
-			dst.m_bottom = 270.0;
-			Draw::Draw(5, &src, &dst, c, 0.0f);
 
-			src.m_top = 490.0f;
-			src.m_left = 0.0f;
-			src.m_right = 560.0f;
-			src.m_bottom = 610.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 690.0;
-			dst.m_bottom = 490.0;
-			Draw::Draw(5, &src, &dst, c, 0.0f);
+
+				src.m_top = 249.0f;
+				src.m_left = 0.0f;
+				src.m_right = 560.0f;
+				src.m_bottom = 372.0f;
+				dst.m_top = 150.0f;
+				dst.m_left = 130.0f;
+				dst.m_right = 690.0;
+				dst.m_bottom = 270.0;
+				Draw::Draw(5, &src, &dst, c, 0.0f);
+
+				src.m_top = 490.0f;
+				src.m_left = 0.0f;
+				src.m_right = 560.0f;
+				src.m_bottom = 610.0f;
+				dst.m_top = 370.0f;
+				dst.m_left = 130.0f;
+				dst.m_right = 690.0;
+				dst.m_bottom = 490.0;
+				Draw::Draw(5, &src, &dst, c, 0.0f);
+			
 		}
 
 		//GameOver---------------------------------------------------
@@ -577,7 +591,7 @@ void CObjReversibleMain::Draw()
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
-		
+		//Perfect表示
 		if (flag[4] == true)
 		{
 			Font::StrDraw(L"Perfect!!", 100, 10, 32, f);
