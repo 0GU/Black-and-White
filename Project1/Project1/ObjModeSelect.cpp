@@ -37,7 +37,7 @@ void CObjModeSelect::Action()
 				{
 					
 				}
-				Sleep(300);
+				Sleep(100);
 			Scene::SetScene(new CSceneGallery());
 		}
 
@@ -53,7 +53,7 @@ void CObjModeSelect::Action()
 			{
 				
 			}
-			Sleep(300);
+			Sleep(100);
 			Scene::SetScene(new CSceneGameSelect());
 		}
 

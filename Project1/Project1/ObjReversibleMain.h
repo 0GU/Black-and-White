@@ -32,5 +32,5 @@ private:
 
 	int sx, sy;
 	//フラグ管理用
-	bool flag[5];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ
+	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ [6]…Perfectフラグ
 };

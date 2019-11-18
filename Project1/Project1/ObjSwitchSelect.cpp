@@ -38,7 +38,7 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(300);
+			Sleep(100);
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
@@ -58,7 +58,7 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(300);
+			Sleep(100);
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
@@ -79,7 +79,7 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(300);
+			Sleep(100);
 			for (int i = 0; i < 3; i++)
 			{
 				((UserData*)Save::GetData())->SPStageSelect[i] = false;
@@ -102,7 +102,7 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(500);
+			Sleep(200);
 			Scene::SetScene(new CSceneGameSelect());
 
 		}

@@ -160,7 +160,7 @@ void LoadRPCount(int StaNum,int *Count)
 
 	int Count2[2] = { 6,22 };
 
-	int Count3[2] = { 10,22 };
+	int Count3[2] = { 10,25 };
 
 	switch (StaNum)
 	{
