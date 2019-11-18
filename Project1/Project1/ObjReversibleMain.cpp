@@ -39,7 +39,8 @@ void CObjReversibleMain::Init()
 
 	LoadRPStage(StageSlect, *stage_data);
 	LoadRPCount(StageSlect, count);
-	count[0] = count[1] - count[0];
+	//カウントリセット用に初期カウントを保存する
+	count[2] = count[1];
 	//マップデータをコピー
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
@@ -195,48 +196,7 @@ void CObjReversibleMain::Action()
 			}
 
 		}
-	}/*
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			if (stage[i][j] == 2)
-			{
-				if (time_flag == true)
-				{
-					m_time++;
-					time_flag = false;
-				}
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}
-
-				if (m_ani_flame == 8)
-				{
-					stage[i][j] = 1;
-				}
-
-			}
-			if (stage[i][j] == 3)
-			{
-				if (time_flag == true)
-				{
-					m_time++;
-					time_flag = false;
-				}
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}if (m_ani_flame == 8)
-				{
-					stage[i][j] = 0;
-				}
-
-			}
-		}
 	}
-		*/		
 
 	if (m_ani_flame == 8)
 	{
@@ -245,7 +205,7 @@ void CObjReversibleMain::Action()
 
 		if (ReversibleClearCheck(stage) == true)
 			{
-			if (count[0]==count[1])
+			if (count[2] - count[0]==count[1])
 			{
 				flag[4] = true;
 			}
@@ -326,7 +286,7 @@ void CObjReversibleMain::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			count[1] = 22;
+			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
@@ -508,7 +468,12 @@ void CObjReversibleMain::Draw()
 		if (flag[0]==true)
 		{
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
-			Font::StrDraw(L"6手",40 , 320, 32, f);
+
+			wchar_t str1[128];
+			swprintf_s(str1, L"%d手", count[0]);
+
+			
+			Font::StrDraw(str1,40 , 320, 32, f);
 			
 		}
 

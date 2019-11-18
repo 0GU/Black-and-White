@@ -121,7 +121,7 @@ void CObjSwitchSelect::Draw()
 	RECT_F dst; //ï`âÊêÊï\é¶à íu
 
 	//STAGE1
-	src.m_top = 267.0f;
+	src.m_top = 268.0f;
 	src.m_left = 0.0f;
 	src.m_right = 561.0f;
 	src.m_bottom = 359.0f;

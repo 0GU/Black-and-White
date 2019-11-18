@@ -28,10 +28,56 @@ void CObjStageSelect::Action()
 
 
 	//right値が描画とズレていた為調整
-	if (120 <= x && 670 >= x && 420 <= y && 510 >= y )
+	if (120 <= x && 670 >= x && 160 <= y && 250 >= y)
 	{
 
-		//この場所を左クリックでリバーシブルのステージセレクトへ
+		//この場所を左クリックでリバーシブルのステージ1へ
+		if (Input::GetMouButtonL() == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				((UserData*)Save::GetData())->RPStageSelect[i] = false;
+			}
+			((UserData*)Save::GetData())->RPStageSelect[0] = true;
+			Save::Seve();
+			Scene::SetScene(new CSceneReversibleMain());
+
+
+		}
+	}
+	if (120 <= x && 670 >= x && 290 <= y && 380 >= y )
+	{
+
+		//この場所を左クリックでリバーシブルのステージ2へ
+		if (Input::GetMouButtonL() == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				((UserData*)Save::GetData())->RPStageSelect[i] = false;
+			}
+			((UserData*)Save::GetData())->RPStageSelect[1] = true;
+			Save::Seve();
+			Scene::SetScene(new CSceneReversibleMain());
+
+
+		}
+	}
+	if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
+	{
+
+		//この場所を左クリックでリバーシブルのステージ3へ
 		if (Input::GetMouButtonL() == true)
 		{
 			//SEを鳴らす
@@ -82,7 +128,29 @@ void CObjStageSelect::Draw()
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 
+	//Stage1の描画
+	src.m_top = 448.0f;
+	src.m_left = 0.0f;
+	src.m_right = 560.0f;
+	src.m_bottom = 540.0f;
+	dst.m_top = 160.0f;
+	dst.m_left = 120.0f;
+	dst.m_right = 680.0;
+	dst.m_bottom =250.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
 
+	//Stage2の描画
+	src.m_top = 448.0f;
+	src.m_left = 0.0f;
+	src.m_right = 560.0f;
+	src.m_bottom = 540.0f;
+	dst.m_top = 290.0f;
+	dst.m_left = 120.0f;
+	dst.m_right = 680.0;
+	dst.m_bottom = 380.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	//Stage3の描画
 	src.m_top = 448.0f;
 	src.m_left = 0.0f;
 	src.m_right = 560.0f;
@@ -90,7 +158,7 @@ void CObjStageSelect::Draw()
 	dst.m_top = 420.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;
-	dst.m_bottom =510.0;
+	dst.m_bottom = 510.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//戻るボタン
