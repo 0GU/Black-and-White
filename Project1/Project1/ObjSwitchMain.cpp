@@ -434,13 +434,13 @@ void CObjSwitchMain::Draw()
 	switch (StageSlect)
 	{
 		case 0:
-			Font::StrDraw(L"stage1", 30, 470, 36, f);
+			Font::StrDraw(L"STAGE1", 30, 470, 36, f);
 			break;
 		case 1:
-			Font::StrDraw(L"stage2", 30, 470, 36, f);
+			Font::StrDraw(L"STAGE2", 30, 470, 36, f);
 			break;
 		case 2:
-			Font::StrDraw(L"stage3", 30, 470, 36, f);
+			Font::StrDraw(L"STAGE3", 30, 470, 36, f);
 			break;
 
 	}
