@@ -31,7 +31,8 @@ CSceneSwitchSelect::~CSceneSwitchSelect()
 void CSceneSwitchSelect::InitScene()
 {
 	//SEî•ñ‚Ì“o˜^
-	Audio::LoadAudio(1, L"Sound/ƒNƒŠƒbƒNSE.wav", EFFECT);
+	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
+	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
 	Draw::LoadImageW(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
 	CObjSwitchSelect* p = new CObjSwitchSelect();

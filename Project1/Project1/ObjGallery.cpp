@@ -3,9 +3,11 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
+#include"GameL/Audio.h"
 
 #include"GameHead.h"
 #include"ObjGallery.h"
+#include"Windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -29,10 +31,13 @@ void CObjGallery::Action()
 	{
 		if (Input::GetMouButtonL() == true)
 		{
+			//SEを鳴らす
+			Audio::Start(2);
 			while (Input::GetMouButtonL() == true)
-			{
-
+			{				
+								
 			}
+			Sleep(500);
 			Scene::SetScene(new CSceneModeSelect());
 
 		}
@@ -45,10 +50,12 @@ void CObjGallery::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
+				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
 				{
 
 				}
+				Sleep(300);
 				Gright = 0;
 				Gleft = 1;
 
@@ -62,10 +69,12 @@ void CObjGallery::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
+				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
 				{
 
 				}
+				Sleep(300);
 				Gleft = 0;
 				Gright = 1;
 
