@@ -5,6 +5,8 @@
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
 
+#include"windows.h"
+
 #include"GameHead.h"
 #include"ObjTitle.h"
 #include"UtilityModule.h"
@@ -14,12 +16,13 @@ using namespace GameL;
 //イニシャライズ
 void CObjTitle::Init()
 {
-
+	m_time = 0;
 }
 
 //アクション
 void CObjTitle::Action()
 {
+
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 	if (0 <= x && 800 >= x && 0 <= y && 600 >= y)
@@ -34,11 +37,10 @@ void CObjTitle::Action()
 				{
 
 				}
-				for (int i = 0; i <= 250000000; i++)
-				{
-
-				}
+				Sleep(700);
+			
 				Scene::SetScene(new CSceneModeSelect());
+				
 			}
 		}
 		
