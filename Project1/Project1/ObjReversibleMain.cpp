@@ -140,17 +140,19 @@ void CObjReversibleMain::Action()
 	
 	
 	}
-	time_flag = true;
+	//反転アニメーション処理------------------------------
+	
+	time_flag = true;//ループ中１回だけタイムを増やす
 
 	for (int m = 0; m < 5; m++)
 	{
 		switch (m)
 		{
-		case 0:
+		case 0://上
 			lx = sx;
 			ly = sy - 1;
 			break;
-		case 1:
+		case 1://左
 			lx = sx - 1;
 			ly = sy;
 			break;
@@ -158,46 +160,52 @@ void CObjReversibleMain::Action()
 			lx = sx;
 			ly = sy;
 			break;
-		case 3:
+		case 3://右
 			lx = sx + 1;
 			ly = sy;
 			break;
-		case 4:
+		case 4://下
 			lx = sx;
 			ly = sy + 1;
 			break;
 		}
 		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 		{
-			if (stage[lx][ly] == 2)
+			if (stage[lx][ly] == 2)//反転白パネル
 			{
+				//タイムを増やす（ループ中１回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
 				}
-
+				//アニメーションが終了したら黒パネルに変更
 				if (m_ani_flame == 8)
 				{
 					stage[lx][ly] = 1;
 				}
 
 			}
-			if (stage[lx][ly] == 3)
+			if (stage[lx][ly] == 3)//反転黒パネル
 			{
+				//タイムを増やす（ループ中１回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
-				}if (m_ani_flame == 8)
+				}
+				//アニメーションが終了したら白パネルに変更
+				if (m_ani_flame == 8)
 				{
 					stage[lx][ly] = 0;
 				}
@@ -207,24 +215,26 @@ void CObjReversibleMain::Action()
 		}
 	}
 
+	//反転終了処理
 	if (m_ani_flame == 8)
 	{
-		m_ani_flame = 0;
-		m_change = true;
+		m_ani_flame = 0;	//初期化
+		m_change = true;	//パネルを動かせるようにする
 
-		if (ReversibleClearCheck(stage) == true)
-			{
+		if (ReversibleClearCheck(stage) == true)	//クリア条件を満たした
+		{
+			//パーフェクト条件を満たしている
 			if (count[2] - count[0]==count[1])
 			{
 				flag[4] = true;
 			}
-				flag[1] = true;
-			}
-		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_change==true)
-			{
-				flag[2] = true;
-				Audio::Start(2);
-			}
+			flag[1] = true;
+		}
+		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_change==true)	//ゲームオーバー条件を満たした
+		{
+			flag[2] = true;
+			Audio::Start(2);
+		}
 	}
 
 	//GameClear時の判定-----------------------------------------------------------------------------------------------
@@ -446,7 +456,7 @@ void CObjReversibleMain::Draw()
 					src.m_left = 96.0f +( AniData[m_ani_flame]%4) * 96;
 					src.m_right = src.m_left-96.0f;
 					src.m_bottom = 120.0f + src.m_top;
-					//白パネル
+					//反転白パネル
 					Draw::Draw(6, &src, &dst, c, 0.0f);
 				}
 				else if (stage[i][j] == 3)
@@ -455,7 +465,7 @@ void CObjReversibleMain::Draw()
 					src.m_left = 0.0f +( AniData[m_ani_flame]%4) * 96;
 					src.m_right = 96.0f + src.m_left;
 					src.m_bottom = 120.0f + src.m_top;
-					//黒パネル
+					//反転黒パネル
 					Draw::Draw(6, &src, &dst, c, 0.0f);
 				}
 			
