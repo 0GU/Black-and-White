@@ -8,6 +8,7 @@
 #include"GameHead.h"
 #include"UtilityModule.h"
 #include"ObjModeSelect.h"
+#include"windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -36,7 +37,7 @@ void CObjModeSelect::Action()
 				{
 					
 				}
-
+				Sleep(100);
 			Scene::SetScene(new CSceneGallery());
 		}
 
@@ -52,6 +53,7 @@ void CObjModeSelect::Action()
 			{
 				
 			}
+			Sleep(100);
 			Scene::SetScene(new CSceneGameSelect());
 		}
 

@@ -44,8 +44,8 @@ void CObjSwitchMain::Init()
 	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
 
-	bool flag_set[5] =
-	{ false,false,false,false,false};
+	bool flag_set[6] =
+	{ false,false,false,false,false,false};
 	memcpy(flag, flag_set, sizeof(bool)*(5));
 	
 	m_ani_flame = 0;
@@ -236,25 +236,29 @@ void CObjSwitchMain::Action()
 			if (SwitchClearCheck(stage) == true)
 			{
 				flag[1] = true;
+				Audio::Start(3);
 			}
 			else if (SwitchClearCheck(stage) == false && count[1] == 0)
 			{
 				flag[2] = true;
 				Audio::Start(2);
 			}
+			
 
 	}
 
 	//GameClear時の判定
 	if (flag[1] == true)
 	{
+		//BGM停止
+		Audio::Stop(0);
+
 		//StageSELECTへ戻るボタン判定
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				//SEを鳴らす
-				Audio::Start(1);
+
 				while (Input::GetMouButtonL() == true)
 				{
 
@@ -424,7 +428,7 @@ void CObjSwitchMain::Draw()
 
 	if (flag[1]==true&&count[1] == count[0])
 	{
-		Font::StrDraw(L"Perfect!", 100, 10, 32, f);
+		flag[6] = true;
 	}
 
 	switch (StageSlect)
@@ -577,9 +581,36 @@ void CObjSwitchMain::Draw()
 		Font::StrDraw(str, 700, 80, 32, f);
 	else if (count[1] <= 9)
 		Font::StrDraw(str, 710, 80, 32, f);
-	//シーン描画：GameClear!------------------------------------
-	if (flag[1] == true)
+	//シーン描画：PerFect!------------------------------------
+	if (flag[6] == true)
 	{
+		//ステージ選択に戻る
+		src.m_top = 490.0f;
+		src.m_left = 0.0f;
+		src.m_right = 560.0f;
+		src.m_bottom = 610.0f;
+		dst.m_top = 370.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 690.0;
+		dst.m_bottom = 490.0;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+
+		//PerFect!
+		src.m_top = 370.0f;
+		src.m_left = 0.0f;
+		src.m_right = 560.0f;
+		src.m_bottom = 491.0f;
+		dst.m_top = 150.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 690.0;
+		dst.m_bottom = 300.0;
+		Draw::Draw(5, &src, &dst, c, 30.0f);
+
+	}
+	//GameClear------------------------------------------
+	else if (flag[1] == true)
+	{
+		//Game Clear!!
 		src.m_top = 249.0f;
 		src.m_left = 0.0f;
 		src.m_right = 560.0f;
@@ -590,6 +621,7 @@ void CObjSwitchMain::Draw()
 		dst.m_bottom = 270.0;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 
+		//ステージ選択に戻る
 		src.m_top = 490.0f;
 		src.m_left = 0.0f;
 		src.m_right = 560.0f;

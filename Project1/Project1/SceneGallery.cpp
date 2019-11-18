@@ -30,6 +30,12 @@ CSceneGallery::~CSceneGallery()
 //ゲームタイトル初期化メソッド
 void CSceneGallery::InitScene()
 {
+	//SE情報の登録
+	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
+
+	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
+
+
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"gallery仮枠.png",1,TEX_SIZE_512);
 
