@@ -88,11 +88,11 @@ void LoadRPStage(int StaNum, int *Stage)
 
 	int Stage3[5][5] =
 	{
+	{1,0,0,1,0},
 	{1,0,1,0,1},
-	{1,0,1,1,1},
 	{1,1,1,1,1},
-	{1,0,1,1,1},
 	{1,0,1,0,1},
+	{1,0,0,1,0},
 	};
 
 	switch (StaNum)
@@ -160,7 +160,7 @@ void LoadRPCount(int StaNum,int *Count)
 
 	int Count2[2] = { 6,22 };
 
-	int Count3[2] = { 12,22 };
+	int Count3[2] = { 10,22 };
 
 	switch (StaNum)
 	{
