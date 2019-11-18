@@ -39,7 +39,6 @@ void CObjReversibleMain::Init()
 
 	LoadRPStage(StageSlect, *stage_data);
 	LoadRPCount(StageSlect, count);
-	count[0] = count[1] - count[0];
 	//カウントリセット用に初期カウントを保存する
 	count[2] = count[1];
 	//マップデータをコピー
@@ -206,7 +205,7 @@ void CObjReversibleMain::Action()
 
 		if (ReversibleClearCheck(stage) == true)
 			{
-			if (count[0]==count[1])
+			if (count[2] - count[0]==count[1])
 			{
 				flag[4] = true;
 			}
@@ -469,7 +468,12 @@ void CObjReversibleMain::Draw()
 		if (flag[0]==true)
 		{
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
-			Font::StrDraw(L"6手",40 , 320, 32, f);
+
+			wchar_t str1[128];
+			swprintf_s(str1, L"%d手", count[0]);
+
+			
+			Font::StrDraw(str1,40 , 320, 32, f);
 			
 		}
 
