@@ -23,6 +23,9 @@ void CObjModeSelect::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+
+
+
 	if (120 <= x && 680 >= x && 330 <= y && 465 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
@@ -47,7 +50,7 @@ void CObjModeSelect::Action()
 			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
-
+				
 			}
 			Scene::SetScene(new CSceneGameSelect());
 		}

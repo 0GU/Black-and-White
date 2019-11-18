@@ -35,6 +35,8 @@ void CSceneGameSelect::InitScene()
 	//SEî•ñ‚Ì“o˜^
 	Audio::LoadAudio(1, L"Sound/ƒNƒŠƒbƒNSE.wav", EFFECT);
 
+	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
+
 	CObjGameSelect* p = new CObjGameSelect();
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
 
