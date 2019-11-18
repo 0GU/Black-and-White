@@ -47,6 +47,7 @@ void CSceneSwitchMain::InitScene()
 	//SEî•ñ‚Ì“o˜^
 	Audio::LoadAudio(1, L"Sound/ƒNƒŠƒbƒNSE.wav",  EFFECT);
 	Audio::LoadAudio(2, L"Sound/GameOverTin.wav", EFFECT);
+	Audio::LoadAudio(3, L"Sound/ClearSE.wav", EFFECT);
 
 	//BGMÄ¶
 	Audio::Start(0);
