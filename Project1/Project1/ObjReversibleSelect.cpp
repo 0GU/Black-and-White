@@ -3,11 +3,10 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
-#include "GameL/UserData.h"
 #include"GameL/Audio.h"
 
 #include"GameHead.h"
-#include"ObjStageSelect.h"
+#include"ObjReversibleSelect.h"
 #include"ObjReversibleMain.h"
 #include"Windows.h"
 
@@ -15,7 +14,7 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjStageSelect::Init()
+void CObjReversibleSelect::Init()
 {
 	
 	bool set_flag[3] = { false, false ,false};
@@ -24,7 +23,7 @@ void CObjStageSelect::Init()
 }
 
 //アクション
-void CObjStageSelect::Action()
+void CObjReversibleSelect::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
@@ -47,13 +46,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[0] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+		
+			Scene::SetScene(new CSceneReversibleMain(1));
 
 
 		}
@@ -71,13 +65,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[1] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+			
+			Scene::SetScene(new CSceneReversibleMain(2));
 
 
 		}
@@ -95,13 +84,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[2] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+		
+			Scene::SetScene(new CSceneReversibleMain(3));
 
 
 		}
@@ -201,7 +185,7 @@ void CObjStageSelect::Action()
 }
 
 //ドロー
-void CObjStageSelect::Draw()
+void CObjReversibleSelect::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };

@@ -16,9 +16,9 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneReversibleMain::CSceneReversibleMain()
+CSceneReversibleMain::CSceneReversibleMain(int stage)
 {
-
+	stagenum = stage;
 }
 
 //デストラクタ
@@ -46,17 +46,15 @@ void CSceneReversibleMain::InitScene()
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
 	Audio::LoadAudio(2, L"sound/GameOverTin.wav", EFFECT);
+	Audio::LoadAudio(3, L"sound/ClearSE.wav", EFFECT);
+	Audio::LoadAudio(4, L"sound/PerfectSE.wav", EFFECT);
 
 	//BGM再生
 	//float Volume = Audio::VolumeMaster(0.7f);
 	Audio::Start(0);
 
-	CObjReversibleMain* p = new CObjReversibleMain();
+	CObjReversibleMain* p = new CObjReversibleMain(stagenum);
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
-
-	CObjMouse* c = new CObjMouse();
-	Objs::InsertObj(c, OBJ_MOUSE, 1);
-
 
 }
 

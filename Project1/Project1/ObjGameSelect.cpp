@@ -1,14 +1,12 @@
 //使用するヘッダーファイル
-#include"GameL/DrawTexture.h"
-#include"GameL/WinInputs.h"
-#include"GameL/SceneManager.h"
-#include"GameL/DrawFont.h"
-#include"GameL/Audio.h"
+#include "GameL/DrawTexture.h"
+#include "GameL/WinInputs.h"
+#include "GameL/SceneManager.h"
+#include "GameL/DrawFont.h"
+#include "GameL/Audio.h"
 
-#include"GameHead.h"
-#include"ObjGameSelect.h"
-#include "ObjSwitchSelect.h"
-#include"Windows.h"
+#include "GameHead.h"
+#include "Windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -53,7 +51,7 @@ void CObjGameSelect::Action()
 
 			}
 			Sleep(100);
-			Scene::SetScene(new CSceneStageSelect());
+			Scene::SetScene(new CSceneReversibleSelect());
 		}
 	}
 	//戻るボタン

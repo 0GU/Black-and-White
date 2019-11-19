@@ -5,11 +5,11 @@
 using namespace GameL;
 
 //オブジェクト：ステージセレクト
-class CObjStageSelect : public CObj
+class CObjReversibleSelect : public CObj
 {
 public:
-	CObjStageSelect() {};
-	~CObjStageSelect() {};
+	CObjReversibleSelect() {};
+	~CObjReversibleSelect() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー

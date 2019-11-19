@@ -97,13 +97,13 @@ void LoadRPStage(int StaNum, int *Stage)
 
 	switch (StaNum)
 	{
-	case 0:
+	case 1:
 		memcpy(Stage, Stage1, sizeof(int)*(5 * 5));
 		break;
-	case 1:
+	case 2:
 		memcpy(Stage, Stage2, sizeof(int)*(5 * 5));
 		break;
-	case 2:
+	case 3:
 		memcpy(Stage, Stage3, sizeof(int)*(5 * 5));
 		break;
 	}
@@ -164,13 +164,13 @@ void LoadRPCount(int StaNum,int *Count)
 
 	switch (StaNum)
 	{
-	case 0:
+	case 1:
 		memcpy(Count, Count1, sizeof(int)*(2));
 		break;
-	case 1:
+	case 2:
 		memcpy(Count, Count2, sizeof(int)*(2));
 		break;
-	case 2:
+	case 3:
 		memcpy(Count, Count3, sizeof(int)*(2));
 		break;
 	}
