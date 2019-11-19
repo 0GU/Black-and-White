@@ -3,7 +3,6 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
-#include "GameL/UserData.h"
 #include"GameL/Audio.h"
 
 #include"GameHead.h"
@@ -41,13 +40,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[0] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+		
+			Scene::SetScene(new CSceneReversibleMain(1));
 
 
 		}
@@ -65,13 +59,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[1] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+			
+			Scene::SetScene(new CSceneReversibleMain(2));
 
 
 		}
@@ -89,13 +78,8 @@ void CObjStageSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->RPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->RPStageSelect[2] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneReversibleMain());
+		
+			Scene::SetScene(new CSceneReversibleMain(3));
 
 
 		}
