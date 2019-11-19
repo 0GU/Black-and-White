@@ -1,7 +1,6 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneObjManager.h"
-#include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\UserData.h"
 #include "GameHead.h"
@@ -13,28 +12,15 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjReversibleMain::CObjReversibleMain(int stage)
+{
+	StageSlect = stage;
+}
+
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
-	//ステージの読み込み処理
-	StageSlect = -1;
-	//データの読み込み前にフラグを全てfalseにする
-	for (int i = 0; i < 3; i++)
-	{
-		((UserData*)Save::GetData())->RPStageSelect[i] = false;
-	}
-
-	Save::Open();
-	//フラグが立っている番号をStageSlectに保存
-	for (int i = 0; i < 3; i++)
-	{
-		if (((UserData*)Save::GetData())->RPStageSelect[i] ==true)
-		{
-			StageSlect = i;
-		}
-	}
-
-
 	int stage_data[5][5] = {};   //ステージ用配列
 
 	//ステージ読み込み用関数
@@ -419,7 +405,7 @@ void CObjReversibleMain::Draw()
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
-	swprintf_s(str1, L"STAGE%d",StageSlect+1);
+	swprintf_s(str1, L"STAGE%d",StageSlect);
 	Font::StrDraw(str1, 30, 470, 36, f);
 
 	for (int i = 0; i < 5; i++)

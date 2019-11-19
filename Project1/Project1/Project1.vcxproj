@@ -38,7 +38,9 @@
     </ClInclude>
     <ClInclude Include="ObjGameSelect.h" />
     <ClInclude Include="ObjModeSelect.h" />
-    <ClInclude Include="ObjMouse.h" />
+    <ClInclude Include="ObjMouse.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjReversibleMain.h" />
     <ClInclude Include="ObjStageSelect.h" />
     <ClInclude Include="ObjSwitchMain.h" />
@@ -77,7 +79,9 @@
     </ClCompile>
     <ClCompile Include="ObjGameSelect.cpp" />
     <ClCompile Include="ObjModeSelect.cpp" />
-    <ClCompile Include="ObjMouse.cpp" />
+    <ClCompile Include="ObjMouse.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjReversibleMain.cpp" />
     <ClCompile Include="ObjStageSelect.cpp" />
     <ClCompile Include="ObjSwitchMain.cpp" />

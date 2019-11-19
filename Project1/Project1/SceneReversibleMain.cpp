@@ -16,9 +16,9 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneReversibleMain::CSceneReversibleMain()
+CSceneReversibleMain::CSceneReversibleMain(int stage)
 {
-
+	stagenum = stage;
 }
 
 //デストラクタ
@@ -51,12 +51,8 @@ void CSceneReversibleMain::InitScene()
 	//float Volume = Audio::VolumeMaster(0.7f);
 	Audio::Start(0);
 
-	CObjReversibleMain* p = new CObjReversibleMain();
+	CObjReversibleMain* p = new CObjReversibleMain(stagenum);
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
-
-	CObjMouse* c = new CObjMouse();
-	Objs::InsertObj(c, OBJ_MOUSE, 1);
-
 
 }
 
