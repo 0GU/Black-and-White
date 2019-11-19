@@ -6,7 +6,7 @@
 #include"GameL/Audio.h"
 
 #include"GameHead.h"
-#include"ObjStageSelect.h"
+#include"ObjReversibleSelect.h"
 #include"ObjReversibleMain.h"
 #include"Windows.h"
 
@@ -14,13 +14,13 @@
 using namespace GameL;
 
 //イニシャライズ
-void CObjStageSelect::Init()
+void CObjReversibleSelect::Init()
 {
 
 }
 
 //アクション
-void CObjStageSelect::Action()
+void CObjReversibleSelect::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
@@ -105,7 +105,7 @@ void CObjStageSelect::Action()
 }
 
 //ドロー
-void CObjStageSelect::Draw()
+void CObjReversibleSelect::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };

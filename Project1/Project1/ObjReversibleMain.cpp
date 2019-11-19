@@ -237,7 +237,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 
 			}
 
@@ -279,7 +279,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 				flag[2] = false;
 			}
 		}
@@ -348,7 +348,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 			}
 		}
 		//Noƒ{ƒ^ƒ“”»’è

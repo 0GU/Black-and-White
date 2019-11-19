@@ -90,9 +90,6 @@
     <ClInclude Include="ObjReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMouse.h">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClInclude>
     <ClInclude Include="SceneReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClInclude>
@@ -114,14 +111,8 @@
     <ClInclude Include="ObjModeSelect.h">
       <Filter>ソース ファイル\Mode Select</Filter>
     </ClInclude>
-    <ClInclude Include="ObjStageSelect.h">
-      <Filter>ソース ファイル\Stage Select</Filter>
-    </ClInclude>
     <ClInclude Include="SceneModeSelect.h">
       <Filter>ソース ファイル\Mode Select</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStageSelect.h">
-      <Filter>ソース ファイル\Stage Select</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\Game Clear</Filter>
@@ -140,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="SceneSwitchSelect.h">
       <Filter>ソース ファイル\Switch Select</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjReversibleSelect.h">
+      <Filter>ソース ファイル\Stage Select</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneReversibleSelect.h">
+      <Filter>ソース ファイル\Stage Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +188,6 @@
     <ClCompile Include="ObjReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMouse.cpp">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClCompile>
     <ClCompile Include="SceneReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClCompile>
@@ -215,14 +209,8 @@
     <ClCompile Include="ObjModeSelect.cpp">
       <Filter>ソース ファイル\Mode Select</Filter>
     </ClCompile>
-    <ClCompile Include="ObjStageSelect.cpp">
-      <Filter>ソース ファイル\Stage Select</Filter>
-    </ClCompile>
     <ClCompile Include="SceneModeSelect.cpp">
       <Filter>ソース ファイル\Mode Select</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStageSelect.cpp">
-      <Filter>ソース ファイル\Stage Select</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\Game Clear</Filter>
@@ -241,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="SceneSwitchSelect.cpp">
       <Filter>ソース ファイル\Switch Select</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjReversibleSelect.cpp">
+      <Filter>ソース ファイル\Stage Select</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneReversibleSelect.cpp">
+      <Filter>ソース ファイル\Stage Select</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
