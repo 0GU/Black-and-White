@@ -228,6 +228,7 @@ void CObjReversibleMain::Action()
 			{
 				flag[4] = true;
 			}
+			Audio::Start(3);
 			flag[1] = true;
 		}
 		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_change==true)	//ゲームオーバー条件を満たした
@@ -240,6 +241,8 @@ void CObjReversibleMain::Action()
 	//GameClear時の判定-----------------------------------------------------------------------------------------------
 	if (flag[1] == true)
 	{
+		//BGM停止
+		Audio::Stop(0);
 		//StageSelectへ戻るボタン判定
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
@@ -350,6 +353,8 @@ void CObjReversibleMain::Action()
 	}
 	if (flag[3] == true)
 	{
+		//BGM停止
+		Audio::Stop(0);
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{

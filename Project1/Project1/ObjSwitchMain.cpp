@@ -235,6 +235,12 @@ void CObjSwitchMain::Action()
 
 			if (SwitchClearCheck(stage) == true)
 			{
+				//パーフェクト条件を満たしている
+				if (count[2] - count[0] == count[1])
+				{
+					flag[4] = true;
+					Audio::Start(4);
+				}
 				flag[1] = true;
 				Audio::Start(3);
 			}
