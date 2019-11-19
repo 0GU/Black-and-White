@@ -25,9 +25,6 @@
     <Filter Include="ソース ファイル\Game Select">
       <UniqueIdentifier>{660fd5e8-ffd4-431a-8776-579939fe1101}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Stage Select">
-      <UniqueIdentifier>{24b50ebd-edeb-42d5-821f-ca9ef8aaed5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Mode Select">
       <UniqueIdentifier>{0727af5f-e4d6-44a4-9aea-d2fde8e572e7}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="ソース ファイル\Switch Select">
       <UniqueIdentifier>{6f1b8cca-ed37-4991-afbc-cfc3c3af76a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Reversible Select">
+      <UniqueIdentifier>{24b50ebd-edeb-42d5-821f-ca9ef8aaed5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,10 +133,10 @@
       <Filter>ソース ファイル\Switch Select</Filter>
     </ClInclude>
     <ClInclude Include="ObjReversibleSelect.h">
-      <Filter>ソース ファイル\Stage Select</Filter>
+      <Filter>ソース ファイル\Reversible Select</Filter>
     </ClInclude>
     <ClInclude Include="SceneReversibleSelect.h">
-      <Filter>ソース ファイル\Stage Select</Filter>
+      <Filter>ソース ファイル\Reversible Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -231,10 +231,10 @@
       <Filter>ソース ファイル\Switch Select</Filter>
     </ClCompile>
     <ClCompile Include="ObjReversibleSelect.cpp">
-      <Filter>ソース ファイル\Stage Select</Filter>
+      <Filter>ソース ファイル\Reversible Select</Filter>
     </ClCompile>
     <ClCompile Include="SceneReversibleSelect.cpp">
-      <Filter>ソース ファイル\Stage Select</Filter>
+      <Filter>ソース ファイル\Reversible Select</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
