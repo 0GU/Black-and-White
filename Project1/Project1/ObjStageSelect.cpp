@@ -17,7 +17,10 @@ using namespace GameL;
 //イニシャライズ
 void CObjStageSelect::Init()
 {
-
+	
+	bool set_flag[3] = { false, false ,false};
+	memcpy(flag, set_flag, sizeof(bool)*(3));
+	
 }
 
 //アクション
@@ -25,6 +28,9 @@ void CObjStageSelect::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+
+
+
 
 
 	//right値が描画とズレていた為調整
@@ -118,6 +124,80 @@ void CObjStageSelect::Action()
 		}
 	}
 
+	//仮置き:後に削除-----------------------------
+	if (500 <= x && 540 >= x && 0 <= y && 40 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			if (flag[0] == false)
+			{
+				flag[0] = true;
+			}
+			else if(flag[0]==true)
+			{
+				flag[0] = false;
+			}
+			//SEを鳴らす
+			Audio::Start(2);
+
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Sleep(200);
+
+
+		}
+
+		
+	}
+
+	if (540 <= x && 580 >= x && 0 <= y && 40 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			if (flag[1] == false)
+			{
+				flag[1] = true;
+			}
+			else if (flag[1] == true)
+			{
+				flag[1] = false;
+			}
+			//SEを鳴らす
+			Audio::Start(1);
+
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Sleep(200);
+		}
+	}
+
+	if (580 <= x && 620 >= x && 0 <= y && 40 >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			if (flag[2] == false)
+			{
+				flag[2] = true;
+			}
+			else if (flag[2] == true)
+			{
+				flag[2] = false;
+			}
+			//SEを鳴らす
+			Audio::Start(1);
+
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Sleep(200);
+		}
+	}
+	//---------------------------------------------
 }
 
 //ドロー
@@ -126,6 +206,8 @@ void CObjStageSelect::Draw()
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
+
+
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -138,7 +220,7 @@ void CObjStageSelect::Draw()
 	dst.m_top = 160.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;
-	dst.m_bottom =250.0;
+	dst.m_bottom = 250.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//Stage2の描画
@@ -176,26 +258,106 @@ void CObjStageSelect::Draw()
 
 
 	//黒星の描画---------------------------------------------------------------------------
-	src.m_top = 1.5f;
-	src.m_left = 562.0f;
-	src.m_right = 600.0f;
-	src.m_bottom = 40.0f;
+
+
+
 	//(1)
-	dst.m_top = 184.0f;
-	dst.m_left = 268.0f;
-	dst.m_right = 307.0;
-	dst.m_bottom = 225.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (flag[0] == false)
+	{
+		src.m_top = 1.5f;
+		src.m_left = 562.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 40.0f;
+		dst.m_top = 184.0f;
+		dst.m_left = 268.0f;
+		dst.m_right = 307.0;
+		dst.m_bottom = 225.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
 	//(2)
-	dst.m_top = 314.0f;
-	dst.m_left = 268.0f;
-	dst.m_right = 307.0;
-	dst.m_bottom = 353.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	 if (flag[1] == false)
+	{
+		src.m_top = 1.5f;
+		src.m_left = 562.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 40.0f;	
+		dst.m_top = 314.0f;
+		dst.m_left = 268.0f;
+		dst.m_right = 307.0;
+		dst.m_bottom = 353.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+}
 	//(3)
-	dst.m_top = 445.0f;
-	dst.m_left = 268.0f;
-	dst.m_right = 307.0;
-	dst.m_bottom = 483.0;
+	 if (flag[2] == false)
+	 {
+		 src.m_top = 1.5f;
+		 src.m_left = 562.0f;
+		 src.m_right = 600.0f;
+		 src.m_bottom = 40.0f;
+		 dst.m_top = 445.0f;
+		 dst.m_left = 268.0f;
+		 dst.m_right = 307.0;
+		 dst.m_bottom = 483.0;
+		 Draw::Draw(0, &src, &dst, c, 0.0f);
+	 }
+	//白星の描画---------------------------------------------------------------------------
+
+
+	//(1)
+	if (flag[0] == true)
+	{
+		src.m_top = 43.0f;
+		src.m_left = 562.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 82.0f;
+		dst.m_top = 184.0f;
+		dst.m_left = 268.0f;
+		dst.m_right = 307.0;
+		dst.m_bottom = 225.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
+	if (flag[1] == true)
+	{
+		//(2)
+		src.m_top = 43.0f;
+		src.m_left = 562.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 82.0f;
+		dst.m_top = 314.0f;
+		dst.m_left = 268.0f;
+		dst.m_right = 307.0;
+		dst.m_bottom = 353.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
+	if (flag[2] == true)
+	{
+		//(3)
+		src.m_top = 43.0f;
+		src.m_left = 562.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 82.0f;
+		dst.m_top = 445.0f;
+		dst.m_left = 268.0f;
+		dst.m_right = 307.0;
+		dst.m_bottom = 483.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
+	//仮置:チェンジ------------------------
+	dst.m_top = 0.0f;
+	dst.m_left = 500.0f;
+	dst.m_right = 540.0;
+	dst.m_bottom = 40.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+	dst.m_top = 0.0f;
+	dst.m_left = 540.0f;
+	dst.m_right = 580.0;
+	dst.m_bottom = 40.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+	dst.m_top = 0.0f;
+	dst.m_left = 580.0f;
+	dst.m_right = 620.0;
+	dst.m_bottom = 40.0;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//切り替えが出来たら削除-------------
+
 }
