@@ -5,8 +5,8 @@
 
 
 //ReversibleClearCheck関数------------------------------------------------------------------
-//引数1	 int	:ReversiblePanelのステージ配列
-//戻り値 bool	:true…クリア　false…クリアではない
+//引数1	 int　rcc[5][5]	:ReversiblePanelのステージ配列
+//戻り値 bool			:true…クリア　false…クリアではない
 //内容	：ReversiblePanelのクリアチェック	
 int ReversibleClearCheck(int rcc[5][5])
 {
@@ -37,9 +37,9 @@ int ReversibleClearCheck(int rcc[5][5])
 }
 
 //LoadRPStage関数---------------------------------------------------------------------------
-//引数1　int：コピーするステージデータの指定
-//引数2　int *：コピー先のステージ配列のポインタ
-//引数3　int *：コピー先のカウント配列のポインタ
+//引数1　int StaNum：コピーするステージデータの指定
+//引数2　int *Stage：コピー先のステージ配列のポインタ
+//引数3　int *Count：コピー先のカウント配列のポインタ
 //戻り値　無し
 //内容：指定されたステージデータをコピーする
 void LoadRPStage(int StaNum, int *Stage, int *Count)
@@ -93,8 +93,8 @@ void LoadRPStage(int StaNum, int *Stage, int *Count)
 }
 
 //SwitchClearCheck関数---------------------------------------------------------------------
-//引数1	 int	:SwitchPanelのステージ配列
-//戻り値 bool	:true…クリア　false…クリアではない
+//引数1	 int scc[5][5]	:SwitchPanelのステージ配列
+//戻り値 bool			:true…クリア　false…クリアではない
 //内容	：SwitchPanelのクリアチェック	
 int SwitchClearCheck(int scc[5][5])
 {
@@ -124,9 +124,9 @@ int SwitchClearCheck(int scc[5][5])
 }
 
 //LoadSPStage関数---------------------------------------------------------------------------
-//引数1　int：コピーするステージデータの指定
-//引数2　int *：コピー先のステージ配列のポインタ
-//引数3　int *：コピー先のカウント配列のポインタ
+//引数1　int StaNum：コピーするステージデータの指定
+//引数2　int *Stage：コピー先のステージ配列のポインタ
+//引数3　int *Count：コピー先のカウント配列のポインタ
 //戻り値　無し
 //内容：指定されたステージデータをコピーする
 void LoadSPStage(int StaNum, int *Stage,int *Count)

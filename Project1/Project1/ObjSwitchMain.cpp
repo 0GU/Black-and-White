@@ -48,9 +48,9 @@ void CObjSwitchMain::Action()
 
 
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && 
-		((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) 
-		&& flag[1] == false && flag[2] == false&& flag[3] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y &&
+		((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0))
+		&& flag[1] == false && flag[2] == false && flag[3] == false)
 	{
 		if (m_change == true)
 		{
@@ -209,23 +209,27 @@ void CObjSwitchMain::Action()
 		m_ani_flame = 0;	//初期化
 		m_change = true;	//パネルを動かせるようにする
 
-			if (SwitchClearCheck(stage) == true)	//クリア条件を満たした
+		if (SwitchClearCheck(stage) == true)	//クリア条件を満たした
+		{
+			//パーフェクト条件を満たしている
+			if (count[2] - count[0] == count[1])
 			{
-				//パーフェクト条件を満たしている
-				if (count[2] - count[0] == count[1])
-				{
-					flag[4] = true;
-					Audio::Start(4);
-				}
-				flag[1] = true;
+				flag[4] = true;
+				Audio::Start(4);
+			}
+			flag[1] = true;
+			if (flag[4] == false)
+			{
 				Audio::Start(3);
 			}
-			else if (SwitchClearCheck(stage) == false && count[1] == 0)		//ゲームオーバー条件を満たした
-			{
-				flag[2] = true;
-				Audio::Start(2);
-			}
-			
+
+		}
+		else if (SwitchClearCheck(stage) == false && count[1] == 0)		//ゲームオーバー条件を満たした
+		{
+			flag[2] = true;
+			Audio::Start(2);
+		}
+
 
 	}
 
@@ -254,7 +258,7 @@ void CObjSwitchMain::Action()
 	if (flag[2] == true)
 	{
 
-		
+
 		//BGM停止
 		Audio::Stop(0);
 
@@ -273,12 +277,12 @@ void CObjSwitchMain::Action()
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
 				{
-					
+
 				}
 				flag[2] = false;
 				Audio::Start(0);
 			}
-			
+
 		}
 		//Noボタン判定
 		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
