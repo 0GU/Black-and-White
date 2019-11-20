@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
 #include"windows.h"
 
@@ -13,19 +14,30 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define WINDOW_SIZE_X (800.0f)
+#define WINDOW_SIZE_Y (600.0f)
+#define CLICK_WAIT (300)
+
 //イニシャライズ
 void CObjTitle::Init()
 {
 	m_time = 0;
+
+	Save::Seve();
+
+	((UserData*)Save::GetData())->PerfectFlag[0] = false;
+	((UserData*)Save::GetData())->PerfectFlag[1] = false;
+	((UserData*)Save::GetData())->PerfectFlag[2] = false;
+
 }
 
 //アクション
 void CObjTitle::Action()
-{
-
+{	
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-	if (0 <= x && 800 >= x && 0 <= y && 600 >= y)
+	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -37,7 +49,7 @@ void CObjTitle::Action()
 				{
 
 				}
-				Sleep(300);
+				Sleep(CLICK_WAIT);
 			
 				Scene::SetScene(new CSceneModeSelect());
 				
@@ -59,11 +71,11 @@ void CObjTitle::Draw()
 	//戻るボタン
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 800.0f;
-	src.m_bottom = 600.0f;
+	src.m_right = WINDOW_SIZE_X;
+	src.m_bottom = WINDOW_SIZE_Y;
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
-	dst.m_right = 800.0;
-	dst.m_bottom = 600.0;
+	dst.m_right = WINDOW_SIZE_X;
+	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 }

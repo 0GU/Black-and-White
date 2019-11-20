@@ -4,7 +4,9 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
+#include"ObjSwitchMain.h"
 #include"GameHead.h"
 #include"ObjGallery.h"
 #include"Windows.h"
@@ -17,6 +19,12 @@ void CObjGallery::Init()
 {
 	Gright = 1;
 	Gleft = 0;
+
+	for (int i = 0; i < 3; i++)
+	{
+		Flag[i] = false;
+	}
+
 }
 
 //アクション
@@ -24,23 +32,33 @@ void CObjGallery::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+	
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->PerfectFlag[i] == true)
+		{
+			Flag[i] = true;
+		}
+	}
 
 
 	//戻るボタン
 	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
 	{
-		if (Input::GetMouButtonL() == true)
+	if (Input::GetMouButtonL() == true)
+	{
+		//SEを鳴らす
+		Audio::Start(2);
+		while (Input::GetMouButtonL() == true)
 		{
-			//SEを鳴らす
-			Audio::Start(2);
-			while (Input::GetMouButtonL() == true)
-			{				
-								
-			}
-			Sleep(200);
-			Scene::SetScene(new CSceneModeSelect());
 
 		}
+		Sleep(200);
+		Scene::SetScene(new CSceneModeSelect());
+
+	}
 	}
 
 	if (Gright == 1)
@@ -125,6 +143,22 @@ void CObjGallery::Draw()
 		dst.m_right = 657.0f;
 		dst.m_bottom = 560.0f;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
+
+		//仮表示
+		if (Flag[0]==true && Flag[1] == true && Flag[2] == true)
+		{
+			//矢印ボタン
+			src.m_top = 0.0f;
+			src.m_left = 559.0f;
+			src.m_right = 639.0f;
+			src.m_bottom = 140.0f;
+			dst.m_top = 245.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 375.0;
+			dst.m_bottom = 365.0;
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+		}
+
 	}
 
 	if (Gleft == 1)

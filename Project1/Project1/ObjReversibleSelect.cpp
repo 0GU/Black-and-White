@@ -13,6 +13,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define SCENEBACK_WAIT (200)
+#define SELECT_WAIT (100)
+
 //イニシャライズ
 void CObjReversibleSelect::Init()
 {
@@ -45,7 +49,7 @@ void CObjReversibleSelect::Action()
 			{
 
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
 		
 			Scene::SetScene(new CSceneReversibleMain(1));
 
@@ -64,7 +68,7 @@ void CObjReversibleSelect::Action()
 			{
 
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
 			
 			Scene::SetScene(new CSceneReversibleMain(2));
 
@@ -83,7 +87,7 @@ void CObjReversibleSelect::Action()
 			{
 
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
 		
 			Scene::SetScene(new CSceneReversibleMain(3));
 
@@ -102,7 +106,7 @@ void CObjReversibleSelect::Action()
 			{
 
 			}
-			Sleep(200);
+			Sleep(SCENEBACK_WAIT);
 			Scene::SetScene(new CSceneGameSelect());
 
 		}
@@ -211,7 +215,7 @@ void CObjReversibleSelect::Draw()
 	src.m_top = 90.0f;
 	src.m_left = 0.0f;
 	src.m_right = 561.0f;
-	src.m_bottom = 181.0f;
+	src.m_bottom = 180.0f;
 	dst.m_top = 290.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;

@@ -18,7 +18,6 @@ private:
 	float x, y;
 	int Gright;
 	int Gleft;
-	
-	
+	bool Flag[3];	
 
 };
