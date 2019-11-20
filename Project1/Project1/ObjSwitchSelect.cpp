@@ -154,7 +154,7 @@ void CObjSwitchSelect::Draw()
 	src.m_bottom = 239.0f;
 	dst.m_top = 35.0f;
 	dst.m_left = 5.0f;
-	dst.m_right = 225.0;
+	dst.m_right = 125.0;
 	dst.m_bottom = 135.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 

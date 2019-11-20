@@ -256,7 +256,7 @@ void CObjReversibleMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				count[1] = 22;
+				count[1] = count[2];
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//BGMÄÄ¶
 				Audio::Start(0);
@@ -339,8 +339,7 @@ void CObjReversibleMain::Action()
 	}
 	if (flag[3] == true)
 	{
-		//BGM’âŽ~
-		Audio::Stop(0);
+
 		//Yesƒ{ƒ^ƒ“”»’è
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -574,7 +573,7 @@ void CObjReversibleMain::Draw()
 		{
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 239.0f;
+			src.m_right = 240.0f;
 			src.m_bottom = 939.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
@@ -584,8 +583,8 @@ void CObjReversibleMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 478.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 479.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;
