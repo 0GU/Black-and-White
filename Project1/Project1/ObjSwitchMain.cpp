@@ -331,6 +331,7 @@ void CObjSwitchMain::Action()
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SE‚ð–Â‚ç‚·
 			Audio::Start(1);
+			m_change = true;
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -668,11 +669,11 @@ void CObjSwitchMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 480.0f;
+			src.m_right = 479.0f;
 			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
-			dst.m_right = 650.0;
+			dst.m_right = 649.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
