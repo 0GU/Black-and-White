@@ -36,6 +36,7 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+
 }
 
 //アクション
@@ -381,6 +382,25 @@ void CObjSwitchMain::Action()
 		}
 	}
 
+	//Perfectフラグの管理
+	Save::Seve();
+	if (flag[1] == true && count[1] == count[0])
+	{
+		flag[6] = true;
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->SPerfectFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->SPerfectFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->SPerfectFlag[2] = true;
+			break;
+		}
+	}
+
 }
 
 //ドロー
@@ -407,24 +427,6 @@ void CObjSwitchMain::Draw()
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-
-	//Perfectフラグの管理
-	if (flag[1]==true&&count[1] == count[0])
-	{
-		flag[6] = true;
-		if (flag[6] == true && StageSlect == 0)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[0] = true;
-		}
-		else if (flag[6] == true && StageSlect == 1)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[1] = true;
-		}
-		else if (flag[6] == true && StageSlect == 2)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[2] = true;
-		}
-	}
 
 	switch (StageSlect)
 	{

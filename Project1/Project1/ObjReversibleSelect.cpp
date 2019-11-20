@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
 #include"GameHead.h"
 #include"ObjReversibleSelect.h"
@@ -105,6 +106,16 @@ void CObjReversibleSelect::Action()
 			Sleep(200);
 			Scene::SetScene(new CSceneGameSelect());
 
+		}
+	}
+
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+		{
+			flag[i] = true;
 		}
 	}
 

@@ -368,6 +368,25 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
+
+	//Perfectフラグの管理
+	Save::Seve();
+	if (flag[1] == true && count[1] == count[0])
+	{
+		flag[6] = true;
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->RPerfectFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->RPerfectFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
+			break;
+		}
+	}
 }
 
 //ドロー

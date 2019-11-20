@@ -37,7 +37,7 @@ void CObjGallery::Action()
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (((UserData*)Save::GetData())->PerfectFlag[i] == true)
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 		{
 			Flag[i] = true;
 		}
@@ -155,7 +155,7 @@ void CObjGallery::Draw()
 			dst.m_top = 245.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 375.0;
-			dst.m_bottom = 365.0;
+			dst.m_bottom = 385.0;
 			Draw::Draw(0, &src, &dst, c, 0.0f);
 		}
 
