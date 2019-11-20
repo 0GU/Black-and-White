@@ -44,6 +44,8 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 
+	bool PerfectFlag[3];
+
 };
 //------------------------------------------------
 

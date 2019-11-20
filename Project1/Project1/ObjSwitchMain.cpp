@@ -28,8 +28,8 @@ void CObjSwitchMain::Init()
 
 	bool flag_set[6] =
 	{ false,false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(5));
-	
+	memcpy(flag, flag_set, sizeof(bool)*(6));
+	   	
 	m_ani_flame = 0;
 	m_time = 0;
 	m_change = true;
@@ -253,8 +253,7 @@ void CObjSwitchMain::Action()
 	//GameOverŽž‚Ì”»’è
 	if (flag[2] == true)
 	{
-
-		
+	
 		//BGM’âŽ~
 		Audio::Stop(0);
 
@@ -408,6 +407,24 @@ void CObjSwitchMain::Draw()
 
 	//stage‚Ì•`‰æ
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+
+	//Perfectƒtƒ‰ƒO‚ÌŠÇ—
+	if (flag[1]==true&&count[1] == count[0])
+	{
+		flag[6] = true;
+		if (flag[6] == true && StageSlect == 0)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[0] = true;
+		}
+		else if (flag[6] == true && StageSlect == 1)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[1] = true;
+		}
+		else if (flag[6] == true && StageSlect == 2)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[2] = true;
+		}
+	}
 
 	switch (StageSlect)
 	{
