@@ -14,7 +14,17 @@
 using namespace GameL;
 
 //マクロ
-#define SELECT_WAIT (100)
+#define SELECT_WAIT		   (100)
+#define HIT_LEFT		   (120.0f)
+#define HIT_RIGHT		   (680.0f)
+#define HIT_TOP_SELECT	   (130.0f)
+#define HIT_BOTTOM_SELECT  (265.0f)
+#define HIT_TOP_GALLERY	   (330.0f)
+#define HIT_BOTTOM_GALLERY (465.0f)
+#define CUT_PICTURE_TOP	   (0.0f)
+#define CUT_PICTURE_LEFT   (0.0f)
+#define CUT_PICTURE_RIGHT  (561.0f)
+#define CUT_PICTURE_BOTTOM (135.0f)
 
 //イニシャライズ
 void CObjModeSelect::Init()
@@ -29,24 +39,7 @@ void CObjModeSelect::Action()
 	y = (float)Input::GetPosY();
 
 
-
-	if (120.0f <= x && 680.0f >= x && 330.0f <= y && 465.0f >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-					
-				}
-				Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneGallery());
-		}
-
-	}
-
-	if (120 <= x && 680 >= x && 130 <= y && 265 >= y)
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -54,13 +47,30 @@ void CObjModeSelect::Action()
 			Audio::Start(1);
 			while (Input::GetMouButtonL() == true)
 			{
-				
+
 			}
 			Sleep(SELECT_WAIT);
 			Scene::SetScene(new CSceneGameSelect());
 		}
 
 	}
+
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y)
+	{
+		if (Input::GetMouButtonL() == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneGallery());
+		}
+
+	}
+
 }
 
 //ドロー
@@ -72,26 +82,26 @@ void CObjModeSelect::Draw()
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 
-	//背景表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 135.0f;
-	dst.m_top = 330.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 465.0;
+	//Gallery表示
+	src.m_top = CUT_PICTURE_TOP;
+	src.m_left = CUT_PICTURE_LEFT;
+	src.m_right = CUT_PICTURE_RIGHT;
+	src.m_bottom = CUT_PICTURE_BOTTOM;
+	dst.m_top = HIT_TOP_GALLERY;
+	dst.m_left = HIT_LEFT;
+	dst.m_right = HIT_RIGHT;
+	dst.m_bottom = HIT_BOTTOM_GALLERY;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//背景表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 135.0f;
-	dst.m_top = 130.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 265.0;
+	//GameSelect表示
+	src.m_top =CUT_PICTURE_TOP;
+	src.m_left = CUT_PICTURE_LEFT;
+	src.m_right = CUT_PICTURE_RIGHT;
+	src.m_bottom = CUT_PICTURE_BOTTOM;
+	dst.m_top = HIT_TOP_SELECT;
+	dst.m_left = HIT_LEFT;
+	dst.m_right = HIT_RIGHT;
+	dst.m_bottom = HIT_BOTTOM_SELECT;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 
