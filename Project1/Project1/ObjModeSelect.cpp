@@ -27,7 +27,7 @@ void CObjModeSelect::Action()
 
 
 
-	if (119 <= x && 670 >= x && 320 <= y && 455 >= y)
+	if (120.0f <= x && 680.0f >= x && 330.0f <= y && 465.0f >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -43,7 +43,7 @@ void CObjModeSelect::Action()
 
 	}
 
-	if (119 <= x && 670 >= x && 125 <= y && 260 >= y)
+	if (120 <= x && 680 >= x && 130 <= y && 265 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -85,7 +85,7 @@ void CObjModeSelect::Draw()
 	src.m_left = 0.0f;
 	src.m_right = 561.0f;
 	src.m_bottom = 135.0f;
-	dst.m_top = 135.0f;
+	dst.m_top = 130.0f;
 	dst.m_left = 120.0f;
 	dst.m_right = 680.0;
 	dst.m_bottom = 265.0;
