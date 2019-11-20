@@ -11,7 +11,6 @@ class CSceneReversibleMain :public CScene
 public:
 	CSceneReversibleMain(int stage);
 	~CSceneReversibleMain();
-	 int SetStage();
 	void InitScene();//Reversibleメインの初期化メソッド
 	void Scene();	 //Reversibleメインの実行中メソッド
 private:
