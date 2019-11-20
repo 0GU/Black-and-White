@@ -46,6 +46,7 @@ struct UserData
 	int mSeveData;	//サンプルセーブデータ
 	bool RPStageSelect[3];
 	bool SPStageSelect[3];
+	bool PerfectFlag[3];
 
 };
 //------------------------------------------------

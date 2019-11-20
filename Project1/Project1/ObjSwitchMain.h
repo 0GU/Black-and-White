@@ -14,8 +14,8 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 	float x, y;
-
-
+	static bool Gflag[3]; //[0]…Stage1、[1]…Stage2　[2]…Stage3	のPerfectフラグ
+	static void GetFlag(bool flag[3]);
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
@@ -23,8 +23,9 @@ private:
 	int count[2];  //[0]…PerfectClearcount [1]…Clearcount
 	int StageSlect;
 
-	int sx, sy;		//マウスを押した位置を保存
 
+	int sx, sy;		//マウスを押した位置を保存
+	
 	//アニメーション変更用
 	int m_ani_flame;
 	int change_panel[5][5];

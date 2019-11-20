@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
 #include"windows.h"
 
@@ -17,12 +18,18 @@ using namespace GameL;
 void CObjTitle::Init()
 {
 	m_time = 0;
+
+	Save::Seve();
+
+	((UserData*)Save::GetData())->PerfectFlag[0] = false;
+	((UserData*)Save::GetData())->PerfectFlag[1] = false;
+	((UserData*)Save::GetData())->PerfectFlag[2] = false;
+
 }
 
 //ƒAƒNƒVƒ‡ƒ“
 void CObjTitle::Action()
-{
-
+{	
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 	if (0 <= x && 800 >= x && 0 <= y && 600 >= y)

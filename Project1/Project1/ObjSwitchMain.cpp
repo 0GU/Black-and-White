@@ -6,7 +6,7 @@
 #include "GameL\UserData.h"
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
-#include"GameL\Audio.h"
+#include "GameL\Audio.h"
 #include "UtilityModule.h"
 
 
@@ -16,7 +16,6 @@ using namespace GameL;
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
-
 
 	StageSlect = -1;
 	for (int i = 0; i < 3; i++)
@@ -34,7 +33,6 @@ void CObjSwitchMain::Init()
 		}
 	}
 
-
 	int stage_data[5][5] = {};
 
 	LoadSPStage(StageSlect, *stage_data);
@@ -46,8 +44,8 @@ void CObjSwitchMain::Init()
 
 	bool flag_set[6] =
 	{ false,false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(5));
-	
+	memcpy(flag, flag_set, sizeof(bool)*(6));
+	   	
 	m_ani_flame = 0;
 	m_time = 0;
 	m_change = true;
@@ -271,8 +269,7 @@ void CObjSwitchMain::Action()
 	//GameOver時の判定
 	if (flag[2] == true)
 	{
-
-		
+	
 		//BGM停止
 		Audio::Stop(0);
 
@@ -426,9 +423,22 @@ void CObjSwitchMain::Draw()
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 
+	//Perfectフラグの管理
 	if (flag[1]==true&&count[1] == count[0])
 	{
 		flag[6] = true;
+		if (flag[6] == true && StageSlect == 0)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[0] = true;
+		}
+		else if (flag[6] == true && StageSlect == 1)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[1] = true;
+		}
+		else if (flag[6] == true && StageSlect == 2)
+		{
+			((UserData*)Save::GetData())->PerfectFlag[2] = true;
+		}
 	}
 
 	switch (StageSlect)
