@@ -14,6 +14,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define SCENEBACK_WAIT (200)
+#define SELECT_WAIT (100)
+
 //イニシャライズ
 void CObjGallery::Init()
 {
@@ -55,7 +59,7 @@ void CObjGallery::Action()
 		{
 
 		}
-		Sleep(200);
+		Sleep(SCENEBACK_WAIT);
 		Scene::SetScene(new CSceneModeSelect());
 
 	}
@@ -73,7 +77,7 @@ void CObjGallery::Action()
 				{
 
 				}
-				Sleep(100);
+				Sleep(SELECT_WAIT);
 				Gright = 0;
 				Gleft = 1;
 
@@ -92,7 +96,7 @@ void CObjGallery::Action()
 				{
 
 				}
-				Sleep(100);
+				Sleep(SELECT_WAIT);
 				Gleft = 0;
 				Gright = 1;
 

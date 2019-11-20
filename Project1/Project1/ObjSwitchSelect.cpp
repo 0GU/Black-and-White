@@ -13,6 +13,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define SCENEBACK_WAIT (200)
+#define SELECT_WAIT (100)
+
 //イニシャライズ
 void CObjSwitchSelect::Init()
 {
@@ -37,7 +41,8 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
+			
 			
 			Scene::SetScene(new CSceneSwitchMain(1));
 		}
@@ -48,6 +53,12 @@ void CObjSwitchSelect::Action()
 		{
 			//SEを鳴らす
 			Audio::Start(1);
+			while (Input::GetMouButtonL() == true)
+			{
+
+			}
+			Sleep(SELECT_WAIT);
+			
 			
 			Scene::SetScene(new CSceneSwitchMain(2));
 
@@ -63,7 +74,8 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
+			
 			
 			Scene::SetScene(new CSceneSwitchMain(3));
 			
@@ -81,7 +93,7 @@ void CObjSwitchSelect::Action()
 			{
 
 			}
-			Sleep(200);
+			Sleep(SCENEBACK_WAIT);
 			Scene::SetScene(new CSceneGameSelect());
 
 		}

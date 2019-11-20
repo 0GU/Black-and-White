@@ -15,7 +15,6 @@ public :
 	void Draw();	//ƒhƒ[
 	float x, y;
 private:
-	bool time_flag;
 	int m_time;
 
 };
