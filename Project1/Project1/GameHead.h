@@ -8,11 +8,10 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_TITLE,
 	OBJ_REVERSIBLEMAIN,
-	OBJ_MOUSE,
 	OBJ_MODESELECT,
 	OBJ_GAMESELECT,
 	OBJ_GALLERY,
-	OBJ_STAGESELECT,
+	OBJ_REVERSIBLESELECT,
 	OBJ_GAMECLEAR,
 	OBJ_SWITCHMAIN,
 	OBJ_SWITCHSELECT,
@@ -44,8 +43,7 @@ enum HIT_ELEMENTS
 struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
-	bool RPStageSelect[3];
-	bool SPStageSelect[3];
+
 	bool PerfectFlag[3];
 
 };
@@ -67,13 +65,12 @@ struct UserData
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjTitle.h"
 #include "ObjReversibleMain.h"
-#include "ObjMouse.h"
 #include "ObjModeSelect.h"
 #include "ObjGameSelect.h"
 #include "ObjGallery.h"
-#include "ObjStageSelect.h"
-#include"ObjGameClear.h"
-#include"ObjSwitchMain.h"
+#include "ObjReversibleSelect.h"
+#include "ObjGameClear.h"
+#include "ObjSwitchMain.h"
 #include "ObjSwitchSelect.h"
 
 //------------------------------------------------
@@ -84,9 +81,9 @@ struct UserData
 #include "SceneModeSelect.h"
 #include "SceneGameSelect.h"
 #include "SceneGallery.h"
-#include "SceneStageSelect.h"
-#include"SceneGameClear.h"
-#include"SceneSwitchMain.h"
+#include "SceneReversibleSelect.h"
+#include "SceneGameClear.h"
+#include "SceneSwitchMain.h"
 #include "SceneSwitchSelect.h"
 //-----------------------------------------------
 
@@ -96,5 +93,3 @@ struct UserData
 
 
 //-----------------------------------------------
-
-//テストだよ～～

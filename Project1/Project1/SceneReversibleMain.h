@@ -9,9 +9,11 @@ using namespace GameL;
 class CSceneReversibleMain :public CScene
 {
 public:
-	CSceneReversibleMain();
+	CSceneReversibleMain(int stage);
 	~CSceneReversibleMain();
 	void InitScene();//Reversibleメインの初期化メソッド
 	void Scene();	 //Reversibleメインの実行中メソッド
 private:
+	 int stagenum;
+	
 };

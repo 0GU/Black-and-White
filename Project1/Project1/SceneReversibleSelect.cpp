@@ -12,23 +12,23 @@
 using namespace GameL;
 
 //使用するヘッダー
-#include "SceneStageSelect.h"
+#include "SceneReversibleSelect.h"
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneStageSelect::CSceneStageSelect()
+CSceneReversibleSelect::CSceneReversibleSelect()
 {
 
 }
 
 //デストラクタ
-CSceneStageSelect::~CSceneStageSelect()
+CSceneReversibleSelect::~CSceneReversibleSelect()
 {
 
 }
 
 //ゲームタイトル初期化メソッド
-void CSceneStageSelect::InitScene()
+void CSceneReversibleSelect::InitScene()
 {
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
@@ -36,12 +36,12 @@ void CSceneStageSelect::InitScene()
 
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 0, TEX_SIZE_512);
-	CObjStageSelect* p = new CObjStageSelect();
-	Objs::InsertObj(p, OBJ_STAGESELECT, 1);
+	CObjReversibleSelect* p = new CObjReversibleSelect();
+	Objs::InsertObj(p, OBJ_REVERSIBLESELECT, 1);
 }
 
 //ゲームタイトル実行メソッド
-void CSceneStageSelect::Scene()
+void CSceneReversibleSelect::Scene()
 {
 
 }

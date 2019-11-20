@@ -16,9 +16,9 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneSwitchMain::CSceneSwitchMain()
+CSceneSwitchMain::CSceneSwitchMain(int stage)
 {
-
+	stagenum = stage;
 }
 
 //デストラクタ
@@ -53,11 +53,8 @@ void CSceneSwitchMain::InitScene()
 	//BGM再生
 	Audio::Start(0);
 
-	CObjSwitchMain* p = new CObjSwitchMain();
+	CObjSwitchMain* p = new CObjSwitchMain(stagenum);
 	Objs::InsertObj(p, OBJ_SWITCHMAIN, 1);
-
-	CObjMouse* c = new CObjMouse();
-	Objs::InsertObj(c, OBJ_MOUSE, 1);
 
 
 }

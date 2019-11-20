@@ -1,14 +1,12 @@
 //使用するヘッダーファイル
-#include"GameL/DrawTexture.h"
-#include"GameL/WinInputs.h"
-#include"GameL/SceneManager.h"
-#include"GameL/DrawFont.h"
-#include"GameL/Audio.h"
+#include "GameL/DrawTexture.h"
+#include "GameL/WinInputs.h"
+#include "GameL/SceneManager.h"
+#include "GameL/DrawFont.h"
+#include "GameL/Audio.h"
 
-#include"GameHead.h"
-#include"ObjGameSelect.h"
-#include "ObjSwitchSelect.h"
-#include"Windows.h"
+#include "GameHead.h"
+#include "Windows.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -26,7 +24,7 @@ void CObjGameSelect::Action()
 	y = (float)Input::GetPosY();
 
 	//スイッチのステージセレクトへ移動
-	if (100 <= x && 700 >= x && 200 <= y && 292 >= y)
+	if (100 <= x && 700 >= x && 200 <= y && 290 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -53,7 +51,7 @@ void CObjGameSelect::Action()
 
 			}
 			Sleep(100);
-			Scene::SetScene(new CSceneStageSelect());
+			Scene::SetScene(new CSceneReversibleSelect());
 		}
 	}
 	//戻るボタン
@@ -103,7 +101,7 @@ void CObjGameSelect::Draw()
 	dst.m_top = 200.0f;
 	dst.m_left = 100.0f;
 	dst.m_right = 700.0;
-	dst.m_bottom = 292.0;
+	dst.m_bottom = 290.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//ReversiblePanel-----------------------------------------------------

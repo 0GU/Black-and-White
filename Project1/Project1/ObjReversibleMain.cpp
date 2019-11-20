@@ -1,7 +1,6 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneObjManager.h"
-#include "GameL\SceneManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\UserData.h"
 #include "GameHead.h"
@@ -13,41 +12,23 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjReversibleMain::CObjReversibleMain(int stage)
+{
+	StageSlect = stage;
+}
+
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
-	//ステージの読み込み処理
-	StageSlect = -1;
-	//データの読み込み前にフラグを全てfalseにする
-	for (int i = 0; i < 3; i++)
-	{
-		((UserData*)Save::GetData())->RPStageSelect[i] = false;
-	}
+	//ステージデータ読み込み用関数
+	LoadRPStage(StageSlect, *stage,count);
 
-	Save::Open();
-	//フラグが立っている番号をStageSlectに保存
-	for (int i = 0; i < 3; i++)
-	{
-		if (((UserData*)Save::GetData())->RPStageSelect[i] ==true)
-		{
-			StageSlect = i;
-		}
-	}
-
-
-	int stage_data[5][5] = {};   //ステージ用配列
-
-	//ステージ読み込み用関数
-	LoadRPStage(StageSlect, *stage_data);
-	//カウント読み込み用関数
-	LoadRPCount(StageSlect, count);
 	//カウントリセット用に初期カウントを保存する
 	count[2] = count[1];
 
-	//マップデータをコピー
-	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	//リセット用配列にコピー
-	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
+	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 	
 	//フラグを初期化
 	bool flag_set[5] =
@@ -228,6 +209,7 @@ void CObjReversibleMain::Action()
 			{
 				flag[4] = true;
 			}
+			Audio::Start(3);
 			flag[1] = true;
 		}
 		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_change==true)	//ゲームオーバー条件を満たした
@@ -240,6 +222,8 @@ void CObjReversibleMain::Action()
 	//GameClear時の判定-----------------------------------------------------------------------------------------------
 	if (flag[1] == true)
 	{
+		//BGM停止
+		Audio::Stop(0);
 		//StageSelectへ戻るボタン判定
 		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
 		{
@@ -251,7 +235,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 
 			}
 
@@ -267,7 +251,7 @@ void CObjReversibleMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				count[1] = 22;
+				count[1] = count[2];
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//BGM再再生
 				Audio::Start(0);
@@ -293,7 +277,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 				flag[2] = false;
 			}
 		}
@@ -350,6 +334,7 @@ void CObjReversibleMain::Action()
 	}
 	if (flag[3] == true)
 	{
+
 		//Yesボタン判定
 		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
 		{
@@ -362,7 +347,7 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneStageSelect());
+				Scene::SetScene(new CSceneReversibleSelect());
 			}
 		}
 		//Noボタン判定
@@ -419,7 +404,7 @@ void CObjReversibleMain::Draw()
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
-	swprintf_s(str1, L"STAGE%d",StageSlect+1);
+	swprintf_s(str1, L"STAGE%d",StageSlect);
 	Font::StrDraw(str1, 30, 470, 36, f);
 
 	for (int i = 0; i < 5; i++)
@@ -583,7 +568,7 @@ void CObjReversibleMain::Draw()
 		{
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
-			src.m_right = 239.0f;
+			src.m_right = 240.0f;
 			src.m_bottom = 939.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
@@ -593,8 +578,8 @@ void CObjReversibleMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 478.0f;
-			src.m_bottom = 939.0f;
+			src.m_right = 479.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
 			dst.m_right = 650.0;

@@ -13,34 +13,18 @@
 //使用するネームスペース
 using namespace GameL;
 
+CObjSwitchMain::CObjSwitchMain(int stage)
+{
+	StageSlect = stage;
+}
+
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
-
-	StageSlect = -1;
-	for (int i = 0; i < 3; i++)
-	{
-		((UserData*)Save::GetData())->SPStageSelect[i] = false;
-	}
-
-	Save::Open();
-
-	for (int i = 0; i < 3; i++)
-	{
-		if (((UserData*)Save::GetData())->SPStageSelect[i] == true)
-		{
-			StageSlect = i;
-		}
-	}
-
-	int stage_data[5][5] = {};
-
-	LoadSPStage(StageSlect, *stage_data);
-	LoadSPCount(StageSlect, count);
-	count[0] = count[1] - count[0];
+	LoadSPStage(StageSlect, *stage,count);
+	count[2] = count[1];
 	//マップデータをコピー
-	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
-	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
+	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
 	bool flag_set[6] =
 	{ false,false,false,false,false,false};
@@ -64,7 +48,9 @@ void CObjSwitchMain::Action()
 
 
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false&& flag[3] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && 
+		((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) 
+		&& flag[1] == false && flag[2] == false&& flag[3] == false)
 	{
 		if (m_change == true)
 		{
@@ -101,10 +87,6 @@ void CObjSwitchMain::Action()
 					case 3:
 						switch (m)
 						{
-							/*case 0://左
-								ly = sy;
-								lx = sx - 1;
-								break;*/
 						case 0://上
 							ly = sy - 1;
 							lx = sx;
@@ -114,10 +96,6 @@ void CObjSwitchMain::Action()
 							ly = sy + 1;
 							lx = sx;
 							break;
-							/*case 4://右
-								ly = sy;
-								lx = sx + 1;
-								break;*/
 						}
 						break;
 					}
@@ -143,14 +121,15 @@ void CObjSwitchMain::Action()
 			}
 		}
 	}
+	//アニメーション処理-----
 
-	time_flag = true;
+	time_flag = true;//ループ中１回だけタイムを増やす
 
 	for (int m = 0; m < 2; m++)
 	{
 		switch (stage[sy][sx])
 		{
-		case 2:
+		case 2://左右ボタン
 			switch (m)
 			{
 			case 0://左
@@ -163,13 +142,9 @@ void CObjSwitchMain::Action()
 				break;
 			}
 			break;
-		case 3:
+		case 3://上下ボタン
 			switch (m)
 			{
-				/*case 0://左
-					ly = sy;
-					lx = sx - 1;
-					break;*/
 			case 0://上
 				ly = sy - 1;
 				lx = sx;
@@ -179,44 +154,46 @@ void CObjSwitchMain::Action()
 				ly = sy + 1;
 				lx = sx;
 				break;
-				/*case 4://右
-					ly = sy;
-					lx = sx + 1;
-					break;*/
 			}
 			break;
 		}
 		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 		{
-			if (stage[ly][lx] == 4)
+			if (stage[ly][lx] == 4)	//変化中白パネル
 			{
+				//タイムを増やす（ループ中１回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
 				}
-
+				//アニメーションが終了したら黒パネルに変更
 				if (m_ani_flame == 3)
 				{
 					stage[ly][lx] = 1;
 				}
 
 			}
-			if (stage[ly][lx] == 5)
+			if (stage[ly][lx] == 5)	//変化中黒パネル
 			{
+				//タイムを増やす（ループ中一回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
-				}if (m_ani_flame == 3)
+				}
+				//アニメーションが終了したら白パネルに変更
+				if (m_ani_flame == 3)
 				{
 					stage[ly][lx] = 0;
 				}
@@ -226,17 +203,24 @@ void CObjSwitchMain::Action()
 		}
 
 	}
+	//反転終了処理
 	if (m_ani_flame == 3)
 	{
-		m_ani_flame = 0;
-		m_change = true;
+		m_ani_flame = 0;	//初期化
+		m_change = true;	//パネルを動かせるようにする
 
-			if (SwitchClearCheck(stage) == true)
+			if (SwitchClearCheck(stage) == true)	//クリア条件を満たした
 			{
+				//パーフェクト条件を満たしている
+				if (count[2] - count[0] == count[1])
+				{
+					flag[4] = true;
+					Audio::Start(4);
+				}
 				flag[1] = true;
 				Audio::Start(3);
 			}
-			else if (SwitchClearCheck(stage) == false && count[1] == 0)
+			else if (SwitchClearCheck(stage) == false && count[1] == 0)		//ゲームオーバー条件を満たした
 			{
 				flag[2] = true;
 				Audio::Start(2);
@@ -322,6 +306,7 @@ void CObjSwitchMain::Action()
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(1);
+			m_change = true;
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -443,15 +428,15 @@ void CObjSwitchMain::Draw()
 
 	switch (StageSlect)
 	{
-		case 0:
-			Font::StrDraw(L"STAGE1", 30, 470, 36, f);
-			break;
-		case 1:
-			Font::StrDraw(L"STAGE2", 30, 470, 36, f);
-			break;
-		case 2:
-			Font::StrDraw(L"STAGE3", 30, 470, 36, f);
-			break;
+	case 1:
+		Font::StrDraw(L"STAGE1", 30, 470, 36, f);
+		break;
+	case 2:
+		Font::StrDraw(L"STAGE2", 30, 470, 36, f);
+		break;
+	case 3:
+		Font::StrDraw(L"STAGE3", 30, 470, 36, f);
+		break;
 
 	}
 
@@ -472,7 +457,7 @@ void CObjSwitchMain::Draw()
 			{
 				r = 270.0f;
 			}
-			else if (sy == i && sx == j + 1 )
+			else if (sy == i && sx == j + 1)
 			{
 				r = 0.0f;
 			}
@@ -510,7 +495,7 @@ void CObjSwitchMain::Draw()
 			}
 			else if (stage[i][j] == 4)
 			{
-				//黒パネル
+				//変化中白パネル
 				src.m_top = 0.0f;
 				src.m_left = 0.0f + (m_ani_flame * 96.0f);
 				src.m_right = src.m_left + 96.0f;
@@ -520,7 +505,7 @@ void CObjSwitchMain::Draw()
 			}
 			else if (stage[i][j] == 5)
 			{
-				//黒パネル
+				//変化中黒パネル
 				src.m_top = 96.0f;
 				src.m_left = 0.0f + (m_ani_flame * 96.0f);
 				src.m_right = src.m_left + 96.0f;
@@ -592,19 +577,8 @@ void CObjSwitchMain::Draw()
 	else if (count[1] <= 9)
 		Font::StrDraw(str, 710, 80, 32, f);
 	//シーン描画：PerFect!------------------------------------
-	if (flag[6] == true)
+	if (flag[4] == true)
 	{
-		//ステージ選択に戻る
-		src.m_top = 490.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 610.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 490.0;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
-
 		//PerFect!
 		src.m_top = 370.0f;
 		src.m_left = 0.0f;
@@ -615,6 +589,16 @@ void CObjSwitchMain::Draw()
 		dst.m_right = 690.0;
 		dst.m_bottom = 300.0;
 		Draw::Draw(5, &src, &dst, c, 30.0f);
+		//ステージ選択に戻る
+		src.m_top = 490.0f;
+		src.m_left = 0.0f;
+		src.m_right = 560.0f;
+		src.m_bottom = 610.0f;
+		dst.m_top = 370.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 690.0;
+		dst.m_bottom = 490.0;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	}
 	//GameClear------------------------------------------
@@ -672,11 +656,11 @@ void CObjSwitchMain::Draw()
 
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
-			src.m_right = 480.0f;
+			src.m_right = 479.0f;
 			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 410.0f;
-			dst.m_right = 650.0;
+			dst.m_right = 649.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}

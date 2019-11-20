@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //シーン：ステージセレクト
-class CSceneStageSelect :public CScene
+class CSceneReversibleSelect :public CScene
 {
 	public:
-		CSceneStageSelect();
-		~CSceneStageSelect();
+		CSceneReversibleSelect();
+		~CSceneReversibleSelect();
 		void InitScene();//ステージセレクトの初期化メソッド
 		void Scene();	 //ステージセレクトの実行中メソッド
 	private:
