@@ -13,36 +13,18 @@
 //使用するネームスペース
 using namespace GameL;
 
+CObjSwitchMain::CObjSwitchMain(int stage)
+{
+	StageSlect = stage;
+}
+
 //イニシャライズ
 void CObjSwitchMain::Init()
 {
-
-
-	StageSlect = -1;
-	for (int i = 0; i < 3; i++)
-	{
-		((UserData*)Save::GetData())->SPStageSelect[i] = false;
-	}
-
-	Save::Open();
-
-	for (int i = 0; i < 3; i++)
-	{
-		if (((UserData*)Save::GetData())->SPStageSelect[i] == true)
-		{
-			StageSlect = i;
-		}
-	}
-
-
-	int stage_data[5][5] = {};
-
-	LoadSPStage(StageSlect, *stage_data);
-	LoadSPCount(StageSlect, count);
-	count[0] = count[1] - count[0];
+	LoadSPStage(StageSlect, *stage,count);
+	count[2] = count[1];
 	//マップデータをコピー
-	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
-	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
+	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
 	bool flag_set[6] =
 	{ false,false,false,false,false,false};
@@ -66,7 +48,9 @@ void CObjSwitchMain::Action()
 
 
 	//当たり判定
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && ((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) && flag[1] == false && flag[2] == false&& flag[3] == false)
+	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && 
+		((((int)(y - 60) / 96) % 2 == 0 && ((int)(x - 160) / 96) % 2 == 1) || (((int)(y - 60) / 96) % 2 == 1 && ((int)(x - 160) / 96) % 2 == 0)) 
+		&& flag[1] == false && flag[2] == false&& flag[3] == false)
 	{
 		if (m_change == true)
 		{
@@ -103,10 +87,6 @@ void CObjSwitchMain::Action()
 					case 3:
 						switch (m)
 						{
-							/*case 0://左
-								ly = sy;
-								lx = sx - 1;
-								break;*/
 						case 0://上
 							ly = sy - 1;
 							lx = sx;
@@ -116,10 +96,6 @@ void CObjSwitchMain::Action()
 							ly = sy + 1;
 							lx = sx;
 							break;
-							/*case 4://右
-								ly = sy;
-								lx = sx + 1;
-								break;*/
 						}
 						break;
 					}
@@ -168,10 +144,6 @@ void CObjSwitchMain::Action()
 		case 3:
 			switch (m)
 			{
-				/*case 0://左
-					ly = sy;
-					lx = sx - 1;
-					break;*/
 			case 0://上
 				ly = sy - 1;
 				lx = sx;
@@ -181,10 +153,6 @@ void CObjSwitchMain::Action()
 				ly = sy + 1;
 				lx = sx;
 				break;
-				/*case 4://右
-					ly = sy;
-					lx = sx + 1;
-					break;*/
 			}
 			break;
 		}
@@ -432,22 +400,17 @@ void CObjSwitchMain::Draw()
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 
-	if (flag[1]==true&&count[1] == count[0])
-	{
-		flag[6] = true;
-	}
-
 	switch (StageSlect)
 	{
-		case 0:
-			Font::StrDraw(L"STAGE1", 30, 470, 36, f);
-			break;
-		case 1:
-			Font::StrDraw(L"STAGE2", 30, 470, 36, f);
-			break;
-		case 2:
-			Font::StrDraw(L"STAGE3", 30, 470, 36, f);
-			break;
+	case 1:
+		Font::StrDraw(L"STAGE1", 30, 470, 36, f);
+		break;
+	case 2:
+		Font::StrDraw(L"STAGE2", 30, 470, 36, f);
+		break;
+	case 3:
+		Font::StrDraw(L"STAGE3", 30, 470, 36, f);
+		break;
 
 	}
 
@@ -468,7 +431,7 @@ void CObjSwitchMain::Draw()
 			{
 				r = 270.0f;
 			}
-			else if (sy == i && sx == j + 1 )
+			else if (sy == i && sx == j + 1)
 			{
 				r = 0.0f;
 			}
@@ -588,19 +551,8 @@ void CObjSwitchMain::Draw()
 	else if (count[1] <= 9)
 		Font::StrDraw(str, 710, 80, 32, f);
 	//シーン描画：PerFect!------------------------------------
-	if (flag[6] == true)
+	if (flag[4] == true)
 	{
-		//ステージ選択に戻る
-		src.m_top = 490.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 610.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 490.0;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
-
 		//PerFect!
 		src.m_top = 370.0f;
 		src.m_left = 0.0f;
@@ -611,6 +563,16 @@ void CObjSwitchMain::Draw()
 		dst.m_right = 690.0;
 		dst.m_bottom = 300.0;
 		Draw::Draw(5, &src, &dst, c, 30.0f);
+		//ステージ選択に戻る
+		src.m_top = 490.0f;
+		src.m_left = 0.0f;
+		src.m_right = 560.0f;
+		src.m_bottom = 610.0f;
+		dst.m_top = 370.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 690.0;
+		dst.m_bottom = 490.0;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	}
 	//GameClear------------------------------------------

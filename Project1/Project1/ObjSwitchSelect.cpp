@@ -3,7 +3,6 @@
 #include"GameL/WinInputs.h"
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
-#include "GameL/UserData.h"
 #include"GameL/Audio.h"
 
 #include"GameHead.h"
@@ -39,13 +38,8 @@ void CObjSwitchSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->SPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->SPStageSelect[0] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneSwitchMain());
+			
+			Scene::SetScene(new CSceneSwitchMain(1));
 		}
 	}
 	else if (120 <= x && 670 >= x && 300 <= y && 390 >= y)//stage2
@@ -54,18 +48,8 @@ void CObjSwitchSelect::Action()
 		{
 			//SE‚ð–Â‚ç‚·
 			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->SPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->SPStageSelect[1] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneSwitchMain());
+			
+			Scene::SetScene(new CSceneSwitchMain(2));
 
 		}
 	}
@@ -80,13 +64,8 @@ void CObjSwitchSelect::Action()
 
 			}
 			Sleep(100);
-			for (int i = 0; i < 3; i++)
-			{
-				((UserData*)Save::GetData())->SPStageSelect[i] = false;
-			}
-			((UserData*)Save::GetData())->SPStageSelect[2] = true;
-			Save::Seve();
-			Scene::SetScene(new CSceneSwitchMain());
+			
+			Scene::SetScene(new CSceneSwitchMain(3));
 			
 		}
 	}

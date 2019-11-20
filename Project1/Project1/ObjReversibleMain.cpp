@@ -21,19 +21,14 @@ CObjReversibleMain::CObjReversibleMain(int stage)
 //イニシャライズ
 void CObjReversibleMain::Init()
 {
-	int stage_data[5][5] = {};   //ステージ用配列
+	//ステージデータ読み込み用関数
+	LoadRPStage(StageSlect, *stage,count);
 
-	//ステージ読み込み用関数
-	LoadRPStage(StageSlect, *stage_data);
-	//カウント読み込み用関数
-	LoadRPCount(StageSlect, count);
 	//カウントリセット用に初期カウントを保存する
 	count[2] = count[1];
 
-	//マップデータをコピー
-	memcpy(stage, stage_data, sizeof(int)*(5 * 5));
 	//リセット用配列にコピー
-	memcpy(stage_reset, stage_data, sizeof(int)*(5 * 5));
+	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 	
 	//フラグを初期化
 	bool flag_set[5] =

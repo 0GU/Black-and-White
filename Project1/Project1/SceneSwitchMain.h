@@ -9,9 +9,10 @@ using namespace GameL;
 class CSceneSwitchMain :public CScene
 {
 public:
-	CSceneSwitchMain() ;
+	CSceneSwitchMain(int stage);
 	~CSceneSwitchMain() ;
 	void InitScene();//Switchメインの初期化メソッド
 	void Scene();	 //Switchメインの実行中メソッド
 private:
+	int stagenum;
 };
