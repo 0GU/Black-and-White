@@ -67,8 +67,8 @@ struct UserData
 #include "ObjGameSelect.h"
 #include "ObjGallery.h"
 #include "ObjReversibleSelect.h"
-#include"ObjGameClear.h"
-#include"ObjSwitchMain.h"
+#include "ObjGameClear.h"
+#include "ObjSwitchMain.h"
 #include "ObjSwitchSelect.h"
 
 //------------------------------------------------
@@ -80,8 +80,8 @@ struct UserData
 #include "SceneGameSelect.h"
 #include "SceneGallery.h"
 #include "SceneReversibleSelect.h"
-#include"SceneGameClear.h"
-#include"SceneSwitchMain.h"
+#include "SceneGameClear.h"
+#include "SceneSwitchMain.h"
 #include "SceneSwitchSelect.h"
 //-----------------------------------------------
 
@@ -91,5 +91,3 @@ struct UserData
 
 
 //-----------------------------------------------
-
-//ÉeÉXÉgÇæÇÊÅ`Å`

@@ -24,7 +24,7 @@ void CObjGameSelect::Action()
 	y = (float)Input::GetPosY();
 
 	//スイッチのステージセレクトへ移動
-	if (100 <= x && 700 >= x && 200 <= y && 292 >= y)
+	if (100 <= x && 700 >= x && 200 <= y && 290 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -101,7 +101,7 @@ void CObjGameSelect::Draw()
 	dst.m_top = 200.0f;
 	dst.m_left = 100.0f;
 	dst.m_right = 700.0;
-	dst.m_bottom = 292.0;
+	dst.m_bottom = 290.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//ReversiblePanel-----------------------------------------------------
