@@ -145,14 +145,15 @@ void CObjSwitchMain::Action()
 			}
 		}
 	}
+	//アニメーション処理-----
 
-	time_flag = true;
+	time_flag = true;//ループ中１回だけタイムを増やす
 
 	for (int m = 0; m < 2; m++)
 	{
 		switch (stage[sy][sx])
 		{
-		case 2:
+		case 2://左右ボタン
 			switch (m)
 			{
 			case 0://左
@@ -165,13 +166,9 @@ void CObjSwitchMain::Action()
 				break;
 			}
 			break;
-		case 3:
+		case 3://上下ボタン
 			switch (m)
 			{
-				/*case 0://左
-					ly = sy;
-					lx = sx - 1;
-					break;*/
 			case 0://上
 				ly = sy - 1;
 				lx = sx;
@@ -181,44 +178,46 @@ void CObjSwitchMain::Action()
 				ly = sy + 1;
 				lx = sx;
 				break;
-				/*case 4://右
-					ly = sy;
-					lx = sx + 1;
-					break;*/
 			}
 			break;
 		}
 		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 		{
-			if (stage[ly][lx] == 4)
+			if (stage[ly][lx] == 4)	//変化中白パネル
 			{
+				//タイムを増やす（ループ中１回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
 				}
-
+				//アニメーションが終了したら黒パネルに変更
 				if (m_ani_flame == 3)
 				{
 					stage[ly][lx] = 1;
 				}
 
 			}
-			if (stage[ly][lx] == 5)
+			if (stage[ly][lx] == 5)	//変化中黒パネル
 			{
+				//タイムを増やす（ループ中一回のみ）
 				if (time_flag == true)
 				{
 					m_time++;
 					time_flag = false;
 				}
+				//アニメーションを動かす
 				if (m_time == 3) {
 					m_ani_flame++;
 					m_time = 0;
-				}if (m_ani_flame == 3)
+				}
+				//アニメーションが終了したら白パネルに変更
+				if (m_ani_flame == 3)
 				{
 					stage[ly][lx] = 0;
 				}
@@ -228,12 +227,13 @@ void CObjSwitchMain::Action()
 		}
 
 	}
+	//反転終了処理
 	if (m_ani_flame == 3)
 	{
-		m_ani_flame = 0;
-		m_change = true;
+		m_ani_flame = 0;	//初期化
+		m_change = true;	//パネルを動かせるようにする
 
-			if (SwitchClearCheck(stage) == true)
+			if (SwitchClearCheck(stage) == true)	//クリア条件を満たした
 			{
 				//パーフェクト条件を満たしている
 				if (count[2] - count[0] == count[1])
@@ -244,7 +244,7 @@ void CObjSwitchMain::Action()
 				flag[1] = true;
 				Audio::Start(3);
 			}
-			else if (SwitchClearCheck(stage) == false && count[1] == 0)
+			else if (SwitchClearCheck(stage) == false && count[1] == 0)		//ゲームオーバー条件を満たした
 			{
 				flag[2] = true;
 				Audio::Start(2);
@@ -506,7 +506,7 @@ void CObjSwitchMain::Draw()
 			}
 			else if (stage[i][j] == 4)
 			{
-				//黒パネル
+				//変化中白パネル
 				src.m_top = 0.0f;
 				src.m_left = 0.0f + (m_ani_flame * 96.0f);
 				src.m_right = src.m_left + 96.0f;
@@ -516,7 +516,7 @@ void CObjSwitchMain::Draw()
 			}
 			else if (stage[i][j] == 5)
 			{
-				//黒パネル
+				//変化中黒パネル
 				src.m_top = 96.0f;
 				src.m_left = 0.0f + (m_ani_flame * 96.0f);
 				src.m_right = src.m_left + 96.0f;
