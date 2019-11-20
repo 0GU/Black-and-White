@@ -371,9 +371,8 @@ void CObjReversibleMain::Action()
 
 	//Perfectƒtƒ‰ƒO‚ÌŠÇ—
 	Save::Seve();
-	if (flag[1] == true && count[1] == count[0])
+	if (flag[1] == true && flag[4]==true)
 	{
-		flag[6] = true;
 		switch (StageSlect)
 		{
 		case 1:

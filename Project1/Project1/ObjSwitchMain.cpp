@@ -390,7 +390,6 @@ void CObjSwitchMain::Action()
 	Save::Seve();
 	if (flag[1] == true && count[1] == count[0])
 	{
-		flag[6] = true;
 		switch (StageSlect)
 		{
 		case 1:

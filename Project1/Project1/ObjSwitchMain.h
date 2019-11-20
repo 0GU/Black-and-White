@@ -20,7 +20,6 @@ private:
 	int Clear_count;
 	int count[3];  //[0]…PerfectClearcount [1]…Clearcount [2]…Countreset
 	int StageSlect;
-	bool Gflag[3]; //[0]…Stage1、[1]…Stage2　[2]…Stage3	のPerfectフラグ
 
 	int sx, sy;		//マウスを押した位置を保存
 	

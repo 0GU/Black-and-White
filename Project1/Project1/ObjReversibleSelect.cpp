@@ -23,6 +23,16 @@ void CObjReversibleSelect::Init()
 {
 	
 	bool set_flag[3] = { false, false ,false};
+
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+		{
+			set_flag[i] = true;
+		}
+	}
 	memcpy(flag, set_flag, sizeof(bool)*(3));
 	
 }
@@ -113,15 +123,6 @@ void CObjReversibleSelect::Action()
 		}
 	}
 
-	Save::Open();
-
-	for (int i = 0; i < 3; i++)
-	{
-		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
-		{
-			flag[i] = true;
-		}
-	}
 
 	//âºíuÇ´:å„Ç…çÌèú-----------------------------
 	if (500 <= x && 540 >= x && 0 <= y && 40 >= y)
