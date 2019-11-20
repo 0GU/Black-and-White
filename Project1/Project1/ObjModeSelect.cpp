@@ -13,6 +13,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define SELECT_WAIT (100)
+
 //イニシャライズ
 void CObjModeSelect::Init()
 {
@@ -37,7 +40,7 @@ void CObjModeSelect::Action()
 				{
 					
 				}
-				Sleep(100);
+				Sleep(SELECT_WAIT);
 			Scene::SetScene(new CSceneGallery());
 		}
 
@@ -53,7 +56,7 @@ void CObjModeSelect::Action()
 			{
 				
 			}
-			Sleep(100);
+			Sleep(SELECT_WAIT);
 			Scene::SetScene(new CSceneGameSelect());
 		}
 
