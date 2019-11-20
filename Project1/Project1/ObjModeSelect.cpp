@@ -27,7 +27,7 @@ void CObjModeSelect::Action()
 
 
 
-	if (120 <= x && 680 >= x && 330 <= y && 465 >= y)
+	if (119 <= x && 670 >= x && 320 <= y && 455 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -43,7 +43,7 @@ void CObjModeSelect::Action()
 
 	}
 
-	if (120 <= x && 680 >= x && 135 <= y && 265 >= y)
+	if (119 <= x && 670 >= x && 125 <= y && 260 >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
