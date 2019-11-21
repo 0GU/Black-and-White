@@ -7,7 +7,7 @@
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
 #include "GameL\Audio.h"
-#include "UtilityModule.h"
+#include "Switchfunction.h"
 
 
 //使用するネームスペース
@@ -400,6 +400,22 @@ void CObjSwitchMain::Action()
 			break;
 		case 3:
 			((UserData*)Save::GetData())->SPerfectFlag[2] = true;
+			break;
+		}
+	}
+	//Clearフラグの管理
+	if (flag[1] == true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->SClearFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->SClearFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->SClearFlag[2] = true;
 			break;
 		}
 	}

@@ -35,6 +35,8 @@ void CSceneSwitchSelect::InitScene()
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
+	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 1, TEX_SIZE_512);
+
 	CObjSwitchSelect* p = new CObjSwitchSelect();
 	Objs::InsertObj(p, OBJ_SWITCHSELECT, 1);
 	
