@@ -41,6 +41,10 @@ void CSceneGallery::InitScene()
 
 	CObjGallery* p = new CObjGallery();
 	Objs::InsertObj(p, OBJ_GALLERY, 1);
+
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
 }
 
 //ゲームタイトル実行メソッド

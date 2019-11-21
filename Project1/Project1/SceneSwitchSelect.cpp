@@ -40,6 +40,9 @@ void CSceneSwitchSelect::InitScene()
 	CObjSwitchSelect* p = new CObjSwitchSelect();
 	Objs::InsertObj(p, OBJ_SWITCHSELECT, 1);
 	
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
 }
 
 //ゲームタイトル実行メソッド

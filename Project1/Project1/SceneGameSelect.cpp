@@ -45,6 +45,8 @@ void CSceneGameSelect::InitScene()
 	CObjGameSelect* p = new CObjGameSelect();
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);*/
 	
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//‰¼
 
 	
 	
