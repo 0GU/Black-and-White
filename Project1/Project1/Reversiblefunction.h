@@ -3,3 +3,5 @@
 bool ReversibleClearCheck(int rcc[5][5]);
 //Reversible Panel Stage“Ç‚İ‚İ—pŠÖ”
 void LoadRPStage(int StaNum, int *Stage, int *Count);
+//Reversible Panel ”½“]ˆ——pŠÖ”
+//void ReversibleProcess(int bx, int by, int loop, int *stage[5][5], bool flag, int *aniflame, bool aniflag = false);
