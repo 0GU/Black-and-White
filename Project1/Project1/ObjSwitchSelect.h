@@ -55,8 +55,6 @@ using namespace GameL;
 #define BACKBUTTON_POS_R (125.0f)
 #define BACKBUTTON_POS_B (135.0f)
 
-#define FLG_CNT (3)
-
 //オブジェクト：ステージセレクト
 class CObjSwitchSelect : public CObj
 {
