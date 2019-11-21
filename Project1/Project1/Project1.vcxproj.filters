@@ -93,9 +93,6 @@
     <ClInclude Include="SceneReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClInclude>
     <ClInclude Include="ObjGallery.h">
       <Filter>ソース ファイル\Gallery</Filter>
     </ClInclude>
@@ -137,6 +134,12 @@
     </ClInclude>
     <ClInclude Include="SceneReversibleSelect.h">
       <Filter>ソース ファイル\Reversible Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Reversiblefunction.h">
+      <Filter>ソース ファイル\関数</Filter>
+    </ClInclude>
+    <ClInclude Include="Switchfunction.h">
+      <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +194,6 @@
     <ClCompile Include="SceneReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGallery.cpp">
       <Filter>ソース ファイル\Gallery</Filter>
     </ClCompile>
@@ -235,6 +235,12 @@
     </ClCompile>
     <ClCompile Include="SceneReversibleSelect.cpp">
       <Filter>ソース ファイル\Reversible Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Reversiblefunction.cpp">
+      <Filter>ソース ファイル\関数</Filter>
+    </ClCompile>
+    <ClCompile Include="Switchfunction.cpp">
+      <Filter>ソース ファイル\関数</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

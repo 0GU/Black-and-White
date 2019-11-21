@@ -7,7 +7,7 @@
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
 #include "GameL\Audio.h"
-#include "UtilityModule.h"
+#include "Switchfunction.h"
 
 
 //使用するネームスペース

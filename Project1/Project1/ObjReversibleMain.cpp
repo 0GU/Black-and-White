@@ -6,7 +6,7 @@
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include"GameL\Audio.h"
-#include "UtilityModule.h"
+#include "Reversiblefunction.h"
 
 
 //使用するネームスペース
