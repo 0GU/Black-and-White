@@ -14,6 +14,36 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define HIT_BACK_TOP (35.0f)
+#define HIT_BACK_LEFT (5.0f)
+#define HIT_BACK_RIGHT (125.0f)
+#define HIT_BACK_BOTTOM (135.0f)
+
+#define HIT_RIGHTARROW_TOP (240.0f)
+#define HIT_RIGHTARROW_LEFT (700.0f)
+#define HIT_RIGHTARROW_RIGHT (775.0f)
+#define HIT_RIGHTARROW_BOTTOM (360.0f)
+
+#define HIT_LEFTARROW_TOP (245.0f)
+#define HIT_LEFTARROW_LEFT (26.0f)
+#define HIT_LEFTARROW_RIGHT (101.0f)
+#define HIT_LEFTARROW_BOTTOM (365.0f)
+
+#define CUT_BACK_TOP (35.0f)
+#define CUT_BACK_LEFT (5.0f)
+#define HIT_BACK_RIGHT (125.0f)
+#define HIT_BACK_BOTTOM (135.0f)
+
+#define HIT_RIGHTARROW_TOP (240.0f)
+#define HIT_RIGHTARROW_LEFT (700.0f)
+#define HIT_RIGHTARROW_RIGHT (775.0f)
+#define HIT_RIGHTARROW_BOTTOM (360.0f)
+
+#define HIT_LEFTARROW_TOP (245.0f)
+#define HIT_LEFTARROW_LEFT (26.0f)
+#define HIT_LEFTARROW_RIGHT (101.0f)
+#define HIT_LEFTARROW_BOTTOM (365.0f)
+//#define
 //イニシャライズ
 void CObjGallery::Init()
 {
@@ -50,7 +80,7 @@ void CObjGallery::Action()
 
 
 	//戻るボタン
-	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
+	if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y)
 	{
 	if (Input::GetMouButtonL() == true)
 	{
@@ -69,7 +99,7 @@ void CObjGallery::Action()
 	if (Gright == 1)
 	{
 		//右矢印
-		if (700 <= x && 775 >= x && 240 <= y && 360 >= y)
+		if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
@@ -88,7 +118,7 @@ void CObjGallery::Action()
 	if (Gleft == 1)
 	{
 		//左矢印
-		if (23 <= x && 101 >= x && 240 <= y && 360 >= y)
+		if (HIT_LEFTARROW_LEFT <= x &&HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
@@ -120,10 +150,10 @@ void CObjGallery::Draw()
 	src.m_left = 559.0f;
 	src.m_right = 679.0f;
 	src.m_bottom = 239.0f;
-	dst.m_top = 35.0f;
-	dst.m_left = 5.0f;
-	dst.m_right = 125.0;
-	dst.m_bottom = 135.0;
+	dst.m_top = HIT_BACK_TOP;
+	dst.m_left = HIT_BACK_LEFT;
+	dst.m_right = HIT_BACK_RIGHT;
+	dst.m_bottom = HIT_BACK_BOTTOM;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 	if (Gright == 1)
 	{
@@ -132,10 +162,10 @@ void CObjGallery::Draw()
 		src.m_left = 559.0f;
 		src.m_right = 639.0f;
 		src.m_bottom = 140.0f;
-		dst.m_top = 245.0f;
-		dst.m_left = 700.0f;
-		dst.m_right = 775.0;
-		dst.m_bottom = 365.0;
+		dst.m_top =HIT_RIGHTARROW_TOP;
+		dst.m_left = HIT_RIGHTARROW_LEFT;
+		dst.m_right = HIT_RIGHTARROW_RIGHT;
+		dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
 		//仮枠
@@ -173,10 +203,10 @@ void CObjGallery::Draw()
 		src.m_left = 638.0f;
 		src.m_right = 718.0f;
 		src.m_bottom = 140.0f;
-		dst.m_top = 245.0f;
-		dst.m_left = 26.0f;
-		dst.m_right = 101.0;
-		dst.m_bottom = 365.0;
+		dst.m_top = HIT_LEFTARROW_TOP;
+		dst.m_left = HIT_LEFTARROW_LEFT;
+		dst.m_right = HIT_LEFTARROW_RIGHT;
+		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
 		//仮枠
