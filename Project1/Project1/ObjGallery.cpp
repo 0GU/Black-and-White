@@ -14,10 +14,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define SCENEBACK_WAIT (200)
-#define SELECT_WAIT (100)
-
 //イニシャライズ
 void CObjGallery::Init()
 {
