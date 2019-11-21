@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\Reversible Select">
       <UniqueIdentifier>{24b50ebd-edeb-42d5-821f-ca9ef8aaed5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ObjMouse">
+      <UniqueIdentifier>{fd26ed1f-d294-4867-a222-14a1b8717f81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -141,6 +144,9 @@
     <ClInclude Include="Switchfunction.h">
       <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
+    <ClInclude Include="ObjMouse.h">
+      <Filter>ソース ファイル\ObjMouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -241,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="Switchfunction.cpp">
       <Filter>ソース ファイル\関数</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMouse.cpp">
+      <Filter>ソース ファイル\ObjMouse</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
