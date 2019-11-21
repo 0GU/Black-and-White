@@ -38,6 +38,7 @@
     </ClInclude>
     <ClInclude Include="ObjGameSelect.h" />
     <ClInclude Include="ObjModeSelect.h" />
+    <ClInclude Include="ObjMouse.h" />
     <ClInclude Include="ObjReversibleMain.h" />
     <ClInclude Include="ObjReversibleSelect.h" />
     <ClInclude Include="ObjSwitchMain.h" />
@@ -77,6 +78,7 @@
     </ClCompile>
     <ClCompile Include="ObjGameSelect.cpp" />
     <ClCompile Include="ObjModeSelect.cpp" />
+    <ClCompile Include="ObjMouse.cpp" />
     <ClCompile Include="ObjReversibleMain.cpp" />
     <ClCompile Include="ObjReversibleSelect.cpp" />
     <ClCompile Include="ObjSwitchMain.cpp" />
