@@ -5,12 +5,9 @@
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
 #include"GameL/UserData.h"
-
 #include"windows.h"
-
 #include"GameHead.h"
 #include"ObjTitle.h"
-#include"UtilityModule.h"
 //使用するネームスペース
 using namespace GameL;
 

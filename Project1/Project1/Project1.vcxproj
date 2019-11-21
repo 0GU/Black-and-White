@@ -43,6 +43,7 @@
     <ClInclude Include="ObjSwitchMain.h" />
     <ClInclude Include="ObjSwitchSelect.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="Reversiblefunction.h" />
     <ClInclude Include="SceneGallery.h" />
     <ClInclude Include="SceneGameClear.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -54,7 +55,7 @@
     <ClInclude Include="SceneSwitchMain.h" />
     <ClInclude Include="SceneSwitchSelect.h" />
     <ClInclude Include="SceneTitle.h" />
-    <ClInclude Include="UtilityModule.h" />
+    <ClInclude Include="Switchfunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="ObjSwitchMain.cpp" />
     <ClCompile Include="ObjSwitchSelect.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="Reversiblefunction.cpp" />
     <ClCompile Include="SceneGallery.cpp" />
     <ClCompile Include="SceneGameClear.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -92,7 +94,7 @@
     <ClCompile Include="SceneSwitchMain.cpp" />
     <ClCompile Include="SceneSwitchSelect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
-    <ClCompile Include="UtilityModule.cpp" />
+    <ClCompile Include="Switchfunction.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
