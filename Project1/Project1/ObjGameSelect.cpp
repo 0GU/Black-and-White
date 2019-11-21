@@ -11,9 +11,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define SCENEBACK_WAIT (200)
-#define SELECT_WAIT (100)
 
 //イニシャライズ
 void CObjGameSelect::Init()
@@ -28,7 +25,7 @@ void CObjGameSelect::Action()
 	y = (float)Input::GetPosY();
 
 	//スイッチのステージセレクトへ移動
-	if (100 <= x && 700 >= x && 200 <= y && 290 >= y)
+	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -44,7 +41,7 @@ void CObjGameSelect::Action()
 		}
 	}
 	//リバーシブルのステージセレクトへ移動
-	if (100 <= x && 700 >= x && 400 <= y && 485 >= y)
+	if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -59,7 +56,7 @@ void CObjGameSelect::Action()
 		}
 	}
 	//戻るボタン
-	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
+	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -87,48 +84,48 @@ void CObjGameSelect::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//GAME SELECT表示-----------------------------------------------------
-	src.m_top = 135.0f;
-	src.m_left = 1.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 265.0f;
-	dst.m_top = 20.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 155.0;
+	src.m_top   = RESOURCE_SCENE_TEXT_T;
+	src.m_left  = RESOURCE_SCENE_TEXT_L;
+	src.m_right = RESOURCE_SCENE_TEXT_R;
+	src.m_bottom= RESOURCE_SCENE_TEXT_B;
+	dst.m_top   = SCENE_TEXT_POS_T;
+	dst.m_left  = SCENE_TEXT_POS_L;
+	dst.m_right = SCENE_TEXT_POS_R;
+	dst.m_bottom= SCENE_TEXT_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//SwitchPanel表示-----------------------------------------------------
-	src.m_top = 658.0f;
-	src.m_left = 0.0f;
-	src.m_right = 600.0f;
-	src.m_bottom = 748.0f;
-	dst.m_top = 200.0f;
-	dst.m_left = 100.0f;
-	dst.m_right = 700.0;
-	dst.m_bottom = 290.0;
+	src.m_top   = RESOURCE_SW_SELECT_T;
+	src.m_left  = RESOURCE_SELECT_L;
+	src.m_right = RESOURCE_SELECT_R;
+	src.m_bottom= RESOURCE_SW_SELECT_B;
+	dst.m_top   = SW_SELECT_POS_T;
+	dst.m_left  = SELECT_POS_L;
+	dst.m_right = SELECT_POS_R;
+	dst.m_bottom= SW_SELECT_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//ReversiblePanel-----------------------------------------------------
-	src.m_top = 747.0f;
-	src.m_left = 0.0f;
-	src.m_right = 600.0f;
-	src.m_bottom = 838.0f;
-	dst.m_top = 401.0f;
-	dst.m_left = 100.0f;
-	dst.m_right = 700.0;
-	dst.m_bottom = 493.0;
+	src.m_top   = RESOURCE_RP_SELECT_T;
+	src.m_left  = RESOURCE_SELECT_L;
+	src.m_right = RESOURCE_SELECT_R;
+	src.m_bottom= RESOURCE_RP_SELECT_B;
+	dst.m_top   = RP_SELECT_POS_T;
+	dst.m_left  = SELECT_POS_L;
+	dst.m_right = SELECT_POS_R;
+	dst.m_bottom= RP_SELECT_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 
 	//戻るボタン-----------------------------------------------------------
-	src.m_top = 139.0f;
-	src.m_left = 559.0f;
-	src.m_right = 679.0f;
-	src.m_bottom = 239.0f;
-	dst.m_top = 35.0f;
-	dst.m_left = 5.0f;
-	dst.m_right = 125.0;
-	dst.m_bottom = 135.0;
+	src.m_top   = RESOURCE_BACK_T;
+	src.m_left  = RESOURCE_BACK_L;
+	src.m_right = RESOURCE_BACK_R;
+	src.m_bottom= RESOURCE_BACK_B;
+	dst.m_top   = BACKBUTTON_POS_T;
+	dst.m_left  = BACKBUTTON_POS_L;
+	dst.m_right = BACKBUTTON_POS_R;
+	dst.m_bottom= BACKBUTTON_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 }
