@@ -6,7 +6,7 @@
 #include "GameHead.h"
 #include "ObjReversibleMain.h"
 #include"GameL\Audio.h"
-#include "UtilityModule.h"
+#include "Reversiblefunction.h"
 
 
 //使用するネームスペース
@@ -368,6 +368,24 @@ void CObjReversibleMain::Action()
 			}
 		}
 	}
+
+	//Perfectフラグの管理
+	Save::Seve();
+	if (flag[1] == true && flag[4]==true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->RPerfectFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->RPerfectFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
+			break;
+		}
+	}
 }
 
 //ドロー
@@ -585,6 +603,20 @@ void CObjReversibleMain::Draw()
 			dst.m_right = 650.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
+				
+		}
+		//ステージに戻りますか？の描画
+		if (flag[3] == true)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 520.0f;
+			src.m_bottom = 90.0f;
+			dst.m_top = 150.0f;
+			dst.m_left = 130.0f;
+			dst.m_right = 650.0;
+			dst.m_bottom = 270.0;
+			Draw::Draw(7, &src, &dst, c, 0.0f);
 		}
 		//Perfect表示
 		if (flag[4] == true)

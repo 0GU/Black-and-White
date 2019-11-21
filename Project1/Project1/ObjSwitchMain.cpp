@@ -7,7 +7,7 @@
 #include "GameHead.h"
 #include "ObjSwitchMain.h"
 #include "GameL\Audio.h"
-#include "UtilityModule.h"
+#include "Switchfunction.h"
 
 
 //使用するネームスペース
@@ -36,6 +36,7 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+
 }
 
 //アクション
@@ -385,6 +386,24 @@ void CObjSwitchMain::Action()
 		}
 	}
 
+	//Perfectフラグの管理
+	Save::Seve();
+	if (flag[1] == true && count[1] == count[0])
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->SPerfectFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->SPerfectFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->SPerfectFlag[2] = true;
+			break;
+		}
+	}
+
 }
 
 //ドロー
@@ -411,24 +430,6 @@ void CObjSwitchMain::Draw()
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
-
-	//Perfectフラグの管理
-	if (flag[1]==true&&count[1] == count[0])
-	{
-		flag[6] = true;
-		if (flag[6] == true && StageSlect == 0)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[0] = true;
-		}
-		else if (flag[6] == true && StageSlect == 1)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[1] = true;
-		}
-		else if (flag[6] == true && StageSlect == 2)
-		{
-			((UserData*)Save::GetData())->PerfectFlag[2] = true;
-		}
-	}
 
 	switch (StageSlect)
 	{
@@ -645,7 +646,7 @@ void CObjSwitchMain::Draw()
 		dst.m_bottom = 320.0;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
-		//Yes・Noボタンの描画
+		//Yes・Noボタン、ステージに戻りますか？の描画
 		if (flag[2] == true || flag[3] == true)
 		{
 			src.m_top = 820.0f;
@@ -666,9 +667,21 @@ void CObjSwitchMain::Draw()
 			dst.m_left = 410.0f;
 			dst.m_right = 649.0;
 			dst.m_bottom = 490.0;
-			Draw::Draw(5, &src, &dst, c, 0.0f);
+			Draw::Draw(5, &src, &dst, c, 0.0f);			
 		}
-
+		//ステージに戻りますか？の描画
+		if (flag[3] == true)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 520.0f;
+			src.m_bottom = 90.0f;
+			dst.m_top = 150.0f;
+			dst.m_left = 130.0f;
+			dst.m_right = 650.0;
+			dst.m_bottom = 270.0;
+			Draw::Draw(9, &src, &dst, c, 0.0f);
+		}
 	
 
 }

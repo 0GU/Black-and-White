@@ -5,12 +5,9 @@
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
 #include"GameL/UserData.h"
-
 #include"windows.h"
-
 #include"GameHead.h"
 #include"ObjTitle.h"
-#include"UtilityModule.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -26,10 +23,11 @@ void CObjTitle::Init()
 
 	Save::Seve();
 
-	((UserData*)Save::GetData())->PerfectFlag[0] = false;
-	((UserData*)Save::GetData())->PerfectFlag[1] = false;
-	((UserData*)Save::GetData())->PerfectFlag[2] = false;
-
+	for(int i=0; i<3; i++)
+	{ 
+		((UserData*)Save::GetData())->SPerfectFlag[i] = false;
+		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
+	}
 }
 
 //アクション

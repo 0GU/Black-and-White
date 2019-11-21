@@ -14,15 +14,12 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 	float x, y;
-	static bool Gflag[3]; //[0]…Stage1、[1]…Stage2　[2]…Stage3	のPerfectフラグ
-	static void GetFlag(bool flag[3]);
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
 	int Clear_count;
 	int count[3];  //[0]…PerfectClearcount [1]…Clearcount [2]…Countreset
 	int StageSlect;
-
 
 	int sx, sy;		//マウスを押した位置を保存
 	
@@ -34,5 +31,5 @@ private:
 	int m_time;
 	float r;		//アニメーションの角度変更用
 
-	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
+	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
 };
