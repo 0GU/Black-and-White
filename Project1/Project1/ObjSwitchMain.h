@@ -31,5 +31,5 @@ private:
 	int m_time;
 	float r;		//アニメーションの角度変更用
 
-	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
+	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
 };

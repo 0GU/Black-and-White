@@ -8,7 +8,7 @@
 //引数1	 int　rcc[5][5]	:ReversiblePanelのステージ配列
 //戻り値 bool			:true…クリア　false…クリアではない
 //内容	：ReversiblePanelのクリアチェック	
-int ReversibleClearCheck(int rcc[5][5])
+bool ReversibleClearCheck(int rcc[5][5])
 {
 	int Check[5][5] =
 	{
@@ -28,12 +28,9 @@ int ReversibleClearCheck(int rcc[5][5])
 			{
 				return false;
 			}
-			else if (i==4&&j==4)
-			{
-				return true;
-			}
 		}
 	}
+	return true;
 }
 
 //LoadRPStage関数---------------------------------------------------------------------------
@@ -96,7 +93,7 @@ void LoadRPStage(int StaNum, int *Stage, int *Count)
 //引数1	 int scc[5][5]	:SwitchPanelのステージ配列
 //戻り値 bool			:true…クリア　false…クリアではない
 //内容	：SwitchPanelのクリアチェック	
-int SwitchClearCheck(int scc[5][5])
+bool SwitchClearCheck(int scc[5][5])
 {
 	int Check[5][5] =
 	{
@@ -115,12 +112,9 @@ int SwitchClearCheck(int scc[5][5])
 			{
 				return false;
 			}
-			else if (i == 4 && j == 4)
-			{
-				return true;
-			}
 		}
 	}
+	return true;
 }
 
 //LoadSPStage関数---------------------------------------------------------------------------

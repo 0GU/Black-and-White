@@ -23,6 +23,7 @@ private:
 	float x, y;
 	int Gright;
 	int Gleft;
-	bool Flag[3];	
+	bool SFlag[3]; //Switchのフラグ
+	bool RFlag[3]; //Reversibleのフラグ
 
 };
