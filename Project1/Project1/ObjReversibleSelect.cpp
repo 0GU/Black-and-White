@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
 #include"GameHead.h"
 #include"ObjReversibleSelect.h"
@@ -22,6 +23,16 @@ void CObjReversibleSelect::Init()
 {
 	
 	bool set_flag[3] = { false, false ,false};
+
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+		{
+			set_flag[i] = true;
+		}
+	}
 	memcpy(flag, set_flag, sizeof(bool)*(3));
 	
 }
@@ -112,6 +123,7 @@ void CObjReversibleSelect::Action()
 		}
 	}
 
+	/*
 	//仮置き:後に削除-----------------------------
 	if (500 <= x && 540 >= x && 0 <= y && 40 >= y)
 	{
@@ -184,7 +196,7 @@ void CObjReversibleSelect::Action()
 			}
 			Sleep(200);
 		}
-	}
+	}*/
 	//---------------------------------------------
 }
 
@@ -331,7 +343,7 @@ void CObjReversibleSelect::Draw()
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	//仮置:チェンジ------------------------
-	dst.m_top = 0.0f;
+	/*dst.m_top = 0.0f;
 	dst.m_left = 500.0f;
 	dst.m_right = 540.0;
 	dst.m_bottom = 40.0;
@@ -347,5 +359,5 @@ void CObjReversibleSelect::Draw()
 	dst.m_bottom = 40.0;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 	//切り替えが出来たら削除-------------
-
+	*/
 }

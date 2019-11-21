@@ -26,7 +26,8 @@ void CObjGallery::Init()
 
 	for (int i = 0; i < 3; i++)
 	{
-		Flag[i] = false;
+		SFlag[i] = false;
+		RFlag[i] = false;
 	}
 
 }
@@ -41,9 +42,13 @@ void CObjGallery::Action()
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (((UserData*)Save::GetData())->PerfectFlag[i] == true)
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 		{
-			Flag[i] = true;
+			SFlag[i] = true;
+		}
+		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+		{
+			RFlag[i] = true;
 		}
 	}
 
@@ -149,9 +154,9 @@ void CObjGallery::Draw()
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 
 		//仮表示
-		if (Flag[0]==true && Flag[1] == true && Flag[2] == true)
+		if (SFlag[0]==true && SFlag[1] == true && SFlag[2] == true)
 		{
-			//矢印ボタン
+			//ギャラリー開放(仮)
 			src.m_top = 0.0f;
 			src.m_left = 559.0f;
 			src.m_right = 639.0f;
@@ -159,7 +164,7 @@ void CObjGallery::Draw()
 			dst.m_top = 245.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 375.0;
-			dst.m_bottom = 365.0;
+			dst.m_bottom = 385.0;
 			Draw::Draw(0, &src, &dst, c, 0.0f);
 		}
 
@@ -188,6 +193,22 @@ void CObjGallery::Draw()
 		dst.m_right = 657.0f;
 		dst.m_bottom = 560.0f;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
+
+		//仮表示
+		if (RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
+		{
+			//ギャラリー開放(仮)
+			src.m_top = 0.0f;
+			src.m_left = 559.0f;
+			src.m_right = 639.0f;
+			src.m_bottom = 140.0f;
+			dst.m_top = 245.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 375.0;
+			dst.m_bottom = 385.0;
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+
+		}
 	}
 
 }
