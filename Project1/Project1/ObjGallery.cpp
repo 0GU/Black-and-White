@@ -29,20 +29,32 @@ using namespace GameL;
 #define HIT_LEFTARROW_RIGHT (101.0f)
 #define HIT_LEFTARROW_BOTTOM (365.0f)
 
-#define CUT_BACK_TOP (35.0f)
-#define CUT_BACK_LEFT (5.0f)
-#define HIT_BACK_RIGHT (125.0f)
-#define HIT_BACK_BOTTOM (135.0f)
+#define GRAPHIC_TOP (50.0f)
+#define GRAPHIC_LEFT (145.0f)
+#define GRAPHIC_RIGHT (657.0f)
+#define GRAPHIC_BOTTOM (560.0f)
 
-#define HIT_RIGHTARROW_TOP (240.0f)
-#define HIT_RIGHTARROW_LEFT (700.0f)
-#define HIT_RIGHTARROW_RIGHT (775.0f)
-#define HIT_RIGHTARROW_BOTTOM (360.0f)
+#define CUT_GRAPHIC_TOP (0.0f)
+#define CUT_GRAPHIC_LEFT (0.0f)
+#define CUT_GRAPHIC_RIGHT (512.0f)
+#define CUT_GRAPHIC_BOTTOM (512.0f)
 
-#define HIT_LEFTARROW_TOP (245.0f)
-#define HIT_LEFTARROW_LEFT (26.0f)
-#define HIT_LEFTARROW_RIGHT (101.0f)
-#define HIT_LEFTARROW_BOTTOM (365.0f)
+#define CUT_BACK_TOP (139.0f)
+#define CUT_BACK_LEFT (559.0f)
+#define CUT_BACK_RIGHT (679.0f)
+#define CUT_BACK_BOTTOM (239.0f)
+
+#define CUT_RIGHTARROW_TOP (0.0f)
+#define CUT_RIGHTARROW_LEFT (559.0f)
+#define CUT_RIGHTARROW_RIGHT (639.0f)
+#define CUT_RIGHTARROW_BOTTOM (140.0f)
+
+#define CUT_LEFTARROW_TOP (0.0f)
+#define CUT_LEFTARROW_LEFT (638.0f)
+#define CUT_LEFTARROW_RIGHT (718.0f)
+#define CUT_LEFTARROW_BOTTOM (140.0f)
+
+
 //#define
 //イニシャライズ
 void CObjGallery::Init()
@@ -146,10 +158,10 @@ void CObjGallery::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//戻るボタン
-	src.m_top = 139.0f;
-	src.m_left = 559.0f;
-	src.m_right = 679.0f;
-	src.m_bottom = 239.0f;
+	src.m_top =CUT_BACK_TOP;
+	src.m_left =CUT_BACK_LEFT;
+	src.m_right = CUT_BACK_RIGHT;
+	src.m_bottom = CUT_BACK_BOTTOM;
 	dst.m_top = HIT_BACK_TOP;
 	dst.m_left = HIT_BACK_LEFT;
 	dst.m_right = HIT_BACK_RIGHT;
@@ -157,11 +169,11 @@ void CObjGallery::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 	if (Gright == 1)
 	{
-		//矢印ボタン
-		src.m_top = 0.0f;
-		src.m_left = 559.0f;
-		src.m_right = 639.0f;
-		src.m_bottom = 140.0f;
+		//右矢印ボタン
+		src.m_top = CUT_RIGHTARROW_TOP;
+		src.m_left = CUT_RIGHTARROW_LEFT;
+		src.m_right = CUT_RIGHTARROW_RIGHT;
+		src.m_bottom = CUT_RIGHTARROW_BOTTOM;
 		dst.m_top =HIT_RIGHTARROW_TOP;
 		dst.m_left = HIT_RIGHTARROW_LEFT;
 		dst.m_right = HIT_RIGHTARROW_RIGHT;
@@ -169,14 +181,14 @@ void CObjGallery::Draw()
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
 		//仮枠
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 512.0f;
-		src.m_bottom = 512.0f;
-		dst.m_top = 50.0f;
-		dst.m_left = 145.0f;
-		dst.m_right = 657.0f;
-		dst.m_bottom = 560.0f;
+		src.m_top = CUT_GRAPHIC_TOP;
+		src.m_left = CUT_GRAPHIC_LEFT;
+		src.m_right = CUT_GRAPHIC_RIGHT;
+		src.m_bottom = CUT_GRAPHIC_BOTTOM;
+		dst.m_top = GRAPHIC_TOP;
+		dst.m_left = GRAPHIC_LEFT;
+		dst.m_right = GRAPHIC_RIGHT;
+		dst.m_bottom = GRAPHIC_BOTTOM;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 
 		//仮表示
@@ -199,10 +211,10 @@ void CObjGallery::Draw()
 	if (Gleft == 1)
 	{
 		//左矢印ボタン
-		src.m_top = 0.0f;
-		src.m_left = 638.0f;
-		src.m_right = 718.0f;
-		src.m_bottom = 140.0f;
+		src.m_top = CUT_LEFTARROW_TOP;
+		src.m_left = CUT_LEFTARROW_LEFT;
+		src.m_right = CUT_LEFTARROW_RIGHT;
+		src.m_bottom = CUT_LEFTARROW_BOTTOM;
 		dst.m_top = HIT_LEFTARROW_TOP;
 		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
@@ -210,14 +222,14 @@ void CObjGallery::Draw()
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
 		//仮枠
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 512.0f;
-		src.m_bottom = 512.0f;
-		dst.m_top = 50.0f;
-		dst.m_left = 145.0f;
-		dst.m_right = 657.0f;
-		dst.m_bottom = 560.0f;
+		src.m_top = CUT_GRAPHIC_TOP;
+		src.m_left = CUT_GRAPHIC_LEFT;
+		src.m_right = CUT_GRAPHIC_RIGHT;
+		src.m_bottom = CUT_GRAPHIC_BOTTOM;
+		dst.m_top = GRAPHIC_TOP;
+		dst.m_left = GRAPHIC_LEFT;
+		dst.m_right = GRAPHIC_RIGHT;
+		dst.m_bottom = GRAPHIC_BOTTOM;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 
 		//仮表示

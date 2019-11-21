@@ -26,7 +26,7 @@ private:
 	//アニメーション変更用
 	int m_ani_flame;
 	int change_panel[5][5];
-	bool m_change;
+	bool m_ani_flag;
 	bool time_flag;
 	int m_time;
 
