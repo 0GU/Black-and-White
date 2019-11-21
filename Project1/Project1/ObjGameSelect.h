@@ -38,17 +38,6 @@ using namespace GameL;
 #define BACKBUTTON_POS_R (125.0f)
 #define BACKBUTTON_POS_B (135.0f)
 
-/*resorce
-	src.m_top = 135.0f;
-	src.m_left = 1.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 265.0f;
-	dst.m_top = 20.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 155.0;
-*/
-
 //オブジェクト：ゲームセレクト
 class CObjGameSelect : public CObj
 {
