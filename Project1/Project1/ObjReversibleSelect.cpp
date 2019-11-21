@@ -22,18 +22,25 @@ using namespace GameL;
 void CObjReversibleSelect::Init()
 {
 	
-	bool set_flag[3] = { false, false ,false};
+	bool set_Pflag[3] = { false, false ,false};
+	bool set_Cflag[3] = { false, false ,false };
 
 	Save::Open();
 
 	for (int i = 0; i < 3; i++)
 	{
+		if (((UserData*)Save::GetData())->RClearFlag[i] == true)
+		{
+			set_Cflag[i] = true;
+		}
+
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
 		{
-			set_flag[i] = true;
+			set_Pflag[i] = true;
 		}
 	}
-	memcpy(flag, set_flag, sizeof(bool)*(3));
+	memcpy(Pflag, set_Pflag, sizeof(bool)*(3));
+	memcpy(Cflag, set_Cflag, sizeof(bool)*(3));
 	
 }
 
@@ -262,7 +269,7 @@ void CObjReversibleSelect::Draw()
 
 
 	//(1)
-	if (flag[0] == false)
+	if (Pflag[0] == false && Cflag[0]==true)
 	{
 		src.m_top = 1.5f;
 		src.m_left = 562.0f;
@@ -275,7 +282,7 @@ void CObjReversibleSelect::Draw()
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	//(2)
-	 if (flag[1] == false)
+	 if (Pflag[1] == false && Cflag[1] == true)
 	{
 		src.m_top = 1.5f;
 		src.m_left = 562.0f;
@@ -288,7 +295,7 @@ void CObjReversibleSelect::Draw()
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 }
 	//(3)
-	 if (flag[2] == false)
+	 if (Pflag[2] == false && Cflag[2] == true)
 	 {
 		 src.m_top = 1.5f;
 		 src.m_left = 562.0f;
@@ -304,7 +311,7 @@ void CObjReversibleSelect::Draw()
 
 
 	//(1)
-	if (flag[0] == true)
+	if (Pflag[0] == true)
 	{
 		src.m_top = 43.0f;
 		src.m_left = 562.0f;
@@ -316,7 +323,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_bottom = 225.0;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	if (flag[1] == true)
+	if (Pflag[1] == true)
 	{
 		//(2)
 		src.m_top = 43.0f;
@@ -329,7 +336,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_bottom = 353.0;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	if (flag[2] == true)
+	if (Pflag[2] == true)
 	{
 		//(3)
 		src.m_top = 43.0f;

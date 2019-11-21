@@ -403,6 +403,22 @@ void CObjSwitchMain::Action()
 			break;
 		}
 	}
+	//Clearƒtƒ‰ƒO‚ÌŠÇ—
+	if (flag[1] == true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->SClearFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->SClearFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->SClearFlag[2] = true;
+			break;
+		}
+	}
 
 }
 
