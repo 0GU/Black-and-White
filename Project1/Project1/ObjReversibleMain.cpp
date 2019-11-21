@@ -388,6 +388,23 @@ void CObjReversibleMain::Action()
 			break;
 		}
 	}
+	//Clearフラグの管理
+	if (flag[1] == true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->RClearFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->RClearFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->RClearFlag[2] = true;
+			break;
+		}
+	}
+
 }
 
 //ドロー

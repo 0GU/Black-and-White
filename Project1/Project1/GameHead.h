@@ -46,6 +46,8 @@ struct UserData
 
 	bool SPerfectFlag[3];
 	bool RPerfectFlag[3];
+	bool SClearFlag[3];
+	bool RClearFlag[3];
 
 };
 //------------------------------------------------

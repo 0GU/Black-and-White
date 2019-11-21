@@ -4,6 +4,7 @@
 #include"GameL/SceneManager.h"
 #include"GameL/DrawFont.h"
 #include"GameL/Audio.h"
+#include"GameL/UserData.h"
 
 #include"GameHead.h"
 #include"ObjSwitchSelect.h"
@@ -13,14 +14,28 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define SCENEBACK_WAIT (200)
-#define SELECT_WAIT (100)
-
 //イニシャライズ
 void CObjSwitchSelect::Init()
 {
+	bool set_Pflag[3] = { false, false ,false };
+	bool set_Cflag[3] = { false, false ,false };
 
+	Save::Open();
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (((UserData*)Save::GetData())->SClearFlag[i] == true)
+		{
+			set_Cflag[i] = true;
+		}
+
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+		{
+			set_Pflag[i] = true;
+		}
+	}
+	memcpy(Pflag, set_Pflag, sizeof(bool)*(3));
+	memcpy(Cflag, set_Cflag, sizeof(bool)*(3));
 }
 
 //アクション
@@ -31,7 +46,7 @@ void CObjSwitchSelect::Action()
 
 
 	//right値が描画とズレていた為調整
-	if (120 <= x && 670 >= x && 180 <= y && 270 >= y)//stage1
+	if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y)//stage1
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -47,7 +62,7 @@ void CObjSwitchSelect::Action()
 			Scene::SetScene(new CSceneSwitchMain(1));
 		}
 	}
-	else if (120 <= x && 670 >= x && 300 <= y && 390 >= y)//stage2
+	else if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y)//stage2
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -64,7 +79,7 @@ void CObjSwitchSelect::Action()
 
 		}
 	}
-	else if (120 <= x && 670 >= x && 420 <= y && 510 >= y)//stage3
+	else if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y)//stage3
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -83,7 +98,7 @@ void CObjSwitchSelect::Action()
 	}
 
 	//戻るボタン
-	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
+	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -112,41 +127,123 @@ void CObjSwitchSelect::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//STAGE1
-	src.m_top = 268.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 359.0f;
-	dst.m_top = 180.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 270.0;
+	src.m_top = RESOURCE_STAGE1_T;
+	src.m_left = RESOURCE_STAGE_L;
+	src.m_right = RESOURCE_STAGE_R;
+	src.m_bottom = RESOURCE_STAGE1_B;
+	dst.m_top = STAGE_SW_SELECT_ONE_T;
+	dst.m_left = STAGE_SW_SELECT_L;
+	dst.m_right = STAGE_SW_SELECT_R_DRAW;
+	dst.m_bottom = STAGE_SW_SELECT_ONE_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//STAGE2
-	src.m_top = 358.0f;
-	src.m_left = 0.0f;
-	src.m_right = 560.0f;
-	src.m_bottom = 449.0f;
-	dst.m_top = 300.0f;
-	dst.m_bottom = 390.0;
+	src.m_top = RESOURCE_STAGE2_T;
+	src.m_left = RESOURCE_STAGE_L;
+	src.m_right = RESOURCE_STAGE_R;
+	src.m_bottom = RESOURCE_STAGE2_B;
+	dst.m_top = STAGE_SW_SELECT_TWO_T;
+	dst.m_bottom = STAGE_SW_SELECT_TWO_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//STAGE3
-	src.m_top = 448.0f;
-	src.m_bottom = 540.0f;
-	dst.m_top = 420.0f;
-	dst.m_bottom = 510.0;
+	src.m_top = RESOURCE_STAGE3_T;
+	src.m_bottom = RESOURCE_STAGE3_B;
+	dst.m_top = STAGE_SW_SELECT_THREE_T;
+	dst.m_bottom = STAGE_SW_SELECT_THREE_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//戻るボタン
-	src.m_top = 139.0f;
-	src.m_left = 559.0f;
-	src.m_right = 679.0f;
-	src.m_bottom = 239.0f;
-	dst.m_top = 35.0f;
-	dst.m_left = 5.0f;
-	dst.m_right = 125.0;
-	dst.m_bottom = 135.0;
+	src.m_top = RESOURCE_BACKBUTTON_T;
+	src.m_left = RESOURCE_BACKBUTTON_L;
+	src.m_right = RESOURCE_BACKBUTTON_R;
+	src.m_bottom = RESOURCE_BACKBUTTON_B;
+	dst.m_top = BACKBUTTON_POS_T;
+	dst.m_left = BACKBUTTON_POS_L;
+	dst.m_right = BACKBUTTON_POS_R;
+	dst.m_bottom = BACKBUTTON_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	//黒星の描画---------------------------------------------------------------------------
+
+	//(1)
+	if (Pflag[0] == false && Cflag[0] == true)
+	{
+		src.m_top = RESOURCE_STAR_T;
+		src.m_left = RESOURCE_STAR_L;
+		src.m_right = RESOURCE_STAR_R;
+		src.m_bottom = RESOURCE_STAR_B;
+		dst.m_top = STAGE_SW_STAR_ONE_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_ONE_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
+	//(2)
+	if (Pflag[1] == false && Cflag[1] == true)
+	{
+		src.m_top = RESOURCE_STAR_T;
+		src.m_left = RESOURCE_STAR_L;
+		src.m_right = RESOURCE_STAR_R;
+		src.m_bottom = RESOURCE_STAR_B;
+		dst.m_top = STAGE_SW_STAR_TWO_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_TWO_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
+	//(3)
+	if (Pflag[2] == false && Cflag[2] == true)
+	{
+		src.m_top = RESOURCE_STAR_T;
+		src.m_left = RESOURCE_STAR_L;
+		src.m_right = RESOURCE_STAR_R;
+		src.m_bottom = RESOURCE_STAR_B;
+		dst.m_top = STAGE_SW_STAR_THREE_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_THREE_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
+	//白星の描画---------------------------------------------------------------------------
+	//(1)
+	if (Pflag[0] == true)
+	{
+		src.m_top = RESOURCE_PSTAR_T;
+		src.m_left = RESOURCE_PSTAR_L;
+		src.m_right = RESOURCE_PSTAR_R;
+		src.m_bottom = RESOURCE_PSTAR_B;
+		dst.m_top = STAGE_SW_STAR_ONE_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_ONE_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
+	if (Pflag[1] == true)
+	{
+		//(2)
+		src.m_top = RESOURCE_PSTAR_T;
+		src.m_left = RESOURCE_PSTAR_L;
+		src.m_right = RESOURCE_PSTAR_R;
+		src.m_bottom = RESOURCE_PSTAR_B;
+		dst.m_top = STAGE_SW_STAR_TWO_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_TWO_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
+	if (Pflag[2] == true)
+	{
+		//(3)
+		src.m_top = RESOURCE_PSTAR_T;
+		src.m_left = RESOURCE_PSTAR_L;
+		src.m_right = RESOURCE_PSTAR_R;
+		src.m_bottom = RESOURCE_PSTAR_B;
+		dst.m_top = STAGE_SW_STAR_THREE_T;
+		dst.m_left = STAGE_SW_STAR_L;
+		dst.m_right = STAGE_SW_STAR_R;
+		dst.m_bottom = STAGE_SW_STAR_THREE_B;
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	}
 
 }
