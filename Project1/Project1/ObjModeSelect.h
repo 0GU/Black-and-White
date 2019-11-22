@@ -28,6 +28,8 @@ public:
 	void Draw();	//ƒhƒ[
 	float x, y;
 private:
-
-
+	float m_x1;	//”wŒi‚ÌˆÊ’uX1
+	float m_x2;	//”wŒi‚ÌˆÊ’uX2
+	float m_y1;	//”wŒi‚ÌˆÊ’uY1
+	float m_y2;	//”wŒi‚ÌˆÊ’uY2
 };

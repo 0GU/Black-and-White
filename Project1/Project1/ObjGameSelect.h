@@ -49,6 +49,7 @@ class CObjGameSelect : public CObj
 		void Draw();	//ƒhƒ[
 		float x, y;
 	private:
-
+		float m_y1;
+		float m_y2;
 
 };
