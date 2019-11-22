@@ -62,41 +62,46 @@ void CObjSwitchSelect::Action()
 			Scene::SetScene(new CSceneSwitchMain(1));
 		}
 	}
-	else if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y)//stage2
+	if (Cflag[0] == true)
 	{
-		if (Input::GetMouButtonL() == true)
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y)//stage2
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+			if (Input::GetMouButtonL() == true)
 			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Sleep(SELECT_WAIT);
+
+
+				Scene::SetScene(new CSceneSwitchMain(2));
 
 			}
-			Sleep(SELECT_WAIT);
-			
-			
-			Scene::SetScene(new CSceneSwitchMain(2));
-
 		}
 	}
-	else if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y)//stage3
+	if (Cflag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y)//stage3
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+			if (Input::GetMouButtonL() == true)
 			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Sleep(SELECT_WAIT);
+
+
+				Scene::SetScene(new CSceneSwitchMain(3));
 
 			}
-			Sleep(SELECT_WAIT);
-			
-			
-			Scene::SetScene(new CSceneSwitchMain(3));
-			
 		}
 	}
-
 	//戻るボタン
 	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y)
 	{
@@ -138,21 +143,25 @@ void CObjSwitchSelect::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//STAGE2
-	src.m_top = RESOURCE_STAGE2_T;
-	src.m_left = RESOURCE_STAGE_L;
-	src.m_right = RESOURCE_STAGE_R;
-	src.m_bottom = RESOURCE_STAGE2_B;
-	dst.m_top = STAGE_SW_SELECT_TWO_T;
-	dst.m_bottom = STAGE_SW_SELECT_TWO_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	if (Cflag[0] == true)
+	{
+		src.m_top = RESOURCE_STAGE2_T;
+		src.m_left = RESOURCE_STAGE_L;
+		src.m_right = RESOURCE_STAGE_R;
+		src.m_bottom = RESOURCE_STAGE2_B;
+		dst.m_top = STAGE_SW_SELECT_TWO_T;
+		dst.m_bottom = STAGE_SW_SELECT_TWO_B;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
 	//STAGE3
-	src.m_top = RESOURCE_STAGE3_T;
-	src.m_bottom = RESOURCE_STAGE3_B;
-	dst.m_top = STAGE_SW_SELECT_THREE_T;
-	dst.m_bottom = STAGE_SW_SELECT_THREE_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	if (Cflag[1] == true)
+	{
+		src.m_top = RESOURCE_STAGE3_T;
+		src.m_bottom = RESOURCE_STAGE3_B;
+		dst.m_top = STAGE_SW_SELECT_THREE_T;
+		dst.m_bottom = STAGE_SW_SELECT_THREE_B;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
 	//戻るボタン
 	src.m_top = RESOURCE_BACKBUTTON_T;
 	src.m_left = RESOURCE_BACKBUTTON_L;
