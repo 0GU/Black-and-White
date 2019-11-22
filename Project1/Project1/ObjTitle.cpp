@@ -28,6 +28,7 @@ void CObjTitle::Init()
 		((UserData*)Save::GetData())->SPerfectFlag[i] = false;
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
 	}
+	
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -54,6 +55,17 @@ void CObjTitle::Action()
 			}
 		}
 		
+	}
+	if (Input::GetVKey(VK_UP)==true&&Input::GetVKey(VK_DOWN)==true)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			((UserData*)Save::GetData())->SPerfectFlag[i] = true;
+			((UserData*)Save::GetData())->RPerfectFlag[i] = true;
+			((UserData*)Save::GetData())->SClearFlag[i] = true;
+			((UserData*)Save::GetData())->RClearFlag[i] = true;
+		}
+		Save::Seve();
 	}
 }
 
