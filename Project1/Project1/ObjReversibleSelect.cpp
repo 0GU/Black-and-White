@@ -14,9 +14,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define SCENEBACK_WAIT (200)
-#define SELECT_WAIT (100)
+
 
 //イニシャライズ
 void CObjReversibleSelect::Init()
@@ -54,8 +52,9 @@ void CObjReversibleSelect::Action()
 
 
 
-	//right値が描画とズレていた為調整
-	if (120 <= x && 670 >= x && 160 <= y && 250 >= y)
+	//right値が描画とズレているため右方向を-10.0f調整
+	//Stage1--------------------------------------------------------------
+	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y)
 	{
 
 		//この場所を左クリックでリバーシブルのステージ1へ
@@ -68,15 +67,18 @@ void CObjReversibleSelect::Action()
 
 			}
 			Sleep(SELECT_WAIT);
-		
+
 			Scene::SetScene(new CSceneReversibleMain(1));
 
 
 		}
 	}
+
+
+	//Stage2----------------------------------------------------------------
 	if (Cflag[0] == true)
 	{
-		if (120 <= x && 670 >= x && 290 <= y && 380 >= y)
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y)
 		{
 
 			//この場所を左クリックでリバーシブルのステージ2へ
@@ -96,9 +98,12 @@ void CObjReversibleSelect::Action()
 			}
 		}
 	}
+
+
+	//Stage3----------------------------------------------------------------
 	if (Cflag[1] == true)
 	{
-		if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y)
 		{
 
 			//この場所を左クリックでリバーシブルのステージ3へ
@@ -120,7 +125,7 @@ void CObjReversibleSelect::Action()
 	}
 
 	//戻るボタン
-	if (5 <= x && 125 >= x && 35 <= y && 135 >= y)
+	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -226,52 +231,52 @@ void CObjReversibleSelect::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//Stage1の描画
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 90.0f;
-	dst.m_top = 160.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 250.0;
+	src.m_top = CUT_PIC_TOP_RP1;
+	src.m_left = CUT_PIC_LEFT_RP;
+	src.m_right = CUT_PIC_RIGHT_RP;
+	src.m_bottom = CUT_PIC_BOTTOM_RP1;
+	dst.m_top = HIT_TOP_RP1;
+	dst.m_left = HIT_LEFT_RP;
+	dst.m_right = HIT_RIGHT_RP;
+	dst.m_bottom = HIT_BOTTOM_RP1;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//Stage2の描画
 	if (Cflag[0] == true)
 	{
-		src.m_top = 90.0f;
-		src.m_left = 0.0f;
-		src.m_right = 561.0f;
-		src.m_bottom = 180.0f;
-		dst.m_top = 290.0f;
-		dst.m_left = 120.0f;
-		dst.m_right = 680.0;
-		dst.m_bottom = 380.0;
+		src.m_top = CUT_PIC_TOP_RP2;
+		src.m_left = CUT_PIC_LEFT_RP;
+		src.m_right = CUT_PIC_RIGHT_RP;
+		src.m_bottom = CUT_PIC_BOTTOM_RP2;
+		dst.m_top = HIT_TOP_RP2;
+		dst.m_left = HIT_LEFT_RP;
+		dst.m_right = HIT_RIGHT_RP;
+		dst.m_bottom = HIT_BOTTOM_RP2;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	//Stage3の描画
 	if (Cflag[1] == true)
 	{
-		src.m_top = 180.0f;
-		src.m_left = 0.0f;
-		src.m_right = 561.0f;
-		src.m_bottom = 271.0f;
-		dst.m_top = 420.0f;
-		dst.m_left = 120.0f;
-		dst.m_right = 680.0;
-		dst.m_bottom = 510.0;
+		src.m_top = CUT_PIC_TOP_RP3;
+		src.m_left = CUT_PIC_LEFT_RP;
+		src.m_right = CUT_PIC_RIGHT_RP;
+		src.m_bottom = CUT_PIC_BOTTOM_RP3;
+		dst.m_top = HIT_TOP_RP3;
+		dst.m_left = HIT_LEFT_RP;
+		dst.m_right = HIT_RIGHT_RP;
+		dst.m_bottom = HIT_BOTTOM_RP3;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 
 	//戻るボタン
-	src.m_top = 139.0f;
-	src.m_left = 559.0f;
-	src.m_right = 679.0f;
-	src.m_bottom = 239.0f;
-	dst.m_top = 35.0f;
-	dst.m_left = 5.0f;
-	dst.m_right = 125.0;
-	dst.m_bottom = 135.0;
+	src.m_top = CUT_PIC_TOP_SCENEBACK;
+	src.m_left = CUT_PIC_LEFT_SCENEBACK;
+	src.m_right = CUT_PIC_RIGHT_SCENEBACK;
+	src.m_bottom = CUT_PIC_BOTTOM_SCENEBACK;
+	dst.m_top = HIT_TOP_SCENEBACK;
+	dst.m_left = HIT_LEFT_SCENEBACK;
+	dst.m_right = HIT_RIGHT_SCENEBACK;
+	dst.m_bottom = HIT_BOTTOM_SCENEBACK;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 
@@ -282,40 +287,40 @@ void CObjReversibleSelect::Draw()
 	//(1)
 	if (Pflag[0] == false && Cflag[0]==true)
 	{
-		src.m_top = 1.5f;
-		src.m_left = 562.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 40.0f;
-		dst.m_top = 184.0f;
-		dst.m_left = 268.0f;
-		dst.m_right = 307.0;
-		dst.m_bottom = 225.0;
+		src.m_top = CUT_PIC_TOP_BLACKSTAR;
+		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+		dst.m_top = HIT_TOP_BLACKSTAR1;
+		dst.m_left = HIT_LEFT_BLACKSTAR;
+		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	//(2)
 	 if (Pflag[1] == false && Cflag[1] == true)
 	{
-		src.m_top = 1.5f;
-		src.m_left = 562.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 40.0f;	
-		dst.m_top = 314.0f;
-		dst.m_left = 268.0f;
-		dst.m_right = 307.0;
-		dst.m_bottom = 353.0;
+		 src.m_top = CUT_PIC_TOP_BLACKSTAR;
+		 src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+		 src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+		 src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+		dst.m_top = HIT_TOP_BLACKSTAR2;
+		dst.m_left = HIT_LEFT_BLACKSTAR;
+		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 }
 	//(3)
 	 if (Pflag[2] == false && Cflag[2] == true)
 	 {
-		 src.m_top = 1.5f;
-		 src.m_left = 562.0f;
-		 src.m_right = 600.0f;
-		 src.m_bottom = 40.0f;
-		 dst.m_top = 445.0f;
-		 dst.m_left = 268.0f;
-		 dst.m_right = 307.0;
-		 dst.m_bottom = 483.0;
+		 src.m_top = CUT_PIC_TOP_BLACKSTAR;
+		 src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+		 src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+		 src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+		 dst.m_top = HIT_TOP_BLACKSTAR3;
+		 dst.m_left = HIT_LEFT_BLACKSTAR;
+		 dst.m_right = HIT_RIGHT_BLACKSTAR;
+		 dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
 		 Draw::Draw(0, &src, &dst, c, 0.0f);
 	 }
 	//白星の描画---------------------------------------------------------------------------
@@ -324,40 +329,40 @@ void CObjReversibleSelect::Draw()
 	//(1)
 	if (Pflag[0] == true)
 	{
-		src.m_top = 43.0f;
-		src.m_left = 562.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 82.0f;
-		dst.m_top = 184.0f;
-		dst.m_left = 268.0f;
-		dst.m_right = 307.0;
-		dst.m_bottom = 225.0;
+		src.m_top = CUT_PIC_TOP_WHITESTAR;
+		src.m_left = CUT_PIC_LEFT_WHITESTAR;
+		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
+		dst.m_top = HIT_TOP_WHITESTAR1;
+		dst.m_left = HIT_LEFT_WHITESTAR;
+		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[1] == true)
 	{
 		//(2)
-		src.m_top = 43.0f;
-		src.m_left = 562.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 82.0f;
-		dst.m_top = 314.0f;
-		dst.m_left = 268.0f;
-		dst.m_right = 307.0;
-		dst.m_bottom = 353.0;
+		src.m_top = CUT_PIC_TOP_WHITESTAR;
+		src.m_left = CUT_PIC_LEFT_WHITESTAR;
+		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
+		dst.m_top = HIT_TOP_WHITESTAR2;
+		dst.m_left = HIT_LEFT_WHITESTAR;
+		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[2] == true)
 	{
 		//(3)
-		src.m_top = 43.0f;
-		src.m_left = 562.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 82.0f;
-		dst.m_top = 445.0f;
-		dst.m_left = 268.0f;
-		dst.m_right = 307.0;
-		dst.m_bottom = 483.0;
+		src.m_top = CUT_PIC_TOP_WHITESTAR;
+		src.m_left = CUT_PIC_LEFT_WHITESTAR;
+		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
+		dst.m_top = HIT_TOP_WHITESTAR3;
+		dst.m_left = HIT_LEFT_WHITESTAR;
+		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 	//仮置:チェンジ------------------------
