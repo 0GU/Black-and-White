@@ -45,13 +45,13 @@ void CObjReversibleMain::Init()
 //アクション
 void CObjReversibleMain::Action()
 {
-	int lx, ly;//反転処理用変数
+	int lx=0, ly=0;//反転処理用変数
 
 	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-
+	
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false && flag[3] == false)
@@ -70,30 +70,8 @@ void CObjReversibleMain::Action()
 				sx = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
 				for (int m = 0; m < 5; m++)
 				{
-					
-					switch (m)
-					{
-					case 0://上
-						lx = sx;
-						ly = sy - 1;
-						break;
-					case 1://左
-						lx = sx - 1;
-						ly = sy;
-						break;
-					case 2://クリックした場所
-						lx = sx;
-						ly = sy;
-						break;
-					case 3://右
-						lx = sx + 1;
-						ly = sy;
-						break;
-					case 4://下
-						lx = sx;
-						ly = sy + 1;
-						break;
-					}
+					ReversibleProcess(sx, sy,&lx,&ly, m, stage);
+		
 					//反転処理の準備
 					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 					{
@@ -127,30 +105,8 @@ void CObjReversibleMain::Action()
 
 	for (int m = 0; m < 5; m++)
 	{
-		
-		switch (m)
-		{
-		case 0://上
-			lx = sx;
-			ly = sy - 1;
-			break;
-		case 1://左
-			lx = sx - 1;
-			ly = sy;
-			break;
-		case 2:
-			lx = sx;
-			ly = sy;
-			break;
-		case 3://右
-			lx = sx + 1;
-			ly = sy;
-			break;
-		case 4://下
-			lx = sx;
-			ly = sy + 1;
-			break;
-		}
+		ReversibleProcess(sx, sy,&lx,&ly, m, stage);
+
 		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
 		{
 			if (stage[ly][lx] == 2)//反転白パネル
