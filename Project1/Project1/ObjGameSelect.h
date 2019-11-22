@@ -10,7 +10,7 @@ using namespace GameL;
 
 #define RESOURCE_SCENE_TEXT_T (135.0f)
 #define RESOURCE_SCENE_TEXT_L (1.0f)
-#define RESOURCE_SCENE_TEXT_R (560.0f)
+#define RESOURCE_SCENE_TEXT_R (558.0f)
 #define RESOURCE_SCENE_TEXT_B (265.0f)
 #define RESOURCE_SELECT_L (0.0f)
 #define RESOURCE_SELECT_R (600.0f)
