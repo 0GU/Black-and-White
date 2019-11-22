@@ -74,42 +74,48 @@ void CObjReversibleSelect::Action()
 
 		}
 	}
-	if (120 <= x && 670 >= x && 290 <= y && 380 >= y )
+	if (Cflag[0] == true)
 	{
-
-		//この場所を左クリックでリバーシブルのステージ2へ
-		if (Input::GetMouButtonL() == true)
+		if (120 <= x && 670 >= x && 290 <= y && 380 >= y)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+
+			//この場所を左クリックでリバーシブルのステージ2へ
+			if (Input::GetMouButtonL() == true)
 			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Sleep(SELECT_WAIT);
+
+				Scene::SetScene(new CSceneReversibleMain(2));
+
 
 			}
-			Sleep(SELECT_WAIT);
-			
-			Scene::SetScene(new CSceneReversibleMain(2));
-
-
 		}
 	}
-	if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
+	if (Cflag[1] == true)
 	{
-
-		//この場所を左クリックでリバーシブルのステージ3へ
-		if (Input::GetMouButtonL() == true)
+		if (120 <= x && 670 >= x && 420 <= y && 510 >= y)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
+
+			//この場所を左クリックでリバーシブルのステージ3へ
+			if (Input::GetMouButtonL() == true)
 			{
+				//SEを鳴らす
+				Audio::Start(1);
+				while (Input::GetMouButtonL() == true)
+				{
+
+				}
+				Sleep(SELECT_WAIT);
+
+				Scene::SetScene(new CSceneReversibleMain(3));
+
 
 			}
-			Sleep(SELECT_WAIT);
-		
-			Scene::SetScene(new CSceneReversibleMain(3));
-
-
 		}
 	}
 
@@ -231,26 +237,31 @@ void CObjReversibleSelect::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//Stage2の描画
-	src.m_top = 90.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 180.0f;
-	dst.m_top = 290.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 380.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	if (Cflag[0] == true)
+	{
+		src.m_top = 90.0f;
+		src.m_left = 0.0f;
+		src.m_right = 561.0f;
+		src.m_bottom = 180.0f;
+		dst.m_top = 290.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 680.0;
+		dst.m_bottom = 380.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
 	//Stage3の描画
-	src.m_top = 180.0f;
-	src.m_left = 0.0f;
-	src.m_right = 561.0f;
-	src.m_bottom = 271.0f;
-	dst.m_top = 420.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 680.0;
-	dst.m_bottom = 510.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (Cflag[1] == true)
+	{
+		src.m_top = 180.0f;
+		src.m_left = 0.0f;
+		src.m_right = 561.0f;
+		src.m_bottom = 271.0f;
+		dst.m_top = 420.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 680.0;
+		dst.m_bottom = 510.0;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
 
 	//戻るボタン
 	src.m_top = 139.0f;
