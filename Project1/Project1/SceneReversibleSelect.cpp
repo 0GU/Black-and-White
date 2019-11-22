@@ -38,6 +38,10 @@ void CSceneReversibleSelect::InitScene()
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 0, TEX_SIZE_512);
 	CObjReversibleSelect* p = new CObjReversibleSelect();
 	Objs::InsertObj(p, OBJ_REVERSIBLESELECT, 1);
+
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
 }
 
 //ゲームタイトル実行メソッド

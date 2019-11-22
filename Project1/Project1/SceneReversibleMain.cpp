@@ -57,6 +57,10 @@ void CSceneReversibleMain::InitScene()
 	CObjReversibleMain* p = new CObjReversibleMain(stagenum);
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);
 
+
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
 }
 
 //ゲームメイン実行メソッド

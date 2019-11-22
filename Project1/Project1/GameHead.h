@@ -15,7 +15,7 @@ enum OBJ_NAME
 	OBJ_GAMECLEAR,
 	OBJ_SWITCHMAIN,
 	OBJ_SWITCHSELECT,
-
+	OBJ_MOUSE,//仮
 };
 //------------------------------------------------
 
@@ -75,7 +75,7 @@ struct UserData
 #include "ObjGameClear.h"
 #include "ObjSwitchMain.h"
 #include "ObjSwitchSelect.h"
-
+#include "ObjMouse.h"//仮
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

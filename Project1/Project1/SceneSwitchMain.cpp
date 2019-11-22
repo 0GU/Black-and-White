@@ -57,6 +57,8 @@ void CSceneSwitchMain::InitScene()
 	CObjSwitchMain* p = new CObjSwitchMain(stagenum);
 	Objs::InsertObj(p, OBJ_SWITCHMAIN, 1);
 
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//‰¼
 
 }
 

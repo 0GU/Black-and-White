@@ -38,6 +38,10 @@ void CSceneModeSelect::InitScene()
 
 	CObjModeSelect* p = new CObjModeSelect();
 	Objs::InsertObj(p, OBJ_MODESELECT, 1);
+
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
 }
 
 //ゲームタイトル実行メソッド
