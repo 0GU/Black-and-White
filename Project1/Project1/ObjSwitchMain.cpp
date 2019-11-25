@@ -310,7 +310,7 @@ void CObjSwitchMain::Action()
 			count[1] = 12;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
-			Audio::Start(1);
+			Audio::Start(6);
 			m_change = true;
 			while (Input::GetMouButtonL() == true)
 			{
@@ -328,7 +328,7 @@ void CObjSwitchMain::Action()
 
 			flag[0] = true;
 			//SEを鳴らす
-			Audio::Start(1);
+			Audio::Start(5);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -573,17 +573,15 @@ void CObjSwitchMain::Draw()
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 
 	//StageSelectボタン-----------------------------------------------
-	//切り取り
-	src.m_top = 820.0f;
-	src.m_left = 478.0f;
-	src.m_right = 600.0f;
-	src.m_bottom = 920.0f;
-	//表示
+	src.m_top   = RESOURCE_SELE_BUTTON_T;
+	src.m_left  = RESOURCE_SELE_BUTTON_L;
+	src.m_right = RESOURCE_SELE_BUTTON_R;
+	src.m_bottom= RESOURCE_SELE_BUTTON_B;
 	//プログラムの問題でx値を10fずらしてます
-	dst.m_top = 60.0f;
-	dst.m_left = 30.0f;
-	dst.m_right = 130.0;
-	dst.m_bottom = 160.0f;
+	dst.m_top   = STAGESELE_BUTTON_POS_T;
+	dst.m_left  = STAGESELE_BUTTON_POS_L;
+	dst.m_right = STAGESELE_BUTTON_POS_R;
+	dst.m_bottom= STAGESELE_BUTTON_POS_B;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 
@@ -601,50 +599,49 @@ void CObjSwitchMain::Draw()
 	if (flag[4] == true)
 	{
 		//PerFect!
-		src.m_top = 370.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 491.0f;
-		dst.m_top = 150.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 300.0;
+		src.m_top   = RESOURCE_PERFECT_T;
+		src.m_left  = RESOURCE_PERFECT_L;
+		src.m_right = RESOURCE_PERFECT_R;
+		src.m_bottom= RESOURCE_PERFECT_B;
+		dst.m_top   = PERFECT_TEXT_POS_T;
+		dst.m_left  = PERFECT_TEXT_POS_L;
+		dst.m_right = PERFECT_TEXT_POS_R;
+		dst.m_bottom= PERFECT_TEXT_POS_B;
 		Draw::Draw(5, &src, &dst, c, 30.0f);
 		//ステージ選択に戻る
-		src.m_top = 490.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 610.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 490.0;
+		src.m_top   = RESOURCE_CLEARBACK_T;
+		src.m_left  = RESOURCE_CLEARBACK_L;
+		src.m_right = RESOURCE_CLEARBACK_R;
+		src.m_bottom= RESOURCE_CLEARBACK_B;
+		dst.m_top   = CLEARBACK_POS_T;
+		dst.m_left  = CLEARBACK_POS_L;
+		dst.m_right = CLEARBACK_POS_R;
+		dst.m_bottom= CLEARBACK_POS_B;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
-
 	}
 	//GameClear------------------------------------------
 	else if (flag[1] == true)
 	{
 		//Game Clear!!
-		src.m_top = 249.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 372.0f;
-		dst.m_top = 150.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 270.0;
+		src.m_top   = RESOURCE_GAMECLEAR_T;
+		src.m_left  = RESOURCE_GAMECLEAR_L;
+		src.m_right = RESOURCE_GAMECLEAR_R;
+		src.m_bottom= RESOURCE_GAMECLEAR_B;
+		dst.m_top   = GAMECLEAR_TEXT_POS_T;
+		dst.m_left  = GAMECLEAR_TEXT_POS_L;
+		dst.m_right = GAMECLEAR_TEXT_POS_R;
+		dst.m_bottom= GAMECLEAR_TEXT_POS_B;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 		//ステージ選択に戻る
-		src.m_top = 490.0f;
-		src.m_left = 0.0f;
-		src.m_right = 560.0f;
-		src.m_bottom = 610.0f;
-		dst.m_top = 370.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 490.0;
+		src.m_top   = RESOURCE_CLEARBACK_T;
+		src.m_left  = RESOURCE_CLEARBACK_L;
+		src.m_right = RESOURCE_CLEARBACK_R;
+		src.m_bottom= RESOURCE_CLEARBACK_B;
+		dst.m_top   = CLEARBACK_POS_T;
+		dst.m_left  = CLEARBACK_POS_L;
+		dst.m_right = CLEARBACK_POS_R;
+		dst.m_bottom= CLEARBACK_POS_B;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 
@@ -652,52 +649,48 @@ void CObjSwitchMain::Draw()
 	if (flag[2] == true)
 	{
 		//GameOver表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 580.0f;
-		src.m_bottom = 250.0f;
-		dst.m_top = 70.0f;
-		dst.m_left = 110.0f;
-		dst.m_right = 690.0;
-		dst.m_bottom = 320.0;
+		src.m_top   = RESOURCE_GAMEOVER_T;
+		src.m_left  = RESOURCE_GAMEOVER_L;
+		src.m_right = RESOURCE_GAMEOVER_R;
+		src.m_bottom= RESOURCE_GAMEOVER_B;
+		dst.m_top   = GAMEOVER_TEXT_POS_T;
+		dst.m_left  = GAMEOVER_TEXT_POS_L;
+		dst.m_right = GAMEOVER_TEXT_POS_R;
+		dst.m_bottom= GAMEOVER_TEXT_POS_B;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 		//Yes・Noボタン、ステージに戻りますか？の描画
 		if (flag[2] == true || flag[3] == true)
 		{
-			src.m_top = 820.0f;
-			src.m_left = 0.0f;
-			src.m_right = 240.0f;
-			src.m_bottom = 940.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 370.0;
-			dst.m_bottom = 490.0;
+			//Yesボタン
+			src.m_top   = RESOURCE_YESNO_BUTTON_T;
+			src.m_left  = RESOURCE_YES_BUTTON_L;
+			src.m_right = RESOURCE_YES_BUTTON_R;
+			src.m_bottom= RESOURCE_YESNO_BUTTON_B;
+			dst.m_top   = YESNO_BUTTON_POS_T;
+			dst.m_left  = YES_BUTTON_POS_L;
+			dst.m_right = YES_BUTTON_POS_R;
+			dst.m_bottom= YESNO_BUTTON_POS_B;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 
-			src.m_top = 820.0f;
-			src.m_left = 239.0f;
-			src.m_right = 479.0f;
-			src.m_bottom = 940.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 410.0f;
-			dst.m_right = 649.0;
-			dst.m_bottom = 490.0;
+			//Noボタン
+			src.m_left  = RESOURCE_NO_BUTTON_L;
+			src.m_right = RESOURCE_NO_BUTTON_R;
+			dst.m_left  = NO_BUTTON_POS_L;
+			dst.m_right = NO_BUTTON_POS_R;
 			Draw::Draw(5, &src, &dst, c, 0.0f);			
 		}
 		//ステージに戻りますか？の描画
 		if (flag[3] == true)
 		{
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 520.0f;
-			src.m_bottom = 90.0f;
-			dst.m_top = 150.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 650.0;
-			dst.m_bottom = 270.0;
+			src.m_top   = RESOURCE_BACKSELECT_T;
+			src.m_left  = RESOURCE_BACKSELECT_L;
+			src.m_right = RESOURCE_BACKSELECT_R;
+			src.m_bottom= RESOURCE_BACKSELECT_B;
+			dst.m_top   = BACKSELECT_TEXT_POS_T;
+			dst.m_left  = BACKSELECT_TEXT_POS_L;
+			dst.m_right = BACKSELECT_TEXT_POS_R;
+			dst.m_bottom= BACKSELECT_TEXT_POS_B;
 			Draw::Draw(9, &src, &dst, c, 0.0f);
 		}
-	
-
 }
