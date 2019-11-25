@@ -16,7 +16,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjModeSelect::Init()
 {
-
+	m_y1 = 0.0f;
+	m_y2 = 600.0f;
 }
 
 //アクション
@@ -57,7 +58,14 @@ void CObjModeSelect::Action()
 		}
 
 	}
-
+	//背景スクロール
+	m_y1 -= 1.0f;
+	if (m_y1 < -600.0f)
+		m_y1 = 600;
+	m_y2 -= 1.0f;
+	if (m_y2 < -600.0f)
+		m_y2 = 600;
+	
 }
 
 //ドロー
@@ -68,6 +76,26 @@ void CObjModeSelect::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
+
+	//背景スクロール
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 800.0f;
+	src.m_bottom = 600.0f;
+
+	dst.m_top = 0.0f+m_y1;
+	dst.m_left = 0.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 600.0f+ m_y1;
+	Draw::Draw(2, &src, &dst, c, 0.0f);
+
+	//背景リスタート
+	dst.m_top = 0.0f+ m_y2;
+	dst.m_left = 0.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 600.0f+ m_y2;
+	Draw::Draw(2, &src, &dst, c, 0.0f);
+
 
 	//Gallery表示
 	src.m_top = CUT_PICTURE_TOP;

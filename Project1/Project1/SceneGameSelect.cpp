@@ -31,6 +31,7 @@ CSceneGameSelect::~CSceneGameSelect()
 void CSceneGameSelect::InitScene()
 {
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/haikei3.png", 1, TEX_SIZE_512);
 
 	//SEî•ñ‚Ì“o˜^
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
