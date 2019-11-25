@@ -50,8 +50,8 @@ void CSceneSwitchMain::InitScene()
 	Audio::LoadAudio(2, L"Sound/GameOverTin.wav", EFFECT);
 	Audio::LoadAudio(3, L"Sound/ClearSE.wav", EFFECT);
 	Audio::LoadAudio(4, L"Sound/PerfectSE.wav", EFFECT);
-	Audio::LoadAudio(5, L"Sound/SwitchButtonC.wav", EFFECT);
 	Audio::LoadAudio(5, L"Sound/HintButton.wav", EFFECT);
+	Audio::LoadAudio(6, L"Sound/ResetButton.wav", EFFECT);
 
 	//BGMçƒê∂
 	Audio::Start(0);
