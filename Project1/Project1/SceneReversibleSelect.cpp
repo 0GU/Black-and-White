@@ -34,8 +34,10 @@ void CSceneReversibleSelect::InitScene()
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
+	Draw::LoadImage(L"まとめ画像/haikei4.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 0, TEX_SIZE_512);
+
 	CObjReversibleSelect* p = new CObjReversibleSelect();
 	Objs::InsertObj(p, OBJ_REVERSIBLESELECT, 1);
 

@@ -148,5 +148,7 @@ public:
 private:
 	bool Pflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
 	bool Cflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
+	float m_y1;
+	float m_y2;
 
 };
