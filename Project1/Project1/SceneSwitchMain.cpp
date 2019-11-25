@@ -43,13 +43,15 @@ void CSceneSwitchMain::InitScene()
 	Draw::LoadImageW(L"まとめ画像/まとめ画像3.png", 9, TEX_SIZE_1024);
 
 	//音楽情報の読み込み
-	Audio::LoadAudio(0, L"Sound/ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(0, L"Sound/SwitchBGM.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//SE情報の登録
-	Audio::LoadAudio(1, L"Sound/クリックSE.wav",  EFFECT);
+	Audio::LoadAudio(1, L"Sound/SwitchButtonA.wav",  EFFECT);
 	Audio::LoadAudio(2, L"Sound/GameOverTin.wav", EFFECT);
 	Audio::LoadAudio(3, L"Sound/ClearSE.wav", EFFECT);
 	Audio::LoadAudio(4, L"Sound/PerfectSE.wav", EFFECT);
+	Audio::LoadAudio(5, L"Sound/SwitchButtonC.wav", EFFECT);
+	Audio::LoadAudio(5, L"Sound/HintButton.wav", EFFECT);
 
 	//BGM再生
 	Audio::Start(0);

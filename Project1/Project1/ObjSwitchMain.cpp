@@ -310,7 +310,7 @@ void CObjSwitchMain::Action()
 			count[1] = 12;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SE‚ð–Â‚ç‚·
-			Audio::Start(1);
+			Audio::Start(5);
 			m_change = true;
 			while (Input::GetMouButtonL() == true)
 			{
