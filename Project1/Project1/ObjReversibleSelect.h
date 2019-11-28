@@ -69,8 +69,8 @@ using namespace GameL;
 //BlackStar1-------------------------------------
 
 //•\Ž¦:BlackStar1
-#define HIT_LEFT_BLACKSTAR (268.0f)
-#define HIT_RIGHT_BLACKSTAR (307.0f)
+#define HIT_LEFT_BLACKSTAR (288.0f)
+#define HIT_RIGHT_BLACKSTAR (327.0f)
 
 #define HIT_TOP_BLACKSTAR1 (184.0f)
 #define HIT_BOTTOM_BLACKSTAR1 (225.0f)
@@ -106,8 +106,8 @@ using namespace GameL;
 //WhiteStar1-----------------------------------------
 
 //•\Ž¦:WhiteStar1
-#define HIT_LEFT_WHITESTAR (285.0f)
-#define HIT_RIGHT_WHITESTAR (324.0f)
+#define HIT_LEFT_WHITESTAR (288.0f)
+#define HIT_RIGHT_WHITESTAR (327.0f)
 
 #define HIT_TOP_WHITESTAR1 (184.0f)
 #define HIT_BOTTOM_WHITESTAR1 (225.0f)
