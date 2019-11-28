@@ -133,6 +133,11 @@ using namespace GameL;
 
 //切り取り:WhiteStar
 
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
 
 
 //オブジェクト：ステージセレクト

@@ -14,8 +14,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjGameSelect::Init()
 {
-	m_y1 = 0.0f;
-	m_y2 = 600.0f;
+	m_y1 = BACKGROUND_TL;
+	m_y2 = BACKGROUND_B;
 }
 
 //アクション
@@ -72,12 +72,12 @@ void CObjGameSelect::Action()
 		}
 	}
 	//背景スクロール
-	m_y1 -= 1.0f;
-	if (m_y1 < -600.0f)
-		m_y1 = 600;
-	m_y2 -= 1.0f;
-	if (m_y2 < -600.0f)
-		m_y2 = 600;
+	m_y1 -= BACKGROUND_T_GAP;
+	if (m_y1 < -BACKGROUND_B)
+		m_y1 = BACKGROUND_B;
+	m_y2 -= BACKGROUND_T_GAP;
+	if (m_y2 < -BACKGROUND_B)
+		m_y2 = BACKGROUND_B;
 }
 
 //ドロー
@@ -90,22 +90,22 @@ void CObjGameSelect::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//背景スクロール
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 800.0f;
-	src.m_bottom = 600.0f;
+	src.m_top = BACKGROUND_TL;
+	src.m_left = BACKGROUND_TL;
+	src.m_right = BACKGROUND_R;
+	src.m_bottom = BACKGROUND_B;
 
-	dst.m_top = 0.0f + m_y1;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f + m_y1;
+	dst.m_top = BACKGROUND_TL + m_y1;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y1;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//背景リスタート
-	dst.m_top = 0.0f + m_y2;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f + m_y2;
+	dst.m_top = BACKGROUND_TL + m_y2;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//GAME SELECT表示-----------------------------------------------------
