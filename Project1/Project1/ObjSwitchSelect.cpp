@@ -124,10 +124,10 @@ void CObjSwitchSelect::Action()
 	//背景スクロール
 	m_y1 -= 1.0f;
 	if (m_y1 < -600.0f)
-		m_y1 = 600;
+		m_y1 = 599;
 	m_y2 -= 1.0f;
 	if (m_y2 < -600.0f)
-		m_y2 = 600;
+		m_y2 = 599;
 }
 
 //ドロー

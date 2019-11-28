@@ -76,8 +76,8 @@ using namespace GameL;
 #define HIT_BOTTOM_BLACKSTAR1 (225.0f)
 //êÿÇËéÊÇË:BlackStar
 #define CUT_PIC_TOP_BLACKSTAR (1.5f)
-#define CUT_PIC_LEFT_BLACKSTAR (562.0f)
-#define CUT_PIC_RIGHT_BLACKSTAR (600.0f)
+#define CUT_PIC_LEFT_BLACKSTAR (603.0f)
+#define CUT_PIC_RIGHT_BLACKSTAR (642.0f)
 #define CUT_PIC_BOTTOM_BLACKSTAR (40.0f)
 
 
@@ -106,15 +106,15 @@ using namespace GameL;
 //WhiteStar1-----------------------------------------
 
 //ï\é¶:WhiteStar1
-#define HIT_LEFT_WHITESTAR (268.0f)
-#define HIT_RIGHT_WHITESTAR (307.0f)
+#define HIT_LEFT_WHITESTAR (285.0f)
+#define HIT_RIGHT_WHITESTAR (324.0f)
 
 #define HIT_TOP_WHITESTAR1 (184.0f)
 #define HIT_BOTTOM_WHITESTAR1 (225.0f)
 //êÿÇËéÊÇË:WhiteStar
 #define CUT_PIC_TOP_WHITESTAR (43.0f)
-#define CUT_PIC_LEFT_WHITESTAR (562.0f)
-#define CUT_PIC_RIGHT_WHITESTAR (600.0f)
+#define CUT_PIC_LEFT_WHITESTAR (603.0f)
+#define CUT_PIC_RIGHT_WHITESTAR (642.0f)
 #define CUT_PIC_BOTTOM_WHITESTAR (82.0f)
 
 //WhiteStar2------------------------
