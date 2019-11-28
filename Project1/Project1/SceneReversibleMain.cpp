@@ -49,6 +49,8 @@ void CSceneReversibleMain::InitScene()
 	Audio::LoadAudio(2, L"sound/GameOverTin.wav", EFFECT);
 	Audio::LoadAudio(3, L"sound/ClearSE.wav", EFFECT);
 	Audio::LoadAudio(4, L"sound/PerfectSE.wav", EFFECT);
+	Audio::LoadAudio(5, L"Sound/HintButton.wav", EFFECT);
+	Audio::LoadAudio(6, L"Sound/ResetButton.wav", EFFECT);
 
 	//BGMçƒê∂
 	//float Volume = Audio::VolumeMaster(0.7f);
