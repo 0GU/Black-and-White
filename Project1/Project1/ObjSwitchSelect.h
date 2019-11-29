@@ -29,31 +29,38 @@ using namespace GameL;
 
 #define STAGE_SW_STAR_ONE_T (206.0f)
 #define STAGE_SW_STAR_ONE_B (245.0f)
-#define STAGE_SW_STAR_TWO_T (324.0f)
-#define STAGE_SW_STAR_TWO_B (363.0f)
-#define STAGE_SW_STAR_THREE_T (442.0f)
-#define STAGE_SW_STAR_THREE_B (481.0f)
-#define STAGE_SW_STAR_R (320.0f)
-#define STAGE_SW_STAR_L (281.0f)
+#define STAGE_SW_STAR_TWO_T (327.0f)
+#define STAGE_SW_STAR_TWO_B (366.0f)
+#define STAGE_SW_STAR_THREE_T (446.0f)
+#define STAGE_SW_STAR_THREE_B (485.0f)
+#define STAGE_SW_STAR_R (339.0f)
+#define STAGE_SW_STAR_L (300.0f)
 
 #define RESOURCE_STAR_T (1.5f)
-#define RESOURCE_STAR_L (562.0f)
-#define RESOURCE_STAR_R (600.0f)
+#define RESOURCE_STAR_L (603.0f)
+#define RESOURCE_STAR_R (642.0f)
 #define RESOURCE_STAR_B (40.0f)
 #define RESOURCE_PSTAR_T (43.0f)
-#define RESOURCE_PSTAR_L (562.0f)
-#define RESOURCE_PSTAR_R (600.0f)
+#define RESOURCE_PSTAR_L (603.0f)
+#define RESOURCE_PSTAR_R (642.0f)
 #define RESOURCE_PSTAR_B (82.0f)
 
-#define RESOURCE_BACKBUTTON_T (139.0f)
-#define RESOURCE_BACKBUTTON_L (559.0f)
-#define RESOURCE_BACKBUTTON_R (679.0f)
-#define RESOURCE_BACKBUTTON_B (239.0f)
+#define RESOURCE_BACKBUTTON_T (0.0f)
+#define RESOURCE_BACKBUTTON_L (727.0f)
+#define RESOURCE_BACKBUTTON_R (849.0f)
+#define RESOURCE_BACKBUTTON_B (102.0f)
 
 #define BACKBUTTON_POS_T (35.0f)
 #define BACKBUTTON_POS_L (5.0f)
 #define BACKBUTTON_POS_R (125.0f)
 #define BACKBUTTON_POS_B (135.0f)
+
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
+#define BACKGROUND_B_GAP (599.0f)
 
 //オブジェクト：ステージセレクト
 class CObjSwitchSelect : public CObj
@@ -68,4 +75,6 @@ public:
 private:
 	bool Pflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
 	bool Cflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
+	float m_y1;
+	float m_y2;
 };

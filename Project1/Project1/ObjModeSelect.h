@@ -17,6 +17,13 @@ using namespace GameL;
 #define CUT_PICTURE_RIGHT  (561.0f)
 #define CUT_PICTURE_BOTTOM (135.0f)
 
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
+#define BACKGROUND_B_GAP (599.0f)
+
 //オブジェクト：モードセレクト
 class CObjModeSelect : public CObj
 {
@@ -28,6 +35,8 @@ public:
 	void Draw();	//ドロー
 	float x, y;
 private:
-
-
+	float m_x1;	//背景の位置X1
+	float m_x2;	//背景の位置X2
+	float m_y1;	//背景の位置Y1
+	float m_y2;	//背景の位置Y2
 };

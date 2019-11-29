@@ -40,7 +40,7 @@ void CObjMouse::Draw()
 	Font::StrDraw(str, 10, 20, 36, c);
 
 	if (m_mou_l == true)
-		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚é", 20, 40, 12, c);
+		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚é", 20, 60, 24, c);
 	else
-		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚È‚¢", 20, 40, 12, c);
+		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚È‚¢", 20, 60, 24, c);
 }

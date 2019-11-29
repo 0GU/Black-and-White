@@ -19,7 +19,9 @@ using namespace GameL;
 //イニシャライズ
 void CObjReversibleSelect::Init()
 {
-	
+	m_y1 = BACKGROUND_TL;
+	m_y2 = BACKGROUND_B;
+
 	bool set_Pflag[3] = { false, false ,false};
 	bool set_Cflag[3] = { false, false ,false };
 
@@ -140,82 +142,13 @@ void CObjReversibleSelect::Action()
 
 		}
 	}
-
-	/*
-	//仮置き:後に削除-----------------------------
-	if (500 <= x && 540 >= x && 0 <= y && 40 >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			if (flag[0] == false)
-			{
-				flag[0] = true;
-			}
-			else if(flag[0]==true)
-			{
-				flag[0] = false;
-			}
-			//SEを鳴らす
-			Audio::Start(2);
-
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(200);
-
-
-		}
-
-		
-	}
-
-	if (540 <= x && 580 >= x && 0 <= y && 40 >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			if (flag[1] == false)
-			{
-				flag[1] = true;
-			}
-			else if (flag[1] == true)
-			{
-				flag[1] = false;
-			}
-			//SEを鳴らす
-			Audio::Start(1);
-
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(200);
-		}
-	}
-
-	if (580 <= x && 620 >= x && 0 <= y && 40 >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			if (flag[2] == false)
-			{
-				flag[2] = true;
-			}
-			else if (flag[2] == true)
-			{
-				flag[2] = false;
-			}
-			//SEを鳴らす
-			Audio::Start(1);
-
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(200);
-		}
-	}*/
-	//---------------------------------------------
+	//背景スクロール
+	m_y1 -= BACKGROUND_T_GAP;
+	if (m_y1 < -BACKGROUND_B)
+		m_y1 = BACKGROUND_B;
+	m_y2 -= BACKGROUND_T_GAP;
+	if (m_y2 < -BACKGROUND_B)
+		m_y2 = BACKGROUND_B;
 }
 
 //ドロー
@@ -229,6 +162,25 @@ void CObjReversibleSelect::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
+
+	//背景スクロール
+	src.m_top = BACKGROUND_TL;
+	src.m_left = BACKGROUND_TL;
+	src.m_right = BACKGROUND_R;
+	src.m_bottom = BACKGROUND_B;
+
+	dst.m_top = BACKGROUND_TL + m_y1;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y1;
+	Draw::Draw(2, &src, &dst, c, 0.0f);
+
+	//背景リスタート
+	dst.m_top = BACKGROUND_TL + m_y2;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y2;
+	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 	//Stage1の描画
 	src.m_top = CUT_PIC_TOP_RP1;
@@ -365,22 +317,5 @@ void CObjReversibleSelect::Draw()
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	//仮置:チェンジ------------------------
-	/*dst.m_top = 0.0f;
-	dst.m_left = 500.0f;
-	dst.m_right = 540.0;
-	dst.m_bottom = 40.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-	dst.m_top = 0.0f;
-	dst.m_left = 540.0f;
-	dst.m_right = 580.0;
-	dst.m_bottom = 40.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-	dst.m_top = 0.0f;
-	dst.m_left = 580.0f;
-	dst.m_right = 620.0;
-	dst.m_bottom = 40.0;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-	//切り替えが出来たら削除-------------
-	*/
+
 }

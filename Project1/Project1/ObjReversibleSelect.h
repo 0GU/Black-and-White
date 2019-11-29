@@ -69,15 +69,15 @@ using namespace GameL;
 //BlackStar1-------------------------------------
 
 //表示:BlackStar1
-#define HIT_LEFT_BLACKSTAR (268.0f)
-#define HIT_RIGHT_BLACKSTAR (307.0f)
+#define HIT_LEFT_BLACKSTAR (288.0f)
+#define HIT_RIGHT_BLACKSTAR (327.0f)
 
 #define HIT_TOP_BLACKSTAR1 (184.0f)
 #define HIT_BOTTOM_BLACKSTAR1 (225.0f)
 //切り取り:BlackStar
 #define CUT_PIC_TOP_BLACKSTAR (1.5f)
-#define CUT_PIC_LEFT_BLACKSTAR (562.0f)
-#define CUT_PIC_RIGHT_BLACKSTAR (600.0f)
+#define CUT_PIC_LEFT_BLACKSTAR (603.0f)
+#define CUT_PIC_RIGHT_BLACKSTAR (642.0f)
 #define CUT_PIC_BOTTOM_BLACKSTAR (40.0f)
 
 
@@ -106,15 +106,15 @@ using namespace GameL;
 //WhiteStar1-----------------------------------------
 
 //表示:WhiteStar1
-#define HIT_LEFT_WHITESTAR (268.0f)
-#define HIT_RIGHT_WHITESTAR (307.0f)
+#define HIT_LEFT_WHITESTAR (288.0f)
+#define HIT_RIGHT_WHITESTAR (327.0f)
 
 #define HIT_TOP_WHITESTAR1 (184.0f)
 #define HIT_BOTTOM_WHITESTAR1 (225.0f)
 //切り取り:WhiteStar
 #define CUT_PIC_TOP_WHITESTAR (43.0f)
-#define CUT_PIC_LEFT_WHITESTAR (562.0f)
-#define CUT_PIC_RIGHT_WHITESTAR (600.0f)
+#define CUT_PIC_LEFT_WHITESTAR (603.0f)
+#define CUT_PIC_RIGHT_WHITESTAR (642.0f)
 #define CUT_PIC_BOTTOM_WHITESTAR (82.0f)
 
 //WhiteStar2------------------------
@@ -133,6 +133,11 @@ using namespace GameL;
 
 //切り取り:WhiteStar
 
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
 
 
 //オブジェクト：ステージセレクト
@@ -148,5 +153,7 @@ public:
 private:
 	bool Pflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
 	bool Cflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
+	float m_y1;
+	float m_y2;
 
 };

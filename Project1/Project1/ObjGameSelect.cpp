@@ -14,7 +14,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjGameSelect::Init()
 {
-
+	m_y1 = BACKGROUND_TL;
+	m_y2 = BACKGROUND_B;
 }
 
 //アクション
@@ -70,7 +71,13 @@ void CObjGameSelect::Action()
 
 		}
 	}
-
+	//背景スクロール
+	m_y1 -= BACKGROUND_T_GAP;
+	if (m_y1 < -BACKGROUND_B)
+		m_y1 = BACKGROUND_B;
+	m_y2 -= BACKGROUND_T_GAP;
+	if (m_y2 < -BACKGROUND_B)
+		m_y2 = BACKGROUND_B;
 }
 
 //ドロー
@@ -81,6 +88,25 @@ void CObjGameSelect::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
+
+	//背景スクロール
+	src.m_top = BACKGROUND_TL;
+	src.m_left = BACKGROUND_TL;
+	src.m_right = BACKGROUND_R;
+	src.m_bottom = BACKGROUND_B;
+
+	dst.m_top = BACKGROUND_TL + m_y1;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y1;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+	//背景リスタート
+	dst.m_top = BACKGROUND_TL + m_y2;
+	dst.m_left = BACKGROUND_TL;
+	dst.m_right = BACKGROUND_R;
+	dst.m_bottom = BACKGROUND_B + m_y2;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//GAME SELECT表示-----------------------------------------------------
 	src.m_top   = RESOURCE_SCENE_TEXT_T;
