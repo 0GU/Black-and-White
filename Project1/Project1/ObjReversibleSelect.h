@@ -69,8 +69,8 @@ using namespace GameL;
 //BlackStar1-------------------------------------
 
 //表示:BlackStar1
-#define HIT_LEFT_BLACKSTAR (268.0f)
-#define HIT_RIGHT_BLACKSTAR (307.0f)
+#define HIT_LEFT_BLACKSTAR (288.0f)
+#define HIT_RIGHT_BLACKSTAR (327.0f)
 
 #define HIT_TOP_BLACKSTAR1 (184.0f)
 #define HIT_BOTTOM_BLACKSTAR1 (225.0f)
@@ -106,8 +106,8 @@ using namespace GameL;
 //WhiteStar1-----------------------------------------
 
 //表示:WhiteStar1
-#define HIT_LEFT_WHITESTAR (285.0f)
-#define HIT_RIGHT_WHITESTAR (324.0f)
+#define HIT_LEFT_WHITESTAR (288.0f)
+#define HIT_RIGHT_WHITESTAR (327.0f)
 
 #define HIT_TOP_WHITESTAR1 (184.0f)
 #define HIT_BOTTOM_WHITESTAR1 (225.0f)
@@ -133,6 +133,11 @@ using namespace GameL;
 
 //切り取り:WhiteStar
 
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
 
 
 //オブジェクト：ステージセレクト

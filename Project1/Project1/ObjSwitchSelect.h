@@ -55,6 +55,13 @@ using namespace GameL;
 #define BACKBUTTON_POS_R (125.0f)
 #define BACKBUTTON_POS_B (135.0f)
 
+//切り取り&表示 : 背景
+#define BACKGROUND_TL (0.0f)
+#define BACKGROUND_T_GAP (1.0f)
+#define BACKGROUND_R (800.0f)
+#define BACKGROUND_B (600.0f)
+#define BACKGROUND_B_GAP (599.0f)
+
 //オブジェクト：ステージセレクト
 class CObjSwitchSelect : public CObj
 {

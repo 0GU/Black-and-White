@@ -166,9 +166,13 @@ void CObjReversibleMain::Action()
 			if (count[2] - count[0]==count[1])
 			{
 				flag[4] = true;
-			}
-			Audio::Start(3);
+				Audio::Start(4);
+			}			
 			flag[1] = true;
+			if (flag[4] == false)
+			{
+				Audio::Start(3);
+			}
 		}
 		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_ani_flag==false)	//ゲームオーバー条件を満たした
 		{
@@ -250,7 +254,7 @@ void CObjReversibleMain::Action()
 			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
-			Audio::Start(1);
+			Audio::Start(6);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -267,7 +271,7 @@ void CObjReversibleMain::Action()
 
 			flag[0] = true;
 			//SEを鳴らす
-			Audio::Start(1);
+			Audio::Start(5);
 			while (Input::GetMouButtonL() == true)
 			{
 
@@ -515,8 +519,35 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(str3, 700, 80, 32, f);
 		else if(count[1]<=9)
 			Font::StrDraw(str3, 710, 80, 32, f);
+		//シーン描画:Perfect!---------------------------------------
+
+		if (flag[4] == true)
+		{
+
+
+			src.m_top = 370.0f;
+			src.m_left = 0.0f;
+			src.m_right = 560.0f;
+			src.m_bottom = 491.0f;
+			dst.m_top = 150.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 690.0;
+			dst.m_bottom = 300.0;
+			Draw::Draw(5, &src, &dst, c, 30.0f);
+
+			src.m_top = 490.0f;
+			src.m_left = 0.0f;
+			src.m_right = 560.0f;
+			src.m_bottom = 610.0f;
+			dst.m_top = 370.0f;
+			dst.m_left = 130.0f;
+			dst.m_right = 690.0;
+			dst.m_bottom = 490.0;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+
+		}
 		//シーン描画：GameClear!------------------------------------
-		if (flag[1] == true)
+		else if (flag[1] == true)
 		{
 
 
@@ -592,11 +623,7 @@ void CObjReversibleMain::Draw()
 			dst.m_right = 650.0;
 			dst.m_bottom = 270.0;
 			Draw::Draw(7, &src, &dst, c, 0.0f);
-		}
-		//Perfect表示
-		if (flag[4] == true)
-		{
-			Font::StrDraw(L"Perfect!!", 100, 10, 32, f);
 
-		}
+		}		
+
 }
