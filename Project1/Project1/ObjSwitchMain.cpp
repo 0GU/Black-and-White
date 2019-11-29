@@ -22,7 +22,7 @@ CObjSwitchMain::CObjSwitchMain(int stage)
 void CObjSwitchMain::Init()
 {
 	LoadSPStage(StageSlect, *stage,count);
-	count[2] = count[1];
+	count[INITIAL_CNT_ARRAY_NUM] = count[REMAINING_CNT_ARRAY_NUM];
 	//マップデータをコピー
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
@@ -52,7 +52,7 @@ void CObjSwitchMain::Action()
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
 		 (((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
-		&& flag[1] == false && flag[2] == false && flag[3] == false)
+		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
 	{
 		if (m_change == true)
 		{
@@ -65,7 +65,7 @@ void CObjSwitchMain::Action()
 				Audio::Start(1);
 
 				//Countを減らす
-				count[1]--;
+				count[REMAINING_CNT_ARRAY_NUM]--;
 
 				sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
 				sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
@@ -212,26 +212,26 @@ void CObjSwitchMain::Action()
 		if (SwitchClearCheck(stage) == true)	//クリア条件を満たした
 		{
 			//パーフェクト条件を満たしている
-			if (count[2] - count[0] == count[1])
+			if (count[INITIAL_CNT_ARRAY_NUM] - count[PERFECT_CNT_ARRAY_NUM] == count[REMAINING_CNT_ARRAY_NUM])
 			{
-				flag[4] = true;
+				flag[PERFECT_FLAG] = true;
 				Audio::Start(4);
 			}
 			flag[1] = true;
-			if (flag[4] == false)
+			if (flag[PERFECT_FLAG] == false)
 			{
 				Audio::Start(3);
 			}
 		}
-		else if (SwitchClearCheck(stage) == false && count[1] == 0)		//ゲームオーバー条件を満たした
+		else if (SwitchClearCheck(stage) == false && count[REMAINING_CNT_ARRAY_NUM] == 0)		//ゲームオーバー条件を満たした
 		{
-			flag[2] = true;
+			flag[GAMEOVER_FLAG] = true;
 			Audio::Start(2);
 		}
 	}
 
 	//GameClear時の判定
-	if (flag[1] == true)
+	if (flag[CLEAR_FLAG] == true)
 	{
 		//BGM停止
 		Audio::Stop(0);
@@ -252,7 +252,7 @@ void CObjSwitchMain::Action()
 		}
 	}
 	//GameOver時の判定
-	if (flag[2] == true)
+	if (flag[GAMEOVER_FLAG] == true)
 	{
 	
 		//BGM停止
@@ -265,7 +265,7 @@ void CObjSwitchMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)
 			{
-				count[1] = COUNT;
+				count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//BGM停止
 				Audio::Start(0);
@@ -275,7 +275,7 @@ void CObjSwitchMain::Action()
 				{
 
 				}
-				flag[2] = false;
+				flag[GAMEOVER_FLAG] = false;
 				Audio::Start(0);
 			}
 
@@ -293,7 +293,7 @@ void CObjSwitchMain::Action()
 
 				}
 				Scene::SetScene(new CSceneSwitchSelect());
-				flag[2] = false;
+				flag[GAMEOVER_FLAG] = false;
 			}
 		}
 	}
@@ -301,11 +301,11 @@ void CObjSwitchMain::Action()
 	//リセットボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		RESET_BUTTON_POS_T	  <= y && RESET_BUTTON_POS_T    + BUTTON_SIZE_Y >= y &&
-		flag[1] == false && flag[2] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			count[1] = COUNT;
+			count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(6);
@@ -321,12 +321,12 @@ void CObjSwitchMain::Action()
 	//ヒントボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		HINT_BUTTON_POS_T	  <= y && HINT_BUTTON_POS_T	    + BUTTON_SIZE_Y >= y &&
-		flag[1] == false && flag[2] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
 
-			flag[0] = true;
+			flag[HINT_FLAG] = true;
 			//SEを鳴らす
 			Audio::Start(5);
 			while (Input::GetMouButtonL() == true)
@@ -338,11 +338,11 @@ void CObjSwitchMain::Action()
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
 	if (x >= STAGESELE_BUTTON_POS_L && x <= STAGESELE_BUTTON_POS_L + BUTTON_SIZE_X &&
 		y >= STAGESELE_BUTTON_POS_T && y <= STAGESELE_BUTTON_POS_T + BUTTON_SIZE_Y &&
-		flag[1] == false && flag[2] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
-			flag[3] = true;
+			flag[BACK_SELECT_FLAG] = true;
 
 			//SEを鳴らす
 			Audio::Start(1);
@@ -352,7 +352,7 @@ void CObjSwitchMain::Action()
 			}
 		}
 	}
-	if (flag[3] == true)
+	if (flag[BACK_SELECT_FLAG] == true)
 	{
 		//Yesボタン判定
 		if (x >= YES_BUTTON_POS_L	&& x <= YES_BUTTON_POS_R && 
@@ -385,14 +385,14 @@ void CObjSwitchMain::Action()
 
 				}
 
-				flag[3] = false;
+				flag[BACK_SELECT_FLAG] = false;
 			}
 		}
 	}
 
 	//Perfectフラグの管理
 	Save::Seve();
-	if (flag[1] == true && count[1] == count[0])
+	if (flag[CLEAR_FLAG] == true && count[REMAINING_CNT_ARRAY_NUM] == count[PERFECT_CNT_ARRAY_NUM])
 	{
 		switch (StageSlect)
 		{
@@ -408,7 +408,7 @@ void CObjSwitchMain::Action()
 		}
 	}
 	//Clearフラグの管理
-	if (flag[1] == true)
+	if (flag[CLEAR_FLAG] == true)
 	{
 		switch (StageSlect)
 		{
@@ -556,7 +556,7 @@ void CObjSwitchMain::Draw()
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//ヒントの表示
-	if (flag[0] == true)
+	if (flag[HINT_FLAG] == true)
 	{
 		Font::StrDraw(L"最短手数", HIN_TEXT_POS_X_1, HIN_TEXT_POS_Y_1, HIN_TEXT_SIZE, f);
 		Font::StrDraw(L"6手"	 , HIN_TEXT_POS_X_2, HIN_TEXT_POS_Y_2, HIN_TEXT_SIZE, f);
@@ -595,12 +595,12 @@ void CObjSwitchMain::Draw()
 	wchar_t str[128];
 	swprintf_s(str, L"%d", count[1]);
 
-	if (count[1] >= 10)
+	if (count[REMAINING_CNT_ARRAY_NUM] >= 10)
 		Font::StrDraw(str, CNT_NUM_MANY_POS_X, CNT_NUM_POS_Y, CNT_SIZE, f);
-	else if (count[1] <= 9)
+	else if (count[REMAINING_CNT_ARRAY_NUM] <= 9)
 		Font::StrDraw(str, CNT_NUM_FEW_POS_X, CNT_NUM_POS_Y, CNT_SIZE, f);
 	//シーン描画：PerFect!------------------------------------
-	if (flag[4] == true)
+	if (flag[PERFECT_FLAG] == true)
 	{
 		//PerFect!
 		src.m_top   = CUT_PERFECT_T;
@@ -624,7 +624,7 @@ void CObjSwitchMain::Draw()
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 	//GameClear------------------------------------------
-	else if (flag[1] == true)
+	else if (flag[CLEAR_FLAG] == true)
 	{
 		//Game Clear!!
 		src.m_top   = CUT_GAMECLEAR_T;
@@ -650,7 +650,7 @@ void CObjSwitchMain::Draw()
 	}
 
 	//GameOver------------------------------------
-	if (flag[2] == true)
+	if (flag[GAMEOVER_FLAG] == true)
 	{
 		//GameOver表示
 		src.m_top   = CUT_GAMEOVER_T;
@@ -664,7 +664,7 @@ void CObjSwitchMain::Draw()
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 		//Yes・Noボタン、ステージに戻りますか？の描画
-		if (flag[2] == true || flag[3] == true)
+		if (flag[GAMEOVER_FLAG] == true || flag[BACK_SELECT_FLAG] == true)
 		{
 			//Yesボタン
 			src.m_top   = CUT_YESNO_BUTTON_T;
@@ -685,7 +685,7 @@ void CObjSwitchMain::Draw()
 			Draw::Draw(5, &src, &dst, c, 0.0f);			
 		}
 		//ステージに戻りますか？の描画
-		if (flag[3] == true)
+		if (flag[BACK_SELECT_FLAG] == true)
 		{
 			src.m_top   = CUT_BACKSELECT_T;
 			src.m_left  = CUT_BACKSELECT_L;

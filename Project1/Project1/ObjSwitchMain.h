@@ -11,6 +11,15 @@ resource
 				//変化中黒パネル
 				src.m_top = 96.0f;
 				src.m_left = 0.0f + (m_ani_flame * 96.0f);
+	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
+
+0 hint
+1 clear 
+2 gameover
+3 back select 
+4 perfect
+6
+
 */
 
 #define M_TIME_MAX (3)
@@ -23,16 +32,22 @@ resource
 #define CH_WHITE_PANEL_ID (4)
 #define CH_BLACK_PANEL_ID (5)
 
+#define HINT_FLAG (0)
+#define CLEAR_FLAG (1)
+#define GAMEOVER_FLAG (2)
+#define BACK_SELECT_FLAG (3)
+#define PERFECT_FLAG (4)
+#define PERFECT_CNT_ARRAY_NUM (0)
+#define REMAINING_CNT_ARRAY_NUM (1)
+#define INITIAL_CNT_ARRAY_NUM (2)
+
+
 #define CUT_BACKGROUND_T (0.0f)
 #define CUT_BACKGROUND_L (0.0f)
 #define CUT_BACKGROUND_R (800.0f)
 #define CUT_BACKGROUND_B (600.0f)
-
 #define BUTTON_SIZE_X (120.0f)
 #define BUTTON_SIZE_Y (100.0f)
-
-
-
 #define CUT_BL_WH_PANEL_T (0.0f)
 #define CUT_BL_WH_PANEL_L (0.0f)
 #define CUT_CHANGE_PANEL_T (96.0f)
@@ -147,7 +162,7 @@ private:
 	int stage[5][5];
 	int stage_reset[5][5];
 	int Clear_count;
-	int count[3];  //[0]…PerfectClearcount [1]…Clearcount [2]…Countreset
+	int count[3];  //[0]…PerfectClearcount [1]…残りcount [2]…start時のcount
 	int StageSlect;
 
 	int sx, sy;		//マウスを押した位置を保存
@@ -160,5 +175,5 @@ private:
 	int m_time;
 	float r;		//アニメーションの角度変更用
 
-	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
+	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
 };
