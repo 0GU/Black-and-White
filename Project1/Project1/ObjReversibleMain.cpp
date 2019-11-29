@@ -8,6 +8,71 @@
 #include"GameL\Audio.h"
 #include "Reversiblefunction.h"
 
+//マクロ
+#define INITIALIZE (0)
+#define HIT_PANEL_TOP (60.0f)
+#define HIT_PANEL_LEFT (160.0f)
+#define HIT_PANEL_RIGHT (640.0f)
+#define HIT_PANEL_BOTTOM (540.0f)
+#define PANEL_SIZE_X (96.0f)
+#define PANEL_SIZE_Y (96.0f)
+#define ANIMATIONPANEL_SIZE_X (96)
+#define ANIMATIONPANEL_SIZE_Y (120)
+#define POSITION_WHITE (120.0)
+#define PANEL_POSITION_CORRECTION (12.0f)
+#define POSITION_CORRECTION (10.0f)
+#define PANEL_TOP (0.0f)
+#define PANEL_LEFT (0.0f)
+#define ARRAY_SIZE_TOP (0)
+#define ARRAY_SIZE_LEFT (0)
+#define ARRAY_SIZE_RIGHT (4)
+#define ARRAY_SIZE_BOTTOM (4)
+#define WHITE_PANEL (0)
+#define BLACK_PANEL (1)
+#define WHITE_PANEL_REVERSAL (2)
+#define BLACK_PANEL_REVERSAL (3)
+#define STAGE_SELECT_TOP (370.0f)
+#define STAGE_SELECT_LEFT (130.0f)
+#define STAGE_SELECT_RIGHT (690.0f)
+#define STAGE_SELECT_BOTTOM (490.0f)
+#define YES_BUTTON_TOP (370.0f)
+#define YES_BUTTON_LEFT (130.0f)
+#define YES_BUTTON_RIGHT (370.0f)
+#define YES_BUTTON_BOTTOM (490.0f)
+#define NO_BUTTON_TOP (370.0f)
+#define NO_BUTTON_LEFT (410.0f)
+#define NO_BUTTON_RIGHT (650.0f)
+#define NO_BUTTON_BOTTOM (490.0f)
+#define RESET_BUTTON_TOP (430.0f)
+#define RESET_BUTTON_LEFT (650.0f)
+#define RESET_BUTTON_RIGHT (770.0f)
+#define RESET_BUTTON_BOTTOM (530.0f)
+#define HINT_BUTTON_TOP (250.0f)
+#define HINT_BUTTON_LEFT (650.0f)
+#define HINT_BUTTON_RIGHT (770.0f)
+#define HINT_BUTTON_BOTTOM (350.0f)
+#define SELECT_BUTTON_TOP (60.0f)
+#define SELECT_BUTTON_LEFT (30.0f)
+#define SELECT_BUTTON_RIGHT (130.0f)
+#define SELECT_BUTTON_BOTTOM (160.0f)
+#define SRC_BACKGROUND_TOP  (0.0f)
+#define SRC_BACKGROUND_LEFT  (0.0f)
+#define SRC_BACKGROUND_RIGHT (800.0f)
+#define SRC_BACKGROUND_BOTTOM  (600.0f)
+#define DST_BACKGROUND_TOP  (0.0f)
+#define DST_BACKGROUND_LEFT  (0.0f)
+#define DST_BACKGROUND_RIGHT  (800.0f)
+#define DST_BACKGROUND_BOTTOM  (600.0f)
+#define SRC_HINT_TOP  (0.0f)
+#define SRC_HINT_LEFT  (0.0f)
+#define SRC_HINT_RIGHT (120.0f)
+#define SRC_HINT_BOTTOM  (100.0f)
+#define SRC_RESET_TOP  (0.0f)
+#define SRC_RESET_LEFT  (0.0f)
+#define SRC_RESET_RIGHT (120.0f)
+#define SRC_RESET_BOTTOM  (100.0f)
+
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -31,21 +96,23 @@ void CObjReversibleMain::Init()
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 	
 	//フラグを初期化
-	bool flag_set[5] =
-	{ false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(5));
+	bool flag_set[6] =
+	{ false,false,false,false,false,false};
+	memcpy(flag, flag_set, sizeof(bool)*(6));
 
-	m_ani_flame = 0;
-	m_time = 0;
+	m_ani_flame = INITIALIZE;
+	m_time = INITIALIZE;
 	m_ani_flag = false;
-	sx = 0;
-	sy = 0;
+	sx = INITIALIZE;
+	sy = INITIALIZE;
+	lx = INITIALIZE;
+	ly = INITIALIZE;
 }
 
 //アクション
 void CObjReversibleMain::Action()
 {
-	int lx=0, ly=0;//反転処理用変数
+	
 
 	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
@@ -54,7 +121,8 @@ void CObjReversibleMain::Action()
 	
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
-	if (160 <= x && 640 >= x && 60 <= y && 540 >= y && flag[1] == false && flag[2] == false && flag[3] == false)
+	if (HIT_PANEL_LEFT <= x && HIT_PANEL_RIGHT >= x && HIT_PANEL_TOP <= y && HIT_PANEL_BOTTOM >= y &&
+		flag[1] == false && flag[2] == false && flag[3] == false)
 	{
 		if (m_ani_flag == false)
 		{
@@ -66,24 +134,24 @@ void CObjReversibleMain::Action()
 				//Countを減らす
 				count[1]--;
 
-				sy = (y - 60) / 96;   //クリック時のy座標を配列で使えるように直す
-				sx = (x - 160) / 96;  //クリック時のx座標を配列で使えるように直す
+				sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
+				sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
 				for (int m = 0; m < 5; m++)
 				{
 					ReversibleProcess(sx, sy,&lx,&ly, m, stage);
 		
 					//反転処理の準備
-					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+					if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
 					{
 						//反転中を示す値に変更する
-						if (stage[ly][lx] == 0)
+						if (stage[ly][lx] == WHITE_PANEL)
 						{
-							stage[ly][lx] = 2;
+							stage[ly][lx] = WHITE_PANEL_REVERSAL;
 						}
-						else if (stage[ly][lx] == 1)
+						else if (stage[ly][lx] == BLACK_PANEL)
 						{
 
-							stage[ly][lx] = 3;
+							stage[ly][lx] = BLACK_PANEL_REVERSAL;
 						}
 					}
 				}
@@ -100,64 +168,66 @@ void CObjReversibleMain::Action()
 	
 	}
 	//反転アニメーション処理------------------------------
-	
-	time_flag = true;//ループ中１回だけタイムを増やす
-
-	for (int m = 0; m < 5; m++)
+	if (flag[4] == false)
 	{
-		ReversibleProcess(sx, sy,&lx,&ly, m, stage);
+		time_flag = true;//ループ中１回だけタイムを増やす
 
-		if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)
+		for (int m = 0; m < 5; m++)
 		{
-			if (stage[ly][lx] == 2)//反転白パネル
-			{
-				//タイムを増やす（ループ中１回のみ）
-				if (time_flag == true)
-				{
-					m_time++;
-					time_flag = false;
-				}
-				//アニメーションを動かす
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}
-				//アニメーションが終了したら黒パネルに変更
-				if (m_ani_flame == 8)
-				{
-					stage[ly][lx] = 1;
-				}
+			ReversibleProcess(sx, sy, &lx, &ly, m, stage);
 
-			}
-			if (stage[ly][lx] == 3)//反転黒パネル
+			if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
 			{
-				//タイムを増やす（ループ中１回のみ）
-				if (time_flag == true)
+				if (stage[ly][lx] == WHITE_PANEL_REVERSAL)//反転白パネル
 				{
-					m_time++;
-					time_flag = false;
+					//タイムを増やす（ループ中１回のみ）
+					if (time_flag == true)
+					{
+						m_time++;
+						time_flag = false;
+					}
+					//アニメーションを動かす
+					if (m_time == 3) {
+						m_ani_flame++;
+						m_time = 0;
+					}
+					//アニメーションが終了したら黒パネルに変更
+					if (m_ani_flame == 8)
+					{
+						stage[ly][lx] = BLACK_PANEL;
+					}
+
 				}
-				//アニメーションを動かす
-				if (m_time == 3) {
-					m_ani_flame++;
-					m_time = 0;
-				}
-				//アニメーションが終了したら白パネルに変更
-				if (m_ani_flame == 8)
+				if (stage[ly][lx] == BLACK_PANEL_REVERSAL)//反転黒パネル
 				{
-					stage[ly][lx] = 0;
+					//タイムを増やす（ループ中１回のみ）
+					if (time_flag == true)
+					{
+						m_time++;
+						time_flag = false;
+					}
+					//アニメーションを動かす
+					if (m_time == 3) {
+						m_ani_flame++;
+						m_time = 0;
+					}
+					//アニメーションが終了したら白パネルに変更
+					if (m_ani_flame == 8)
+					{
+						stage[ly][lx] = WHITE_PANEL;
+					}
+
 				}
 
 			}
 
 		}
-	
 	}
 
 	//反転終了処理
 	if (m_ani_flame == 8)
 	{
-		m_ani_flame = 0;	//初期化
+		m_ani_flame = INITIALIZE;	//初期化
 		m_ani_flag = false;	//パネルを動かせるようにする
 
 		if (ReversibleClearCheck(stage) == true)	//クリア条件を満たした
@@ -182,8 +252,9 @@ void CObjReversibleMain::Action()
 	{
 		//BGM停止
 		Audio::Stop(0);
+		CObjReversibleMain::Reverse();
 		//StageSelectへ戻るボタン判定
-		if (x >= 130 && x <= 690 && y >= 370 && y <= 490)
+		if (x >= STAGE_SELECT_LEFT && x <= STAGE_SELECT_RIGHT && y >= STAGE_SELECT_TOP && y <= STAGE_SELECT_BOTTOM)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
@@ -205,7 +276,7 @@ void CObjReversibleMain::Action()
 		//BGM停止
 		Audio::Stop(0);
 		//Yesボタン判定
-		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
@@ -223,7 +294,7 @@ void CObjReversibleMain::Action()
 			}
 		}
 		//Noボタン判定
-		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM)
 		{
 
 			if (Input::GetMouButtonL() == true)
@@ -243,7 +314,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定-------------------------------------------------------------
-	if (650 <= x && 770 >= x && 430 <= y && 530 >= y && flag[1] == false && flag[2] == false&& m_ani_flame == 0)
+	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false&& m_ani_flame == 0)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -260,7 +331,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//ヒントボタン当たり判定----------------------------------------------------------------
-	if (650 <= x && 770 >= x && 250 <= y && 350 >= y && flag[1] == false && flag[2] == false)
+	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT>= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -276,7 +347,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
-	if (x >= 30 && x <= 130 && y >= 60 && y <= 160 && flag[1] == false && flag[2] == false)
+	if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM && flag[1] == false && flag[2] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -294,7 +365,7 @@ void CObjReversibleMain::Action()
 	{
 
 		//Yesボタン判定
-		if (x >= 130 && x <= 370 && y >= 370 && y <= 490)
+		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM)
 		{
 			if (Input::GetMouButtonL() == true)
 			{
@@ -309,7 +380,7 @@ void CObjReversibleMain::Action()
 			}
 		}
 		//Noボタン判定
-		if (x >= 410 && x <= 650 && y >= 370 && y <= 490)
+		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM)
 		{
 
 			if (Input::GetMouButtonL() == true)
@@ -377,23 +448,16 @@ void CObjReversibleMain::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//背景表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 800.0f;
-	src.m_bottom = 600.0f;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0;
-	dst.m_bottom = 600.0;
+	src.m_top = SRC_BACKGROUND_TOP;
+	src.m_left = SRC_BACKGROUND_LEFT;
+	src.m_right = SRC_BACKGROUND_RIGHT;
+	src.m_bottom = SRC_BACKGROUND_BOTTOM;
+	dst.m_top = DST_BACKGROUND_TOP;
+	dst.m_left = DST_BACKGROUND_LEFT;
+	dst.m_right = DST_BACKGROUND_RIGHT;
+	dst.m_bottom = DST_BACKGROUND_BOTTOM;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	//マップチップによるblock設置
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 96.0f;
-	src.m_bottom = 96.0f;
-	
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
@@ -404,63 +468,63 @@ void CObjReversibleMain::Draw()
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			
-				//表示位置の設定
-				dst.m_top = i * 96.0f+60.0f-12.0f;
-				dst.m_left = j * 96.0f+160.0f;
-				dst.m_right = dst.m_left + 96.0;
-				dst.m_bottom = dst.m_top + 120.0;
-				if (stage[i][j] == 0)
-				{
-					src.m_top = 120.0;
-					src.m_left = 0.0f;
-					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;
-					//白パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
-				}
-				else if (stage[i][j] == 1)
-				{
-					src.m_top = 0.0f ;
-					src.m_left = 0.0f;
-					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;
-					//黒パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
-				}
-				if (stage[i][j] == 2)
-				{
-					src.m_top = 120.0f- (AniData[m_ani_flame]/4)*120;
-					src.m_left = 96.0f +( AniData[m_ani_flame]%4) * 96;
-					src.m_right = src.m_left-96.0f;
-					src.m_bottom = 120.0f + src.m_top;
-					//反転白パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
-				}
-				else if (stage[i][j] == 3)
-				{
-					src.m_top = 0.0f+ (AniData[m_ani_flame]/4)*120;
-					src.m_left = 0.0f +( AniData[m_ani_flame]%4) * 96;
-					src.m_right = 96.0f + src.m_left;
-					src.m_bottom = 120.0f + src.m_top;
-					//反転黒パネル
-					Draw::Draw(6, &src, &dst, c, 0.0f);
-				}
-			
+
+			//表示位置の設定
+			dst.m_top = i * PANEL_SIZE_Y + HIT_PANEL_TOP - PANEL_POSITION_CORRECTION;
+			dst.m_left = j * PANEL_SIZE_X + HIT_PANEL_LEFT;
+			dst.m_right = dst.m_left + ANIMATIONPANEL_SIZE_X;
+			dst.m_bottom = dst.m_top + ANIMATIONPANEL_SIZE_Y;
+			if (stage[i][j] == WHITE_PANEL)
+			{
+				src.m_top = POSITION_WHITE;
+				src.m_left = PANEL_TOP;
+				src.m_right = ANIMATIONPANEL_SIZE_X + src.m_left;
+				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
+				//白パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == BLACK_PANEL)
+			{
+				src.m_top = PANEL_TOP;
+				src.m_left = PANEL_TOP;
+				src.m_right = ANIMATIONPANEL_SIZE_X + src.m_left;
+				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
+				//黒パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+			if (stage[i][j] == WHITE_PANEL_REVERSAL)
+			{
+				src.m_top = POSITION_WHITE - (AniData[m_ani_flame] / 4)*ANIMATIONPANEL_SIZE_Y;
+				src.m_left = ANIMATIONPANEL_SIZE_X + (AniData[m_ani_flame] % 4) * ANIMATIONPANEL_SIZE_X;
+				src.m_right = src.m_left - ANIMATIONPANEL_SIZE_X;
+				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
+				//反転白パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == BLACK_PANEL_REVERSAL)
+			{
+				src.m_top = PANEL_TOP + (AniData[m_ani_flame] / 4)*ANIMATIONPANEL_SIZE_Y;
+				src.m_left = PANEL_LEFT + (AniData[m_ani_flame] % 4) * ANIMATIONPANEL_SIZE_X;
+				src.m_right = ANIMATIONPANEL_SIZE_X + src.m_left;
+				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
+				//反転黒パネル
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
+
 		}
 	}
 		//ヒントボタン-----------------------------------------------
 		//切り取り
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 120.0f;
-		src.m_bottom = 100.0f;
+		src.m_top = SRC_HINT_TOP;
+		src.m_left = SRC_HINT_LEFT;
+		src.m_right = SRC_HINT_RIGHT;
+		src.m_bottom = SRC_HINT_BOTTOM;
 		//表示
 		//プログラムの問題でx値を10fずらしてます
-		dst.m_top = 250.0f;
-		dst.m_left = 660.0f;
-		dst.m_right = 780.0;
-		dst.m_bottom = 350.0f;
+		dst.m_top = HINT_BUTTON_TOP;
+		dst.m_left = HINT_BUTTON_LEFT+POSITION_CORRECTION;
+		dst.m_right = HINT_BUTTON_RIGHT+POSITION_CORRECTION;
+		dst.m_bottom = HINT_BUTTON_BOTTOM;
 		Draw::Draw(3, &src, &dst, c, 0.0f);
 
 		//ヒントの表示
@@ -519,7 +583,7 @@ void CObjReversibleMain::Draw()
 		if (flag[1] == true)
 		{
 
-
+			//GameClear
 				src.m_top = 249.0f;
 				src.m_left = 0.0f;
 				src.m_right = 560.0f;
@@ -529,7 +593,7 @@ void CObjReversibleMain::Draw()
 				dst.m_right = 690.0;
 				dst.m_bottom = 270.0;
 				Draw::Draw(5, &src, &dst, c, 0.0f);
-
+			//StageSelectへ戻る
 				src.m_top = 490.0f;
 				src.m_left = 0.0f;
 				src.m_right = 560.0f;
@@ -559,6 +623,7 @@ void CObjReversibleMain::Draw()
 		//Yes・Noボタンの描画
 		if (flag[2] == true || flag[3] == true)
 		{
+			//Yes
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
 			src.m_right = 240.0f;
@@ -568,7 +633,7 @@ void CObjReversibleMain::Draw()
 			dst.m_right = 370.0;
 			dst.m_bottom = 490.0;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
-
+			//NO
 			src.m_top = 820.0f;
 			src.m_left = 239.0f;
 			src.m_right = 479.0f;
@@ -599,4 +664,77 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(L"Perfect!!", 100, 10, 32, f);
 
 		}
+}
+
+void CObjReversibleMain::Reverse()
+{
+	if (flag[4] == true)
+	{
+		if (flag[5]==false)
+		{
+			LoadRPStage(99, *stage, count);
+			flag[5] = true;
+		}
+		time_flag = true;//ループ中１回だけタイムを増やす
+
+		for (int m = 0; m < 5; m++)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+
+
+
+
+				if (stage[m][i] == WHITE_PANEL_REVERSAL)//反転白パネル
+				{
+					//タイムを増やす（ループ中１回のみ）
+					if (time_flag == true)
+					{
+						m_time++;
+						time_flag = false;
+					}
+					//アニメーションを動かす
+					if (m_time == 3) {
+						m_ani_flame++;
+						m_time = 0;
+					}
+					//アニメーションが終了したら黒パネルに変更
+					if (m_ani_flame == 8)
+					{
+						stage[m][i] = BLACK_PANEL_REVERSAL;
+					}
+
+				}
+				else if (stage[m][i] == BLACK_PANEL_REVERSAL)//反転黒パネル
+				{
+					//タイムを増やす（ループ中１回のみ）
+					if (time_flag == true)
+					{
+						m_time++;
+						time_flag = false;
+					}
+					//アニメーションを動かす
+					if (m_time ==3) {
+						m_ani_flame++;
+						m_time = 0;
+					}
+					//アニメーションが終了したら白パネルに変更
+					if (m_ani_flame == 8)
+					{
+						stage[m][i] = WHITE_PANEL_REVERSAL;
+					}
+
+				}
+			}
+
+
+		}
+
+		//反転終了処理
+		if (m_ani_flame == 8)
+		{
+			m_ani_flame = INITIALIZE;	//初期化
+			
+		}
+	}
 }

@@ -71,9 +71,21 @@ void LoadRPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count3[2] = { 10,25 };
 
+	int Stage99[5][5] =
+	{
+	{3,3,3,3,3},
+	{3,3,3,3,3},
+	{3,3,3,3,3},
+	{3,3,3,3,3},
+	{3,3,3,3,3},
+	};
+
 	//指定されたステージデータのコピー
 	switch (StaNum)
 	{
+	case 99:
+		memcpy(Stage, Stage99, sizeof(int)*(5 * 5));
+		break;
 	case 1:
 		memcpy(Stage, Stage1, sizeof(int)*(5 * 5));
 		memcpy(Count, Count1, sizeof(int) * 2);

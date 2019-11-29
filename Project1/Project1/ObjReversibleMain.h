@@ -13,6 +13,7 @@ public:
 	void Init();    //イニシャライズ
 	void Action();  //アクション
 	void Draw();    //ドロー
+	void Reverse();
 	float x, y;
 	
 
@@ -31,6 +32,7 @@ private:
 	int m_time;
 
 	int sx, sy;
+	int lx, ly;//反転処理用変数
 	//フラグ管理用
-	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ [6]…Perfectフラグ
+	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ [4]…Perfectフラグ
 };
