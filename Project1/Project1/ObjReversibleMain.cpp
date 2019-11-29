@@ -691,7 +691,7 @@ void CObjReversibleMain::Draw()
 
 		}		
 
-		}
+		
 }
 
 void CObjReversibleMain::Reverse()
