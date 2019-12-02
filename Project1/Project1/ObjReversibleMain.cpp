@@ -318,7 +318,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定-------------------------------------------------------------
-	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false&& m_ani_flame == 0)
+	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false&& flag[3] == false && m_ani_flame == 0)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -335,7 +335,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//ヒントボタン当たり判定----------------------------------------------------------------
-	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT>= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false)
+	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT>= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false )
 	{
 		if (Input::GetMouButtonL() == true)
 		{
