@@ -61,10 +61,10 @@ using namespace GameL;
 #define HIT_BOTTOM_SCENEBACK (135.0f)
 
 //êÿÇËéÊÇË:BackPic
-#define CUT_PIC_TOP_SCENEBACK (139.0f)
-#define CUT_PIC_LEFT_SCENEBACK (559.0f)
-#define CUT_PIC_RIGHT_SCENEBACK (679.0f)
-#define CUT_PIC_BOTTOM_SCENEBACK (239.0f)
+#define CUT_PIC_TOP_SCENEBACK (0.0f)
+#define CUT_PIC_LEFT_SCENEBACK (727.0f)
+#define CUT_PIC_RIGHT_SCENEBACK (849.0f)
+#define CUT_PIC_BOTTOM_SCENEBACK (102.0f)
 
 //BlackStar1-------------------------------------
 
