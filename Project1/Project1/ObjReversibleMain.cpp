@@ -112,13 +112,13 @@ void CObjReversibleMain::Init()
 //アクション
 void CObjReversibleMain::Action()
 {
-	
+
 
 	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-	
+
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (HIT_PANEL_LEFT <= x && HIT_PANEL_RIGHT >= x && HIT_PANEL_TOP <= y && HIT_PANEL_BOTTOM >= y &&
@@ -138,8 +138,8 @@ void CObjReversibleMain::Action()
 				sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
 				for (int m = 0; m < 5; m++)
 				{
-					ReversibleProcess(sx, sy,&lx,&ly, m, stage);
-		
+					ReversibleProcess(sx, sy, &lx, &ly, m, stage);
+
 					//反転処理の準備
 					if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
 					{
@@ -160,12 +160,12 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				
+
 			}
 		}
 
-	
-	
+
+
 	}
 	//反転アニメーション処理------------------------------
 	if (flag[4] == false)
@@ -233,18 +233,18 @@ void CObjReversibleMain::Action()
 		if (ReversibleClearCheck(stage) == true)	//クリア条件を満たした
 		{
 			//パーフェクト条件を満たしている
-			if (count[2] - count[0]==count[1])
+			if (count[2] - count[0] == count[1])
 			{
 				flag[4] = true;
 				Audio::Start(4);
-			}			
+			}
 			flag[1] = true;
 			if (flag[4] == false)
 			{
 				Audio::Start(3);
 			}
 		}
-		else if (ReversibleClearCheck(stage) == false && count[1] == 0&&m_ani_flag==false)	//ゲームオーバー条件を満たした
+		else if (ReversibleClearCheck(stage) == false && count[1] == 0 && m_ani_flag == false)	//ゲームオーバー条件を満たした
 		{
 			flag[2] = true;
 			Audio::Start(2);
@@ -318,7 +318,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//リセットボタン当たり判定-------------------------------------------------------------
-	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false&& flag[3] == false && m_ani_flame == 0)
+	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -335,7 +335,7 @@ void CObjReversibleMain::Action()
 	}
 
 	//ヒントボタン当たり判定----------------------------------------------------------------
-	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT>= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false )
+	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false)
 	{
 		if (Input::GetMouButtonL() == true)
 		{
@@ -359,10 +359,10 @@ void CObjReversibleMain::Action()
 
 			//SEを鳴らす
 			Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
+			while (Input::GetMouButtonL() == true)
+			{
 
-				}
+			}
 		}
 	}
 	if (flag[3] == true)
@@ -404,7 +404,7 @@ void CObjReversibleMain::Action()
 
 	//Perfectフラグの管理
 	Save::Seve();
-	if (flag[1] == true && flag[4]==true)
+	if (flag[1] == true && flag[4] == true)
 	{
 		switch (StageSlect)
 		{
