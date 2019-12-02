@@ -658,7 +658,7 @@ void CObjReversibleMain::Draw()
 			src.m_top = 820.0f;
 			src.m_left = 0.0f;
 			src.m_right = 240.0f;
-			src.m_bottom = 939.0f;
+			src.m_bottom = 940.0f;
 			dst.m_top = 370.0f;
 			dst.m_left = 130.0f;
 			dst.m_right = 370.0;
