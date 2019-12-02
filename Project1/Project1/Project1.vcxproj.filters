@@ -145,7 +145,7 @@
       <Filter>ソース ファイル\ObjMouse</Filter>
     </ClInclude>
     <ClInclude Include="SceneSwitchMain.h">
-      <Filter>ソース ファイル\Switch Select</Filter>
+      <Filter>ソース ファイル\Switch Panel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
