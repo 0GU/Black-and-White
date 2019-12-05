@@ -173,14 +173,14 @@ void CObjReversibleSelect::Draw()
 	dst.m_left = BACKGROUND_TL;
 	dst.m_right = BACKGROUND_R;
 	dst.m_bottom = BACKGROUND_B + m_y1;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//îwåiÉäÉXÉ^Å[Ég
 	dst.m_top = BACKGROUND_TL + m_y2;
 	dst.m_left = BACKGROUND_TL;
 	dst.m_right = BACKGROUND_R;
 	dst.m_bottom = BACKGROUND_B + m_y2;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//Stage1ÇÃï`âÊ
 	src.m_top = CUT_PIC_TOP_RP1;
@@ -191,7 +191,7 @@ void CObjReversibleSelect::Draw()
 	dst.m_left = HIT_LEFT_RP;
 	dst.m_right = HIT_RIGHT_RP;
 	dst.m_bottom = HIT_BOTTOM_RP1;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//Stage2ÇÃï`âÊ
 	if (Cflag[0] == true)
@@ -204,7 +204,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP;
 		dst.m_right = HIT_RIGHT_RP;
 		dst.m_bottom = HIT_BOTTOM_RP2;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage3ÇÃï`âÊ
 	if (Cflag[1] == true)
@@ -217,7 +217,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP;
 		dst.m_right = HIT_RIGHT_RP;
 		dst.m_bottom = HIT_BOTTOM_RP3;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 
 	//ñﬂÇÈÉ{É^Éì
@@ -229,7 +229,7 @@ void CObjReversibleSelect::Draw()
 	dst.m_left = HIT_LEFT_SCENEBACK;
 	dst.m_right = HIT_RIGHT_SCENEBACK;
 	dst.m_bottom = HIT_BOTTOM_SCENEBACK;
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 
 	//çïêØÇÃï`âÊ---------------------------------------------------------------------------
