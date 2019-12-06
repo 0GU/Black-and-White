@@ -289,14 +289,14 @@ void CObjGallery::Draw()
 			dst.m_right = GRAPHIC_RIGHT + m_scroll;
 			dst.m_bottom = GRAPHIC_BOTTOM;
 		}
-		else if(GFlag[0] == true)
+		else if (GFlag[0] == true)
 		{
 			dst.m_top = 0.0f;
 			dst.m_left = 0.0f + m_scroll;
 			dst.m_right = 800.0f + m_scroll;
 			dst.m_bottom = 600.0f;
 		}
-		Draw::Draw(3, &src, &dst, c, 0.0f); 
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	else
 	{
@@ -362,5 +362,5 @@ void CObjGallery::Draw()
 		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
 		Font::StrDraw(L"ëSÇƒPerfectíBê¨", 160 + m_scroll, 400, 64, c);
 
-
+	}
 }
