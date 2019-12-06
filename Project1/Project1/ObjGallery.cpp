@@ -157,91 +157,106 @@ void CObjGallery::Draw()
 	if (Gright == 1 && scroll_flag == false)
 	{
 		//右矢印ボタン
-		src.m_top   = CUT_RIGHTARROW_TOP;
-		src.m_left  = CUT_RIGHTARROW_LEFT;
+		src.m_top = CUT_RIGHTARROW_TOP;
+		src.m_left = CUT_RIGHTARROW_LEFT;
 		src.m_right = CUT_RIGHTARROW_RIGHT;
-		src.m_bottom= CUT_RIGHTARROW_BOTTOM;
-		dst.m_top   = HIT_RIGHTARROW_TOP;
-		dst.m_left  = HIT_RIGHTARROW_LEFT;
+		src.m_bottom = CUT_RIGHTARROW_BOTTOM;
+		dst.m_top = HIT_RIGHTARROW_TOP;
+		dst.m_left = HIT_RIGHTARROW_LEFT;
 		dst.m_right = HIT_RIGHTARROW_RIGHT;
-		dst.m_bottom= HIT_RIGHTARROW_BOTTOM;
+		dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	
+
 	//仮枠
-	src.m_top   = CUT_GRAPHIC_TOP;
-	src.m_left  = CUT_GRAPHIC_LEFT;
+	src.m_top = CUT_GRAPHIC_TOP;
+	src.m_left = CUT_GRAPHIC_LEFT;
 	src.m_right = CUT_GRAPHIC_RIGHT;
-	src.m_bottom= CUT_GRAPHIC_BOTTOM;
-	dst.m_top   = GRAPHIC_TOP;
-	dst.m_left  = GRAPHIC_LEFT+m_scroll;
-	dst.m_right = GRAPHIC_RIGHT+m_scroll;
-	dst.m_bottom= GRAPHIC_BOTTOM;
+	src.m_bottom = CUT_GRAPHIC_BOTTOM;
+	dst.m_top = GRAPHIC_TOP;
+	dst.m_left = GRAPHIC_LEFT + m_scroll;
+	dst.m_right = GRAPHIC_RIGHT + m_scroll;
+	dst.m_bottom = GRAPHIC_BOTTOM;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+	//仮枠
+	src.m_top = CUT_GRAPHIC_TOP;
+	src.m_left = CUT_GRAPHIC_LEFT;
+	src.m_right = CUT_GRAPHIC_RIGHT;
+	src.m_bottom = CUT_GRAPHIC_BOTTOM;
+	dst.m_top = GRAPHIC_TOP;
+	dst.m_left = GRAPHIC_LEFT + SCROLL_DISTANCE + m_scroll;
+	dst.m_right = GRAPHIC_RIGHT + SCROLL_DISTANCE + m_scroll;
+	dst.m_bottom = GRAPHIC_BOTTOM;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//仮表示
-	if (SFlag[0]==true && SFlag[1] == true && SFlag[2] == true)
+	if (SFlag[0] == true && SFlag[1] == true && SFlag[2] == true)
 	{
 		//ギャラリー開放(仮)
-		src.m_top   = 0.0f;
-		src.m_left  = 559.0f;
+		src.m_top = 0.0f;
+		src.m_left = 559.0f;
 		src.m_right = 639.0f;
-		src.m_bottom= 140.0f;
-		dst.m_top   = 245.0f;
-		dst.m_left  = 300.0f+m_scroll;
-		dst.m_right = 375.0f+m_scroll;
-		dst.m_bottom= 385.0f;
+		src.m_bottom = 140.0f;
+		dst.m_top = 245.0f;
+		dst.m_left = 300.0f + m_scroll;
+		dst.m_right = 375.0f + m_scroll;
+		dst.m_bottom = 385.0f;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
+	else
+	{
+		Font::StrDraw(L"解放条件", 280 + SCROLL_DISTANCE + m_scroll, 100, 64, c);
+		Font::StrDraw(L"Switch Panel", 200 + SCROLL_DISTANCE + m_scroll, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + SCROLL_DISTANCE + m_scroll, 400, 64, c);
 	}
 
 	if (Gleft == 1 && scroll_flag == false)
 	{
+
 		//左矢印ボタン
-		src.m_top   = CUT_LEFTARROW_TOP;
-		src.m_left  = CUT_LEFTARROW_LEFT;
+		src.m_top = CUT_LEFTARROW_TOP;
+		src.m_left = CUT_LEFTARROW_LEFT;
 		src.m_right = CUT_LEFTARROW_RIGHT;
-		src.m_bottom= CUT_LEFTARROW_BOTTOM;
-		dst.m_top   = HIT_LEFTARROW_TOP;
-		dst.m_left  = HIT_LEFTARROW_LEFT;
+		src.m_bottom = CUT_LEFTARROW_BOTTOM;
+		dst.m_top = HIT_LEFTARROW_TOP;
+		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
-		dst.m_bottom= HIT_LEFTARROW_BOTTOM;
+		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	
-	//仮枠
-	src.m_top   = CUT_GRAPHIC_TOP;
-	src.m_left  = CUT_GRAPHIC_LEFT;
-	src.m_right = CUT_GRAPHIC_RIGHT;
-	src.m_bottom= CUT_GRAPHIC_BOTTOM;
-	dst.m_top   = GRAPHIC_TOP;
-	dst.m_left  = GRAPHIC_LEFT+ SCROLL_DISTANCE +m_scroll;
-	dst.m_right = GRAPHIC_RIGHT+ SCROLL_DISTANCE +m_scroll;
-	dst.m_bottom= GRAPHIC_BOTTOM;
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+
 
 	//仮表示
 	if (RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
 	{
 		//ギャラリー開放(仮)
-		src.m_top   = 0.0f;
-		src.m_left  = 559.0f;
+		src.m_top = 0.0f;
+		src.m_left = 559.0f;
 		src.m_right = 639.0f;
-		src.m_bottom= 140.0f;
-		dst.m_top   = 245.0f;
-		dst.m_left  = 300.0f+ SCROLL_DISTANCE +m_scroll;
-		dst.m_right = 375.0f+ SCROLL_DISTANCE +m_scroll;
-		dst.m_bottom= 385.0;
+		src.m_bottom = 140.0f;
+		dst.m_top = 245.0f;
+		dst.m_left = 300.0f + SCROLL_DISTANCE + m_scroll;
+		dst.m_right = 375.0f + SCROLL_DISTANCE + m_scroll;
+		dst.m_bottom = 385.0;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
+	else
+	{
+		Font::StrDraw(L"解放条件", 280 + m_scroll, 100, 64, c);
+		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll, 400, 64, c);
 
+	}
 	//戻るボタン
-	src.m_top   = CUT_BACK_TOP;
-	src.m_left  = CUT_BACK_LEFT;
+	src.m_top = CUT_BACK_TOP;
+	src.m_left = CUT_BACK_LEFT;
 	src.m_right = CUT_BACK_RIGHT;
-	src.m_bottom= CUT_BACK_BOTTOM;
-	dst.m_top   = HIT_BACK_TOP;
-	dst.m_left  = HIT_BACK_LEFT;
+	src.m_bottom = CUT_BACK_BOTTOM;
+	dst.m_top = HIT_BACK_TOP;
+	dst.m_left = HIT_BACK_LEFT;
 	dst.m_right = HIT_BACK_RIGHT;
-	dst.m_bottom= HIT_BACK_BOTTOM;
+	dst.m_bottom = HIT_BACK_BOTTOM;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 }

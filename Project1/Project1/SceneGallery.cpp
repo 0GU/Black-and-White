@@ -35,6 +35,8 @@ void CSceneGallery::InitScene()
 
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
+	Audio::LoadAudio(3, L"Sound/‚­‚é‚İŠ„‚èlŒ`ƒMƒƒƒ‰ƒŠ[.wav", SOUND_TYPE::BACK_MUSIC);
+
 
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"gallery‰¼˜g.png",1,TEX_SIZE_512);
@@ -44,6 +46,10 @@ void CSceneGallery::InitScene()
 
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//‰¼
+
+
+
+	Audio::Start(3);
 
 }
 
