@@ -53,7 +53,7 @@ void CObjModeSelect::Action()
 			{
 
 			}
-			Sleep(SELECT_WAIT);
+			//Sleep(SELECT_WAIT);
 			Scene::SetScene(new CSceneGallery());
 		}
 

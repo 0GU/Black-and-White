@@ -226,7 +226,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_ONE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//(2)
 	if (Pflag[1] == false && Cflag[1] == true)
@@ -239,7 +239,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_TWO_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
@@ -252,7 +252,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_THREE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//îíêØÇÃï`âÊ---------------------------------------------------------------------------
 	//(1)
@@ -266,7 +266,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_ONE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[1] == true)
 	{
@@ -279,7 +279,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_TWO_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[2] == true)
 	{
@@ -292,7 +292,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_THREE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 
 }

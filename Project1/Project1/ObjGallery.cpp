@@ -183,7 +183,7 @@ void CObjGallery::Draw()
 	if (SFlag[0]==true && SFlag[1] == true && SFlag[2] == true)
 	{
 		//ギャラリー開放(仮)
-		src.m_top   = 0.0f;
+		/*src.m_top   = 0.0f;
 		src.m_left  = 559.0f;
 		src.m_right = 639.0f;
 		src.m_bottom= 140.0f;
@@ -191,7 +191,16 @@ void CObjGallery::Draw()
 		dst.m_left  = 300.0f+m_scroll;
 		dst.m_right = 375.0f+m_scroll;
 		dst.m_bottom= 385.0f;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(0, &src, &dst, c, 0.0f);*/
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 4032.0f;
+		src.m_bottom = 3024.0f;
+		dst.m_top = GRAPHIC_TOP;
+		dst.m_left = GRAPHIC_LEFT + m_scroll;
+		dst.m_right = GRAPHIC_RIGHT + m_scroll;
+		dst.m_bottom = GRAPHIC_BOTTOM;
+		Draw::Draw(3, &src, &dst, c, 0.0f); 
 	}
 
 	if (Gleft == 1 && scroll_flag == false)
@@ -223,15 +232,25 @@ void CObjGallery::Draw()
 	if (RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
 	{
 		//ギャラリー開放(仮)
-		src.m_top   = 0.0f;
+		/*src.m_top   = 0.0f;
 		src.m_left  = 559.0f;
 		src.m_right = 639.0f;
-		src.m_bottom= 140.0f;
+		src.m_bottom= 140.0f;*/
+		src.m_top   = 0.0f;
+		src.m_left  = 0.0f;
+		src.m_right = 4032.0f;
+		src.m_bottom= 3024.0f;
+		dst.m_top = GRAPHIC_TOP;
+		dst.m_left = GRAPHIC_LEFT + SCROLL_DISTANCE + m_scroll;
+		dst.m_right = GRAPHIC_RIGHT + SCROLL_DISTANCE + m_scroll;
+		dst.m_bottom = GRAPHIC_BOTTOM;
+		/*
 		dst.m_top   = 245.0f;
 		dst.m_left  = 300.0f+ SCROLL_DISTANCE +m_scroll;
 		dst.m_right = 375.0f+ SCROLL_DISTANCE +m_scroll;
-		dst.m_bottom= 385.0;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		dst.m_bottom= 385.0;*/
+		//Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
 
 	//戻るボタン
