@@ -38,6 +38,7 @@ void CSceneGallery::InitScene()
 
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"gallery‰¼˜g.png",1,TEX_SIZE_512);
+	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚è‚Î[‚µ‚Ô‚éƒNƒŠƒA‰æ‘œ.png", 2, TEX_SIZE_512);
 
 	CObjGallery* p = new CObjGallery();
 	Objs::InsertObj(p, OBJ_GALLERY, 1);

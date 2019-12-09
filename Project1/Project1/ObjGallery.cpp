@@ -224,14 +224,14 @@ void CObjGallery::Draw()
 	{
 		//ギャラリー開放(仮)
 		src.m_top   = 0.0f;
-		src.m_left  = 559.0f;
-		src.m_right = 639.0f;
-		src.m_bottom= 140.0f;
-		dst.m_top   = 245.0f;
-		dst.m_left  = 300.0f+ SCROLL_DISTANCE +m_scroll;
-		dst.m_right = 375.0f+ SCROLL_DISTANCE +m_scroll;
-		dst.m_bottom= 385.0;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		src.m_left  = 0.0f;
+		src.m_right = 1024.0f;
+		src.m_bottom= 1024.0f;
+		dst.m_top   = 51.0f;
+		dst.m_left  = 146.0f+ SCROLL_DISTANCE +m_scroll;
+		dst.m_right = 656.0f+ SCROLL_DISTANCE +m_scroll;
+		dst.m_bottom= 559.0;
+		Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
 
 	//戻るボタン
