@@ -33,7 +33,7 @@ void CObjMouse::Action()
 void CObjMouse::Draw()
 {	
 	float c[4] = { 0.5,1,1,1 };
-
+	/*
 	//仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
@@ -42,5 +42,5 @@ void CObjMouse::Draw()
 	if (m_mou_l == true)
 		Font::StrDraw(L"L=押してる", 20, 60, 24, c);
 	else
-		Font::StrDraw(L"L=押してない", 20, 60, 24, c);
+		Font::StrDraw(L"L=押してない", 20, 60, 24, c);*/
 }
