@@ -53,7 +53,7 @@ void CObjModeSelect::Action()
 			{
 
 			}
-			Sleep(SELECT_WAIT);
+			//Sleep(SELECT_WAIT);
 			Scene::SetScene(new CSceneGallery());
 		}
 
@@ -119,6 +119,16 @@ void CObjModeSelect::Draw()
 	dst.m_bottom = HIT_BOTTOM_SELECT;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
+	//‚Ü‚Æ‚ß•\Ž¦
+	src.m_top = 456.0f;
+	src.m_left = 1.0f;
+	src.m_right = 658.0;
+	src.m_bottom = 543.0;
+	dst.m_top = 20.0f;
+	dst.m_left = 80.0f;
+	dst.m_right = 740.0;
+	dst.m_bottom = 110.0;
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 
 }

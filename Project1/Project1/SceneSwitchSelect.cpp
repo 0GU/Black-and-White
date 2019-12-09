@@ -37,6 +37,7 @@ void CSceneSwitchSelect::InitScene()
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/kuroen(test).png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 3, TEX_SIZE_1024);
 
 	CObjSwitchSelect* p = new CObjSwitchSelect();
 	Objs::InsertObj(p, OBJ_SWITCHSELECT, 1);

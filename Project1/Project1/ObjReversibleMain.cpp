@@ -8,72 +8,6 @@
 #include"GameL\Audio.h"
 #include "Reversiblefunction.h"
 
-//マクロ
-#define INITIALIZE (0)
-#define HIT_PANEL_TOP (60.0f)
-#define HIT_PANEL_LEFT (160.0f)
-#define HIT_PANEL_RIGHT (640.0f)
-#define HIT_PANEL_BOTTOM (540.0f)
-#define PANEL_SIZE_X (96.0f)
-#define PANEL_SIZE_Y (96.0f)
-#define ANIMATIONPANEL_SIZE_X (96)
-#define ANIMATIONPANEL_SIZE_Y (120)
-#define POSITION_WHITE (120.0)
-#define PANEL_POSITION_CORRECTION (12.0f)
-#define POSITION_CORRECTION (10.0f)
-#define PANEL_TOP (0.0f)
-#define PANEL_LEFT (0.0f)
-#define ARRAY_SIZE_TOP (0)
-#define ARRAY_SIZE_LEFT (0)
-#define ARRAY_SIZE_RIGHT (4)
-#define ARRAY_SIZE_BOTTOM (4)
-#define WHITE_PANEL (0)
-#define BLACK_PANEL (1)
-#define WHITE_PANEL_REVERSAL (2)
-#define BLACK_PANEL_REVERSAL (3)
-#define STAGE_SELECT_TOP (370.0f)
-#define STAGE_SELECT_LEFT (130.0f)
-#define STAGE_SELECT_RIGHT (690.0f)
-#define STAGE_SELECT_BOTTOM (490.0f)
-#define YES_BUTTON_TOP (370.0f)
-#define YES_BUTTON_LEFT (130.0f)
-#define YES_BUTTON_RIGHT (370.0f)
-#define YES_BUTTON_BOTTOM (490.0f)
-#define NO_BUTTON_TOP (370.0f)
-#define NO_BUTTON_LEFT (410.0f)
-#define NO_BUTTON_RIGHT (650.0f)
-#define NO_BUTTON_BOTTOM (490.0f)
-#define RESET_BUTTON_TOP (430.0f)
-#define RESET_BUTTON_LEFT (650.0f)
-#define RESET_BUTTON_RIGHT (770.0f)
-#define RESET_BUTTON_BOTTOM (530.0f)
-#define HINT_BUTTON_TOP (250.0f)
-#define HINT_BUTTON_LEFT (650.0f)
-#define HINT_BUTTON_RIGHT (770.0f)
-#define HINT_BUTTON_BOTTOM (350.0f)
-#define SELECT_BUTTON_TOP (60.0f)
-#define SELECT_BUTTON_LEFT (30.0f)
-#define SELECT_BUTTON_RIGHT (130.0f)
-#define SELECT_BUTTON_BOTTOM (160.0f)
-#define SRC_BACKGROUND_TOP  (0.0f)
-#define SRC_BACKGROUND_LEFT  (0.0f)
-#define SRC_BACKGROUND_RIGHT (800.0f)
-#define SRC_BACKGROUND_BOTTOM  (600.0f)
-#define DST_BACKGROUND_TOP  (0.0f)
-#define DST_BACKGROUND_LEFT  (0.0f)
-#define DST_BACKGROUND_RIGHT  (800.0f)
-#define DST_BACKGROUND_BOTTOM  (600.0f)
-#define SRC_HINT_TOP  (0.0f)
-#define SRC_HINT_LEFT  (0.0f)
-#define SRC_HINT_RIGHT (120.0f)
-#define SRC_HINT_BOTTOM  (100.0f)
-#define SRC_RESET_TOP  (0.0f)
-#define SRC_RESET_LEFT  (0.0f)
-#define SRC_RESET_RIGHT (120.0f)
-#define SRC_RESET_BOTTOM  (100.0f)
-
-
-
 //使用するネームスペース
 using namespace GameL;
 
@@ -128,12 +62,6 @@ void CObjReversibleMain::Action()
 		{
 			if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
 			{
-				//SEを鳴らす
-				Audio::Start(1);
-
-				//Countを減らす
-				count[1]--;
-
 				sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
 				sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
 				for (int m = 0; m < 5; m++)
@@ -159,8 +87,12 @@ void CObjReversibleMain::Action()
 				while (Input::GetMouButtonL() == true)
 				{
 
-				}
 
+				}
+				//SEを鳴らす
+				Audio::Start(1);
+				//Countを減らす
+				count[1]--;
 			}
 		}
 
@@ -450,7 +382,7 @@ void CObjReversibleMain::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
-
+	
 	//背景表示
 	src.m_top = SRC_BACKGROUND_TOP;
 	src.m_left = SRC_BACKGROUND_LEFT;
@@ -467,6 +399,7 @@ void CObjReversibleMain::Draw()
 	wchar_t str1[128];
 	swprintf_s(str1, L"STAGE%d",StageSlect);
 	Font::StrDraw(str1, 30, 470, 36, f);
+	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -524,52 +457,64 @@ void CObjReversibleMain::Draw()
 		src.m_right = SRC_HINT_RIGHT;
 		src.m_bottom = SRC_HINT_BOTTOM;
 		//表示
-		//プログラムの問題でx値を10fずらしてます
-		dst.m_top = HINT_BUTTON_TOP;
-		dst.m_left = HINT_BUTTON_LEFT+POSITION_CORRECTION;
-		dst.m_right = HINT_BUTTON_RIGHT+POSITION_CORRECTION;
-		dst.m_bottom = HINT_BUTTON_BOTTOM;
+		//プログラムの問題でx値を10f,y値を5fずらしてます
+		dst.m_top = HINT_BUTTON_TOP+POSITION_CORRECTION_HEIGHT;
+		dst.m_left = HINT_BUTTON_LEFT+POSITION_CORRECTION_WIDTH;
+		dst.m_right = HINT_BUTTON_RIGHT+POSITION_CORRECTION_WIDTH;
+		dst.m_bottom = HINT_BUTTON_BOTTOM+POSITION_CORRECTION_HEIGHT;
 		Draw::Draw(3, &src, &dst, c, 0.0f);
 
 		//ヒントの表示
 		if (flag[0]==true)
 		{
-			Font::StrDraw(L"最短手数", 20, 260, 32, f);
-
+			if (StageSlect == 1)
+			{
+				Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+				Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+			}
+			else if (StageSlect == 2)
+			{
+				Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+				Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+			}
+			else if (StageSlect == 3)
+			{
 			wchar_t str2[128];
+			Font::StrDraw(L"最短手数", 20, 260, 32, f);
 			swprintf_s(str2, L"%d手", count[0]);
 
-			
+
 			Font::StrDraw(str2,40 , 320, 32, f);
+			
+			}
 			
 		}
 
 		//リセットボタン--------------------------------------------
 		//切り取り
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 120.0f;
-		src.m_bottom = 100.0f;
+		src.m_top = SRC_RESET_TOP;
+		src.m_left = SRC_RESET_LEFT;
+		src.m_right = SRC_RESET_RIGHT;
+		src.m_bottom = SRC_RESET_BOTTOM;
 		//表示
-		//プログラムの問題でx値y値10fずらしています
-		dst.m_top = 440.0f;
-		dst.m_left = 660.0f;
-		dst.m_right = 780.0f;
-		dst.m_bottom = 540.0f;
+		//プログラムの問題でx値10f,y値5fずらしています
+		dst.m_top = RESET_BUTTON_TOP+POSITION_CORRECTION_HEIGHT;
+		dst.m_left = RESET_BUTTON_LEFT + POSITION_CORRECTION_WIDTH;
+		dst.m_right = RESET_BUTTON_RIGHT + POSITION_CORRECTION_WIDTH;
+		dst.m_bottom = RESET_BUTTON_BOTTOM + POSITION_CORRECTION_HEIGHT;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 
 		//StageSelectボタン-----------------------------------------------
 		//切り取り
-		src.m_top = 820.0f;
-		src.m_left = 478.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 920.0f;
+		src.m_top = SRC_SELECT_TOP;
+		src.m_left = SRC_SELECT_LEFT;
+		src.m_right = SRC_SELECT_RIGHT;
+		src.m_bottom = SRC_SELECT_BOTTOM;
 		//表示
-		//プログラムの問題でx値を10fずらしてます
-		dst.m_top = 60.0f;
-		dst.m_left = 30.0f;
-		dst.m_right = 130.0;
-		dst.m_bottom = 160.0f;
+		dst.m_top = SELECT_BUTTON_TOP;
+		dst.m_left = SELECT_BUTTON_LEFT;
+		dst.m_right = SELECT_BUTTON_RIGHT;
+		dst.m_bottom = SELECT_BUTTON_BOTTOM;
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 		//Countの文字表示----------------------------------------------
@@ -588,25 +533,25 @@ void CObjReversibleMain::Draw()
 		if (flag[4] == true)
 		{
 
-
-			src.m_top = 370.0f;
-			src.m_left = 0.0f;
-			src.m_right = 560.0f;
-			src.m_bottom = 491.0f;
-			dst.m_top = 150.0f;
-			dst.m_left = 100.0f;
-			dst.m_right = 690.0;
-			dst.m_bottom = 300.0;
+			//Perfect
+			src.m_top = SRC_PERFECT_TOP;
+			src.m_left = SRC_PERFECT_LEFT;
+			src.m_right = SRC_PERFECT_RIGHT;
+			src.m_bottom = SRC_PERFECT_BOTTOM;
+			dst.m_top = DST_PERFECT_TOP;
+			dst.m_left = DST_PERFECT_LEFT;
+			dst.m_right = DST_PERFECT_RIGHT;
+			dst.m_bottom = DST_PERFECT_BOTTOM;
 			Draw::Draw(5, &src, &dst, c, 30.0f);
-
-			src.m_top = 490.0f;
-			src.m_left = 0.0f;
-			src.m_right = 560.0f;
-			src.m_bottom = 610.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 690.0;
-			dst.m_bottom = 490.0;
+			//StageSelectへ戻る
+			src.m_top = SRC_STAGE_SELECT_TOP;
+			src.m_left = SRC_STAGE_SELECT_LEFT;
+			src.m_right = SRC_STAGE_SELECT_RIGHT;
+			src.m_bottom = SRC_STAGE_SELECT_BOTTOM;
+			dst.m_top = STAGE_SELECT_TOP+5;
+			dst.m_left = STAGE_SELECT_LEFT;
+			dst.m_right = STAGE_SELECT_RIGHT;
+			dst.m_bottom = STAGE_SELECT_BOTTOM+5;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 
 		}
@@ -615,24 +560,24 @@ void CObjReversibleMain::Draw()
 		{
 
 			//GameClear
-				src.m_top = 249.0f;
-				src.m_left = 0.0f;
-				src.m_right = 560.0f;
-				src.m_bottom = 372.0f;
-				dst.m_top = 150.0f;
-				dst.m_left = 130.0f;
-				dst.m_right = 690.0;
-				dst.m_bottom = 270.0;
+				src.m_top = SRC_CLERE_TOP;
+				src.m_left = SRC_CLERE_LEFT;
+				src.m_right = SRC_CLERE_RIGHT;
+				src.m_bottom = SRC_CLERE_BOTTOM;
+				dst.m_top = DST_CLERE_TOP;
+				dst.m_left = DST_CLERE_LEFT;
+				dst.m_right = DST_CLERE_RIGHT;
+				dst.m_bottom = DST_CLERE_BOTTOM;
 				Draw::Draw(5, &src, &dst, c, 0.0f);
 			//StageSelectへ戻る
-				src.m_top = 490.0f;
-				src.m_left = 0.0f;
-				src.m_right = 560.0f;
-				src.m_bottom = 610.0f;
-				dst.m_top = 370.0f;
-				dst.m_left = 130.0f;
-				dst.m_right = 690.0;
-				dst.m_bottom = 490.0;
+				src.m_top = SRC_STAGE_SELECT_TOP;
+				src.m_left = SRC_STAGE_SELECT_LEFT;
+				src.m_right = SRC_STAGE_SELECT_RIGHT;
+				src.m_bottom = SRC_STAGE_SELECT_BOTTOM;
+				dst.m_top = STAGE_SELECT_TOP;
+				dst.m_left = STAGE_SELECT_LEFT;
+				dst.m_right = STAGE_SELECT_RIGHT;
+				dst.m_bottom = STAGE_SELECT_BOTTOM;
 				Draw::Draw(5, &src, &dst, c, 0.0f);
 			
 		}
@@ -641,52 +586,52 @@ void CObjReversibleMain::Draw()
 		if (flag[2] == true)
 		{
 			//GameOver表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 580.0f;
-			src.m_bottom = 250.0f;
-			dst.m_top = 70.0f;
-			dst.m_left = 110.0f;
-			dst.m_right = 690.0;
-			dst.m_bottom = 320.0;
+			src.m_top = SRC_GAMEOVER_TOP;
+			src.m_left = SRC_GAMEOVER_LEFT;
+			src.m_right = SRC_GAMEOVER_RIGHT;
+			src.m_bottom = SRC_GAMEOVER_BOTTOM;
+			dst.m_top = DST_GAMEOVER_TOP;
+			dst.m_left = DST_GAMEOVER_LEFT;
+			dst.m_right = DST_GAMEOVER_RIGHT;
+			dst.m_bottom = DST_GAMEOVER_BOTTOM;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
 		//Yes・Noボタンの描画
 		if (flag[2] == true || flag[3] == true)
 		{
 			//Yes
-			src.m_top = 820.0f;
-			src.m_left = 0.0f;
-			src.m_right = 240.0f;
-			src.m_bottom = 940.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 370.0;
-			dst.m_bottom = 490.0;
+			src.m_top = SRC_YES_TOP;
+			src.m_left = SRC_YES_LEFT;
+			src.m_right = SRC_YES_RIGHT;
+			src.m_bottom = SRC_YES_BOTTOM;
+			dst.m_top = YES_BUTTON_TOP;
+			dst.m_left = YES_BUTTON_LEFT;
+			dst.m_right = YES_BUTTON_RIGHT;
+			dst.m_bottom = YES_BUTTON_BOTTOM;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 			//NO
-			src.m_top = 820.0f;
-			src.m_left = 239.0f;
-			src.m_right = 479.0f;
-			src.m_bottom = 940.0f;
-			dst.m_top = 370.0f;
-			dst.m_left = 410.0f;
-			dst.m_right = 650.0;
-			dst.m_bottom = 490.0;
+			src.m_top = SRC_NO_TOP;
+			src.m_left = SRC_NO_LEFT;
+			src.m_right = SRC_NO_RIGHT;
+			src.m_bottom = SRC_NO_BOTTOM;
+			dst.m_top = NO_BUTTON_TOP;
+			dst.m_left = NO_BUTTON_LEFT;
+			dst.m_right = NO_BUTTON_RIGHT;
+			dst.m_bottom = NO_BUTTON_BOTTOM;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 				
 		}
 		//ステージに戻りますか？の描画
 		if (flag[3] == true)
 		{
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 520.0f;
-			src.m_bottom = 90.0f;
-			dst.m_top = 150.0f;
-			dst.m_left = 130.0f;
-			dst.m_right = 650.0;
-			dst.m_bottom = 270.0;
+			src.m_top = SRC_RETURNSELECT_TOP;
+			src.m_left = SRC_RETURNSELECT_LEFT;
+			src.m_right = SRC_RETURNSELECT_RIGHT;
+			src.m_bottom = SRC_RETURNSELECT_BOTTOM;
+			dst.m_top = DST_RETURNSELECT_TOP;
+			dst.m_left = DST_RETURNSELECT_LEFT;
+			dst.m_right = DST_RETURNSELECT_RIGHT;
+			dst.m_bottom = DST_RETURNSELECT_BOTTOM;
 			Draw::Draw(7, &src, &dst, c, 0.0f);
 
 		}		
@@ -722,7 +667,7 @@ void CObjReversibleMain::Reverse()
 						time_flag = false;
 					}
 					//アニメーションを動かす
-					if (m_time == 3) {
+					if (m_time == 1) {
 						m_ani_flame++;
 						m_time = 0;
 					}
@@ -742,7 +687,7 @@ void CObjReversibleMain::Reverse()
 						time_flag = false;
 					}
 					//アニメーションを動かす
-					if (m_time ==3) {
+					if (m_time ==1) {
 						m_ani_flame++;
 						m_time = 0;
 					}
@@ -762,7 +707,7 @@ void CObjReversibleMain::Reverse()
 		if (m_ani_flame == 8)
 		{
 			m_ani_flame = INITIALIZE;	//初期化
-			
 		}
 	}
+
 }

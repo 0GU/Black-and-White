@@ -160,6 +160,17 @@ void CObjSwitchSelect::Draw()
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
+	//ステージを選択
+	src.m_top = 362;
+	src.m_left = 2;
+	src.m_right = 537;
+	src.m_bottom = 430;	//542x95
+	dst.m_top = 15.0f;
+	dst.m_left = 140.0f;
+	dst.m_right = 690.0f;
+	dst.m_bottom = 135.0;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
+
 	//STAGE1
 	src.m_top = RESOURCE_STAGE1_T;
 	src.m_left = RESOURCE_STAGE_L;
@@ -215,7 +226,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_ONE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//(2)
 	if (Pflag[1] == false && Cflag[1] == true)
@@ -228,7 +239,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_TWO_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
@@ -241,7 +252,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_THREE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	//白星の描画---------------------------------------------------------------------------
 	//(1)
@@ -255,7 +266,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_ONE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[1] == true)
 	{
@@ -268,7 +279,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_TWO_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[2] == true)
 	{
@@ -281,7 +292,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = STAGE_SW_STAR_L;
 		dst.m_right = STAGE_SW_STAR_R;
 		dst.m_bottom = STAGE_SW_STAR_THREE_B;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 	}
 
 }

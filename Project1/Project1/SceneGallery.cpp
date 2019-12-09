@@ -35,16 +35,24 @@ void CSceneGallery::InitScene()
 
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
+	Audio::LoadAudio(3, L"Sound/くるみ割り人形ギャラリー.wav", SOUND_TYPE::BACK_MUSIC);
+
 
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"gallery仮枠.png",1,TEX_SIZE_512);
-	Draw::LoadImage(L"まとめ画像/りばーしぶるクリア画像.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"水族館1.png", 2, TEX_SIZE_4096);
+	Draw::LoadImage(L"太陽2.png", 3, TEX_SIZE_4096);
+	Draw::LoadImage(L"まとめ画像/りばーしぶるクリア画像.png", 4, TEX_SIZE_512);
 
 	CObjGallery* p = new CObjGallery();
 	Objs::InsertObj(p, OBJ_GALLERY, 1);
 
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+
+
+
+	Audio::Start(3);
 
 }
 

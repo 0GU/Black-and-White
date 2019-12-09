@@ -558,8 +558,28 @@ void CObjSwitchMain::Draw()
 	//ヒントの表示
 	if (flag[HINT_FLAG] == true)
 	{
-		Font::StrDraw(L"最短手数", HIN_TEXT_POS_X_1, HIN_TEXT_POS_Y_1, HIN_TEXT_SIZE, f);
-		Font::StrDraw(L"6手"	 , HIN_TEXT_POS_X_2, HIN_TEXT_POS_Y_2, HIN_TEXT_SIZE, f);
+		/*Font::StrDraw(L"最短手数", HIN_TEXT_POS_X_1, HIN_TEXT_POS_Y_1, HIN_TEXT_SIZE, f);
+		Font::StrDraw(L"6手"	 , HIN_TEXT_POS_X_2, HIN_TEXT_POS_Y_2, HIN_TEXT_SIZE, f);*/
+		if (StageSlect == 1)
+		{
+			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+		}
+		else if (StageSlect == 2)
+		{
+			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+		}
+		else if (StageSlect == 3)
+		{
+			wchar_t str2[128];
+			Font::StrDraw(L"最短手数", 20, 260, 32, f);
+			swprintf_s(str2, L"%d手", count[0]);
+
+
+			Font::StrDraw(str2, 40, 320, 32, f);
+
+		}
 	}
 
 	//リセットボタン--------------------------------------------

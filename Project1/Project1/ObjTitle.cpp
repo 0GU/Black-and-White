@@ -88,4 +88,6 @@ void CObjTitle::Draw()
 	dst.m_right = WINDOW_SIZE_X;
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	Font::StrDraw(L"クリックしてスタート！", 230, 500, 32, c);
 }
