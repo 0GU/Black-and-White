@@ -29,6 +29,9 @@ void CObjGallery::Init()
 	m_scroll = 0.0f;
 	speed = 0.0f;
 	scroll_flag = false;
+	m_ani_flame = 0;
+	m_time = 0;
+	mouse_flag = false;
 }
 
 //アクション
@@ -37,6 +40,30 @@ void CObjGallery::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 	
+	if (Input::GetMouButtonL() == true)
+	{
+		mouse_flag = true;
+
+	}
+	if (mouse_flag == true)
+	{
+		//タイムを増やす（ループ中１回のみ）
+		m_time++;
+
+		//アニメーションを動かす
+		if (m_time == 3) {
+			m_ani_flame++;
+			m_time = 0;
+		}
+		//アニメーションが終了したら黒パネルに変更
+		if (m_ani_flame == 4)
+		{
+			m_ani_flame = 0;
+			mouse_flag = false;
+		}
+
+	}
+
 	Save::Open();
 
 	for (int i = 0; i < 3; i++)
@@ -263,4 +290,18 @@ void CObjGallery::Draw()
 	dst.m_right = HIT_BACK_RIGHT;
 	dst.m_bottom= HIT_BACK_BOTTOM;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+	//クリックエフェクト(仮)
+	if (mouse_flag == true)
+	{
+		src.m_top = 40;
+		src.m_left = 800 +(m_ani_flame*32);
+		src.m_right = src.m_left + 32;
+		src.m_bottom = 72;
+		dst.m_top = y - 15;
+		dst.m_left = x - 15;
+		dst.m_right = dst.m_left + 32;
+		dst.m_bottom = dst.m_top + 32;
+		Draw::Draw(4, &src, &dst, c, 0.0f);
+	}
 }

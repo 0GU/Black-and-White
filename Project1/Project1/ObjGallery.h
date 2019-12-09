@@ -69,4 +69,10 @@ private:
 	float m_scroll;//ƒXƒNƒ[ƒ‹‰¼
 	bool scroll_flag;
 	float speed;
+
+	bool time_flag;
+	int m_time;
+	int m_ani_flame;
+	bool m_ani_flag;
+	bool mouse_flag;
 };

@@ -40,6 +40,7 @@ void CSceneGallery::InitScene()
 	Draw::LoadImage(L"gallery仮枠.png",1,TEX_SIZE_512);
 	Draw::LoadImage(L"水族館1.png", 2, TEX_SIZE_4096);
 	Draw::LoadImage(L"太陽2.png", 3, TEX_SIZE_4096);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 4, TEX_SIZE_1024);
 
 	CObjGallery* p = new CObjGallery();
 	Objs::InsertObj(p, OBJ_GALLERY, 1);
