@@ -31,7 +31,7 @@ void CObjMouse::Action()
 }
 //ドロー
 void CObjMouse::Draw()
-{
+{	
 	float c[4] = { 0.5,1,1,1 };
 
 	//仮マウス位置表示
