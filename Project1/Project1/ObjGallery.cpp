@@ -390,28 +390,29 @@ void CObjGallery::Draw()
 		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
 		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll, 400, 64, c);
 
-	//戻るボタン
-	src.m_top   = CUT_BACK_TOP;
-	src.m_left  = CUT_BACK_LEFT;
-	src.m_right = CUT_BACK_RIGHT;
-	src.m_bottom= CUT_BACK_BOTTOM;
-	dst.m_top   = HIT_BACK_TOP;
-	dst.m_left  = HIT_BACK_LEFT;
-	dst.m_right = HIT_BACK_RIGHT;
-	dst.m_bottom= HIT_BACK_BOTTOM;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+		//戻るボタン
+		src.m_top = CUT_BACK_TOP;
+		src.m_left = CUT_BACK_LEFT;
+		src.m_right = CUT_BACK_RIGHT;
+		src.m_bottom = CUT_BACK_BOTTOM;
+		dst.m_top = HIT_BACK_TOP;
+		dst.m_left = HIT_BACK_LEFT;
+		dst.m_right = HIT_BACK_RIGHT;
+		dst.m_bottom = HIT_BACK_BOTTOM;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//クリックエフェクト(仮)
-	if (mouse_flag == true)
-	{
-		src.m_top = 40;
-		src.m_left = 800 +(m_ani_flame*32);
-		src.m_right = src.m_left + 32;
-		src.m_bottom = 72;
-		dst.m_top = y - 15;
-		dst.m_left = x - 15;
-		dst.m_right = dst.m_left + 32;
-		dst.m_bottom = dst.m_top + 32;
-		Draw::Draw(4, &src, &dst, c, 0.0f);
+		//クリックエフェクト(仮)
+		if (mouse_flag == true)
+		{
+			src.m_top = 40;
+			src.m_left = 800 + (m_ani_flame * 32);
+			src.m_right = src.m_left + 32;
+			src.m_bottom = 72;
+			dst.m_top = y - 15;
+			dst.m_left = x - 15;
+			dst.m_right = dst.m_left + 32;
+			dst.m_bottom = dst.m_top + 32;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+		}
 	}
 }
