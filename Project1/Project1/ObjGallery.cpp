@@ -404,14 +404,14 @@ void CObjGallery::Draw()
 		//クリックエフェクト(仮)
 		if (mouse_flag == true)
 		{
-			src.m_top = 40;
-			src.m_left = 800 + (m_ani_flame * 32);
-			src.m_right = src.m_left + 32;
-			src.m_bottom = 72;
-			dst.m_top = y - 15;
-			dst.m_left = x - 15;
-			dst.m_right = dst.m_left + 32;
-			dst.m_bottom = dst.m_top + 32;
+			src.m_top = 72;
+			src.m_left = 800 + (m_ani_flame * 40);
+			src.m_right = src.m_left + 40;
+			src.m_bottom = 112;
+			dst.m_top = y - 19;
+			dst.m_left = x - 19;
+			dst.m_right = dst.m_left + 40;
+			dst.m_bottom = dst.m_top + 40;
 			Draw::Draw(5, &src, &dst, c, 0.0f);
 		}
 	}
