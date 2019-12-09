@@ -381,7 +381,7 @@ void CObjGallery::Draw()
 			dst.m_left = 0.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_right = 800.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_bottom = 600.0f;
-			Draw::Draw(5, &src, &dst, c, 0.0f);
+			Draw::Draw(6, &src, &dst, c, 0.0f);
 			
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
