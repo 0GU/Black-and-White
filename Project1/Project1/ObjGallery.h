@@ -65,6 +65,7 @@ private:
 	int Gleft;
 	bool SFlag[3]; //Switchのフラグ
 	bool RFlag[3]; //Reversibleのフラグ
+	bool GFlag[2]; //Galleryのフラグ
 
 	float m_scroll;//スクロール仮
 	bool scroll_flag;
