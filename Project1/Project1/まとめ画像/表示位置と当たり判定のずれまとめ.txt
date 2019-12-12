@@ -1,0 +1,61 @@
+表示位置ずれをまとめたもの
+
+プログラム上では表示位置、当たり判定共に同じマクロを使っているのに、
+表示位置にずれが発生しているため、実際の表示位置をまとめたものです。
+
+見方
+T=top L=left R=right B=bottom
+
+ModeSelect
+・GameSelect
+T 128
+L 118
+R 670
+B 260
+
+・Gallery
+T 323
+L 118
+R 670
+B 455
+
+GameSelect
+・SwSelectButton
+T 197
+L  99
+R 690
+B 284
+
+・RpSelectButton
+T 393
+L  99
+R 690
+B 476
+
+・BackButton
+T  34
+L   5 （異常なし）
+R 122
+B 132
+
+Gallery
+・BackButton
+上のやつと一緒
+
+・RightArrow
+T 235
+L 691
+R 764
+B 353
+
+
+・LeftArrow
+T 240
+L  26
+R  99
+B 357
+
+
+
+
+
