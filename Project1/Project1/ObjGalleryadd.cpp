@@ -62,3 +62,4 @@ void CObjGalleryadd::Draw()
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 }
+//
