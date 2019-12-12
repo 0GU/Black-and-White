@@ -6,12 +6,12 @@ using namespace GameL;
 
 //É}ÉNÉç
 #define SELECT_WAIT		   (100)
-#define HIT_LEFT		   (120.0f)
-#define HIT_RIGHT		   (680.0f)
-#define HIT_TOP_SELECT	   (130.0f)
-#define HIT_BOTTOM_SELECT  (265.0f)
-#define HIT_TOP_GALLERY	   (330.0f)
-#define HIT_BOTTOM_GALLERY (465.0f)
+#define HIT_LEFT		   (118.0f)
+#define HIT_RIGHT		   (670.0f)
+#define HIT_TOP_SELECT	   (128.0f)
+#define HIT_BOTTOM_SELECT  (260.0f)
+#define HIT_TOP_GALLERY	   (323.0f)
+#define HIT_BOTTOM_GALLERY (455.0f)
 #define CUT_PICTURE_TOP	   (0.0f)
 #define CUT_PICTURE_LEFT   (0.0f)
 #define CUT_PICTURE_RIGHT  (561.0f)
