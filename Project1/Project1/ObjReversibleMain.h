@@ -152,7 +152,7 @@ public:
 	void Draw();    //ドロー
 	void Reverse();
 	float x, y;
-	
+	int i, j;
 
 private:
 	int stage[5][5];
@@ -171,5 +171,10 @@ private:
 	int sx, sy;
 	int lx, ly;//反転処理用変数
 	//フラグ管理用
-	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ [4]…Perfectフラグ
+	bool flag[8];	//[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ 
+					//[4]…Perfectフラグ [5]…Perfect時の回転フラグ [6][7]…Gyallery用フラグ
+
+
+	float colorchange;
+	bool colorflag;
 };

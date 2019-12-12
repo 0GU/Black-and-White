@@ -30,9 +30,9 @@ void CObjReversibleMain::Init()
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 	
 	//フラグを初期化
-	bool flag_set[6] =
-	{ false,false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(6));
+	bool flag_set[8] =
+	{ false,false,false,false,false,false,false};
+	memcpy(flag, flag_set, sizeof(bool)*(8));
 
 	m_ani_flame = INITIALIZE;
 	m_time = INITIALIZE;
@@ -41,6 +41,26 @@ void CObjReversibleMain::Init()
 	sy = INITIALIZE;
 	lx = INITIALIZE;
 	ly = INITIALIZE;
+	bool check;
+		Save::Open();
+	 j = 0;
+		for ( i = 0; i < 3; i++)
+		{
+		
+			if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+			{
+				++j;
+				if (j==3)
+				{
+					flag[7] = true;
+				}
+			}
+		}
+		j = 0;
+
+	
+	colorchange = 0;
+	colorflag = false;
 }
 
 //アクション
@@ -167,6 +187,7 @@ void CObjReversibleMain::Action()
 			//パーフェクト条件を満たしている
 			if (count[2] - count[0] == count[1])
 			{
+
 				flag[4] = true;
 				Audio::Start(4);
 			}
@@ -203,8 +224,28 @@ void CObjReversibleMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneReversibleSelect());
+				Save::Open();
+				for ( i = 0; i < 3; i++)
+				{
+					
+					if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+					{
+						++j;
+						if (j == 3)
+						{
+							flag[6] = true;
+						}
+					}
+				}
 
+				if (flag[6]==true&&flag[7]==false)
+				{
+					Scene::SetScene(new CSceneModeSelect());
+				}
+				else if (flag[6] == false|| flag[7] == true)
+				{
+					Scene::SetScene(new CSceneReversibleSelect());
+				}
 			}
 
 		}
@@ -359,6 +400,7 @@ void CObjReversibleMain::Action()
 			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
 			break;
 		}
+		(UserData*)Save::Seve;
 	}
 	//Clearフラグの管理
 	if (flag[1] == true)
@@ -375,20 +417,40 @@ void CObjReversibleMain::Action()
 			((UserData*)Save::GetData())->RClearFlag[2] = true;
 			break;
 		}
+		(UserData*)Save::Seve;
 	}
 
+
+	/*if (colorchange <= 200 && colorflag == false)
+	{
+		colorchange+=1;
+	}
+	else if (colorchange >= 0 && colorflag == true)
+	{
+		colorchange-=0.2;
+	}
+	else if (colorflag == true)
+	{
+		colorflag = false;
+	}
+	else if (colorflag == false)
+	{
+		colorflag = true;
+	}*/
 }
 
 //ドロー
 void CObjReversibleMain::Draw()
 {
+
+
 	int AniData[8]{
 		0,1,2,3,7,6,5,4,
 	};
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
-
+	float   cchange[4] = { colorchange,0.0f,0.0f,1.0f };//テキスト用
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
 	
@@ -408,13 +470,12 @@ void CObjReversibleMain::Draw()
 	wchar_t str1[128];
 	swprintf_s(str1, L"STAGE%d",StageSlect);
 	Font::StrDraw(str1, 30, 470, 36, f);
-	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
+	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32,f);
 
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-
 			//表示位置の設定
 			dst.m_top = i * PANEL_SIZE_Y + HIT_PANEL_TOP - PANEL_POSITION_CORRECTION;
 			dst.m_left = j * PANEL_SIZE_X + HIT_PANEL_LEFT;
@@ -648,7 +709,7 @@ void CObjReversibleMain::Draw()
 		
 }
 
-void CObjReversibleMain::Reverse()
+void CObjReversibleMain::Reverse()  //Perfectクリア時にパネルを回転させ続ける
 {
 	if (flag[4] == true)
 	{

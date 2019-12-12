@@ -27,8 +27,11 @@ void CObjTitle::Init()
 	{ 
 		((UserData*)Save::GetData())->SPerfectFlag[i] = false;
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
-	}
+		((UserData*)Save::GetData())->SClearFlag[i] = false;
+		((UserData*)Save::GetData())->RClearFlag[i] = false;
 	
+	}
+	(UserData*)Save::Seve;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
