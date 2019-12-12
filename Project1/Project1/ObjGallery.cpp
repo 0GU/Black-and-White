@@ -404,9 +404,9 @@ void CObjGallery::Draw()
 	}
 	else
 	{
-		Font::StrDraw(L"解放条件", 280 + m_scroll, 100, 64, c);
-		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
-		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll, 400, 64, c);
+		Font::StrDraw(L"解放条件", 280 + SCROLL_DISTANCE + m_scroll, 100, 64, c);
+		Font::StrDraw(L"Reversible Panel", 150 + SCROLL_DISTANCE + m_scroll, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + SCROLL_DISTANCE + m_scroll, 400, 64, c);
 
 		//戻るボタン
 		src.m_top = CUT_BACK_TOP;

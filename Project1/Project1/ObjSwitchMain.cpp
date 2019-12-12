@@ -234,7 +234,11 @@ void CObjSwitchMain::Action()
 	if (flag[CLEAR_FLAG] == true)
 	{
 		//BGM’âŽ~
-		Audio::Stop(0);
+		if ( StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
+
 
 		//StageSELECT‚Ö–ß‚éƒ{ƒ^ƒ“”»’è
 		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B)
@@ -256,7 +260,10 @@ void CObjSwitchMain::Action()
 	{
 	
 		//BGM’âŽ~
-		Audio::Stop(0);
+		if (StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
 
 
 
@@ -268,7 +275,10 @@ void CObjSwitchMain::Action()
 				count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//BGM’âŽ~
-				Audio::Start(0);
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
 				//SE‚ð–Â‚ç‚·
 				Audio::Start(1);
 				while (Input::GetMouButtonL() == true)
@@ -276,7 +286,10 @@ void CObjSwitchMain::Action()
 
 				}
 				flag[GAMEOVER_FLAG] = false;
-				Audio::Start(0);
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
 			}
 
 		}
