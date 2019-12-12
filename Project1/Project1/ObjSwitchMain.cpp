@@ -26,9 +26,9 @@ void CObjSwitchMain::Init()
 	//マップデータをコピー
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
-	bool flag_set[6] =
-	{ false,false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(6));
+	bool flag_set[8] =
+	{ false,false,false,false,false,false,false,false};
+	memcpy(flag, flag_set, sizeof(bool)*(8));
 	   	
 	m_ani_flame = 0;
 	m_time = 0;
@@ -36,7 +36,21 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+	Save::Open();
+	j = 0;
+	for (i = 0; i < 3; i++)
+	{
 
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+		{
+			++j;
+			if (j == 3)
+			{
+				flag[7] = true;
+			}
+		}
+	}
+	j = 0;
 	//フラグを初期化
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
@@ -249,20 +263,50 @@ void CObjSwitchMain::Action()
 	if (flag[CLEAR_FLAG] == true)
 	{
 		//BGM停止
-		Audio::Stop(0);
+		if ( StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
+
 
 		//StageSELECTへ戻るボタン判定
 		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B&&
 			c_flag[0] == true && c_flag[1] == true)
 		{
-			Scene::SetScene(new CSceneSwitchSelect());
+				Save::Open();
+				for (i = 0; i < 3; i++)
+				{
+
+					if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+					{
+						++j;
+						if (j == 3)
+						{
+							flag[6] = true;
+						}
+					}
+				}
+
+				if (flag[6] == true && flag[7] == false)
+				{
+					Scene::SetScene(new CSceneGalleryadd());
+				}
+				else if (flag[6] == false || flag[7] == true)
+				{
+					Scene::SetScene(new CSceneSwitchSelect());
+				}
+			}
+
 		}
 	}
 	//GameOver時の判定
 	if (flag[GAMEOVER_FLAG] == true)
 	{
 		//BGM停止
-		Audio::Stop(0);
+		if (StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
 
 		//Yesボタン判定
 		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
@@ -271,13 +315,22 @@ void CObjSwitchMain::Action()
 			count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 
-			//BGM停止
-			Audio::Start(0);
-			//SEを鳴らす
-			Audio::Start(1);
+				//BGM停止
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
+				//SEを鳴らす
+				Audio::Start(1);
 
-			flag[GAMEOVER_FLAG] = false;
-			Audio::Start(0);
+				}
+				flag[GAMEOVER_FLAG] = false;
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
+			}
+
 			c_flag[0] = false;
 		}
 		//Noボタン判定

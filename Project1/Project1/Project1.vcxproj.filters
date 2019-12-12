@@ -43,6 +43,12 @@
     <Filter Include="ソース ファイル\ObjMouse">
       <UniqueIdentifier>{fd26ed1f-d294-4867-a222-14a1b8717f81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Title">
+      <UniqueIdentifier>{e825aa81-59f1-4488-8438-3f1a86726cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Galleryadd">
+      <UniqueIdentifier>{39a84854-61db-459e-9fe2-9834832d6c99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -83,12 +89,6 @@
     </ClInclude>
     <ClInclude Include="GameL\WinInputs.h">
       <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjTitle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjReversibleMain.h">
       <Filter>ソース ファイル\Reversible Panel</Filter>
@@ -144,6 +144,18 @@
     <ClInclude Include="SceneSwitchMain.h">
       <Filter>ソース ファイル\Switch Panel</Filter>
     </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGalleryadd.h">
+      <Filter>ソース ファイル\Galleryadd</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGalleryadd.h">
+      <Filter>ソース ファイル\Galleryadd</Filter>
+    </ClInclude>
     <ClInclude Include="Switchfunction.h">
       <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
@@ -187,12 +199,6 @@
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjTitle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjReversibleMain.cpp">
       <Filter>ソース ファイル\Reversible Panel</Filter>
@@ -250,6 +256,18 @@
     </ClCompile>
     <ClCompile Include="ObjMouse.cpp">
       <Filter>ソース ファイル\ObjMouse</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGalleryadd.cpp">
+      <Filter>ソース ファイル\Galleryadd</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGalleryadd.cpp">
+      <Filter>ソース ファイル\Galleryadd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

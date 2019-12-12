@@ -52,10 +52,14 @@ void CSceneReversibleMain::InitScene()
 	Audio::LoadAudio(4, L"sound/PerfectSE.wav", EFFECT);
 	Audio::LoadAudio(5, L"Sound/HintButton.wav", EFFECT);
 	Audio::LoadAudio(6, L"Sound/ResetButton.wav", EFFECT);
+	Audio::LoadAudio(7, L"Sound/ReversibleHard.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//BGMçƒê∂
 	//float Volume = Audio::VolumeMaster(0.7f);
-	Audio::Start(0);
+	if (stagenum == 3)
+		Audio::Start(7);
+	else
+		Audio::Start(0);
 
 	CObjReversibleMain* p = new CObjReversibleMain(stagenum);
 	Objs::InsertObj(p, OBJ_REVERSIBLEMAIN, 1);

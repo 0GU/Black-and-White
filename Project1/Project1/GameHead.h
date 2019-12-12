@@ -16,6 +16,7 @@ enum OBJ_NAME
 	OBJ_SWITCHMAIN,
 	OBJ_SWITCHSELECT,
 	OBJ_MOUSE,//仮
+	OBJ_GALLAERYADD,
 };
 //------------------------------------------------
 
@@ -76,6 +77,7 @@ struct UserData
 #include "ObjSwitchMain.h"
 #include "ObjSwitchSelect.h"
 #include "ObjMouse.h"//仮
+#include "ObjGalleryadd.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -88,6 +90,7 @@ struct UserData
 #include "SceneGameClear.h"
 #include "SceneSwitchMain.h"
 #include "SceneSwitchSelect.h"
+#include "SceneGalleryadd.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

@@ -19,13 +19,13 @@ using namespace GameL;
 #define STAGE_SW_SELECT_THREE_B (510.0f)
 
 #define RESOURCE_STAGE_L (0.0f)
-#define RESOURCE_STAGE_R (561.0f)
+#define RESOURCE_STAGE_R (560.0f)
 #define RESOURCE_STAGE1_T (268.0f)
 #define RESOURCE_STAGE1_B (359.0f)
 #define RESOURCE_STAGE2_T (358.0f)
 #define RESOURCE_STAGE2_B (449.0f)
 #define RESOURCE_STAGE3_T (448.0f)
-#define RESOURCE_STAGE3_B (540.0f)
+#define RESOURCE_STAGE3_B (539.0f)
 
 #define STAGE_SW_STAR_ONE_T (206.0f)
 #define STAGE_SW_STAR_ONE_B (245.0f)
@@ -50,10 +50,10 @@ using namespace GameL;
 #define RESOURCE_BACKBUTTON_R (849.0f)
 #define RESOURCE_BACKBUTTON_B (102.0f)
 
-#define BACKBUTTON_POS_T (35.0f)
+#define BACKBUTTON_POS_T (34.0f)
 #define BACKBUTTON_POS_L (5.0f)
-#define BACKBUTTON_POS_R (125.0f)
-#define BACKBUTTON_POS_B (135.0f)
+#define BACKBUTTON_POS_R (122.0f)
+#define BACKBUTTON_POS_B (132.0f)
 
 //êÿÇËéÊÇË&ï\é¶ : îwåi
 #define BACKGROUND_TL (0.0f)
