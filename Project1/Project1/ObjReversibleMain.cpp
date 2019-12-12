@@ -780,3 +780,4 @@ void CObjReversibleMain::Reverse()  //Perfectクリア時にパネルを回転させ続ける
 	}
 
 }
+//
