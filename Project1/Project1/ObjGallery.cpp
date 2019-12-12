@@ -32,6 +32,9 @@ void CObjGallery::Init()
 	m_scroll = 0.0f;
 	speed = 0.0f;
 	scroll_flag = false;
+	m_ani_flame = 0;
+	m_time = 0;
+	mouse_flag = false;
 }
 
 //アクション
@@ -39,6 +42,30 @@ void CObjGallery::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+	
+	if (Input::GetMouButtonL() == true)
+	{
+		mouse_flag = true;
+
+	}
+	if (mouse_flag == true)
+	{
+		//タイムを増やす（ループ中１回のみ）
+		m_time++;
+
+		//アニメーションを動かす
+		if (m_time == 3) {
+			m_ani_flame++;
+			m_time = 0;
+		}
+		//アニメーションが終了したら黒パネルに変更
+		if (m_ani_flame == 4)
+		{
+			m_ani_flame = 0;
+			mouse_flag = false;
+		}
+
+	}
 
 	Save::Open();
 
@@ -333,21 +360,39 @@ void CObjGallery::Draw()
 		src.m_bottom= 140.0f;*/
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 4032.0f;
-		src.m_bottom = 3024.0f;
+		src.m_right = 1024.0f;
+		src.m_bottom = 1024.0f;
 		if (GFlag[1] == false)
 		{
 			dst.m_top = GRAPHIC_TOP;
 			dst.m_left = GRAPHIC_LEFT + SCROLL_DISTANCE + m_scroll;
 			dst.m_right = GRAPHIC_RIGHT + SCROLL_DISTANCE + m_scroll;
 			dst.m_bottom = GRAPHIC_BOTTOM;
+
 		}
+
 		else if (GFlag[1] == true)
 		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 800.0f;
+			src.m_bottom = 600.0f;
 			dst.m_top = 0.0f;
 			dst.m_left = 0.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_right = 800.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_bottom = 600.0f;
+			Draw::Draw(6, &src, &dst, c, 0.0f);
+			
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1024.0f;
+			src.m_bottom = 1024.0f;
+
+			dst.m_top = 0.0f;
+			dst.m_left = 100.0f + SCROLL_DISTANCE + m_scroll;
+			dst.m_right = 700.0f + SCROLL_DISTANCE + m_scroll;
+			dst.m_bottom = 600.0f;
+			Draw::Draw(4, &src, &dst, c, 0.0f);
 		}
 		/*
 		dst.m_top   = 245.0f;
@@ -355,12 +400,37 @@ void CObjGallery::Draw()
 		dst.m_right = 375.0f+ SCROLL_DISTANCE +m_scroll;
 		dst.m_bottom= 385.0;*/
 		//Draw::Draw(0, &src, &dst, c, 0.0f);
-		Draw::Draw(2, &src, &dst, c, 0.0f);
+		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 	else
 	{
-		Font::StrDraw(L"解放条件", 280 + SCROLL_DISTANCE + m_scroll, 100, 64, c);
-		Font::StrDraw(L"Reversible Panel", 150 + SCROLL_DISTANCE + m_scroll, 250, 64, c);
-		Font::StrDraw(L"全てPerfect達成", 160 + SCROLL_DISTANCE + m_scroll, 400, 64, c);
+		Font::StrDraw(L"解放条件", 280 + m_scroll, 100, 64, c);
+		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll, 400, 64, c);
+
+		//戻るボタン
+		src.m_top = CUT_BACK_TOP;
+		src.m_left = CUT_BACK_LEFT;
+		src.m_right = CUT_BACK_RIGHT;
+		src.m_bottom = CUT_BACK_BOTTOM;
+		dst.m_top = HIT_BACK_TOP;
+		dst.m_left = HIT_BACK_LEFT;
+		dst.m_right = HIT_BACK_RIGHT;
+		dst.m_bottom = HIT_BACK_BOTTOM;
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+
+		//クリックエフェクト(仮)
+		if (mouse_flag == true)
+		{
+			src.m_top = 72;
+			src.m_left = 800 + (m_ani_flame * 40);
+			src.m_right = src.m_left + 40;
+			src.m_bottom = 112;
+			dst.m_top = y - 19;
+			dst.m_left = x - 19;
+			dst.m_right = dst.m_left + 40;
+			dst.m_bottom = dst.m_top + 40;
+			Draw::Draw(5, &src, &dst, c, 0.0f);
+		}
 	}
 }
