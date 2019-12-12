@@ -176,4 +176,9 @@ private:
 	float r;		//アニメーションの角度変更用
 
 	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
+	
+	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
+	bool back;		//背景色判別用		true=黒 , false=白
+	bool mou_call;	//マウス呼び出し用、1回のみ動かす
+
 };

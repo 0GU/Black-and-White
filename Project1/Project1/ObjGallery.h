@@ -70,10 +70,11 @@ private:
 	float m_scroll;//スクロール仮
 	bool scroll_flag;
 	float speed;
-
+	
 	bool time_flag;
-	int m_time;
-	int m_ani_flame;
-	bool m_ani_flag;
-	bool mouse_flag;
+	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
+	bool back;		//背景色判別用		true=黒 , false=白
+	bool mou_call;	//マウス呼び出し用、1回のみ動かす
+
+
 };

@@ -32,9 +32,14 @@ void CObjGallery::Init()
 	m_scroll = 0.0f;
 	speed = 0.0f;
 	scroll_flag = false;
-	m_ani_flame = 0;
-	m_time = 0;
-	mouse_flag = false;
+
+	//フラグを初期化
+	bool flag_set[2] =
+	{ false,false };
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
+
 }
 
 //アクション
@@ -42,30 +47,29 @@ void CObjGallery::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-	
+
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
 	if (Input::GetMouButtonL() == true)
 	{
-		mouse_flag = true;
-
+		c_flag[0] = true;
+		c_flag[1] = false;
 	}
-	if (mouse_flag == true)
+	if (Input::GetMouButtonL() == false)
 	{
-		//タイムを増やす（ループ中１回のみ）
-		m_time++;
-
-		//アニメーションを動かす
-		if (m_time == 3) {
-			m_ani_flame++;
-			m_time = 0;
-		}
-		//アニメーションが終了したら黒パネルに変更
-		if (m_ani_flame == 4)
-		{
-			m_ani_flame = 0;
-			mouse_flag = false;
-		}
-
+		c_flag[1] = true;
 	}
+
 
 	Save::Open();
 
@@ -84,20 +88,12 @@ void CObjGallery::Action()
 
 	//戻るボタン
 	if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y &&
-		GFlag[0] == false && GFlag[1] == false)
+		GFlag[0] == false && GFlag[1] == false && c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true && scroll_flag == false)
-		{
-			//SEを鳴らす
-			Audio::Start(2);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(SCENEBACK_WAIT);
-			Scene::SetScene(new CSceneModeSelect());
-
-		}
+		//SEを鳴らす
+		Audio::Start(2);
+		Sleep(SCENEBACK_WAIT);
+		Scene::SetScene(new CSceneModeSelect());
 	}
 
 	if (Gright == 1)
@@ -105,17 +101,11 @@ void CObjGallery::Action()
 		if (GFlag[0] == false)
 		{
 			//右矢印
-			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y)
+			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y&&
+				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
 			{
-				if (Input::GetMouButtonL() == true && scroll_flag == false)
-				{
-					Audio::Start(1);
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
-					scroll_flag = true;
-				}
+				Audio::Start(1);
+				scroll_flag = true;
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -172,17 +162,11 @@ void CObjGallery::Action()
 		if (GFlag[1] == false)
 		{
 			//左矢印
-			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y)
+			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y&&
+				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
 			{
-				if (Input::GetMouButtonL() == true && scroll_flag == false)
-				{
 					Audio::Start(1);
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
 					scroll_flag = true;	//スクロール中にする
-				}
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -234,6 +218,12 @@ void CObjGallery::Action()
 			}
 		}
 	}
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
+	}
+
 }
 
 //ドロー
@@ -241,6 +231,7 @@ void CObjGallery::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -386,9 +377,9 @@ void CObjGallery::Draw()
 	}
 	else
 	{
-		Font::StrDraw(L"解放条件", 280 + m_scroll, 100, 64, c);
-		Font::StrDraw(L"Reversible Panel", 150 + m_scroll, 250, 64, c);
-		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll, 400, 64, c);
+		Font::StrDraw(L"解放条件", 280 + m_scroll+SCROLL_DISTANCE, 100, 64, c);
+		Font::StrDraw(L"Reversible Panel", 150 + m_scroll+ SCROLL_DISTANCE, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll+ SCROLL_DISTANCE, 400, 64, c);
 
 		//戻るボタン
 		src.m_top = CUT_BACK_TOP;
@@ -401,18 +392,5 @@ void CObjGallery::Draw()
 		dst.m_bottom = HIT_BACK_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
-		//クリックエフェクト(仮)
-		if (mouse_flag == true)
-		{
-			src.m_top = 72;
-			src.m_left = 800 + (m_ani_flame * 40);
-			src.m_right = src.m_left + 40;
-			src.m_bottom = 112;
-			dst.m_top = y - 19;
-			dst.m_left = x - 19;
-			dst.m_right = dst.m_left + 40;
-			dst.m_bottom = dst.m_top + 40;
-			Draw::Draw(5, &src, &dst, c, 0.0f);
-		}
 	}
 }

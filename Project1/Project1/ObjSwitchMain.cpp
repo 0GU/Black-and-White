@@ -37,6 +37,11 @@ void CObjSwitchMain::Init()
 	sy = 0;
 	r = 0.0f;
 
+	//フラグを初期化
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
+
 }
 
 //アクション
@@ -47,82 +52,92 @@ void CObjSwitchMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
+
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
 
 	//当たり判定
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
 		 (((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
-		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
+		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false&&
+		c_flag[0] == true && c_flag[1] == true&&m_change == true)
 	{
-		if (m_change == true)
+		//左クリック時パネルを反転させる
+		m_change = false;	//反転中はほかのパネルを反転できないようにする
+
+		//SEを鳴らす
+		Audio::Start(1);
+
+		//Countを減らす
+		count[REMAINING_CNT_ARRAY_NUM]--;
+
+		sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
+		sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
+		for (int m = 0; m < 2; m++)
 		{
-
-			if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
+			switch (stage[sy][sx])
 			{
-				m_change = false;	//反転中はほかのパネルを反転できないようにする
-
-				//SEを鳴らす
-				Audio::Start(1);
-
-				//Countを減らす
-				count[REMAINING_CNT_ARRAY_NUM]--;
-
-				sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
-				sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
-				for (int m = 0; m < 2; m++)
+			case 2:
+				switch (m)
 				{
-					switch (stage[sy][sx])
-					{
-					case 2:
-						switch (m)
-						{
-						case 0://左
-							ly = sy;
-							lx = sx - 1;
-							break;
-						case 1://右
-							ly = sy;
-							lx = sx + 1;
-							break;
-						}
-						break;
-					case 3:
-						switch (m)
-						{
-						case 0://上
-							ly = sy - 1;
-							lx = sx;
-							break;
-
-						case 1://下
-							ly = sy + 1;
-							lx = sx;
-							break;
-						}
-						break;
-					}
-					if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
-					{
-						if (stage[ly][lx] == WHITE_PANEL_ID)
-						{
-							stage[ly][lx] = CH_WHITE_PANEL_ID;
-						}
-						else if (stage[ly][lx] == BLACK_PANEL_ID)
-						{
-							stage[ly][lx] = CH_BLACK_PANEL_ID;
-						}
-					}
-
+				case 0://左
+					ly = sy;
+					lx = sx - 1;
+					break;
+				case 1://右
+					ly = sy;
+					lx = sx + 1;
+					break;
 				}
-				while (Input::GetMouButtonL() == true)
+				break;
+			case 3:
+				switch (m)
 				{
-
+				case 0://上
+					ly = sy - 1;
+					lx = sx;
+					break;
+				case 1://下
+					ly = sy + 1;
+					lx = sx;
+					break;
 				}
-
-
+				break;
+			}
+			if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
+			{
+				if (stage[ly][lx] == WHITE_PANEL_ID)
+				{
+					stage[ly][lx] = CH_WHITE_PANEL_ID;
+				}
+				else if (stage[ly][lx] == BLACK_PANEL_ID)
+				{
+					stage[ly][lx] = CH_BLACK_PANEL_ID;
+				}
 			}
 		}
 	}
+
 	//アニメーション処理-----
 
 	time_flag = true;//ループ中１回だけタイムを増やす
@@ -237,156 +252,103 @@ void CObjSwitchMain::Action()
 		Audio::Stop(0);
 
 		//StageSELECTへ戻るボタン判定
-		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B)
+		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
-
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-				Scene::SetScene(new CSceneSwitchSelect());
-
-			}
+			Scene::SetScene(new CSceneSwitchSelect());
 		}
 	}
 	//GameOver時の判定
 	if (flag[GAMEOVER_FLAG] == true)
 	{
-	
 		//BGM停止
 		Audio::Stop(0);
 
-
-
 		//Yesボタン判定
-		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
-				count[REMAINING_CNT_ARRAY_NUM] = COUNT;
-				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
-				//BGM停止
-				Audio::Start(0);
-				//SEを鳴らす
-				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
+			count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 
-				}
-				flag[GAMEOVER_FLAG] = false;
-				Audio::Start(0);
-			}
+			//BGM停止
+			Audio::Start(0);
+			//SEを鳴らす
+			Audio::Start(1);
 
+			flag[GAMEOVER_FLAG] = false;
+			Audio::Start(0);
+			c_flag[0] = false;
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
-
-				//SEを鳴らす
-				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-				Scene::SetScene(new CSceneSwitchSelect());
-				flag[GAMEOVER_FLAG] = false;
-			}
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(300);
+			Scene::SetScene(new CSceneSwitchSelect());
+			flag[GAMEOVER_FLAG] = false;
 		}
 	}
 
 	//リセットボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
-		RESET_BUTTON_POS_T	  <= y && RESET_BUTTON_POS_T    + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false)
+		RESET_BUTTON_POS_T <= y && RESET_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			count[REMAINING_CNT_ARRAY_NUM] = COUNT;
-			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
-			//SEを鳴らす
-			Audio::Start(6);
-			m_change = true;
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-
-		}
+		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+		//SEを鳴らす
+		Audio::Start(6);
+		m_change = true;
+		c_flag[0] = false;
 	}
 
 	//ヒントボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		HINT_BUTTON_POS_T	  <= y && HINT_BUTTON_POS_T	    + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-
 			flag[HINT_FLAG] = true;
 			//SEを鳴らす
 			Audio::Start(5);
-			while (Input::GetMouButtonL() == true)
-			{
 
-			}
-		}
+			c_flag[0] = false;
 	}
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
 	if (x >= STAGESELE_BUTTON_POS_L && x <= STAGESELE_BUTTON_POS_L + BUTTON_SIZE_X &&
 		y >= STAGESELE_BUTTON_POS_T && y <= STAGESELE_BUTTON_POS_T + BUTTON_SIZE_Y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
 			flag[BACK_SELECT_FLAG] = true;
-
 			//SEを鳴らす
 			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
 
-			}
-		}
+			c_flag[0] = false;
 	}
 	if (flag[BACK_SELECT_FLAG] == true)
 	{
 		//Yesボタン判定
-		if (x >= YES_BUTTON_POS_L	&& x <= YES_BUTTON_POS_R && 
-			y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= YES_BUTTON_POS_L	&& x <= YES_BUTTON_POS_R &&	y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
 				//SEを鳴らす
 				Audio::Stop(1);
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
+				Sleep(300);
 				Scene::SetScene(new CSceneSwitchSelect());
-			}
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_POS_L	&& x <= NO_BUTTON_POS_R && 
-			y >= YESNO_BUTTON_POS_T	&& y <= YESNO_BUTTON_POS_B)
+		if (x >= NO_BUTTON_POS_L	&& x <= NO_BUTTON_POS_R && 	y >= YESNO_BUTTON_POS_T	&& y <= YESNO_BUTTON_POS_B&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-
-			if (Input::GetMouButtonL() == true)
-			{
-
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-
 				flag[BACK_SELECT_FLAG] = false;
-			}
+				c_flag[0] = false;
 		}
 	}
 
@@ -422,6 +384,12 @@ void CObjSwitchMain::Action()
 			((UserData*)Save::GetData())->SClearFlag[2] = true;
 			break;
 		}
+	}
+
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
 	}
 
 }

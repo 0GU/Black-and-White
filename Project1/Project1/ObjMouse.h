@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjMouse :public CObj
 {
 public:
-	CObjMouse() {};
+	CObjMouse(bool back) ;
 	~CObjMouse() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
@@ -18,4 +18,10 @@ private:
 	float m_mou_x;//マウスの位置ｘ
 	float m_mou_y;//マウスの位置Y
 	bool m_mou_l;//マウス左ボタン
+
+	int m_time;
+	int m_ani_flame;
+	//bool m_ani_flag;
+	bool mouse_flag;
+	bool back_col;
 };

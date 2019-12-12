@@ -18,6 +18,13 @@ void CObjModeSelect::Init()
 {
 	m_y1 = BACKGROUND_TL;
 	m_y2 = BACKGROUND_B;
+
+	//フラグを初期化
+	bool flag_set[2] =
+	{ false,false };
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
 }
 
 //アクション
@@ -26,37 +33,45 @@ void CObjModeSelect::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-
-	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y)
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneGameSelect());
-		}
-
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
 	}
 
-	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y)
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
 
-			}
-			//Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneGallery());
-		}
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
 
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y&&
+		c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SELECT_WAIT);
+		Scene::SetScene(new CSceneGameSelect());
+	}
+
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y&&
+		c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SELECT_WAIT);
+		Scene::SetScene(new CSceneGallery());
 	}
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
@@ -66,6 +81,12 @@ void CObjModeSelect::Action()
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
 	
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
+	}
+
 }
 
 //ドロー

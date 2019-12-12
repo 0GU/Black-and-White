@@ -170,6 +170,15 @@ private:
 
 	int sx, sy;
 	int lx, ly;//反転処理用変数
+
+	//クリック判定用
+	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
+	
+	//マウスエフェクト用
+	bool back;		//背景色判別用		true=黒 , false=白
+	bool mou_call;	//マウス呼び出し用、1回のみ動かす
+
 	//フラグ管理用
 	bool flag[6];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]…Yes・Noフラグ [4]…Perfectフラグ
+	
 };

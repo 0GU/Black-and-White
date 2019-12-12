@@ -41,63 +41,74 @@ void CObjReversibleMain::Init()
 	sy = INITIALIZE;
 	lx = INITIALIZE;
 	ly = INITIALIZE;
+
+	//フラグを初期化
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
+
 }
 
 //アクション
 void CObjReversibleMain::Action()
 {
-
-
 	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
 
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (HIT_PANEL_LEFT <= x && HIT_PANEL_RIGHT >= x && HIT_PANEL_TOP <= y && HIT_PANEL_BOTTOM >= y &&
-		flag[1] == false && flag[2] == false && flag[3] == false)
+		flag[1] == false && flag[2] == false && flag[3] == false && c_flag[0] == true && c_flag[1] == true&&m_ani_flag == false)
 	{
-		if (m_ani_flag == false)
+		sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
+		sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
+		for (int m = 0; m < 5; m++)
 		{
-			if (Input::GetMouButtonL() == true)    //左クリック時パネルを反転させる
+			ReversibleProcess(sx, sy, &lx, &ly, m, stage);
+
+			//反転処理の準備
+			if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
 			{
-				sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
-				sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
-				for (int m = 0; m < 5; m++)
+				//反転中を示す値に変更する
+				if (stage[ly][lx] == WHITE_PANEL)
 				{
-					ReversibleProcess(sx, sy, &lx, &ly, m, stage);
-
-					//反転処理の準備
-					if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
-					{
-						//反転中を示す値に変更する
-						if (stage[ly][lx] == WHITE_PANEL)
-						{
-							stage[ly][lx] = WHITE_PANEL_REVERSAL;
-						}
-						else if (stage[ly][lx] == BLACK_PANEL)
-						{
-
-							stage[ly][lx] = BLACK_PANEL_REVERSAL;
-						}
-					}
+					stage[ly][lx] = WHITE_PANEL_REVERSAL;
 				}
-				m_ani_flag = true;	//反転中はほかのパネルを反転できないようにする
-				while (Input::GetMouButtonL() == true)
+				else if (stage[ly][lx] == BLACK_PANEL)
 				{
-
-
+					stage[ly][lx] = BLACK_PANEL_REVERSAL;
 				}
-				//SEを鳴らす
-				Audio::Start(1);
-				//Countを減らす
-				count[1]--;
 			}
 		}
-
-
-
+		m_ani_flag = true;	//反転中はほかのパネルを反転できないようにする
+				
+		//SEを鳴らす
+		Audio::Start(1);
+		//Countを減らす
+		count[1]--;
 	}
 	//反転アニメーション処理------------------------------
 	if (flag[4] == false)
@@ -190,20 +201,13 @@ void CObjReversibleMain::Action()
 		Audio::Stop(0);
 		CObjReversibleMain::Reverse();
 		//StageSelectへ戻るボタン判定
-		if (x >= STAGE_SELECT_LEFT && x <= STAGE_SELECT_RIGHT && y >= STAGE_SELECT_TOP && y <= STAGE_SELECT_BOTTOM)
+		if (x >= STAGE_SELECT_LEFT && x <= STAGE_SELECT_RIGHT && y >= STAGE_SELECT_TOP && y <= STAGE_SELECT_BOTTOM&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
+				Sleep(300);
 				Scene::SetScene(new CSceneReversibleSelect());
-
-			}
-
 		}
 	}
 	//GameOver時の判定--------------------------------------------------------------------------------------------------
@@ -212,125 +216,82 @@ void CObjReversibleMain::Action()
 		//BGM停止
 		Audio::Stop(0);
 		//Yesボタン判定
-		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM)
+		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM &&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
 				count[1] = count[2];
 				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 				//BGM再再生
 				Audio::Start(0);
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
 				flag[2] = false;
-			}
+				c_flag[0] = false;
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM)
+		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-
-			if (Input::GetMouButtonL() == true)
-			{
-
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
 				Scene::SetScene(new CSceneReversibleSelect());
 				flag[2] = false;
-			}
 		}
 
 	}
 
 	//リセットボタン当たり判定-------------------------------------------------------------
-	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0)
+	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y &&
+		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
 			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//SEを鳴らす
 			Audio::Start(6);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-
-		}
 	}
 
 	//ヒントボタン当たり判定----------------------------------------------------------------
-	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y && flag[1] == false && flag[2] == false && flag[3] == false)
+	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y &&
+		flag[1] == false && flag[2] == false && flag[3] == false &&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-
 			flag[0] = true;
 			//SEを鳴らす
-			Audio::Start(5);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-		}
+			Audio::Start(5);		
+			c_flag[0] = false;
 	}
 
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
-	if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM && flag[1] == false && flag[2] == false)
+	if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM &&
+		flag[1] == false && flag[2] == false && c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
 			flag[3] = true;
-
 			//SEを鳴らす
 			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-		}
+			c_flag[0] = false;
 	}
 	if (flag[3] == true)
 	{
-
 		//Yesボタン判定
-		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM)
+		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM && 
+			c_flag[0] == true && c_flag[1] == true)
 		{
-			if (Input::GetMouButtonL() == true)
-			{
 				//SEを鳴らす
 				Audio::Stop(1);
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
+				Sleep(300);
 
-				}
 				Scene::SetScene(new CSceneReversibleSelect());
-			}
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM)
+		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-
-			if (Input::GetMouButtonL() == true)
-			{
-
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-
+				c_flag[0] = false;
 				flag[3] = false;
-			}
 		}
 	}
 
@@ -366,6 +327,12 @@ void CObjReversibleMain::Action()
 			((UserData*)Save::GetData())->RClearFlag[2] = true;
 			break;
 		}
+	}
+
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
 	}
 
 }

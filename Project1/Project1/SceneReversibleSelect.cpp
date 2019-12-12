@@ -37,14 +37,14 @@ void CSceneReversibleSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/haikei4.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 1, TEX_SIZE_512);
-	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 0, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	CObjReversibleSelect* p = new CObjReversibleSelect();
 	Objs::InsertObj(p, OBJ_REVERSIBLESELECT, 1);
-
+	/*
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
-
+	*/
 }
 
 //ゲームタイトル実行メソッド

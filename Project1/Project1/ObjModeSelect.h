@@ -39,4 +39,8 @@ private:
 	float m_x2;	//背景の位置X2
 	float m_y1;	//背景の位置Y1
 	float m_y2;	//背景の位置Y2
+
+	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
+	bool back;		//背景色判別用		true=黒 , false=白
+	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 };

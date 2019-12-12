@@ -13,6 +13,8 @@ using namespace GameL;
 
 //使用するヘッダー
 #include "SceneGameSelect.h"
+#include "ObjGameSelect.h"
+
 #include "GameHead.h"
 
 //コンストラクタ
@@ -32,6 +34,7 @@ void CSceneGameSelect::InitScene()
 {
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/haikei3.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
@@ -44,12 +47,12 @@ void CSceneGameSelect::InitScene()
 	/*Draw::LoadImage(L"", 0, TEX_SIZE_512);
 	
 	CObjGameSelect* p = new CObjGameSelect();
-	Objs::InsertObj(p, OBJ_GAMESELECT, 1);*/
+	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
 	
-	CObjMouse*m = new CObjMouse();
+	CObjMouse*m = new CObjMouse(back);
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
 
-	
+	*/
 	
 }
 

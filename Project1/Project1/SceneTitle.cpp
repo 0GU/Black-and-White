@@ -33,9 +33,15 @@ void CSceneTitle::InitScene()
 	Objs::InsertObj(p, OBJ_TITLE, 1);
 
 	Draw::LoadImage(L"タイトル.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
+
+	/*
+	CObjMouse*m = new CObjMouse();
+	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+	*/
 }
 
 //ゲームタイトル実行メソッド

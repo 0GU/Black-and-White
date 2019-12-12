@@ -138,14 +138,14 @@
     <ClInclude Include="Reversiblefunction.h">
       <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
-    <ClInclude Include="Switchfunction.h">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClInclude>
     <ClInclude Include="ObjMouse.h">
       <Filter>ソース ファイル\ObjMouse</Filter>
     </ClInclude>
     <ClInclude Include="SceneSwitchMain.h">
       <Filter>ソース ファイル\Switch Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="Switchfunction.h">
+      <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

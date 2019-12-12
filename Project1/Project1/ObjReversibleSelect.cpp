@@ -42,6 +42,13 @@ void CObjReversibleSelect::Init()
 	memcpy(Pflag, set_Pflag, sizeof(bool)*(3));
 	memcpy(Cflag, set_Cflag, sizeof(bool)*(3));
 	
+	//フラグを初期化
+	bool flag_set[2] =
+	{ false,false };
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = false;
+	mou_call = true;
+
 }
 
 //アクション
@@ -51,96 +58,79 @@ void CObjReversibleSelect::Action()
 	y = (float)Input::GetPosY();
 
 
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
+
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
 
 
 
 	//right値が描画とズレているため右方向を-10.0f調整
 	//Stage1--------------------------------------------------------------
-	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y)
+	//この場所を左クリックでリバーシブルのステージ1へ
+	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-
-		//この場所を左クリックでリバーシブルのステージ1へ
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(SELECT_WAIT);
-
-			Scene::SetScene(new CSceneReversibleMain(1));
-
-
-		}
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SELECT_WAIT);
+		Scene::SetScene(new CSceneReversibleMain(1));
 	}
-
 
 	//Stage2----------------------------------------------------------------
 	if (Cflag[0] == true)
-	{
-		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y)
+	{	
+		//この場所を左クリックでリバーシブルのステージ2へ
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-
-			//この場所を左クリックでリバーシブルのステージ2へ
-			if (Input::GetMouButtonL() == true)
-			{
-				//SEを鳴らす
-				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-				Sleep(SELECT_WAIT);
-
-				Scene::SetScene(new CSceneReversibleMain(2));
-
-
-			}
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneReversibleMain(2));
 		}
 	}
 
-
 	//Stage3----------------------------------------------------------------
 	if (Cflag[1] == true)
-	{
-		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y)
+	{	
+		//この場所を左クリックでリバーシブルのステージ3へ
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y&&
+			c_flag[0] == true && c_flag[1] == true)
 		{
-
-			//この場所を左クリックでリバーシブルのステージ3へ
-			if (Input::GetMouButtonL() == true)
-			{
-				//SEを鳴らす
-				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
-				Sleep(SELECT_WAIT);
-
-				Scene::SetScene(new CSceneReversibleMain(3));
-
-
-			}
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneReversibleMain(3));
 		}
 	}
 
 	//戻るボタン
-	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y)
+	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
 			//SEを鳴らす
 			Audio::Start(2);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
 			Sleep(SCENEBACK_WAIT);
 			Scene::SetScene(new CSceneGameSelect());
-
-		}
 	}
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
@@ -149,6 +139,13 @@ void CObjReversibleSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
+
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
+	}
+
 }
 
 //ドロー
@@ -247,7 +244,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_BLACKSTAR;
 		dst.m_right = HIT_RIGHT_BLACKSTAR;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(2)
 	 if (Pflag[1] == false && Cflag[1] == true)
@@ -260,7 +257,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_BLACKSTAR;
 		dst.m_right = HIT_RIGHT_BLACKSTAR;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(10, &src, &dst, c, 0.0f);
 }
 	//(3)
 	 if (Pflag[2] == false && Cflag[2] == true)
@@ -273,7 +270,7 @@ void CObjReversibleSelect::Draw()
 		 dst.m_left = HIT_LEFT_BLACKSTAR;
 		 dst.m_right = HIT_RIGHT_BLACKSTAR;
 		 dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
-		 Draw::Draw(0, &src, &dst, c, 0.0f);
+		 Draw::Draw(10, &src, &dst, c, 0.0f);
 	 }
 	//白星の描画---------------------------------------------------------------------------
 
@@ -289,7 +286,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_WHITESTAR;
 		dst.m_right = HIT_RIGHT_WHITESTAR;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[1] == true)
 	{
@@ -302,7 +299,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_WHITESTAR;
 		dst.m_right = HIT_RIGHT_WHITESTAR;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[2] == true)
 	{
@@ -315,7 +312,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_WHITESTAR;
 		dst.m_right = HIT_RIGHT_WHITESTAR;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 
 }

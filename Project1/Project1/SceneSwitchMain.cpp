@@ -41,6 +41,7 @@ void CSceneSwitchMain::InitScene()
 	Draw::LoadImage(L"Main/スイッチ左右.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/SPGアニメーション.png", 8, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/まとめ画像3.png", 9, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"Sound/SwitchBGM.wav", SOUND_TYPE::BACK_MUSIC);
@@ -58,10 +59,10 @@ void CSceneSwitchMain::InitScene()
 
 	CObjSwitchMain* p = new CObjSwitchMain(stagenum);
 	Objs::InsertObj(p, OBJ_SWITCHMAIN, 1);
-
+	/*
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
-
+	*/
 }
 
 //ゲームメイン実行メソッド

@@ -43,14 +43,14 @@ void CSceneGallery::InitScene()
 	Draw::LoadImage(L"水族館1.png", 2, TEX_SIZE_4096);
 	Draw::LoadImage(L"太陽2.png", 3, TEX_SIZE_4096);
 	Draw::LoadImage(L"まとめ画像/りばーしぶるクリア画像.png", 4, TEX_SIZE_512);
-	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 5, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	CObjGallery* p = new CObjGallery();
 	Objs::InsertObj(p, OBJ_GALLERY, 1);
-
+	/*
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
-
+	*/
 
 
 	Audio::Start(3);

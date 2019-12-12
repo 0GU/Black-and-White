@@ -19,8 +19,6 @@ using namespace GameL;
 //イニシャライズ
 void CObjTitle::Init()
 {
-	m_time = 0;
-
 	Save::Seve();
 
 	for(int i=0; i<3; i++)
@@ -29,6 +27,12 @@ void CObjTitle::Init()
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
 	}
 	
+	//フラグを初期化
+	bool flag_set[2] =
+	{ false,false };
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
 }
 
 //アクション
@@ -36,25 +40,39 @@ void CObjTitle::Action()
 {	
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
-	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			if (Input::GetMouButtonL() == true)
-			{
-				//SEを鳴らす
-				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
 
-				}
-				Sleep(CLICK_WAIT);
-			
-				Scene::SetScene(new CSceneModeSelect());
-				
-			}
-		}
-		
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
+
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
+
+
+
+	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y&&
+		c_flag[0] == true && c_flag[1] == true)
+	{		
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(CLICK_WAIT);
+		Scene::SetScene(new CSceneModeSelect());		
 	}
 	if (Input::GetVKey(VK_UP)==true&&Input::GetVKey(VK_DOWN)==true)
 	{
@@ -66,6 +84,12 @@ void CObjTitle::Action()
 			((UserData*)Save::GetData())->RClearFlag[i] = true;
 		}
 		Save::Seve();
+	}
+
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
 	}
 }
 

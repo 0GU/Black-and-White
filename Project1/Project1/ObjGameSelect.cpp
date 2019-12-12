@@ -16,6 +16,12 @@ void CObjGameSelect::Init()
 {
 	m_y1 = BACKGROUND_TL;
 	m_y2 = BACKGROUND_B;
+	//フラグを初期化
+	bool flag_set[2] =
+	{ false,false };
+	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	back = true;
+	mou_call = true;
 }
 
 //アクション
@@ -24,52 +30,55 @@ void CObjGameSelect::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-	//スイッチのステージセレクトへ移動
-	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y)
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
 
-			}
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneSwitchSelect());
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
 
-		}
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
+
+	//スイッチのステージセレクトへ移動
+	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y&&
+		c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);	
+		Sleep(SELECT_WAIT);
+		Scene::SetScene(new CSceneSwitchSelect());
 	}
 	//リバーシブルのステージセレクトへ移動
-	if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y)
+	if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(1);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleSelect());
-		}
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SELECT_WAIT);
+		Scene::SetScene(new CSceneReversibleSelect());
 	}
 	//戻るボタン
-	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y)
-	{
-		if (Input::GetMouButtonL() == true)
-		{
-			//SEを鳴らす
-			Audio::Start(2);
-			while (Input::GetMouButtonL() == true)
-			{
-
-			}
-			Sleep(SCENEBACK_WAIT);
-			Scene::SetScene(new CSceneModeSelect());
-
-		}
+	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y&&
+		c_flag[0] == true && c_flag[1] == true)
+	{		
+		//SEを鳴らす
+		Audio::Start(2);
+		Sleep(SCENEBACK_WAIT);
+		Scene::SetScene(new CSceneModeSelect());
 	}
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
@@ -78,6 +87,13 @@ void CObjGameSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
+
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
+	}
+
 }
 
 //ドロー
