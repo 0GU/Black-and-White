@@ -158,6 +158,7 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 	float x, y;
+	int i, j;
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
@@ -175,5 +176,5 @@ private:
 	int m_time;
 	float r;		//アニメーションの角度変更用
 
-	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
+	bool flag[8];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
 };

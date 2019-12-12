@@ -60,12 +60,12 @@ void CSceneGallery::InitScene()
 		}
 		if (i == 2)
 		{
-			Draw::LoadImage(L"水族館1.png", 2, TEX_SIZE_4096);
+			Draw::LoadImage(L"まとめ画像/リバーシブルクリア画像.png", 4, TEX_SIZE_512);
 		}
 	}
 	
 	
-	Draw::LoadImage(L"まとめ画像/りばーしぶるクリア画像.png", 4, TEX_SIZE_512);
+	
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 5, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/黒背景.png", 6, TEX_SIZE_512);
 

@@ -41,7 +41,6 @@ void CObjReversibleMain::Init()
 	sy = INITIALIZE;
 	lx = INITIALIZE;
 	ly = INITIALIZE;
-	bool check;
 		Save::Open();
 	 j = 0;
 		for ( i = 0; i < 3; i++)
@@ -240,7 +239,7 @@ void CObjReversibleMain::Action()
 
 				if (flag[6]==true&&flag[7]==false)
 				{
-					Scene::SetScene(new CSceneModeSelect());
+					Scene::SetScene(new CSceneGalleryadd());
 				}
 				else if (flag[6] == false|| flag[7] == true)
 				{

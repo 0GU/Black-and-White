@@ -26,9 +26,9 @@ void CObjSwitchMain::Init()
 	//マップデータをコピー
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
-	bool flag_set[6] =
-	{ false,false,false,false,false,false};
-	memcpy(flag, flag_set, sizeof(bool)*(6));
+	bool flag_set[8] =
+	{ false,false,false,false,false,false,false,false};
+	memcpy(flag, flag_set, sizeof(bool)*(8));
 	   	
 	m_ani_flame = 0;
 	m_time = 0;
@@ -36,7 +36,21 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+	Save::Open();
+	j = 0;
+	for (i = 0; i < 3; i++)
+	{
 
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+		{
+			++j;
+			if (j == 3)
+			{
+				flag[7] = true;
+			}
+		}
+	}
+	j = 0;
 }
 
 //アクション
@@ -250,9 +264,30 @@ void CObjSwitchMain::Action()
 				{
 
 				}
-				Scene::SetScene(new CSceneSwitchSelect());
+				Save::Open();
+				for (i = 0; i < 3; i++)
+				{
 
+					if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+					{
+						++j;
+						if (j == 3)
+						{
+							flag[6] = true;
+						}
+					}
+				}
+
+				if (flag[6] == true && flag[7] == false)
+				{
+					Scene::SetScene(new CSceneGalleryadd());
+				}
+				else if (flag[6] == false || flag[7] == true)
+				{
+					Scene::SetScene(new CSceneSwitchSelect());
+				}
 			}
+
 		}
 	}
 	//GameOver時の判定
