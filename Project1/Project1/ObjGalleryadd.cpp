@@ -21,6 +21,30 @@ void CObjGalleryadd::Action()
 {
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+
+	//クリックエフェクト呼び出し（１回のみ）
+	if (mou_call == true)
+	{
+		CObjMouse*m = new CObjMouse(back);
+		Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
+		mou_call = false;
+	}
+
+	//クリック判別
+	//[0]のみ true = 押している状態　
+	//[1]のみ true = 押していない状態
+	//両方    true = 押してから離した状態
+	if (Input::GetMouButtonL() == true)
+	{
+		c_flag[0] = true;
+		c_flag[1] = false;
+	}
+	if (Input::GetMouButtonL() == false)
+	{
+		c_flag[1] = true;
+	}
+
+
 	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y)
 	{
 		if (Input::GetMouButtonL() == true)

@@ -21,16 +21,12 @@ void CObjTitle::Init()
 {
 	Save::Seve();
 
-	for(int i=0; i<3; i++)
-	{ 
+	for (int i = 0; i < 3; i++)
+	{
 		((UserData*)Save::GetData())->SPerfectFlag[i] = false;
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
-		((UserData*)Save::GetData())->SClearFlag[i] = false;
-		((UserData*)Save::GetData())->RClearFlag[i] = false;
-	
 	}
-	(UserData*)Save::Seve;
-	
+
 	//フラグを初期化
 	bool flag_set[2] =
 	{ false,false };
@@ -41,7 +37,7 @@ void CObjTitle::Init()
 
 //アクション
 void CObjTitle::Action()
-{	
+{
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
@@ -70,15 +66,15 @@ void CObjTitle::Action()
 
 
 
-	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y&&
+	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y &&
 		c_flag[0] == true && c_flag[1] == true)
-	{		
+	{
 		//SEを鳴らす
 		Audio::Start(1);
 		Sleep(CLICK_WAIT);
-		Scene::SetScene(new CSceneModeSelect());		
+		Scene::SetScene(new CSceneModeSelect());
 	}
-	if (Input::GetVKey(VK_UP)==true&&Input::GetVKey(VK_DOWN)==true)
+	if (Input::GetVKey(VK_UP) == true && Input::GetVKey(VK_DOWN) == true)
 	{
 		for (int i = 0; i < 3; i++)
 		{

@@ -43,7 +43,7 @@ void CObjSwitchSelect::Init()
 	bool flag_set[2] =
 	{ false,false };
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
-	
+
 	back = false;
 	mou_call = true;
 }
@@ -112,13 +112,13 @@ void CObjSwitchSelect::Action()
 		}
 	}
 	//戻るボタン
-	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y&&
+	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
-			//SEを鳴らす
-			Audio::Start(2);
-			Sleep(SCENEBACK_WAIT);
-			Scene::SetScene(new CSceneGameSelect());
+		//SEを鳴らす
+		Audio::Start(2);
+		Sleep(SCENEBACK_WAIT);
+		Scene::SetScene(new CSceneGameSelect());
 	}
 
 	//背景スクロール

@@ -66,7 +66,7 @@ void CObjMouse::Action()
 }
 //ÉhÉçÅ[
 void CObjMouse::Draw()
-{	
+{
 	float c[4] = { 0.5,1,1,1 };
 	float ew[4] = { 1.0f,1.0f,1.0f,1.0f };
 	float eb[4] = { 0.0f,0.0f,0.0f,1.0f };

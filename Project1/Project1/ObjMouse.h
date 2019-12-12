@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjMouse :public CObj
 {
 public:
-	CObjMouse(bool back) ;
+	CObjMouse(bool back);
 	~CObjMouse() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション

@@ -14,9 +14,9 @@ resource
 	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [6]…Perfectフラグ
 
 0 hint
-1 clear 
+1 clear
 2 gameover
-3 back select 
+3 back select
 4 perfect
 6
 
@@ -158,7 +158,6 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 	float x, y;
-	int i, j;
 private:
 	int stage[5][5];
 	int stage_reset[5][5];
@@ -167,7 +166,7 @@ private:
 	int StageSlect;
 
 	int sx, sy;		//マウスを押した位置を保存
-	
+
 	//アニメーション変更用
 	int m_ani_flame;
 	int change_panel[5][5];
@@ -176,8 +175,8 @@ private:
 	int m_time;
 	float r;		//アニメーションの角度変更用
 
-	bool flag[8];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
-	
+	bool flag[7];  //[0]…hintフラグ　[1]…Clearフラグ　[2]…GameOverフラグ [3]stageselectに戻るフラグ [4]…Perfectフラグ
+
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす

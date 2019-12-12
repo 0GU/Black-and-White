@@ -47,24 +47,15 @@ void CSceneSwitchMain::InitScene()
 	Audio::LoadAudio(0, L"Sound/SwitchBGM.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//SE情報の登録
-	Audio::LoadAudio(1, L"Sound/SwitchButtonA.wav",  EFFECT);
+	Audio::LoadAudio(1, L"Sound/SwitchButtonA.wav", EFFECT);
 	Audio::LoadAudio(2, L"Sound/GameOverTin.wav", EFFECT);
 	Audio::LoadAudio(3, L"Sound/ClearSE.wav", EFFECT);
 	Audio::LoadAudio(4, L"Sound/PerfectSE.wav", EFFECT);
 	Audio::LoadAudio(5, L"Sound/HintButton.wav", EFFECT);
 	Audio::LoadAudio(6, L"Sound/ResetButton.wav", EFFECT);
 
-	Audio::LoadAudio(7, L"Sound/SwitchHard.wav", SOUND_TYPE::BACK_MUSIC);
-	
-
-
-	//BGM再生---------------------
-	//ステージ3だとBGM変更
-	if (stagenum == 3)
-		Audio::Start(7);
-	else 
-		Audio::Start(0);
-	   
+	//BGM再生
+	Audio::Start(0);
 
 	CObjSwitchMain* p = new CObjSwitchMain(stagenum);
 	Objs::InsertObj(p, OBJ_SWITCHMAIN, 1);

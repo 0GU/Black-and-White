@@ -155,7 +155,7 @@ private:
 	bool Cflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
 	float m_y1;
 	float m_y2;
-	
+
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす

@@ -45,15 +45,15 @@ void CSceneGameSelect::InitScene()
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
 
 	/*Draw::LoadImage(L"", 0, TEX_SIZE_512);
-	
+
 	CObjGameSelect* p = new CObjGameSelect();
 	Objs::InsertObj(p, OBJ_GAMESELECT, 1);
-	
+
 	CObjMouse*m = new CObjMouse(back);
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
 
 	*/
-	
+
 }
 
 //ゲームタイトル実行メソッド

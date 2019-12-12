@@ -32,8 +32,6 @@ void CSceneGalleryadd::InitScene()
 	CObjGalleryadd* p = new CObjGalleryadd();
 	Objs::InsertObj(p, OBJ_GALLAERYADD, 1);
 
-	CObjMouse*m = new CObjMouse();
-	Objs::InsertObj(m, OBJ_MOUSE, 2);
 
 	Draw::LoadImage(L"Ç‹Ç∆ÇﬂâÊëú/Pëfçﬁ2.png", 0, TEX_SIZE_512);
 

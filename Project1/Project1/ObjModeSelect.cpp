@@ -56,7 +56,7 @@ void CObjModeSelect::Action()
 		c_flag[1] = true;
 	}
 
-	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y&&
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
@@ -65,7 +65,7 @@ void CObjModeSelect::Action()
 		Scene::SetScene(new CSceneGameSelect());
 	}
 
-	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y&&
+	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
@@ -80,7 +80,7 @@ void CObjModeSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
-	
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -130,7 +130,7 @@ void CObjModeSelect::Draw()
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
 	//GameSelect表示
-	src.m_top =CUT_PICTURE_TOP;
+	src.m_top = CUT_PICTURE_TOP;
 	src.m_left = CUT_PICTURE_LEFT;
 	src.m_right = CUT_PICTURE_RIGHT;
 	src.m_bottom = CUT_PICTURE_BOTTOM;

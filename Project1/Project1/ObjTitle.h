@@ -7,7 +7,7 @@ using namespace GameL;
 //オブジェクト：タイトル
 class CObjTitle : public CObj
 {
-public :
+public:
 	CObjTitle() {};
 	~CObjTitle() {};
 	void Init();	//イニシャライズ

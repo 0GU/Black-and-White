@@ -27,12 +27,12 @@ using namespace GameL;
 #define SCENE_TEXT_POS_L (130.0f)
 #define SCENE_TEXT_POS_R (690.0f)
 #define SCENE_TEXT_POS_B (155.0f)
-#define SELECT_POS_L (99.0f)
-#define SELECT_POS_R (690.0f)
-#define SW_SELECT_POS_T (197.0f)
-#define SW_SELECT_POS_B (284.0f)
-#define RP_SELECT_POS_T (393.0f)
-#define RP_SELECT_POS_B (476.0f)
+#define SELECT_POS_L (100.0f)
+#define SELECT_POS_R (700.0f)
+#define SW_SELECT_POS_T (200.0f)
+#define SW_SELECT_POS_B (290.0f)
+#define RP_SELECT_POS_T (400.0f)
+#define RP_SELECT_POS_B (485.0f)
 #define BACKBUTTON_POS_T (35.0f)
 #define BACKBUTTON_POS_L (5.0f)
 #define BACKBUTTON_POS_R (125.0f)
@@ -47,19 +47,19 @@ using namespace GameL;
 //オブジェクト：ゲームセレクト
 class CObjGameSelect : public CObj
 {
-	public:
-		CObjGameSelect() {};
-		~CObjGameSelect() {};
-		void Init();	//イニシャライズ
-		void Action();	//アクション
-		void Draw();	//ドロー
-		float x, y;
-	private:
-		float m_y1;
-		float m_y2;
-		bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
-		bool back;		//背景色判別用		true=黒 , false=白
-		bool mou_call;	//マウス呼び出し用、1回のみ動かす
+public:
+	CObjGameSelect() {};
+	~CObjGameSelect() {};
+	void Init();	//イニシャライズ
+	void Action();	//アクション
+	void Draw();	//ドロー
+	float x, y;
+private:
+	float m_y1;
+	float m_y2;
+	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
+	bool back;		//背景色判別用		true=黒 , false=白
+	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 
 
 };

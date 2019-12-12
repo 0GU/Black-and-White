@@ -22,7 +22,7 @@ void CObjReversibleSelect::Init()
 	m_y1 = BACKGROUND_TL;
 	m_y2 = BACKGROUND_B;
 
-	bool set_Pflag[3] = { false, false ,false};
+	bool set_Pflag[3] = { false, false ,false };
 	bool set_Cflag[3] = { false, false ,false };
 
 	Save::Open();
@@ -41,7 +41,7 @@ void CObjReversibleSelect::Init()
 	}
 	memcpy(Pflag, set_Pflag, sizeof(bool)*(3));
 	memcpy(Cflag, set_Cflag, sizeof(bool)*(3));
-	
+
 	//フラグを初期化
 	bool flag_set[2] =
 	{ false,false };
@@ -86,7 +86,7 @@ void CObjReversibleSelect::Action()
 	//right値が描画とズレているため右方向を-10.0f調整
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
-	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y&&
+	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
@@ -97,9 +97,9 @@ void CObjReversibleSelect::Action()
 
 	//Stage2----------------------------------------------------------------
 	if (Cflag[0] == true)
-	{	
+	{
 		//この場所を左クリックでリバーシブルのステージ2へ
-		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y&&
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
 			c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -111,9 +111,9 @@ void CObjReversibleSelect::Action()
 
 	//Stage3----------------------------------------------------------------
 	if (Cflag[1] == true)
-	{	
+	{
 		//この場所を左クリックでリバーシブルのステージ3へ
-		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y&&
+		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
 			c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -124,13 +124,13 @@ void CObjReversibleSelect::Action()
 	}
 
 	//戻るボタン
-	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y&&
+	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
-			//SEを鳴らす
-			Audio::Start(2);
-			Sleep(SCENEBACK_WAIT);
-			Scene::SetScene(new CSceneGameSelect());
+		//SEを鳴らす
+		Audio::Start(2);
+		Sleep(SCENEBACK_WAIT);
+		Scene::SetScene(new CSceneGameSelect());
 	}
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
@@ -234,7 +234,7 @@ void CObjReversibleSelect::Draw()
 
 
 	//(1)
-	if (Pflag[0] == false && Cflag[0]==true)
+	if (Pflag[0] == false && Cflag[0] == true)
 	{
 		src.m_top = CUT_PIC_TOP_BLACKSTAR;
 		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
@@ -247,31 +247,31 @@ void CObjReversibleSelect::Draw()
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(2)
-	 if (Pflag[1] == false && Cflag[1] == true)
+	if (Pflag[1] == false && Cflag[1] == true)
 	{
-		 src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		 src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		 src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		 src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+		src.m_top = CUT_PIC_TOP_BLACKSTAR;
+		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
 		dst.m_left = HIT_LEFT_BLACKSTAR;
 		dst.m_right = HIT_RIGHT_BLACKSTAR;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
-}
+	}
 	//(3)
-	 if (Pflag[2] == false && Cflag[2] == true)
-	 {
-		 src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		 src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		 src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		 src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
-		 dst.m_top = HIT_TOP_BLACKSTAR3;
-		 dst.m_left = HIT_LEFT_BLACKSTAR;
-		 dst.m_right = HIT_RIGHT_BLACKSTAR;
-		 dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
-		 Draw::Draw(10, &src, &dst, c, 0.0f);
-	 }
+	if (Pflag[2] == false && Cflag[2] == true)
+	{
+		src.m_top = CUT_PIC_TOP_BLACKSTAR;
+		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+		dst.m_top = HIT_TOP_BLACKSTAR3;
+		dst.m_left = HIT_LEFT_BLACKSTAR;
+		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
+		Draw::Draw(10, &src, &dst, c, 0.0f);
+	}
 	//白星の描画---------------------------------------------------------------------------
 
 
