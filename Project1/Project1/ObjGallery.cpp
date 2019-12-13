@@ -133,29 +133,21 @@ void CObjGallery::Action()
 		}
 		if (scroll_flag == false && SFlag[0] == true && SFlag[1] == true && SFlag[2] == true)
 		{
-			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[0] == false)
+			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[0] == false&&
+				c_flag[0] == true && c_flag[1] == true)
 			{
-				if (Input::GetMouButtonL() == true)
-				{
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
+				
 					Audio::Start(1);
 					GFlag[0] = true;
-				}
+				
 			}
-			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[0] == true)
+			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[0] == true&&
+				c_flag[0] == true && c_flag[1] == true)
 			{
-				if (Input::GetMouButtonL() == true)
-				{
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
+				
 					Audio::Start(1);
 					GFlag[0] = false;
-				}
+				
 			}
 		}
 	}
@@ -195,29 +187,20 @@ void CObjGallery::Action()
 		}
 		if (scroll_flag == false && RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
 		{
-			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == false)
+			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == false&&
+				c_flag[0] == true && c_flag[1] == true)
 			{
-				if (Input::GetMouButtonL() == true)
-				{
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
+				
 					Audio::Start(1);
 					GFlag[1] = true;
-				}
+				
 			}
-			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[1] == true)
+			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[1] == true&&
+				c_flag[0] == true && c_flag[1] == true)
 			{
-				if (Input::GetMouButtonL() == true)
-				{
-					while (Input::GetMouButtonL() == true)
-					{
-
-					}
 					Audio::Start(1);
 					GFlag[1] = false;
-				}
+				
 			}
 		}
 	}

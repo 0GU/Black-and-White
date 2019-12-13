@@ -266,7 +266,10 @@ void CObjSwitchMain::Action()
 	if (flag[CLEAR_FLAG] == true)
 	{
 		//BGM停止
-		Audio::Stop(0);
+		if (StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
 
 		//StageSELECTへ戻るボタン判定
 		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B &&
@@ -301,7 +304,10 @@ void CObjSwitchMain::Action()
 	if (flag[GAMEOVER_FLAG] == true)
 	{
 		//BGM停止
-		Audio::Stop(0);
+		if (StageSlect == 3)
+			Audio::Stop(7);
+		else
+			Audio::Stop(0);
 
 		//Yesボタン判定
 		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
@@ -311,12 +317,18 @@ void CObjSwitchMain::Action()
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 
 			//BGM停止
-			Audio::Start(0);
+			if (StageSlect == 3)
+				Audio::Start(7);
+			else
+				Audio::Start(0);
 			//SEを鳴らす
 			Audio::Start(1);
 
 			flag[GAMEOVER_FLAG] = false;
-			Audio::Start(0);
+			if (StageSlect == 3)
+				Audio::Start(7);
+			else
+				Audio::Start(0);
 			c_flag[0] = false;
 		}
 		//Noボタン判定
@@ -334,7 +346,8 @@ void CObjSwitchMain::Action()
 	//リセットボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		RESET_BUTTON_POS_T <= y && RESET_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && c_flag[0] == true && c_flag[1] == true)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+		c_flag[0] == true && c_flag[1] == true)
 	{
 		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));

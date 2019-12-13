@@ -45,26 +45,23 @@ void CObjGalleryadd::Action()
 	}
 
 
-	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y)
+	if (0 <= x && WINDOW_SIZE_X >= x && 0 <= y && WINDOW_SIZE_Y >= y&&
+		c_flag[0] == true && c_flag[1] == true)
 	{
-		if (Input::GetMouButtonL() == true)
-		{
-			if (Input::GetMouButtonL() == true)
-			{
 				//SEを鳴らす
 				Audio::Start(1);
-				while (Input::GetMouButtonL() == true)
-				{
-
-				}
 				Sleep(CLICK_WAIT);
 
 				Scene::SetScene(new CSceneModeSelect());
 
-			}
-		}
 
 	}
+	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
+	if (c_flag[0] == true && c_flag[1] == true)
+	{
+		c_flag[0] = false;
+	}
+
 }
 
 //ドロー
