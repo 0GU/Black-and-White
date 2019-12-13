@@ -30,9 +30,10 @@ void CObjReversibleMain::Init()
 	memcpy(stage_reset, stage, sizeof(int)*(5 * 5));
 
 	//フラグを初期化
-	bool flag_set[6] =
-	{ false,false,false,false,false,false };
-	memcpy(flag, flag_set, sizeof(bool)*(6));
+	bool flag_set[8] =
+	{ false,false,false,false,false,false,false,false };
+	memcpy(flag, flag_set, sizeof(bool)*(8));
+
 
 	m_ani_flame = INITIALIZE;
 	m_time = INITIALIZE;
@@ -42,10 +43,32 @@ void CObjReversibleMain::Init()
 	lx = INITIALIZE;
 	ly = INITIALIZE;
 
+	Save::Open();
+	j = 0;
+	for (i = 0; i < 3; i++)
+	{
+
+		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+		{
+			++j;
+			if (j == 3)
+			{
+				flag[7] = true;
+			}
+		}
+	}
+	j = 0;
+
+
+		colorchange = 0;
+		colorflag = false;
+	
 	//フラグを初期化
+		
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
+
 
 }
 
@@ -207,7 +230,29 @@ void CObjReversibleMain::Action()
 			//SEを鳴らす
 			Audio::Start(1);
 			Sleep(300);
-			Scene::SetScene(new CSceneReversibleSelect());
+			Save::Open();
+			for (i = 0; i < 3; i++)
+			{
+
+				if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
+				{
+					++j;
+					if (j == 3)
+					{
+						flag[6] = true;
+					}
+				}
+			}
+
+			if (flag[6] == true && flag[7] == false)
+			{
+				Scene::SetScene(new CSceneGalleryadd());
+			}
+			else if (flag[6] == false || flag[7] == true)
+			{
+				Scene::SetScene(new CSceneReversibleSelect());
+			}
+
 
 		}
 	}
@@ -312,6 +357,8 @@ void CObjReversibleMain::Action()
 			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
 			break;
 		}
+		(UserData*)Save::Seve;
+
 	}
 	//Clearフラグの管理
 	if (flag[1] == true)
@@ -328,6 +375,7 @@ void CObjReversibleMain::Action()
 			((UserData*)Save::GetData())->RClearFlag[2] = true;
 			break;
 		}
+		(UserData*)Save::Seve;
 	}
 
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
@@ -347,6 +395,7 @@ void CObjReversibleMain::Draw()
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
+	float   cchange[4] = { colorchange,0.0f,0.0f,1.0f };//テキスト用
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -607,7 +656,7 @@ void CObjReversibleMain::Draw()
 
 }
 
-void CObjReversibleMain::Reverse()
+void CObjReversibleMain::Reverse() //Perfectクリア時にパネルを回転させ続ける
 {
 	if (flag[4] == true)
 	{

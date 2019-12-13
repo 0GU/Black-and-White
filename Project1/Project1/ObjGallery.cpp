@@ -106,6 +106,8 @@ void CObjGallery::Action()
 			{
 				Audio::Start(1);
 				scroll_flag = true;
+				c_flag[0] = true;
+
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -167,6 +169,7 @@ void CObjGallery::Action()
 			{
 				Audio::Start(1);
 				scroll_flag = true;	//スクロール中にする
+				c_flag[0] = true;
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -231,7 +234,6 @@ void CObjGallery::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
-
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -351,30 +353,48 @@ void CObjGallery::Draw()
 		src.m_bottom= 140.0f;*/
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 4032.0f;
-		src.m_bottom = 3024.0f;
+		src.m_right = 1024.0f;
+		src.m_bottom = 1024.0f;
 		if (GFlag[1] == false)
 		{
 			dst.m_top = GRAPHIC_TOP;
 			dst.m_left = GRAPHIC_LEFT + SCROLL_DISTANCE + m_scroll;
 			dst.m_right = GRAPHIC_RIGHT + SCROLL_DISTANCE + m_scroll;
 			dst.m_bottom = GRAPHIC_BOTTOM;
+
 		}
+
 		else if (GFlag[1] == true)
 		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 800.0f;
+			src.m_bottom = 600.0f;
 			dst.m_top = 0.0f;
 			dst.m_left = 0.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_right = 800.0f + SCROLL_DISTANCE + m_scroll;
 			dst.m_bottom = 600.0f;
+			Draw::Draw(6, &src, &dst, c, 0.0f);
+
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1024.0f;
+			src.m_bottom = 1024.0f;
+
+			dst.m_top = 0.0f;
+			dst.m_left = 100.0f + SCROLL_DISTANCE + m_scroll;
+			dst.m_right = 700.0f + SCROLL_DISTANCE + m_scroll;
+			dst.m_bottom = 600.0f;
+			Draw::Draw(4, &src, &dst, c, 0.0f);
 		}
 
-		Draw::Draw(2, &src, &dst, c, 0.0f);
+		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 	else
 	{
-		Font::StrDraw(L"解放条件", 280 + m_scroll + SCROLL_DISTANCE, 100, 64, c);
-		Font::StrDraw(L"Reversible Panel", 150 + m_scroll + SCROLL_DISTANCE, 250, 64, c);
-		Font::StrDraw(L"全てPerfect達成", 160 + m_scroll + SCROLL_DISTANCE, 400, 64, c);
+		Font::StrDraw(L"解放条件", 280 + SCROLL_DISTANCE + m_scroll, 100, 64, c);
+		Font::StrDraw(L"Reversible Panel", 150 + SCROLL_DISTANCE + m_scroll, 250, 64, c);
+		Font::StrDraw(L"全てPerfect達成", 160 + SCROLL_DISTANCE + m_scroll, 400, 64, c);
 
 		//戻るボタン
 		src.m_top = CUT_BACK_TOP;
@@ -387,5 +407,6 @@ void CObjGallery::Draw()
 		dst.m_bottom = HIT_BACK_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 
+		
 	}
 }
