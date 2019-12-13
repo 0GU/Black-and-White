@@ -346,7 +346,8 @@ void CObjSwitchMain::Action()
 	//リセットボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		RESET_BUTTON_POS_T <= y && RESET_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && c_flag[0] == true && c_flag[1] == true)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+		c_flag[0] == true && c_flag[1] == true)
 	{
 		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
