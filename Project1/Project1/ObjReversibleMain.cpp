@@ -217,6 +217,44 @@ void CObjReversibleMain::Action()
 		}
 	}
 
+
+	//Perfectフラグの管理
+	Save::Seve();
+	if (flag[1] == true && flag[4] == true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->RPerfectFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->RPerfectFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
+			break;
+		}
+		(UserData*)Save::Seve;
+
+	}
+	//Clearフラグの管理
+	if (flag[1] == true)
+	{
+		switch (StageSlect)
+		{
+		case 1:
+			((UserData*)Save::GetData())->RClearFlag[0] = true;
+			break;
+		case 2:
+			((UserData*)Save::GetData())->RClearFlag[1] = true;
+			break;
+		case 3:
+			((UserData*)Save::GetData())->RClearFlag[2] = true;
+			break;
+		}
+		(UserData*)Save::Seve;
+	}
+	
 	//GameClear時の判定-----------------------------------------------------------------------------------------------
 	if (flag[1] == true)
 	{
@@ -341,42 +379,6 @@ void CObjReversibleMain::Action()
 		}
 	}
 
-	//Perfectフラグの管理
-	Save::Seve();
-	if (flag[1] == true && flag[4] == true)
-	{
-		switch (StageSlect)
-		{
-		case 1:
-			((UserData*)Save::GetData())->RPerfectFlag[0] = true;
-			break;
-		case 2:
-			((UserData*)Save::GetData())->RPerfectFlag[1] = true;
-			break;
-		case 3:
-			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
-			break;
-		}
-		(UserData*)Save::Seve;
-
-	}
-	//Clearフラグの管理
-	if (flag[1] == true)
-	{
-		switch (StageSlect)
-		{
-		case 1:
-			((UserData*)Save::GetData())->RClearFlag[0] = true;
-			break;
-		case 2:
-			((UserData*)Save::GetData())->RClearFlag[1] = true;
-			break;
-		case 3:
-			((UserData*)Save::GetData())->RClearFlag[2] = true;
-			break;
-		}
-		(UserData*)Save::Seve;
-	}
 
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
