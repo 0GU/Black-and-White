@@ -21,14 +21,16 @@ void CObjTitle::Init()
 {
 	Save::Seve();
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		((UserData*)Save::GetData())->SPerfectFlag[i] = false;
+		if (i < 3)
+		{
+			((UserData*)Save::GetData())->SPerfectFlag[i] = false;
+			((UserData*)Save::GetData())->SClearFlag[i] = false;
+		}
+
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
-		((UserData*)Save::GetData())->SClearFlag[i] = false;
 		((UserData*)Save::GetData())->RClearFlag[i] = false;
-
-
 	}
 	(UserData*)Save::Seve;
 
@@ -81,11 +83,14 @@ void CObjTitle::Action()
 	}
 	if (Input::GetVKey(VK_UP) == true && Input::GetVKey(VK_DOWN) == true)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			((UserData*)Save::GetData())->SPerfectFlag[i] = true;
+			if (i < 3)
+			{
+				((UserData*)Save::GetData())->SPerfectFlag[i] = true;
+				((UserData*)Save::GetData())->SClearFlag[i] = true;
+			}
 			((UserData*)Save::GetData())->RPerfectFlag[i] = true;
-			((UserData*)Save::GetData())->SClearFlag[i] = true;
 			((UserData*)Save::GetData())->RClearFlag[i] = true;
 		}
 		Save::Seve();
