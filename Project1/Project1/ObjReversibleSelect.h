@@ -152,8 +152,9 @@ public:
 
 	float x, y;
 private:
-	bool Pflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
-	bool Cflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
+	bool Pflag[6];		//0:STAGE1  1:STAGE2  2:STAGE3	3:STAGE4	4:STAGE5	5:STAGE6	
+	bool Cflag[6];		//0:STAGE1  1:STAGE2  2:STAGE3	3:STAGE4	4:STAGE5	5:STAGE6
+	bool Rflag;			//STAGE1Å`3Ç∆STAGE4Å`6ÇÃîªíËÇï™ÇØÇÈÇΩÇﬂ
 	float m_y1;
 	float m_y2;
 
