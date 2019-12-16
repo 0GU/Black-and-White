@@ -188,4 +188,6 @@ private:
 	float colorchange;
 	bool colorflag;
 
+	bool Debugflag;
+
 };
