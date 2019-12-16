@@ -42,6 +42,10 @@ void CObjReversibleSelect::Init()
 	memcpy(Pflag, set_Pflag, sizeof(bool)*(3));
 	memcpy(Cflag, set_Cflag, sizeof(bool)*(3));
 
+	m_scroll = 0.0f;
+	speed = 0.0f;
+	scroll_flag = false;
+
 	//フラグを初期化
 	bool flag_set[2] =
 	{ false,false };
@@ -49,6 +53,8 @@ void CObjReversibleSelect::Init()
 	back = false;
 	mou_call = true;
 
+	Rright = 1;
+	Rleft = 0;
 }
 
 //アクション
@@ -81,7 +87,75 @@ void CObjReversibleSelect::Action()
 		c_flag[1] = true;
 	}
 
+	if (Rright == 1)
+	{
 
+		//右矢印
+		if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
+			c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+		{
+			Audio::Start(1);
+			scroll_flag = true;
+			c_flag[0] = true;
+
+		}
+		//スクロール処理------
+		if (scroll_flag == true)
+		{
+			//少しずつscroolを加速させる
+			speed += -SCROLL_SPEED;
+			m_scroll += speed;
+			//scrollが800を上回ったら800になおし、speedを初期化する
+			if (m_scroll <= (-SCROLL_DISTANCE))
+			{
+				m_scroll = (-SCROLL_DISTANCE);
+				speed = 0.0f;
+			}
+		}
+		//スクロール終了処理-----
+		//右矢印を消して左矢印を表示させる
+		if (m_scroll == -SCROLL_DISTANCE)
+		{
+			scroll_flag = false;
+			Rright = 0;
+			Rleft = 1;
+		}
+	}
+
+	if (Rleft == 1)
+	{
+		//左矢印
+		if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
+			c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+		{
+			Audio::Start(1);
+			scroll_flag = true;	//スクロール中にする
+			c_flag[0] = true;
+		}
+		//スクロール処理------
+		if (scroll_flag == true)
+		{
+			//少しずつscroolを加速させる
+			speed += SCROLL_SPEED;
+			m_scroll += speed;
+			//scrollが０を下回ったら０になおし、speedを初期化する
+			if (m_scroll >= 0.0f)
+			{
+				m_scroll = 0.0f;
+				speed = 0.0f;
+			}
+		}
+		//スクロール終了処理-----
+		//左矢印を消して右矢印を表示させる
+		if (m_scroll == 0.0f&&scroll_flag == true)
+		{
+			scroll_flag = false;
+			Rleft = 0;
+			Rright = 1;
+		}
+
+
+	}
 
 	//right値が描画とズレているため右方向を-10.0f調整
 	//Stage1--------------------------------------------------------------
@@ -145,8 +219,8 @@ void CObjReversibleSelect::Action()
 	{
 		c_flag[0] = false;
 	}
-
 }
+
 
 //ドロー
 void CObjReversibleSelect::Draw()
@@ -159,6 +233,8 @@ void CObjReversibleSelect::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
+
+
 
 	//背景スクロール
 	src.m_top = BACKGROUND_TL;
@@ -179,14 +255,44 @@ void CObjReversibleSelect::Draw()
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
+	//右矢印の描画-------------------------
+	if (Rright == 1 && scroll_flag == false)
+	{
+		//右矢印ボタン
+		src.m_top = CUT_RIGHTARROW_TOP;
+		src.m_left = CUT_RIGHTARROW_LEFT;
+		src.m_right = CUT_RIGHTARROW_RIGHT;
+		src.m_bottom = CUT_RIGHTARROW_BOTTOM;
+		dst.m_top = HIT_RIGHTARROW_TOP;
+		dst.m_left = HIT_RIGHTARROW_LEFT;
+		dst.m_right = HIT_RIGHTARROW_RIGHT;
+		dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+	}
+
+	//左矢印の描画------------------------
+	if (Rleft == 1 && scroll_flag == false)
+	{
+
+		//左矢印ボタン
+		src.m_top = CUT_LEFTARROW_TOP;
+		src.m_left = CUT_LEFTARROW_LEFT;
+		src.m_right = CUT_LEFTARROW_RIGHT;
+		src.m_bottom = CUT_LEFTARROW_BOTTOM;
+		dst.m_top = HIT_LEFTARROW_TOP;
+		dst.m_left = HIT_LEFTARROW_LEFT;
+		dst.m_right = HIT_LEFTARROW_RIGHT;
+		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+	}
 	//Stage1の描画
 	src.m_top = CUT_PIC_TOP_RP1;
 	src.m_left = CUT_PIC_LEFT_RP;
 	src.m_right = CUT_PIC_RIGHT_RP;
 	src.m_bottom = CUT_PIC_BOTTOM_RP1;
 	dst.m_top = HIT_TOP_RP1;
-	dst.m_left = HIT_LEFT_RP;
-	dst.m_right = HIT_RIGHT_RP;
+	dst.m_left = HIT_LEFT_RP + m_scroll;
+	dst.m_right = HIT_RIGHT_RP + m_scroll;
 	dst.m_bottom = HIT_BOTTOM_RP1;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
@@ -198,8 +304,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_RP;
 		src.m_bottom = CUT_PIC_BOTTOM_RP2;
 		dst.m_top = HIT_TOP_RP2;
-		dst.m_left = HIT_LEFT_RP;
-		dst.m_right = HIT_RIGHT_RP;
+		dst.m_left = HIT_LEFT_RP + m_scroll;
+		dst.m_right = HIT_RIGHT_RP + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP2;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
@@ -211,8 +317,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_RP;
 		src.m_bottom = CUT_PIC_BOTTOM_RP3;
 		dst.m_top = HIT_TOP_RP3;
-		dst.m_left = HIT_LEFT_RP;
-		dst.m_right = HIT_RIGHT_RP;
+		dst.m_left = HIT_LEFT_RP + m_scroll;
+		dst.m_right = HIT_RIGHT_RP + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP3;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
@@ -241,8 +347,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR1;
-		dst.m_left = HIT_LEFT_BLACKSTAR;
-		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
@@ -254,8 +360,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
-		dst.m_left = HIT_LEFT_BLACKSTAR;
-		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
@@ -267,8 +373,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR3;
-		dst.m_left = HIT_LEFT_BLACKSTAR;
-		dst.m_right = HIT_RIGHT_BLACKSTAR;
+		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
@@ -283,8 +389,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR1;
-		dst.m_left = HIT_LEFT_WHITESTAR;
-		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
@@ -296,8 +402,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR2;
-		dst.m_left = HIT_LEFT_WHITESTAR;
-		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
@@ -309,8 +415,8 @@ void CObjReversibleSelect::Draw()
 		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
 		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR3;
-		dst.m_left = HIT_LEFT_WHITESTAR;
-		dst.m_right = HIT_RIGHT_WHITESTAR;
+		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
+		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}

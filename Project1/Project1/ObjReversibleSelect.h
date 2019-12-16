@@ -149,6 +149,7 @@ public:
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー
+
 	float x, y;
 private:
 	bool Pflag[3];		//0:STAGE1  1:STAGE2  2:STAGE3
@@ -159,5 +160,12 @@ private:
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
+
+	float m_scroll;//スクロール仮
+	bool scroll_flag;
+	float speed;
+
+	int Rright;//スクロール右
+	int Rleft;//スクロール左
 
 };
