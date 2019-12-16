@@ -20,9 +20,13 @@ void CObjGallery::Init()
 	Gright = 1;
 	Gleft = 0;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		SFlag[i] = false;
+		if (i<3)
+		{
+			SFlag[i] = false;
+		}
+		
 		RFlag[i] = false;
 	}
 	bool setflag[2] = { false,false };
@@ -73,11 +77,14 @@ void CObjGallery::Action()
 
 	Save::Open();
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+		if (i < 3)
 		{
-			SFlag[i] = true;
+			if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+			{
+				SFlag[i] = true;
+			}
 		}
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
 		{
@@ -131,7 +138,7 @@ void CObjGallery::Action()
 				Gleft = 1;
 			}
 		}
-		if (scroll_flag == false && SFlag[0] == true && SFlag[1] == true && SFlag[2] == true)
+		if (scroll_flag == false &&FlagCheck(SFlag, 3)==true)
 		{
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[0] == false&&
 				c_flag[0] == true && c_flag[1] == true)
@@ -185,7 +192,7 @@ void CObjGallery::Action()
 				Gright = 1;
 			}
 		}
-		if (scroll_flag == false && RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
+		if (scroll_flag == false && FlagCheck(RFlag, 6)==true)
 		{
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == false&&
 				c_flag[0] == true && c_flag[1] == true)
@@ -269,7 +276,7 @@ void CObjGallery::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//仮表示
-	if (SFlag[0] == true && SFlag[1] == true && SFlag[2] == true)
+	if (FlagCheck(SFlag, 3)==true)
 	{
 		//ギャラリー開放(仮)
 		/*src.m_top   = 0.0f;
@@ -327,7 +334,7 @@ void CObjGallery::Draw()
 
 
 	//仮表示
-	if (RFlag[0] == true && RFlag[1] == true && RFlag[2] == true)
+	if (FlagCheck(RFlag, 6) == true)
 	{
 		//ギャラリー開放(仮)
 		/*src.m_top   = 0.0f;
@@ -392,4 +399,23 @@ void CObjGallery::Draw()
 
 		
 	}
+}
+
+bool CObjGallery::FlagCheck(bool flag[], int num)
+{
+	int count=0;
+	for ( int i = 0; i < num; i++)
+	{
+		if (flag[i] == true)
+		{
+			count++;
+		}
+	}
+
+	if (count==num)
+	{
+		return true;
+	}
+
+	return false;
 }

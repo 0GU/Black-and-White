@@ -75,8 +75,10 @@ void CObjReversibleMain::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjReversibleMain::Action()
 {
+
 	if (Input::GetVKey('D')==true&& Input::GetVKey('G')==true)
 	{
+		count[1] = 0;
 		Debugflag = true;
 	}
 
