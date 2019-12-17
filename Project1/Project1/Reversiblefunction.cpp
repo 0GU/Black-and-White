@@ -71,6 +71,36 @@ void LoadRPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count3[2] = { 10,25 };
 
+	int Stage4[5][5] =
+	{
+	{0,1,0,0,1},
+	{1,1,1,1,0},
+	{1,0,0,0,1},
+	{0,1,1,1,1},
+	{1,0,0,1,0},
+	};
+	int Count4[2] = { 9,25 };
+
+	int Stage5[5][5] =
+	{
+	{0,1,0,1,0},
+	{0,0,0,0,0},
+	{1,1,0,1,1},
+	{1,1,0,1,1},
+	{0,0,0,0,0},
+	};
+	int Count5[2] = { 10,25 };
+
+	int Stage6[5][5] =
+	{
+	{1,1,1,1,1},
+	{1,0,0,0,1},
+	{1,0,0,0,1},
+	{1,0,0,0,1},
+	{1,1,1,1,1},
+	};
+	int Count6[2] = { 13,29 };
+
 	int Stage99[5][5] =
 	{
 	{0,3,2,3,0},
@@ -97,6 +127,18 @@ void LoadRPStage(int StaNum, int *Stage, int *Count)
 	case 3:
 		memcpy(Stage, Stage3, sizeof(int)*(5 * 5));
 		memcpy(Count, Count3, sizeof(int) * 2);
+		break;
+	case 4:
+		memcpy(Stage, Stage4, sizeof(int)*(5 * 5));
+		memcpy(Count, Count4, sizeof(int) * 2);
+		break;
+	case 5:
+		memcpy(Stage, Stage5, sizeof(int)*(5 * 5));
+		memcpy(Count, Count5, sizeof(int) * 2);
+		break;
+	case 6:
+		memcpy(Stage, Stage6, sizeof(int)*(5 * 5));
+		memcpy(Count, Count6, sizeof(int) * 2);
 		break;
 	}
 }
