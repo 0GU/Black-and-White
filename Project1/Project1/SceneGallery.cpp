@@ -53,13 +53,13 @@ void CSceneGallery::InitScene()
 			Draw::LoadImage(L"太陽2.png", 3, TEX_SIZE_4096);
 		}
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == false)
 		{
 			break;
 		}
-		if (i == 2)
+		if (i == 5)
 		{
 			Draw::LoadImage(L"まとめ画像/リバーシブルクリア画像.png", 4, TEX_SIZE_512);
 		}
