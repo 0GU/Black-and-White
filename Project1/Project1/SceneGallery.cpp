@@ -50,22 +50,22 @@ void CSceneGallery::InitScene()
 		}
 		if (i == 2)
 		{
-			Draw::LoadImage(L"太陽2.png", 3, TEX_SIZE_4096);
+			Draw::LoadImage(L"まとめ画像/スイッチクリア.png", 3, TEX_SIZE_4096);
 		}
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == false)
 		{
 			break;
 		}
-		if (i == 2)
+		if (i == 5)
 		{
 			Draw::LoadImage(L"まとめ画像/リバーシブルクリア画像.png", 4, TEX_SIZE_512);
 		}
 	}
 
-	Draw::LoadImage(L"まとめ画像/黒背景.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/黒背景.png", 5, TEX_SIZE_512);
 
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 

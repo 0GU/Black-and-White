@@ -45,13 +45,13 @@ void CObjReversibleMain::Init()
 
 	Save::Open();
 	j = 0;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 6; i++)
 	{
 
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
 		{
 			++j;
-			if (j == 3)
+			if (j == 6)
 			{
 				flag[7] = true;
 			}
@@ -240,6 +240,15 @@ void CObjReversibleMain::Action()
 		case 3:
 			((UserData*)Save::GetData())->RPerfectFlag[2] = true;
 			break;
+		case 4:
+			((UserData*)Save::GetData())->RPerfectFlag[3] = true;
+			break;
+		case 5:
+			((UserData*)Save::GetData())->RPerfectFlag[4] = true;
+			break;
+		case 6:
+			((UserData*)Save::GetData())->RPerfectFlag[5] = true;
+			break;
 		}
 		(UserData*)Save::Seve;
 
@@ -257,6 +266,15 @@ void CObjReversibleMain::Action()
 			break;
 		case 3:
 			((UserData*)Save::GetData())->RClearFlag[2] = true;
+			break;
+		case 4:
+			((UserData*)Save::GetData())->RClearFlag[3] = true;
+			break;
+		case 5:
+			((UserData*)Save::GetData())->RClearFlag[4] = true;
+			break;
+		case 6:
+			((UserData*)Save::GetData())->RClearFlag[5] = true;
 			break;
 		}
 		(UserData*)Save::Seve;
@@ -279,13 +297,13 @@ void CObjReversibleMain::Action()
 			Audio::Start(1);
 			Sleep(300);
 			Save::Open();
-			for (i = 0; i < 3; i++)
+			for (i = 0; i < 6; i++)
 			{
 
 				if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
 				{
 					++j;
-					if (j == 3)
+					if (j == 6)
 					{
 						flag[6] = true;
 					}
@@ -502,27 +520,26 @@ void CObjReversibleMain::Draw()
 	//ヒントの表示
 	if (flag[0] == true)
 	{
-		if (StageSlect == 1)
+		switch (StageSlect)
 		{
+		case 1:
 			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
-		}
-		else if (StageSlect == 2)
-		{
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
-			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
-		}
-		else if (StageSlect == 3)
-		{
+			break;
+
+		case 2:
+			Font::StrDraw(L"左の角を", 25, 260, 24, f);
+			Font::StrDraw(L"クリック！", 15, 300, 24, f);
+			break;
+
+		case 3:
 			wchar_t str2[128];
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
 			swprintf_s(str2, L"%d手", count[0]);
 
 
 			Font::StrDraw(str2, 40, 320, 32, f);
-
 		}
-
 	}
 
 	//リセットボタン--------------------------------------------
@@ -746,4 +763,3 @@ void CObjReversibleMain::Reverse() //Perfectクリア時にパネルを回転させ続ける
 	}
 
 }
-//

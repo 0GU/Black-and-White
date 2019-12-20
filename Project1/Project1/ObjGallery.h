@@ -33,6 +33,14 @@ using namespace GameL;
 #define CUT_GRAPHIC_RIGHT (512.0f)
 #define CUT_GRAPHIC_BOTTOM (512.0f)
 
+//画像切り取り用
+#define RESOURCE_GRAPHIC_RIGHT (800.0f)
+#define RESOURCE_GRAPHIC_BOTTOM (600.0f)
+#define RESOURCE_GRAPHIC_RIGHT2 (1024.0f)
+#define RESOURCE_GRAPHIC_BOTTOM2 (1024.0f)
+
+
+
 #define CUT_BACK_TOP (139.0f)
 #define CUT_BACK_LEFT (559.0f)
 #define CUT_BACK_RIGHT (679.0f)
@@ -48,6 +56,10 @@ using namespace GameL;
 #define CUT_LEFTARROW_RIGHT (718.0f)
 #define CUT_LEFTARROW_BOTTOM (140.0f)
 
+#define EX_GRAPHIC_TOP (0.0f)
+#define EX_GRAPHIC_LEFT (100.0f)
+#define EX_GRAPHIC_RIGHT (700.0f)
+#define EX_GRAPHIC_BOTTOM (600.0f)
 
 //オブジェクト：ギャラリー
 class CObjGallery : public CObj
