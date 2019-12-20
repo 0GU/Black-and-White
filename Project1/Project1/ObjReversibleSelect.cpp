@@ -161,7 +161,7 @@ void CObjReversibleSelect::Action()
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -174,7 +174,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -188,7 +188,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -202,7 +202,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -216,7 +216,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -230,7 +230,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
