@@ -52,6 +52,44 @@ using namespace GameL;
 
 #define CUT_PIC_BOTTOM_RP3 (271.0f)
 
+
+//Stage4--------------------------
+
+//表示:RP4
+#define HIT_TOP_RP4 (160.0f)
+ 
+#define HIT_BOTTOM_RP4 (250.0f)
+
+//切り取り:RP4
+#define CUT_PIC_TOP_RP4 (545.0f)
+
+#define CUT_PIC_BOTTOM_RP4 (635.0f)
+
+//Stage5--------------------------
+
+//表示:RP5
+#define HIT_TOP_RP5 (290.0f)
+
+#define HIT_BOTTOM_RP5 (380.0f)
+
+//切り取り:RP5
+#define CUT_PIC_TOP_RP5 (635.0f)
+
+#define CUT_PIC_BOTTOM_RP5 (725.0f)
+
+//Stage6--------------------------
+
+//表示:RP6
+#define HIT_TOP_RP6 (420.0f)
+
+#define HIT_BOTTOM_RP6 (510.0f)
+
+//切り取り:RP6
+#define CUT_PIC_TOP_RP6 (725.0f)
+
+#define CUT_PIC_BOTTOM_RP6 (816.0f)
+
+
 //BackButton-------------------------------------
 
 //表示:BackPic
