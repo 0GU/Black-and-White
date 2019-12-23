@@ -523,16 +523,22 @@ void CObjReversibleMain::Draw()
 		switch (StageSlect)
 		{
 		case 1:
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
-			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+			Font::StrDraw(L"白の十字を", 15, 260, 24, f);
+			Font::StrDraw(L"クリック！", 15, 300, 24, f);
 			break;
 
 		case 2:
-			Font::StrDraw(L"左の角を", 25, 260, 24, f);
+			Font::StrDraw(L" 四隅を", 25, 260, 24, f);
 			Font::StrDraw(L"クリック！", 15, 300, 24, f);
 			break;
 
 		case 3:
+			Font::StrDraw(L" 左の角を", 15, 260, 24, f);
+			Font::StrDraw(L"クリック！", 15, 300, 24, f);
+			break;
+
+		case 5:
+		case 6:
 			wchar_t str2[128];
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
 			swprintf_s(str2, L"%d手", count[0]);

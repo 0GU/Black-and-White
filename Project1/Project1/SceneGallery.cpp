@@ -50,7 +50,7 @@ void CSceneGallery::InitScene()
 		}
 		if (i == 2)
 		{
-			Draw::LoadImage(L"‘¾—z2.png", 3, TEX_SIZE_4096);
+			Draw::LoadImage(L"‘¾—z2.png", 3, TEX_SIZE_1024);
 		}
 	}
 	for (int i = 0; i < 6; i++)
