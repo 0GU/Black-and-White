@@ -86,42 +86,43 @@ void CObjReversibleSelect::Action()
 	{
 		c_flag[1] = true;
 	}
-
-	if (Rright == 1)
+	if (Cflag[2] == true)
 	{
+		if (Rright == 1)
+		{
 
-		//右矢印
-		if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-			c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
-		{
-			Audio::Start(1);
-			scroll_flag = true;
-			c_flag[0] = true;
-		}
-		//スクロール処理------
-		if (scroll_flag == true)
-		{
-			//少しずつscroolを加速させる
-			speed += -SCROLL_SPEED;
-			m_scroll += speed;
-			//scrollが800を上回ったら800になおし、speedを初期化する
-			if (m_scroll <= (-SCROLL_DISTANCE))
+			//右矢印
+			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
+				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
 			{
-				m_scroll = (-SCROLL_DISTANCE);
-				speed = 0.0f;
+				Audio::Start(1);
+				scroll_flag = true;
+				c_flag[0] = true;
+			}
+			//スクロール処理------
+			if (scroll_flag == true)
+			{
+				//少しずつscroolを加速させる
+				speed += -SCROLL_SPEED;
+				m_scroll += speed;
+				//scrollが800を上回ったら800になおし、speedを初期化する
+				if (m_scroll <= (-SCROLL_DISTANCE))
+				{
+					m_scroll = (-SCROLL_DISTANCE);
+					speed = 0.0f;
+				}
+			}
+			//スクロール終了処理-----
+			//右矢印を消して左矢印を表示させる
+			if (m_scroll == -SCROLL_DISTANCE)
+			{
+				scroll_flag = false;
+				Rright = 0;
+				Rleft = 1;
+				Rflag = false;
 			}
 		}
-		//スクロール終了処理-----
-		//右矢印を消して左矢印を表示させる
-		if (m_scroll == -SCROLL_DISTANCE)
-		{
-			scroll_flag = false;
-			Rright = 0;
-			Rleft = 1;
-			Rflag = false;
-		}
 	}
-
 	if (Rleft == 1)
 	{
 		//左矢印
@@ -161,7 +162,7 @@ void CObjReversibleSelect::Action()
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -174,7 +175,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -188,7 +189,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -202,7 +203,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -216,7 +217,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -230,7 +231,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -295,22 +296,23 @@ void CObjReversibleSelect::Draw()
 	dst.m_right = BACKGROUND_R;
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
-
-	//右矢印の描画-------------------------
-	if (Rright == 1 && scroll_flag == false)
+	if (Cflag[2] == true)
 	{
-		//右矢印ボタン
-		src.m_top = CUT_RIGHTARROW_TOP;
-		src.m_left = CUT_RIGHTARROW_LEFT;
-		src.m_right = CUT_RIGHTARROW_RIGHT;
-		src.m_bottom = CUT_RIGHTARROW_BOTTOM;
-		dst.m_top = HIT_RIGHTARROW_TOP;
-		dst.m_left = HIT_RIGHTARROW_LEFT;
-		dst.m_right = HIT_RIGHTARROW_RIGHT;
-		dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
-		Draw::Draw(2, &src, &dst, c, 0.0f);
+		//右矢印の描画-------------------------
+		if (Rright == 1 && scroll_flag == false)
+		{
+			//右矢印ボタン
+			src.m_top = CUT_RIGHTARROW_TOP;
+			src.m_left = CUT_RIGHTARROW_LEFT;
+			src.m_right = CUT_RIGHTARROW_RIGHT;
+			src.m_bottom = CUT_RIGHTARROW_BOTTOM;
+			dst.m_top = HIT_RIGHTARROW_TOP;
+			dst.m_left = HIT_RIGHTARROW_LEFT;
+			dst.m_right = HIT_RIGHTARROW_RIGHT;
+			dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
+			Draw::Draw(2, &src, &dst, c, 0.0f);
+		}
 	}
-
 	//左矢印の描画------------------------
 	if (Rleft == 1 && scroll_flag == false)
 	{
