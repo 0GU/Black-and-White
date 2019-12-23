@@ -52,6 +52,44 @@ using namespace GameL;
 
 #define CUT_PIC_BOTTOM_RP3 (271.0f)
 
+
+//Stage4--------------------------
+
+//表示:RP4
+#define HIT_TOP_RP4 (160.0f)
+ 
+#define HIT_BOTTOM_RP4 (250.0f)
+
+//切り取り:RP4
+#define CUT_PIC_TOP_RP4 (545.0f)
+
+#define CUT_PIC_BOTTOM_RP4 (635.0f)
+
+//Stage5--------------------------
+
+//表示:RP5
+#define HIT_TOP_RP5 (290.0f)
+
+#define HIT_BOTTOM_RP5 (380.0f)
+
+//切り取り:RP5
+#define CUT_PIC_TOP_RP5 (635.0f)
+
+#define CUT_PIC_BOTTOM_RP5 (725.0f)
+
+//Stage6--------------------------
+
+//表示:RP6
+#define HIT_TOP_RP6 (420.0f)
+
+#define HIT_BOTTOM_RP6 (510.0f)
+
+//切り取り:RP6
+#define CUT_PIC_TOP_RP6 (725.0f)
+
+#define CUT_PIC_BOTTOM_RP6 (816.0f)
+
+
 //BackButton-------------------------------------
 
 //表示:BackPic
@@ -69,8 +107,8 @@ using namespace GameL;
 //BlackStar1-------------------------------------
 
 //表示:BlackStar1
-#define HIT_LEFT_BLACKSTAR (288.0f)
-#define HIT_RIGHT_BLACKSTAR (327.0f)
+#define HIT_LEFT_BLACKSTAR (278.0f)
+#define HIT_RIGHT_BLACKSTAR (317.0f)
 
 #define HIT_TOP_BLACKSTAR1 (184.0f)
 #define HIT_BOTTOM_BLACKSTAR1 (225.0f)
@@ -106,8 +144,8 @@ using namespace GameL;
 //WhiteStar1-----------------------------------------
 
 //表示:WhiteStar1
-#define HIT_LEFT_WHITESTAR (288.0f)
-#define HIT_RIGHT_WHITESTAR (327.0f)
+#define HIT_LEFT_WHITESTAR (278.0f)
+#define HIT_RIGHT_WHITESTAR (317.0f)
 
 #define HIT_TOP_WHITESTAR1 (184.0f)
 #define HIT_BOTTOM_WHITESTAR1 (225.0f)

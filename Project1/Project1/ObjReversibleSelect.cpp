@@ -162,7 +162,7 @@ void CObjReversibleSelect::Action()
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -175,7 +175,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -189,7 +189,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -203,7 +203,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -217,7 +217,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -231,7 +231,7 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0)
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -369,40 +369,40 @@ void CObjReversibleSelect::Draw()
 	//Stage4の描画
 	if (Cflag[2] == true)
 	{
-		src.m_top = CUT_PIC_TOP_RP1;
+		src.m_top = CUT_PIC_TOP_RP4;
 		src.m_left = CUT_PIC_LEFT_RP;
 		src.m_right = CUT_PIC_RIGHT_RP;
-		src.m_bottom = CUT_PIC_BOTTOM_RP1;
-		dst.m_top = HIT_TOP_RP1;
+		src.m_bottom = CUT_PIC_BOTTOM_RP4;
+		dst.m_top = HIT_TOP_RP4;
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + SCROLL_DISTANCE + m_scroll;
-		dst.m_bottom = HIT_BOTTOM_RP1;
+		dst.m_bottom = HIT_BOTTOM_RP4;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage5の描画
 	if (Cflag[3] == true)
 	{
-		src.m_top = CUT_PIC_TOP_RP2;
+		src.m_top = CUT_PIC_TOP_RP5;
 		src.m_left = CUT_PIC_LEFT_RP;
 		src.m_right = CUT_PIC_RIGHT_RP;
-		src.m_bottom = CUT_PIC_BOTTOM_RP2;
-		dst.m_top = HIT_TOP_RP2;
+		src.m_bottom = CUT_PIC_BOTTOM_RP5;
+		dst.m_top = HIT_TOP_RP5;
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + SCROLL_DISTANCE + m_scroll;
-		dst.m_bottom = HIT_BOTTOM_RP2;
+		dst.m_bottom = HIT_BOTTOM_RP5;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage6の描画
 	if (Cflag[4] == true)
 	{
-		src.m_top = CUT_PIC_TOP_RP3;
+		src.m_top = CUT_PIC_TOP_RP6;
 		src.m_left = CUT_PIC_LEFT_RP;
 		src.m_right = CUT_PIC_RIGHT_RP;
-		src.m_bottom = CUT_PIC_BOTTOM_RP3;
-		dst.m_top = HIT_TOP_RP3;
+		src.m_bottom = CUT_PIC_BOTTOM_RP6;
+		dst.m_top = HIT_TOP_RP6;
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP  + SCROLL_DISTANCE + m_scroll;
-		dst.m_bottom = HIT_BOTTOM_RP3;
+		dst.m_bottom = HIT_BOTTOM_RP6;
 		Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//戻るボタン
@@ -417,7 +417,7 @@ void CObjReversibleSelect::Draw()
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 
-	//黒星の描画---------------------------------------------------------------------------
+	//黒星の描画-------------------------------------------------------------------------------------------
 
 
 
@@ -498,7 +498,7 @@ void CObjReversibleSelect::Draw()
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
-	//白星の描画---------------------------------------------------------------------------
+	//白星の描画-------------------------------------------------------------------------------------------------
 
 
 	//(1)
