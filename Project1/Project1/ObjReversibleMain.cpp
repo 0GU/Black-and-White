@@ -8,6 +8,7 @@
 #include"GameL\Audio.h"
 #include "Reversiblefunction.h"
 
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -450,10 +451,65 @@ void CObjReversibleMain::Draw()
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
-	swprintf_s(str1, L"STAGE%d", StageSlect);
-	Font::StrDraw(str1, 30, 470, 36, f);
+	//swprintf_s(str1, L"STAGE%d", StageSlect);
+	//Font::StrDraw(str1, 30, 470, 36, f);
 	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
+	
+	switch (StageSlect)
+	{
+	case 1:
+		src.m_top = 0.0f;
+		src.m_left = 1.0f;
+		src.m_right = 119.0f;
+		src.m_bottom = 119.0f;
+		break;
+	case 2:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f*2;
+		src.m_bottom = 119.0f;
 
+		break;
+	case 3:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f*2;
+		src.m_right = 120.0f*3;
+		src.m_bottom = 119.0f;
+
+		break;
+	case 4:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f * 3;
+		src.m_right = 120.0f * 4;
+		src.m_bottom = 119.0f;
+		break;
+	case 5:
+		src.m_top = 120.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 240.0f;
+		break;
+	case 6:
+		src.m_top = 120.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f*2;
+		src.m_bottom = 240.0f;
+		break;
+	}
+	dst.m_top = 450.0f;
+	dst.m_left = 100.0f;
+	dst.m_right = 150.0f;
+	dst.m_bottom = 500.0f;
+
+	/*src.m_top = 1.0f;
+	src.m_left = 1.0f;
+	src.m_right = 119.0f;
+	src.m_bottom = 119.0f;
+	dst.m_top = 450.0f;
+	dst.m_left = 100.0f;
+	dst.m_right = 150.0f;
+	dst.m_bottom = 500.0f;*/
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)

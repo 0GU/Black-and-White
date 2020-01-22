@@ -302,10 +302,10 @@ void CObjReversibleSelect::Draw()
 		if (Rright == 1 && scroll_flag == false)
 		{
 			//右矢印ボタン
-			src.m_top = CUT_RIGHTARROW_TOP;
-			src.m_left = CUT_RIGHTARROW_LEFT;
-			src.m_right = CUT_RIGHTARROW_RIGHT;
-			src.m_bottom = CUT_RIGHTARROW_BOTTOM;
+			src.m_top = RIGHT_ARROW_T;
+			src.m_left = RIGHT_ARROW_L;
+			src.m_right = RIGHT_ARROW_R;
+			src.m_bottom = RIGHT_ARROW_B;
 			dst.m_top = HIT_RIGHTARROW_TOP;
 			dst.m_left = HIT_RIGHTARROW_LEFT;
 			dst.m_right = HIT_RIGHTARROW_RIGHT;
@@ -318,10 +318,10 @@ void CObjReversibleSelect::Draw()
 	{
 
 		//左矢印ボタン
-		src.m_top = CUT_LEFTARROW_TOP;
-		src.m_left = CUT_LEFTARROW_LEFT;
-		src.m_right = CUT_LEFTARROW_RIGHT;
-		src.m_bottom = CUT_LEFTARROW_BOTTOM;
+		src.m_top = RIGHT_ARROW_T;
+		src.m_left = LEFT_ARROW_R;
+		src.m_right = LEFT_ARROW_L;
+		src.m_bottom = RIGHT_ARROW_B;
 		dst.m_top = HIT_LEFTARROW_TOP;
 		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
