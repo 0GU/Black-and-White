@@ -536,7 +536,11 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(L" 左の角を", 15, 260, 24, f);
 			Font::StrDraw(L"クリック！", 15, 300, 24, f);
 			break;
-
+		case 4:
+			Font::StrDraw(L" 最上段は", 15, 260, 24, f);
+			Font::StrDraw(L" クリック", 15, 300, 24, f);
+			Font::StrDraw(L" しない!", 15, 340, 24, f);
+			break;
 		case 5:
 		case 6:
 			wchar_t str2[128];

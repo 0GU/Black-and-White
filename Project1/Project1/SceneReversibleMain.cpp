@@ -57,7 +57,7 @@ void CSceneReversibleMain::InitScene()
 
 	//BGMÄ¶
 	//float Volume = Audio::VolumeMaster(0.7f);
-	if (stagenum == 3)
+	if (stagenum == 6)
 		Audio::Start(7);
 	else
 		Audio::Start(0);
