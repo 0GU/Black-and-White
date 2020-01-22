@@ -449,12 +449,12 @@ void CObjReversibleMain::Draw()
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 	//stageの描画--------------------------------------------------
-	/*float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
-	swprintf_s(str1, L"STAGE%d", StageSlect);
-	Font::StrDraw(str1, 30, 470, 36, f);
+	//swprintf_s(str1, L"STAGE%d", StageSlect);
+	//Font::StrDraw(str1, 30, 470, 36, f);
 	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
-	*/
+	
 	switch (StageSlect)
 	{
 	case 1:
@@ -500,6 +500,7 @@ void CObjReversibleMain::Draw()
 	dst.m_left = 100.0f;
 	dst.m_right = 150.0f;
 	dst.m_bottom = 500.0f;
+
 	/*src.m_top = 1.0f;
 	src.m_left = 1.0f;
 	src.m_right = 119.0f;
