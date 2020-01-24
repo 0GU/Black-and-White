@@ -25,7 +25,7 @@ void CObjModeSelect::Init()
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
-	credit_flag = false;
+	credit_flag = true;
 }
 
 //アクション
@@ -58,7 +58,7 @@ void CObjModeSelect::Action()
 	}
 
 	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y &&
-		c_flag[0] == true && c_flag[1] == true && credit_flag == false)
+		c_flag[0] == true && c_flag[1] == true && credit_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -67,7 +67,7 @@ void CObjModeSelect::Action()
 	}
 
 	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y &&
-		c_flag[0] == true && c_flag[1] == true&& credit_flag == false)
+		c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -75,20 +75,20 @@ void CObjModeSelect::Action()
 		Scene::SetScene(new CSceneGallery());
 	}
 	//クレジット
-	if (600.0f <= x && 750.0f >= x && 520.0f <= y && 590.0f >= y && c_flag[0] == true && c_flag[1] == true&& credit_flag == false)
-	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SCENEBACK_WAIT);
-		credit_flag = true;
-		c_flag[0] = false;
-	}
-	if (credit_flag == true&&c_flag[0] == true && c_flag[1] == true)
+	if (460.0f <= x && 680.0f >= x && 480.0f <= y && 580.0f >= y && c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
 		Sleep(SCENEBACK_WAIT);
 		credit_flag = false;
+		c_flag[0] = false;
+	}
+	if (credit_flag == false&&c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		credit_flag = true;
 		c_flag[0] = false;
 	}
 	
@@ -162,17 +162,27 @@ void CObjModeSelect::Draw()
 	//まとめ表示
 	src.m_top = 456.0f;
 	src.m_left = 1.0f;
-	src.m_right = 658.0;
-	src.m_bottom = 543.0;
+	src.m_right = 658.0f;
+	src.m_bottom = 543.0f;
 	dst.m_top = 20.0f;
 	dst.m_left = 80.0f;
-	dst.m_right = 740.0;
-	dst.m_bottom = 110.0;
+	dst.m_right = 740.0f;
+	dst.m_bottom = 110.0f;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
-	
+	//クレジットボタン
+	src.m_top = 927.0f;
+	src.m_left = 0.0f;
+	src.m_right = 150.0f;
+	src.m_bottom = 998.0f;
+	dst.m_top = 480.0f;
+	dst.m_left = 460.0f;
+	dst.m_right = 680.0f;
+	dst.m_bottom = 580.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
 	//クレジット表示
-	if (credit_flag == true)
+	if (credit_flag == false)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

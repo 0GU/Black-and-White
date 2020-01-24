@@ -22,6 +22,7 @@ void CObjGameSelect::Init()
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
+	help_flag = true;
 }
 
 //アクション
@@ -55,7 +56,7 @@ void CObjGameSelect::Action()
 
 	//スイッチのステージセレクトへ移動
 	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true&&help_flag==true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -64,7 +65,7 @@ void CObjGameSelect::Action()
 	}
 	//リバーシブルのステージセレクトへ移動
 	if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true && help_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -73,12 +74,29 @@ void CObjGameSelect::Action()
 	}
 	//戻るボタン
 	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true && help_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(2);
 		Sleep(SCENEBACK_WAIT);
 		Scene::SetScene(new CSceneModeSelect());
+	}
+	//ヘルプ
+	if (680.0f <= x && 780.0f >= x && 40.0f <= y && 140.0f >= y && c_flag[0] == true && c_flag[1] == true && help_flag == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = false;
+		c_flag[0] = false;
+	}
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		c_flag[0] = false;
 	}
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
@@ -169,4 +187,27 @@ void CObjGameSelect::Draw()
 	dst.m_bottom = BACKBUTTON_POS_B;
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
+	//helpボタン
+	src.m_top = 100.0f;
+	src.m_left = 924.0f;
+	src.m_right = 1024.0f;
+	src.m_bottom = 200.0f;
+	dst.m_top = 40.0f;
+	dst.m_left = 680.0f;
+	dst.m_right = 780.0f;
+	dst.m_bottom = 140.0f;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//クレジット表示
+	if (help_flag == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1280.0f;
+		src.m_bottom = 720.0f;
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 600.0f;
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+	}
 }
