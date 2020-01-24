@@ -25,3 +25,6 @@ private:
 	bool mouse_flag;
 	bool back_col;
 };
+
+//ボタン色変更用関数
+void ButtomCol(bool click[2], bool* color);
