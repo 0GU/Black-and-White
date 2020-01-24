@@ -35,7 +35,7 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/haikei3.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 3, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
-
+	Draw::LoadImage(L"まとめ画像/CREDIT仮.png", 4, TEX_SIZE_1024);
 
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);

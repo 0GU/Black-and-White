@@ -296,6 +296,17 @@ void CObjReversibleSelect::Draw()
 	dst.m_right = BACKGROUND_R;
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
+
+	//ステージを選択
+	src.m_top = 362;
+	src.m_left = 2;
+	src.m_right = 537;
+	src.m_bottom = 430;	//542x95
+	dst.m_top = 15.0f;
+	dst.m_left = 140.0f;
+	dst.m_right = 690.0f;
+	dst.m_bottom = 135.0;
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 	if (Cflag[2] == true)
 	{
 		//右矢印の描画-------------------------

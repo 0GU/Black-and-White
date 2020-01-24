@@ -402,7 +402,9 @@ void CObjGallery::Draw()
 		Font::StrDraw(L"解放条件", 280 + SCROLL_DISTANCE + m_scroll, 100, 64, c);
 		Font::StrDraw(L"Reversible Panel", 150 + SCROLL_DISTANCE + m_scroll, 250, 64, c);
 		Font::StrDraw(L"全てPerfect達成", 160 + SCROLL_DISTANCE + m_scroll, 400, 64, c);
-
+	}
+	if (GFlag[0] == false&&GFlag[1] == false)
+	{
 		//戻るボタン
 		src.m_top = CUT_BACK_TOP;
 		src.m_left = CUT_BACK_LEFT;
@@ -413,9 +415,9 @@ void CObjGallery::Draw()
 		dst.m_right = HIT_BACK_RIGHT;
 		dst.m_bottom = HIT_BACK_BOTTOM;
 		Draw::Draw(0, &src, &dst, c, 0.0f);
-
-		
 	}
+		
+	
 }
 
 bool CObjGallery::FlagCheck(bool flag[], int num)
