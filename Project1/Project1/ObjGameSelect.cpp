@@ -20,8 +20,11 @@ void CObjGameSelect::Init()
 	bool flag_set[2] =
 	{ false,false };
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	memcpy(col_flag, flag_set, sizeof(bool)*(2));
+
 	back = true;
 	mou_call = true;
+	but = 0;
 }
 
 //アクション
@@ -54,32 +57,51 @@ void CObjGameSelect::Action()
 	}
 
 	//スイッチのステージセレクトへ移動
-	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SELECT_WAIT);
-		Scene::SetScene(new CSceneSwitchSelect());
+		but = 's';
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneSwitchSelect());
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 	//リバーシブルのステージセレクトへ移動
-	if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+	else if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y )
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SELECT_WAIT);
-		Scene::SetScene(new CSceneReversibleSelect());
+		but = 'r';
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneReversibleSelect());
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 	//戻るボタン
-	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+	else if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y )
 	{
-		//SEを鳴らす
-		Audio::Start(2);
-		Sleep(SCENEBACK_WAIT);
-		Scene::SetScene(new CSceneModeSelect());
+		but = 'b';
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(2);
+			Sleep(SCENEBACK_WAIT);
+			Scene::SetScene(new CSceneModeSelect());
+		}
+		ButtomCol(c_flag, col_flag);
 	}
+	else
+	{
+		col_flag[0] = false;
+		col_flag[1] = false;
+	}
+
+
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
 	if (m_y1 < -BACKGROUND_B)
@@ -100,7 +122,9 @@ void CObjGameSelect::Action()
 void CObjGameSelect::Draw()
 {
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.8f,0.8f,0.8f,1.0f };//ボタン通常
+	float	t[4] = { 0.6f,0.6f,0.6f,1.0f };//ボタン押している
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -144,8 +168,13 @@ void CObjGameSelect::Draw()
 	dst.m_left = SELECT_POS_L;
 	dst.m_right = SELECT_POS_R;
 	dst.m_bottom = SW_SELECT_POS_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	
+	 if(col_flag[0]==true&&col_flag[1]==false && but == 's')
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	else if(col_flag[0]==false&&col_flag[1]==true&& but == 's')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else 
+		Draw::Draw(0, &src, &dst, b, 0.0f);
 	//ReversiblePanel-----------------------------------------------------
 	src.m_top = RESOURCE_RP_SELECT_T;
 	src.m_left = RESOURCE_SELECT_L;
@@ -155,8 +184,13 @@ void CObjGameSelect::Draw()
 	dst.m_left = SELECT_POS_L;
 	dst.m_right = SELECT_POS_R;
 	dst.m_bottom = RP_SELECT_POS_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	
+	if (col_flag[0] == true && col_flag[1] == false&&but=='r')
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && but == 'r')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else 
+		Draw::Draw(0, &src, &dst, b, 0.0f);
 
 	//戻るボタン-----------------------------------------------------------
 	src.m_top = RESOURCE_BACK_T;
@@ -167,6 +201,11 @@ void CObjGameSelect::Draw()
 	dst.m_left = BACKBUTTON_POS_L;
 	dst.m_right = BACKBUTTON_POS_R;
 	dst.m_bottom = BACKBUTTON_POS_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && but == 'b')
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && but == 'b')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(0, &src, &dst, b, 0.0f);
 
 }
