@@ -19,9 +19,9 @@ using namespace GameL;
 //イニシャライズ
 void CObjTitle::Init()
 {
-	Save::Seve();
+	Save::Open();
 
-	for (int i = 0; i < 6; i++)
+/*	for (int i = 0; i < 6; i++)
 	{
 		if (i < 3)
 		{
@@ -31,8 +31,8 @@ void CObjTitle::Init()
 
 		((UserData*)Save::GetData())->RPerfectFlag[i] = false;
 		((UserData*)Save::GetData())->RClearFlag[i] = false;
-	}
-	(UserData*)Save::Seve;
+	}*/
+	//(UserData*)Save::Seve;
 
 	//フラグを初期化
 	bool flag_set[2] =
@@ -92,6 +92,21 @@ void CObjTitle::Action()
 			}
 			((UserData*)Save::GetData())->RPerfectFlag[i] = true;
 			((UserData*)Save::GetData())->RClearFlag[i] = true;
+		}
+		Save::Seve();
+	}
+
+	if (Input::GetVKey('R') == true && Input::GetVKey('S') == true)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if (i < 3)
+			{
+				((UserData*)Save::GetData())->SPerfectFlag[i] =false;
+				((UserData*)Save::GetData())->SClearFlag[i] =false;
+			}
+			((UserData*)Save::GetData())->RPerfectFlag[i] = false;
+			((UserData*)Save::GetData())->RClearFlag[i] = false;
 		}
 		Save::Seve();
 	}
