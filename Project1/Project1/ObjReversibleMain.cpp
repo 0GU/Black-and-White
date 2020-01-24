@@ -454,7 +454,19 @@ void CObjReversibleMain::Draw()
 	//swprintf_s(str1, L"STAGE%d", StageSlect);
 	//Font::StrDraw(str1, 30, 470, 36, f);
 	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
-	
+	//左下ステージ表記
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 180.0f;
+	src.m_right = 280.0f;
+	src.m_bottom = 865.0f;
+	//表示
+	dst.m_top = 450.0f;
+	dst.m_left = 10.0f;
+	dst.m_right = 110.0f;
+	dst.m_bottom = 495.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
+
 	switch (StageSlect)
 	{
 	case 1:
@@ -497,8 +509,8 @@ void CObjReversibleMain::Draw()
 		break;
 	}
 	dst.m_top = 450.0f;
-	dst.m_left = 100.0f;
-	dst.m_right = 150.0f;
+	dst.m_left = 105.0f;
+	dst.m_right = 155.0f;
 	dst.m_bottom = 500.0f;
 
 	/*src.m_top = 1.0f;
@@ -636,7 +648,17 @@ void CObjReversibleMain::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	//Countの文字表示----------------------------------------------
-	Font::StrDraw(L"Count", 675, 45, 32, f);
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 20.0f;
+	src.m_right = 130.0f;
+	src.m_bottom = 860.0f;
+	//表示
+	dst.m_top = 40.0f;
+	dst.m_left = 660.0f;
+	dst.m_right = 770.0f;
+	dst.m_bottom = 80.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
 
 	//Countの値を文字列化---------------------------------------
 	wchar_t str3[128];
