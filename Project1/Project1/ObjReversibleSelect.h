@@ -177,6 +177,15 @@ using namespace GameL;
 #define BACKGROUND_R (800.0f)
 #define BACKGROUND_B (600.0f)
 
+//切り取り&表示 : 矢印
+#define RIGHT_ARROW_T (140.0f)
+#define RIGHT_ARROW_L (679.0f)
+#define RIGHT_ARROW_R (759.0f)
+#define RIGHT_ARROW_B (280.0f)
+
+#define LEFT_ARROW_R (838.0f)
+#define LEFT_ARROW_L (758.0f)
+
 
 //オブジェクト：ステージセレクト
 class CObjReversibleSelect : public CObj

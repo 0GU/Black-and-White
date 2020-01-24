@@ -8,6 +8,7 @@
 #include"GameL\Audio.h"
 #include "Reversiblefunction.h"
 
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -450,10 +451,77 @@ void CObjReversibleMain::Draw()
 	//stageの描画--------------------------------------------------
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str1[128];
-	swprintf_s(str1, L"STAGE%d", StageSlect);
-	Font::StrDraw(str1, 30, 470, 36, f);
+	//swprintf_s(str1, L"STAGE%d", StageSlect);
+	//Font::StrDraw(str1, 30, 470, 36, f);
 	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
+	//左下ステージ表記
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 180.0f;
+	src.m_right = 280.0f;
+	src.m_bottom = 865.0f;
+	//表示
+	dst.m_top = 450.0f;
+	dst.m_left = 10.0f;
+	dst.m_right = 110.0f;
+	dst.m_bottom = 495.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
 
+	switch (StageSlect)
+	{
+	case 1:
+		src.m_top = 0.0f;
+		src.m_left = 1.0f;
+		src.m_right = 119.0f;
+		src.m_bottom = 119.0f;
+		break;
+	case 2:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f*2;
+		src.m_bottom = 119.0f;
+
+		break;
+	case 3:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f*2;
+		src.m_right = 120.0f*3;
+		src.m_bottom = 119.0f;
+
+		break;
+	case 4:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f * 3;
+		src.m_right = 120.0f * 4;
+		src.m_bottom = 119.0f;
+		break;
+	case 5:
+		src.m_top = 120.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 240.0f;
+		break;
+	case 6:
+		src.m_top = 120.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f*2;
+		src.m_bottom = 240.0f;
+		break;
+	}
+	dst.m_top = 450.0f;
+	dst.m_left = 105.0f;
+	dst.m_right = 155.0f;
+	dst.m_bottom = 500.0f;
+
+	/*src.m_top = 1.0f;
+	src.m_left = 1.0f;
+	src.m_right = 119.0f;
+	src.m_bottom = 119.0f;
+	dst.m_top = 450.0f;
+	dst.m_left = 100.0f;
+	dst.m_right = 150.0f;
+	dst.m_bottom = 500.0f;*/
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -536,7 +604,11 @@ void CObjReversibleMain::Draw()
 			Font::StrDraw(L" 左の角を", 15, 260, 24, f);
 			Font::StrDraw(L"クリック！", 15, 300, 24, f);
 			break;
-
+		case 4:
+			Font::StrDraw(L" 最上段は", 15, 260, 24, f);
+			Font::StrDraw(L" クリック", 15, 300, 24, f);
+			Font::StrDraw(L" しない!", 15, 340, 24, f);
+			break;
 		case 5:
 		case 6:
 			wchar_t str2[128];
@@ -576,7 +648,17 @@ void CObjReversibleMain::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	//Countの文字表示----------------------------------------------
-	Font::StrDraw(L"Count", 675, 45, 32, f);
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 20.0f;
+	src.m_right = 130.0f;
+	src.m_bottom = 860.0f;
+	//表示
+	dst.m_top = 40.0f;
+	dst.m_left = 660.0f;
+	dst.m_right = 770.0f;
+	dst.m_bottom = 80.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
 
 	//Countの値を文字列化---------------------------------------
 	wchar_t str3[128];
