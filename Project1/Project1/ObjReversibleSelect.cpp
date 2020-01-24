@@ -319,8 +319,8 @@ void CObjReversibleSelect::Draw()
 
 		//ç∂ñÓàÛÉ{É^Éì
 		src.m_top = RIGHT_ARROW_T;
-		src.m_left = LEFT_ARROW_R;
-		src.m_right = LEFT_ARROW_L;
+		src.m_left = LEFT_ARROW_L;
+		src.m_right = LEFT_ARROW_R;
 		src.m_bottom = RIGHT_ARROW_B;
 		dst.m_top = HIT_LEFTARROW_TOP;
 		dst.m_left = HIT_LEFTARROW_LEFT;
