@@ -471,19 +471,65 @@ void CObjSwitchMain::Draw()
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 
+	//左下ステージ表記
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 180.0f;
+	src.m_right = 280.0f;
+	src.m_bottom = 865.0f;
+	//表示
+	dst.m_top = 450.0f;
+	dst.m_left = 10.0f;
+	dst.m_right = 110.0f;
+	dst.m_bottom = 495.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
+
 	switch (StageSlect)
 	{
 	case 1:
-		Font::StrDraw(L"STAGE1", NOW_STAGE_POS_X, NOW_STAGE_POS_Y, NOW_STAGE_SIZE, f);
+		src.m_top = 0.0f;
+		src.m_left = 1.0f;
+		src.m_right = 119.0f;
+		src.m_bottom = 119.0f;
 		break;
 	case 2:
-		Font::StrDraw(L"STAGE2", NOW_STAGE_POS_X, NOW_STAGE_POS_Y, NOW_STAGE_SIZE, f);
+		src.m_top = 0.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f * 2;
+		src.m_bottom = 119.0f;
+
 		break;
 	case 3:
-		Font::StrDraw(L"STAGE3", NOW_STAGE_POS_X, NOW_STAGE_POS_Y, NOW_STAGE_SIZE, f);
-		break;
+		src.m_top = 0.0f;
+		src.m_left = 120.0f * 2;
+		src.m_right = 120.0f * 3;
+		src.m_bottom = 119.0f;
 
+		break;
+	case 4:
+		src.m_top = 0.0f;
+		src.m_left = 120.0f * 3;
+		src.m_right = 120.0f * 4;
+		src.m_bottom = 119.0f;
+		break;
+	case 5:
+		src.m_top = 120.0f;
+		src.m_left = 0.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 240.0f;
+		break;
+	case 6:
+		src.m_top = 120.0f;
+		src.m_left = 120.0f;
+		src.m_right = 120.0f * 2;
+		src.m_bottom = 240.0f;
+		break;
 	}
+	dst.m_top = 450.0f;
+	dst.m_left = 105.0f;
+	dst.m_right = 155.0f;
+	dst.m_bottom = 500.0f;
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -629,8 +675,6 @@ void CObjSwitchMain::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 
-	Font::StrDraw(L"Count", CNT_TEXT_POS_X, CNT_TEXT_POS_Y, CNT_SIZE, f);
-
 	//Countの値を文字列化---------------------------------------
 	wchar_t str[128];
 	swprintf_s(str, L"%d", count[1]);
@@ -639,6 +683,18 @@ void CObjSwitchMain::Draw()
 		Font::StrDraw(str, CNT_NUM_MANY_POS_X, CNT_NUM_POS_Y, CNT_SIZE, f);
 	else if (count[REMAINING_CNT_ARRAY_NUM] <= 9)
 		Font::StrDraw(str, CNT_NUM_FEW_POS_X, CNT_NUM_POS_Y, CNT_SIZE, f);
+	//Countの文字表示----------------------------------------------
+	//切り取り
+	src.m_top = 820.0f;
+	src.m_left = 20.0f;
+	src.m_right = 130.0f;
+	src.m_bottom = 860.0f;
+	//表示
+	dst.m_top = 40.0f;
+	dst.m_left = 660.0f;
+	dst.m_right = 770.0f;
+	dst.m_bottom = 80.0f;
+	Draw::Draw(12, &src, &dst, c, 0.0f);
 	//シーン描画：PerFect!------------------------------------
 	if (flag[PERFECT_FLAG] == true)
 	{
