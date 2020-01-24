@@ -34,6 +34,7 @@ void CSceneGameSelect::InitScene()
 {
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/haikei3.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/help1.png", 2, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//SE情報の登録

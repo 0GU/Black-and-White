@@ -54,7 +54,7 @@ void CObjMouse::Action()
 			m_ani_flame += 1;
 			m_time = 0;
 		}
-		//アニメーションが終了したら黒パネルに変更
+		//アニメーションが終了したら初期化
 		if (m_ani_flame == 4)
 		{
 			m_ani_flame = 0;
@@ -105,6 +105,26 @@ void CObjMouse::Draw()
 			Draw::Draw(10, &src, &dst, eb, 0.0f);
 
 		}
+	}
+
+}
+
+//ButtomCol関数---------------------------------------------------------------------------
+//引数1　bool click[2]	：クリック状態を判別するフラグ変数
+//引数2　bool *color	：ボタンの明るさフラグのポインタ
+//戻り値　無し
+//内容：クリック状態に応じてボタンの明るさフラグを変更する
+void ButtomCol(bool click[2], bool*color)
+{
+	if (click[0] == false && click[1] == true)
+	{
+		*color = true;
+		*(color + 1) = false;
+	}
+	if (click[0] == true && click[1] == false)
+	{
+		*color = false;
+		*(color + 1) = true;
 	}
 
 }
