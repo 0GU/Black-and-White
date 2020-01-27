@@ -23,10 +23,13 @@ void CObjModeSelect::Init()
 	bool flag_set[2] =
 	{ false,false };
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	memcpy(col_flag, flag_set, sizeof(bool)*(2));
+
 	back = true;
 	mou_call = true;
 	credit_flag = true;
 	help_flag = true;
+	buttom_name = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“

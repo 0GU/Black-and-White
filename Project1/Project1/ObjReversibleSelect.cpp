@@ -50,11 +50,13 @@ void CObjReversibleSelect::Init()
 	bool flag_set[2] =
 	{ false,false };
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	memcpy(col_flag, flag_set, sizeof(bool)*(2));
 	back = false;
 	mou_call = true;
 	Rflag = true;
 	Rright = 1;
 	Rleft = 0;
+	buttom_name = 0;
 }
 
 //アクション
@@ -63,6 +65,8 @@ void CObjReversibleSelect::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+	col_flag[0] = false;
+	col_flag[1] = false;
 
 	//クリックエフェクト呼び出し（１回のみ）
 	if (mou_call == true)
@@ -86,6 +90,25 @@ void CObjReversibleSelect::Action()
 	{
 		c_flag[1] = true;
 	}
+
+
+
+	//戻るボタン
+	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y)
+	{
+		buttom_name = 'b';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(2);
+			Sleep(SCENEBACK_WAIT);
+			Scene::SetScene(new CSceneGameSelect());
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+
+
 	if (Cflag[2] == true)
 	{
 		if (Rright == 1)
@@ -93,11 +116,17 @@ void CObjReversibleSelect::Action()
 
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+				scroll_flag == false)
 			{
-				Audio::Start(1);
-				scroll_flag = true;
-				c_flag[0] = true;
+				buttom_name = 'r';
+
+				if (c_flag[0] == true && c_flag[1] == true)
+				{
+					Audio::Start(1);
+					scroll_flag = true;
+					c_flag[0] = true;
+				}
+				ButtomCol(c_flag, col_flag);
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -122,52 +151,62 @@ void CObjReversibleSelect::Action()
 				Rflag = false;
 			}
 		}
-	}
-	if (Rleft == 1)
-	{
-		//左矢印
-		if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-			c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+		else if (Rleft == 1)
 		{
-			Audio::Start(1);
-			scroll_flag = true;	//スクロール中にする
-			c_flag[0] = true;
-		}
-		//スクロール処理------
-		if (scroll_flag == true)
-		{
-			//少しずつscroolを加速させる
-			speed += SCROLL_SPEED;
-			m_scroll += speed;
-			//scrollが０を下回ったら０になおし、speedを初期化する
-			if (m_scroll >= 0.0f)
+			//左矢印
+			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
+				scroll_flag == false)
 			{
-				m_scroll = 0.0f;
-				speed = 0.0f;
+				buttom_name = 'l';
+
+				if (c_flag[0] == true && c_flag[1] == true)
+				{
+					Audio::Start(1);
+					scroll_flag = true;	//スクロール中にする
+					c_flag[0] = true;
+				}
+				ButtomCol(c_flag, col_flag);
+			}
+			//スクロール処理------
+			if (scroll_flag == true)
+			{
+				//少しずつscroolを加速させる
+				speed += SCROLL_SPEED;
+				m_scroll += speed;
+				//scrollが０を下回ったら０になおし、speedを初期化する
+				if (m_scroll >= 0.0f)
+				{
+					m_scroll = 0.0f;
+					speed = 0.0f;
+				}
+			}
+			//スクロール終了処理-----
+			//左矢印を消して右矢印を表示させる
+			if (m_scroll == 0.0f&&scroll_flag == true)
+			{
+				scroll_flag = false;
+				Rleft = 0;
+				Rright = 1;
 			}
 		}
-		//スクロール終了処理-----
-		//左矢印を消して右矢印を表示させる
-		if (m_scroll == 0.0f&&scroll_flag == true)
-		{
-			scroll_flag = false;
-			Rleft = 0;
-			Rright = 1;
-		}
-
-
 	}
 
 	//right値が描画とズレているため右方向を-10.0f調整
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
+		Rleft == 0 && Rright == 1 && scroll_flag == false)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SELECT_WAIT);
-		Scene::SetScene(new CSceneReversibleMain(1));
+		buttom_name = 1;
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneReversibleMain(1));
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 
 	//Stage2----------------------------------------------------------------
@@ -175,12 +214,18 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
+			Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleMain(2));
+			buttom_name = 2;
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneReversibleMain(2));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -189,12 +234,18 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)
+			Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleMain(3));
+			buttom_name = 3;
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneReversibleMain(3));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -203,12 +254,18 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
+			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleMain(4));
+			buttom_name = 4;
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneReversibleMain(4));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -217,12 +274,18 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
+			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleMain(5));
+			buttom_name = 5;
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneReversibleMain(5));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -231,23 +294,22 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)
+			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
-			Scene::SetScene(new CSceneReversibleMain(6));
+			buttom_name = 6;
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneReversibleMain(6));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
-	//戻るボタン
-	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y &&
-		c_flag[0] == true && c_flag[1] == true)
-	{
-		//SEを鳴らす
-		Audio::Start(2);
-		Sleep(SCENEBACK_WAIT);
-		Scene::SetScene(new CSceneGameSelect());
-	}
+
+
 	//背景スクロール
 	m_y1 -= BACKGROUND_T_GAP;
 	if (m_y1 < -BACKGROUND_B)
@@ -268,7 +330,9 @@ void CObjReversibleSelect::Action()
 void CObjReversibleSelect::Draw()
 {
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
 
 
@@ -321,7 +385,12 @@ void CObjReversibleSelect::Draw()
 			dst.m_left = HIT_RIGHTARROW_LEFT;
 			dst.m_right = HIT_RIGHTARROW_RIGHT;
 			dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
-			Draw::Draw(2, &src, &dst, c, 0.0f);
+			if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'r')
+				Draw::Draw(2, &src, &dst, b, 0.0f);
+			else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'r')
+				Draw::Draw(2, &src, &dst, t, 0.0f);
+			else
+				Draw::Draw(2, &src, &dst, c, 0.0f);
 		}
 	}
 	//左矢印の描画------------------------
@@ -337,7 +406,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
 		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
-		Draw::Draw(2, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'l')
+			Draw::Draw(2, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'l')
+			Draw::Draw(2, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
 	//Stage1の描画
 	src.m_top = CUT_PIC_TOP_RP1;
@@ -348,7 +422,12 @@ void CObjReversibleSelect::Draw()
 	dst.m_left = HIT_LEFT_RP + m_scroll;
 	dst.m_right = HIT_RIGHT_RP + m_scroll;
 	dst.m_bottom = HIT_BOTTOM_RP1;
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
+		Draw::Draw(1, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 1)
+		Draw::Draw(1, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//Stage2の描画
 	if (Cflag[0] == true)
@@ -361,7 +440,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP2;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
+			Draw::Draw(1, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 2)
+			Draw::Draw(1, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage3の描画
 	if (Cflag[1] == true)
@@ -374,7 +458,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP3;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
+			Draw::Draw(1, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 3)
+			Draw::Draw(1, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 
 	//Stage4の描画
@@ -388,7 +477,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP4;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
+			Draw::Draw(1, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
+			Draw::Draw(1, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage5の描画
 	if (Cflag[3] == true)
@@ -401,7 +495,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP5;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
+			Draw::Draw(1, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
+			Draw::Draw(1, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//Stage6の描画
 	if (Cflag[4] == true)
@@ -414,7 +513,12 @@ void CObjReversibleSelect::Draw()
 		dst.m_left = HIT_LEFT_RP + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_RP  + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_RP6;
-		Draw::Draw(1, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
+			Draw::Draw(1, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
+			Draw::Draw(1, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(1, &src, &dst, c, 0.0f);
 	}
 	//戻るボタン
 	src.m_top = CUT_PIC_TOP_SCENEBACK;
@@ -425,169 +529,185 @@ void CObjReversibleSelect::Draw()
 	dst.m_left = HIT_LEFT_SCENEBACK;
 	dst.m_right = HIT_RIGHT_SCENEBACK;
 	dst.m_bottom = HIT_BOTTOM_SCENEBACK;
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'b')
+		Draw::Draw(2, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'b')
+		Draw::Draw(2, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(2, &src, &dst, c, 0.0f);
 
 
 	//黒星の描画-------------------------------------------------------------------------------------------
 
-
+	src.m_top = CUT_PIC_TOP_BLACKSTAR;
+	src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+	src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+	src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+	dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
+	dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 
 	//(1)
 	if (Pflag[0] == false && Cflag[0] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR1;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 1)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(2)
 	if (Pflag[1] == false && Cflag[1] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 2)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR3;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
-	}//(4)
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 3)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
+	}
+	//(4)
 	if (Pflag[3] == false && Cflag[3] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR1;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(5)
 	if (Pflag[4] == false && Cflag[4] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(6)
 	if (Pflag[5] == false && Cflag[5] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR3;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//白星の描画-------------------------------------------------------------------------------------------------
-
+	src.m_top = CUT_PIC_TOP_WHITESTAR;
+	src.m_left = CUT_PIC_LEFT_WHITESTAR;
+	src.m_right = CUT_PIC_RIGHT_WHITESTAR;
+	src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
+	dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
+	dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 
 	//(1)
 	if (Pflag[0] == true)
 	{
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR1;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 1)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[1] == true)
 	{
 		//(2)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR2;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 2)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[2] == true)
 	{
 		//(3)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR3;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 3)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//(4)
 	if (Pflag[3] == true)
 	{
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR1;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[4] == true)
 	{
 		//(5)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR2;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	if (Pflag[5] == true)
 	{
 		//(6)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR3;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
+			Draw::Draw(10, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
+			Draw::Draw(10, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 }
