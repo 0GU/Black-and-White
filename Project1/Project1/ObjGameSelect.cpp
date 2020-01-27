@@ -247,7 +247,7 @@ void CObjGameSelect::Draw()
 		Draw::Draw(0, &src, &dst, t, 0.0f);
 	else
 		Draw::Draw(0, &src, &dst, b, 0.0f);
-	//クレジット表示
+	//ヘルプ表示
 	if (help_flag == false)
 	{
 		src.m_top = 0.0f;

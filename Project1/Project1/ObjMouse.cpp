@@ -83,7 +83,7 @@ void CObjMouse::Draw()
 		Font::StrDraw(L"L=押してる", 20, 60, 24, c);
 	else
 		Font::StrDraw(L"L=押してない", 20, 60, 24, c);
-
+		
 	//クリックエフェクト(仮)
 	if (mouse_flag == true)
 	{
