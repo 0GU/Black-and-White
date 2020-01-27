@@ -44,5 +44,8 @@ private:
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 	bool credit_flag;//クレジット表示用
+	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
+	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
+
 	bool help_flag;//help表示用
 };

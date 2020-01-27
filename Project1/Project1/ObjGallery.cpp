@@ -32,6 +32,7 @@ void CObjGallery::Init()
 	bool setflag[2] = { false,false };
 
 	memcpy(GFlag, setflag, sizeof(bool) * 2);
+	memcpy(col_flag, setflag, sizeof(bool)*(2));
 
 	m_scroll = 0.0f;
 	speed = 0.0f;
@@ -43,6 +44,7 @@ void CObjGallery::Init()
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
+	buttom_name = 0;
 
 }
 
@@ -95,27 +97,45 @@ void CObjGallery::Action()
 
 	//戻るボタン
 	if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y &&
-		GFlag[0] == false && GFlag[1] == false && c_flag[0] == true && c_flag[1] == true)
+		GFlag[0] == false && GFlag[1] == false && scroll_flag == false)
 	{
-		//SEを鳴らす
-		Audio::Start(2);
-		Sleep(SCENEBACK_WAIT);
-		Scene::SetScene(new CSceneModeSelect());
+		buttom_name = 'b';
+
+		if (c_flag[0] == true && c_flag[1] == true&& scroll_flag == false)
+		{
+			//SEを鳴らす
+			Audio::Start(2);
+			Sleep(SCENEBACK_WAIT);
+			Scene::SetScene(new CSceneModeSelect());
+		}
+		ButtomCol(c_flag, col_flag);
+
 	}
 
-	if (Gright == 1)
+	else if (Gright == 1)
 	{
 		if (GFlag[0] == false)
 		{
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+				scroll_flag == false)
 			{
-				Audio::Start(1);
-				scroll_flag = true;
-				c_flag[0] = true;
+				buttom_name = 'r';
 
+				if (c_flag[0] == true && c_flag[1] == true)
+				{
+					Audio::Start(1);
+					scroll_flag = true;
+					c_flag[0] = true;
+				}
+				ButtomCol(c_flag, col_flag);
 			}
+			else
+			{
+				col_flag[0] = false;
+				col_flag[1] = false;
+			}
+
 			//スクロール処理------
 			if (scroll_flag == true)
 			{
@@ -157,18 +177,30 @@ void CObjGallery::Action()
 				
 			}
 		}
+
 	}
-	if (Gleft == 1)
+	else if (Gleft == 1)
 	{
 		if (GFlag[1] == false)
 		{
 			//左矢印
 			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+				scroll_flag == false)
 			{
-				Audio::Start(1);
-				scroll_flag = true;	//スクロール中にする
-				c_flag[0] = true;
+				buttom_name = 'l';
+
+				if (c_flag[0] == true && c_flag[1] == true)
+				{
+					Audio::Start(1);
+					scroll_flag = true;	//スクロール中にする
+					c_flag[0] = true;
+				}
+				ButtomCol(c_flag, col_flag);
+			}
+			else
+			{
+				col_flag[0] = false;
+				col_flag[1] = false;
 			}
 			//スクロール処理------
 			if (scroll_flag == true)
@@ -197,20 +229,24 @@ void CObjGallery::Action()
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == false&&
 				c_flag[0] == true && c_flag[1] == true)
 			{
-				
-					Audio::Start(1);
-					GFlag[1] = true;
-				
+				Audio::Start(1);
+				GFlag[1] = true;
 			}
 			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[1] == true&&
-				c_flag[0] == true && c_flag[1] == true)
+					 c_flag[0] == true && c_flag[1] == true)
 			{
-					Audio::Start(1);
-					GFlag[1] = false;
-				
+				Audio::Start(1);
+				GFlag[1] = false;
 			}
 		}
+
 	}
+	else
+	{
+		col_flag[0] = false;
+		col_flag[1] = false;
+	}
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -223,7 +259,9 @@ void CObjGallery::Action()
 void CObjGallery::Draw()
 {
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -250,7 +288,12 @@ void CObjGallery::Draw()
 		dst.m_left = HIT_RIGHTARROW_LEFT;
 		dst.m_right = HIT_RIGHTARROW_RIGHT;
 		dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'r')
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'r')
+			Draw::Draw(0, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(0, &src, &dst, b, 0.0f);
 	}
 
 	//仮枠
@@ -345,7 +388,12 @@ void CObjGallery::Draw()
 		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
 		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'l')
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'l')
+			Draw::Draw(0, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(0, &src, &dst, b, 0.0f);
 	}
 
 
@@ -414,7 +462,12 @@ void CObjGallery::Draw()
 		dst.m_left = HIT_BACK_LEFT;
 		dst.m_right = HIT_BACK_RIGHT;
 		dst.m_bottom = HIT_BACK_BOTTOM;
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'b')
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'b')
+			Draw::Draw(0, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(0, &src, &dst, b, 0.0f);
 	}
 		
 	
