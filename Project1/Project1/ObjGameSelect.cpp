@@ -233,14 +233,14 @@ void CObjGameSelect::Draw()
 		Draw::Draw(0, &src, &dst, b, 0.0f);
 
 	//helpボタン
-	src.m_top = 100.0f;
-	src.m_left = 924.0f;
-	src.m_right = 1024.0f;
-	src.m_bottom = 200.0f;
-	dst.m_top = 40.0f;
-	dst.m_left = 680.0f;
-	dst.m_right = 780.0f;
-	dst.m_bottom = 140.0f;
+	src.m_top = CUT_HELPBUTTON_T;
+	src.m_left = CUT_HELPBUTTON_L;
+	src.m_right = CUT_HELPBUTTON_R;
+	src.m_bottom = CUT_HELPBUTTON_B;
+	dst.m_top = POS_HELPBUTTON_T;
+	dst.m_left = POS_HELPBUTTON_L;
+	dst.m_right = POS_HELPBUTTON_R;
+	dst.m_bottom = POS_HELPBUTTON_B;
 	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
@@ -250,14 +250,14 @@ void CObjGameSelect::Draw()
 	//ヘルプ表示
 	if (help_flag == false)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1280.0f;
-		src.m_bottom = 720.0f;
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
 		Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
 }
