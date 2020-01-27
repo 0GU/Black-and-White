@@ -151,10 +151,6 @@ void CObjModeSelect::Action()
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
 
-	//クレジットのスクロール
-	//C_m_y1 += 1.0f;
-	//if(C_m_y1)
-
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
