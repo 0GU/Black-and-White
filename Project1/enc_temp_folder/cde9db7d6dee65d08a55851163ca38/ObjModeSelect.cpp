@@ -25,13 +25,10 @@ void CObjModeSelect::Init()
 	bool flag_set[2] =
 	{ false,false };
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
-	memcpy(col_flag, flag_set, sizeof(bool)*(2));
-
 	back = true;
 	mou_call = true;
 	credit_flag = true;
 	help_flag = true;
-	buttom_name = 0;
 }
 
 //アクション
@@ -153,10 +150,6 @@ void CObjModeSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
-
-	//クレジットのスクロール
-	//C_m_y1 += 1.0f;
-	//if(C_m_y1)
 
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
