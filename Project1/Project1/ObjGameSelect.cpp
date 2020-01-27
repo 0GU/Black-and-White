@@ -105,7 +105,7 @@ void CObjGameSelect::Action()
 		help_flag = false;
 		c_flag[0] = false;
 	}
-	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SE‚ð–Â‚ç‚·
 		Audio::Start(1);
