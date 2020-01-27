@@ -12,6 +12,7 @@
 using namespace GameL;
 
 //マクロ
+#define WINDOW_SIZE_TOP_LEFT (0.0f)
 #define WINDOW_SIZE_X (800.0f)
 #define WINDOW_SIZE_Y (600.0f)
 #define CLICK_WAIT (300)
@@ -128,12 +129,12 @@ void CObjTitle::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//戻るボタン
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
+	src.m_top = WINDOW_SIZE_TOP_LEFT;
+	src.m_left = WINDOW_SIZE_TOP_LEFT;
 	src.m_right = WINDOW_SIZE_X;
 	src.m_bottom = WINDOW_SIZE_Y;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
+	dst.m_top = WINDOW_SIZE_TOP_LEFT;
+	dst.m_left = WINDOW_SIZE_TOP_LEFT;
 	dst.m_right = WINDOW_SIZE_X;
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(0, &src, &dst, c, 0.0f);

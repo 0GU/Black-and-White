@@ -73,12 +73,12 @@ void CObjGalleryadd::Draw()
 	RECT_F src; //ï`âÊå≥êÿÇËéÊÇËà íuÇÃê›íË
 	RECT_F dst; //ï`âÊêÊï\é¶à íu
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
+	src.m_top = WINDOW_SIZE_TOP_LEFT;
+	src.m_left = WINDOW_SIZE_TOP_LEFT;
 	src.m_right = WINDOW_SIZE_X;
 	src.m_bottom = WINDOW_SIZE_Y;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
+	dst.m_top = WINDOW_SIZE_TOP_LEFT;
+	dst.m_left = WINDOW_SIZE_TOP_LEFT;
 	dst.m_right = WINDOW_SIZE_X;
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(0, &src, &dst, c, 0.0f);

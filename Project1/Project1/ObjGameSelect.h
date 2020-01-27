@@ -44,6 +44,26 @@ using namespace GameL;
 #define BACKGROUND_R (800.0f)
 #define BACKGROUND_B (600.0f)
 
+//Helpボタン
+#define CUT_HELPBUTTON_T (100.0f)
+#define CUT_HELPBUTTON_L (924.0f)
+#define CUT_HELPBUTTON_R (1024.0f)
+#define CUT_HELPBUTTON_B (200.0f)
+#define POS_HELPBUTTON_T (40.0f)
+#define POS_HELPBUTTON_L (680.0f)
+#define POS_HELPBUTTON_R (780.0f)
+#define POS_HELPBUTTON_B (140.0f)
+
+//ヘルプ表示
+#define CUT_HELP_T (0.0f)
+#define CUT_HELP_L (0.0f)
+#define CUT_HELP_R (1280.0f)
+#define CUT_HELP_B (720.0f)
+#define POS_HELP_T (0.0f)
+#define POS_HELP_L (0.0f)
+#define POS_HELP_R (800.0f)
+#define POS_HELP_B (600.0f)
+
 //オブジェクト：ゲームセレクト
 class CObjGameSelect : public CObj
 {
@@ -61,8 +81,7 @@ private:
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
-	bool f;
-	char but;
+	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 	bool help_flag;//help表示用
 
 };
