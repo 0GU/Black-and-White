@@ -141,6 +141,65 @@ using namespace GameL;
 #define DST_RETURNSELECT_RIGHT  (650.0f)
 #define DST_RETURNSELECT_BOTTOM  (270.0f)
 
+
+//STAGE(左下)の画像
+#define SRC_STAGE_TOP (820.0f)
+#define SRC_STAGE_LEFT (180.0f)
+#define SRC_STAGE_RIGHT (280.0f)
+#define SRC_STAGE_BOTTOM (865.0f)
+#define DST_STAGE_TOP (450.0f)
+#define DST_STAGE_LEFT (10.0f)
+#define DST_STAGE_RIGHT (110.0f)
+#define DST_STAGE_BOTTOM (495.0f)
+
+
+//ステージナンバー(左下)の画像切り取り:1～4 
+#define SRC_STAGECOUNT_TOP_1234 (0.0f)
+#define SRC_STAGECOUNT_BOTTOM_1234 (119.0f)
+
+//ステージナンバーの画像切り取り:5,6
+#define SRC_STAGECOUNT_TOP_56 (120.0f)
+#define SRC_STAGECOUNT_BOTTOM_56 (240.0f)
+
+//ステージ1
+#define SRC_STAGECOUNT_LEFT_1 (1.0f)
+#define SRC_STAGECOUNT_RIGHT_1 (119.0f)
+//ステージ2
+#define SRC_STAGECOUNT_LEFT_2 (120.0f)
+#define SRC_STAGECOUNT_RIGHT_2 (120.0f)
+//ステージ3
+#define SRC_STAGECOUNT_LEFT_3 (120.0f)
+#define SRC_STAGECOUNT_RIGHT_3 (120.0f)
+//ステージ4
+#define SRC_STAGECOUNT_LEFT_4 (120.0f)
+#define SRC_STAGECOUNT_RIGHT_4 (120.0f)
+//ステージ5
+#define SRC_STAGECOUNT_LEFT_5 (0.0f)
+#define SRC_STAGECOUNT_RIGHT_5 (120.0f)
+//ステージ6
+#define SRC_STAGECOUNT_LEFT_6 (120.0f)
+#define SRC_STAGECOUNT_RIGHT_6 (120.0f)
+
+//ステージナンバー表示
+#define DST_STAGECOUNT_TOP (450.0f)
+#define DST_STAGECOUNT_LEFT (105.0f)
+#define DST_STAGECOUNT_RIGHT (155.0f)
+#define DST_STAGECOUNT_BOTTOM (500.0f)
+
+
+//Count(右上)画像
+#define SRC_COUNT_TOP (820.0f)
+#define SRC_COUNT_LEFT (20.0f)
+#define SRC_COUNT_RIGHT (130.0f)
+#define SRC_COUNT_BOTTOM (860.0f)
+#define DST_COUNT_TOP (40.0f)
+#define DST_COUNT_LEFT (660.0f)
+#define DST_COUNT_RIGHT (770.0f)
+#define DST_COUNT_BOTTOM (80.0f)
+
+
+
+
 //オブジェクト：Reversibleメイン
 class CObjReversibleMain : public CObj
 {
