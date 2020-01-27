@@ -24,7 +24,7 @@ void CObjGameSelect::Init()
 
 	back = true;
 	mou_call = true;
-	but = 0;
+	buttom_name = 0;
 	help_flag = true;
 }
 
@@ -60,7 +60,7 @@ void CObjGameSelect::Action()
 	//スイッチのステージセレクトへ移動
 	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y && help_flag == true)
 	{
-		but = 's';
+		buttom_name = 's';
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -73,7 +73,7 @@ void CObjGameSelect::Action()
 	//リバーシブルのステージセレクトへ移動
 	else if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y && help_flag == true)
 	{
-		but = 'r';
+		buttom_name = 'r';
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -86,7 +86,7 @@ void CObjGameSelect::Action()
 	//戻るボタン
 	else if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y && help_flag == true)
 	{
-		but = 'b';
+		buttom_name = 'b';
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -97,15 +97,21 @@ void CObjGameSelect::Action()
 		ButtomCol(c_flag, col_flag);
 	}
 	//ヘルプ
-	else if (680.0f <= x && 780.0f >= x && 40.0f <= y && 140.0f >= y && c_flag[0] == true && c_flag[1] == true && help_flag == true)
+	else if (680.0f <= x && 780.0f >= x && 40.0f <= y && 140.0f >= y  && help_flag == true)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SCENEBACK_WAIT);
-		help_flag = false;
-		c_flag[0] = false;
+		buttom_name = 'h';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
-	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -141,8 +147,8 @@ void CObjGameSelect::Draw()
 {
 	//描画カラー情報
 	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
-	float	b[4] = { 0.8f,0.8f,0.8f,1.0f };//ボタン通常
-	float	t[4] = { 0.6f,0.6f,0.6f,1.0f };//ボタン押している
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -187,9 +193,9 @@ void CObjGameSelect::Draw()
 	dst.m_right = SELECT_POS_R;
 	dst.m_bottom = SW_SELECT_POS_B;
 	
-	 if(col_flag[0]==true&&col_flag[1]==false && but == 's')
+	 if(col_flag[0]==true&&col_flag[1]==false && buttom_name == 's')
 		Draw::Draw(0, &src, &dst, c, 0.0f);
-	else if(col_flag[0]==false&&col_flag[1]==true&& but == 's')
+	else if(col_flag[0]==false&&col_flag[1]==true&& buttom_name == 's')
 		Draw::Draw(0, &src, &dst, t, 0.0f);
 	else 
 		Draw::Draw(0, &src, &dst, b, 0.0f);
@@ -203,9 +209,9 @@ void CObjGameSelect::Draw()
 	dst.m_right = SELECT_POS_R;
 	dst.m_bottom = RP_SELECT_POS_B;
 	
-	if (col_flag[0] == true && col_flag[1] == false&&but=='r')
+	if (col_flag[0] == true && col_flag[1] == false&& buttom_name =='r')
 		Draw::Draw(0, &src, &dst, c, 0.0f);
-	else if (col_flag[0] == false && col_flag[1] == true && but == 'r')
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'r')
 		Draw::Draw(0, &src, &dst, t, 0.0f);
 	else 
 		Draw::Draw(0, &src, &dst, b, 0.0f);
@@ -219,9 +225,9 @@ void CObjGameSelect::Draw()
 	dst.m_left = BACKBUTTON_POS_L;
 	dst.m_right = BACKBUTTON_POS_R;
 	dst.m_bottom = BACKBUTTON_POS_B;
-	if (col_flag[0] == true && col_flag[1] == false && but == 'b')
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'b')
 		Draw::Draw(0, &src, &dst, c, 0.0f);
-	else if (col_flag[0] == false && col_flag[1] == true && but == 'b')
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'b')
 		Draw::Draw(0, &src, &dst, t, 0.0f);
 	else
 		Draw::Draw(0, &src, &dst, b, 0.0f);
@@ -235,8 +241,13 @@ void CObjGameSelect::Draw()
 	dst.m_left = POS_HELPBUTTON_L;
 	dst.m_right = POS_HELPBUTTON_R;
 	dst.m_bottom = POS_HELPBUTTON_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-	//ヘルプ表示
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(0, &src, &dst, b, 0.0f);
+	//クレジット表示
 	if (help_flag == false)
 	{
 		src.m_top = CUT_HELP_T;
