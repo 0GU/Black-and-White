@@ -58,31 +58,56 @@ void CObjModeSelect::Action()
 	}
 
 	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y &&
-		c_flag[0] == true && c_flag[1] == true && credit_flag == true)
+		credit_flag == true)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SELECT_WAIT);
-		Scene::SetScene(new CSceneGameSelect());
+		buttom_name = 's';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneGameSelect());
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 
-	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y &&
-		c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
+	else if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y &&
+			 credit_flag == true)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SELECT_WAIT);
-		Scene::SetScene(new CSceneGallery());
+		buttom_name = 'g';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+			Scene::SetScene(new CSceneGallery());
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 	//クレジット
-	if (460.0f <= x && 680.0f >= x && 480.0f <= y && 580.0f >= y && c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
+	else if (460.0f <= x && 680.0f >= x && 480.0f <= y && 580.0f >= y && credit_flag == true)
 	{
-		//SEを鳴らす
-		Audio::Start(1);
-		Sleep(SCENEBACK_WAIT);
-		credit_flag = false;
-		c_flag[0] = false;
+		buttom_name = 'c';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			credit_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
+	else
+	{
+		col_flag[0] = false;
+		col_flag[1] = false;
+	}
+
+
 	if (credit_flag == false&&c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
@@ -112,7 +137,9 @@ void CObjModeSelect::Action()
 void CObjModeSelect::Draw()
 {
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
@@ -146,7 +173,12 @@ void CObjModeSelect::Draw()
 	dst.m_left = HIT_LEFT;
 	dst.m_right = HIT_RIGHT;
 	dst.m_bottom = HIT_BOTTOM_GALLERY;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'g')
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'g')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(0, &src, &dst, b, 0.0f);
 
 	//GameSelect表示
 	src.m_top = CUT_PICTURE_TOP;
@@ -157,7 +189,12 @@ void CObjModeSelect::Draw()
 	dst.m_left = HIT_LEFT;
 	dst.m_right = HIT_RIGHT;
 	dst.m_bottom = HIT_BOTTOM_SELECT;
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 's')
+		Draw::Draw(1, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 's')
+		Draw::Draw(1, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(1, &src, &dst, b, 0.0f);
 
 	//まとめ表示
 	src.m_top = 456.0f;
@@ -179,7 +216,12 @@ void CObjModeSelect::Draw()
 	dst.m_left = 460.0f;
 	dst.m_right = 680.0f;
 	dst.m_bottom = 580.0f;
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'c')
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'c')
+		Draw::Draw(5, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(5, &src, &dst, b, 0.0f);
 
 	//クレジット表示
 	if (credit_flag == false)
