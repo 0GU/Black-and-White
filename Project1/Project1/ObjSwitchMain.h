@@ -29,8 +29,8 @@ resource
 #define BLACK_PANEL_ID (1)
 #define LEF_RIG_SWIT_ID (2)
 #define UP_DOWN_SWIT_ID (3)
-#define CH_WHITE_PANEL_ID (4)
-#define CH_BLACK_PANEL_ID (5)
+#define CH_WHITE_PANEL_ID (9)
+#define CH_BLACK_PANEL_ID (10)
 
 #define HINT_FLAG (0)
 #define CLEAR_FLAG (1)
