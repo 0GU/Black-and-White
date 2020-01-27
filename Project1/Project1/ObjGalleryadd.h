@@ -5,6 +5,7 @@
 using namespace GameL;
 
 //É}ÉNÉç
+#define WINDOW_SIZE_TOP_LEFT (0.0f)
 #define WINDOW_SIZE_X (800.0f)
 #define WINDOW_SIZE_Y (600.0f)
 #define CLICK_WAIT (300)

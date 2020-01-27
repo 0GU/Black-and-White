@@ -260,14 +260,14 @@ void CObjSwitchSelect::Draw()
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 	//ステージを選択
-	src.m_top = 362;
-	src.m_left = 2;
-	src.m_right = 537;
-	src.m_bottom = 430;	//542x95
-	dst.m_top = 15.0f;
-	dst.m_left = 140.0f;
-	dst.m_right = 690.0f;
-	dst.m_bottom = 135.0;
+	src.m_top = CUT_STAGE_T;
+	src.m_left = CUT_STAGE_L;
+	src.m_right = CUT_STAGE_R;
+	src.m_bottom = CUT_STAGE_B;	//542x95
+	dst.m_top = POS_STAGE_T;
+	dst.m_left = POS_STAGE_L;
+	dst.m_right = POS_STAGE_R;
+	dst.m_bottom = POS_STAGE_B;
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	if (Cflag[2] == true)

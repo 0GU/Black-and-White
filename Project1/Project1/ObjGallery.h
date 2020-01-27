@@ -33,13 +33,16 @@ using namespace GameL;
 #define CUT_GRAPHIC_RIGHT (512.0f)
 #define CUT_GRAPHIC_BOTTOM (512.0f)
 
+
 //画像切り取り用
 #define RESOURCE_GRAPHIC_RIGHT (800.0f)
 #define RESOURCE_GRAPHIC_BOTTOM (600.0f)
 #define RESOURCE_GRAPHIC_RIGHT2 (1024.0f)
 #define RESOURCE_GRAPHIC_BOTTOM2 (1024.0f)
 
-
+#define GRAPHIC_TOP_LEFT (0.0f)
+#define GRAPHIC_RIGHT_BLACK (800.0f)
+#define GRAPHIC_BOTTOM_BLACK (600.0f)
 
 #define CUT_BACK_TOP (139.0f)
 #define CUT_BACK_LEFT (559.0f)
@@ -88,6 +91,8 @@ private:
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
+	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
+	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 
 
 };

@@ -24,6 +24,37 @@ using namespace GameL;
 #define BACKGROUND_B (600.0f)
 #define BACKGROUND_B_GAP (599.0f)
 
+//まとめ表示
+#define CUT_CONCLUSION_T (456.0f)
+#define CUT_CONCLUSION_L (1.0f)
+#define CUT_CONCLUSION_R (658.0f)
+#define CUT_CONCLUSION_B (543.0f)
+#define POS_CONCLUSION_T (20.0f)
+#define POS_CONCLUSION_L (80.0f)
+#define POS_CONCLUSION_R (740.0f)
+#define POS_CONCLUSION_B (110.0f)
+
+//クレジットボタン
+#define CUT_CREDITBUTTON_T (927.0f)
+#define CUT_CREDITBUTTON_L (0.0f)
+#define CUT_CREDITBUTTON_R (150.0f)
+#define CUT_CREDITBUTTON_B (998.0f)
+#define POS_CREDITBUTTON_T (480.0f)
+#define POS_CREDITBUTTON_L (460.0f)
+#define POS_CREDITBUTTON_R (680.0f)
+#define POS_CREDITBUTTON_B (580.0f)
+
+//クレジット表示
+#define CUT_CREDIT_T (0.0f)
+#define CUT_CREDIT_L (0.0f)
+#define CUT_CREDIT_R (620.0f)
+#define CUT_CREDIT_B (450.0f)
+#define POS_CREDIT_T (0.0f)
+#define POS_CREDIT_L (0.0f)
+#define POS_CREDIT_R (800.0f)
+#define POS_CREDIT_B (600.0f)
+
+
 //オブジェクト：モードセレクト
 class CObjModeSelect : public CObj
 {
@@ -35,13 +66,18 @@ public:
 	void Draw();	//ドロー
 	float x, y;
 private:
-	float m_x1;	//背景の位置X1
-	float m_x2;	//背景の位置X2
 	float m_y1;	//背景の位置Y1
 	float m_y2;	//背景の位置Y2
+
+	float C_m_y1; //クレジットの位置Y1
+	float C_m_y2; //クレジットの位置Y2
 
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 	bool credit_flag;//クレジット表示用
+	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
+	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
+
+	bool help_flag;//help表示用
 };

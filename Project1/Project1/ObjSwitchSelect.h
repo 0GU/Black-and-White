@@ -62,6 +62,16 @@ using namespace GameL;
 #define BACKGROUND_B (600.0f)
 #define BACKGROUND_B_GAP (599.0f)
 
+//ステージ選択
+#define CUT_STAGE_T (362.0f)
+#define CUT_STAGE_L (2.0f)
+#define CUT_STAGE_R (537.0f)
+#define CUT_STAGE_B (430.0f)//542x95
+#define POS_STAGE_T (15.0f)
+#define POS_STAGE_L (140.0f)
+#define POS_STAGE_R (690.0f)
+#define POS_STAGE_B (135.0f)
+
 //オブジェクト：ステージセレクト
 class CObjSwitchSelect : public CObj
 {
