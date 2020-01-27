@@ -456,72 +456,66 @@ void CObjReversibleMain::Draw()
 	Font::StrDraw(L"全てのパネルを黒色に変えろ！", 180, 25, 32, f);
 	//左下ステージ表記
 	//切り取り
-	src.m_top = 820.0f;
-	src.m_left = 180.0f;
-	src.m_right = 280.0f;
-	src.m_bottom = 865.0f;
+	src.m_top = SRC_STAGE_TOP;
+	src.m_left = SRC_STAGE_LEFT;
+	src.m_right = SRC_STAGE_RIGHT;
+	src.m_bottom = SRC_STAGE_BOTTOM;
 	//表示
-	dst.m_top = 450.0f;
-	dst.m_left = 10.0f;
-	dst.m_right = 110.0f;
-	dst.m_bottom = 495.0f;
+	dst.m_top = DST_STAGE_TOP;
+	dst.m_left = DST_STAGE_LEFT;
+	dst.m_right = DST_STAGE_RIGHT;
+	dst.m_bottom = DST_STAGE_BOTTOM;
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 
+	//左下のSTAGEの数（書き方が曖昧かもなのでだれか改良してｗ）
 	switch (StageSlect)
 	{
 	case 1:
-		src.m_top = 0.0f;
-		src.m_left = 1.0f;
-		src.m_right = 119.0f;
-		src.m_bottom = 119.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_1234;
+		src.m_left = SRC_STAGECOUNT_LEFT_1;
+		src.m_right = SRC_STAGECOUNT_RIGHT_1;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
 		break;
 	case 2:
-		src.m_top = 0.0f;
-		src.m_left = 120.0f;
-		src.m_right = 120.0f*2;
-		src.m_bottom = 119.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_1234;
+		src.m_left = SRC_STAGECOUNT_LEFT_2;
+		src.m_right = SRC_STAGECOUNT_RIGHT_2 *2;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
 
 		break;
 	case 3:
-		src.m_top = 0.0f;
-		src.m_left = 120.0f*2;
-		src.m_right = 120.0f*3;
-		src.m_bottom = 119.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_1234;
+		src.m_left = SRC_STAGECOUNT_LEFT_3 *2;
+		src.m_right = SRC_STAGECOUNT_RIGHT_3 *3;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
 
 		break;
 	case 4:
-		src.m_top = 0.0f;
-		src.m_left = 120.0f * 3;
-		src.m_right = 120.0f * 4;
-		src.m_bottom = 119.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_1234;
+		src.m_left = SRC_STAGECOUNT_LEFT_4 * 3;
+		src.m_right = SRC_STAGECOUNT_RIGHT_4 * 4;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
 		break;
 	case 5:
-		src.m_top = 120.0f;
-		src.m_left = 0.0f;
-		src.m_right = 120.0f;
-		src.m_bottom = 240.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_56;
+		src.m_left = SRC_STAGECOUNT_LEFT_5;
+		src.m_right = SRC_STAGECOUNT_RIGHT_5;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_56;
 		break;
 	case 6:
-		src.m_top = 120.0f;
-		src.m_left = 120.0f;
-		src.m_right = 120.0f*2;
-		src.m_bottom = 240.0f;
+		src.m_top = SRC_STAGECOUNT_TOP_56;
+		src.m_left = SRC_STAGECOUNT_LEFT_6;
+		src.m_right = SRC_STAGECOUNT_RIGHT_6 * 2;
+		src.m_bottom = SRC_STAGECOUNT_BOTTOM_56;
 		break;
 	}
-	dst.m_top = 450.0f;
-	dst.m_left = 105.0f;
-	dst.m_right = 155.0f;
-	dst.m_bottom = 500.0f;
-
-	/*src.m_top = 1.0f;
-	src.m_left = 1.0f;
-	src.m_right = 119.0f;
-	src.m_bottom = 119.0f;
-	dst.m_top = 450.0f;
-	dst.m_left = 100.0f;
-	dst.m_right = 150.0f;
-	dst.m_bottom = 500.0f;*/
+	dst.m_top = DST_STAGECOUNT_TOP;
+	dst.m_left = DST_STAGECOUNT_LEFT;
+	dst.m_right = DST_STAGECOUNT_RIGHT;
+	dst.m_bottom = DST_STAGECOUNT_BOTTOM;
 	Draw::Draw(11, &src, &dst, c, 0.0f);
+
+
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -649,15 +643,15 @@ void CObjReversibleMain::Draw()
 
 	//Countの文字表示----------------------------------------------
 	//切り取り
-	src.m_top = 820.0f;
-	src.m_left = 20.0f;
-	src.m_right = 130.0f;
-	src.m_bottom = 860.0f;
+	src.m_top = SRC_COUNT_TOP;
+	src.m_left = SRC_COUNT_LEFT;
+	src.m_right = SRC_COUNT_RIGHT;
+	src.m_bottom = SRC_COUNT_BOTTOM;
 	//表示
-	dst.m_top = 40.0f;
-	dst.m_left = 660.0f;
-	dst.m_right = 770.0f;
-	dst.m_bottom = 80.0f;
+	dst.m_top = DST_COUNT_TOP;
+	dst.m_left = DST_COUNT_LEFT;
+	dst.m_right = DST_COUNT_RIGHT;
+	dst.m_bottom = DST_COUNT_BOTTOM;
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 
 	//Countの値を文字列化---------------------------------------
