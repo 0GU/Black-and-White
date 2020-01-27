@@ -539,18 +539,17 @@ void CObjReversibleSelect::Draw()
 
 	//çïêØÇÃï`âÊ-------------------------------------------------------------------------------------------
 
-
+	src.m_top = CUT_PIC_TOP_BLACKSTAR;
+	src.m_left = CUT_PIC_LEFT_BLACKSTAR;
+	src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
+	src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
+	dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
+	dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 
 	//(1)
 	if (Pflag[0] == false && Cflag[0] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR1;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR1;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -562,13 +561,7 @@ void CObjReversibleSelect::Draw()
 	//(2)
 	if (Pflag[1] == false && Cflag[1] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR2;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -580,13 +573,7 @@ void CObjReversibleSelect::Draw()
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR3;
-		dst.m_left = HIT_LEFT_BLACKSTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_BLACKSTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_BLACKSTAR3;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -594,13 +581,10 @@ void CObjReversibleSelect::Draw()
 			Draw::Draw(10, &src, &dst, t, 0.0f);
 		else
 			Draw::Draw(10, &src, &dst, c, 0.0f);
-	}//(4)
+	}
+	//(4)
 	if (Pflag[3] == false && Cflag[3] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR1;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
@@ -615,10 +599,6 @@ void CObjReversibleSelect::Draw()
 	//(5)
 	if (Pflag[4] == false && Cflag[4] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR2;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
@@ -633,10 +613,6 @@ void CObjReversibleSelect::Draw()
 	//(6)
 	if (Pflag[5] == false && Cflag[5] == true)
 	{
-		src.m_top = CUT_PIC_TOP_BLACKSTAR;
-		src.m_left = CUT_PIC_LEFT_BLACKSTAR;
-		src.m_right = CUT_PIC_RIGHT_BLACKSTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_BLACKSTAR;
 		dst.m_top = HIT_TOP_BLACKSTAR3;
 		dst.m_left = HIT_LEFT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_BLACKSTAR + SCROLL_DISTANCE + m_scroll;
@@ -649,18 +625,17 @@ void CObjReversibleSelect::Draw()
 			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	//îíêØÇÃï`âÊ-------------------------------------------------------------------------------------------------
-
+	src.m_top = CUT_PIC_TOP_WHITESTAR;
+	src.m_left = CUT_PIC_LEFT_WHITESTAR;
+	src.m_right = CUT_PIC_RIGHT_WHITESTAR;
+	src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
+	dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
+	dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 
 	//(1)
 	if (Pflag[0] == true)
 	{
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR1;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR1;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -672,13 +647,7 @@ void CObjReversibleSelect::Draw()
 	if (Pflag[1] == true)
 	{
 		//(2)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR2;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR2;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -690,13 +659,7 @@ void CObjReversibleSelect::Draw()
 	if (Pflag[2] == true)
 	{
 		//(3)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR3;
-		dst.m_left = HIT_LEFT_WHITESTAR + m_scroll;
-		dst.m_right = HIT_RIGHT_WHITESTAR + m_scroll;
 		dst.m_bottom = HIT_BOTTOM_WHITESTAR3;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
@@ -708,10 +671,6 @@ void CObjReversibleSelect::Draw()
 	//(4)
 	if (Pflag[3] == true)
 	{
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR1;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
@@ -726,10 +685,6 @@ void CObjReversibleSelect::Draw()
 	if (Pflag[4] == true)
 	{
 		//(5)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR2;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
@@ -744,10 +699,6 @@ void CObjReversibleSelect::Draw()
 	if (Pflag[5] == true)
 	{
 		//(6)
-		src.m_top = CUT_PIC_TOP_WHITESTAR;
-		src.m_left = CUT_PIC_LEFT_WHITESTAR;
-		src.m_right = CUT_PIC_RIGHT_WHITESTAR;
-		src.m_bottom = CUT_PIC_BOTTOM_WHITESTAR;
 		dst.m_top = HIT_TOP_WHITESTAR3;
 		dst.m_left = HIT_LEFT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = HIT_RIGHT_WHITESTAR + SCROLL_DISTANCE + m_scroll;
