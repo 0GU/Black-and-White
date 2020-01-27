@@ -37,7 +37,7 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/CREDIT仮.png", 4, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 5, TEX_SIZE_1024);
-
+	Draw::LoadImage(L"まとめ画像/help2.png", 6, TEX_SIZE_1024);
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 
