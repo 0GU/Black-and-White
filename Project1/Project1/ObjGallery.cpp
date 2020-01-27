@@ -202,7 +202,7 @@ void CObjGallery::Action()
 					GFlag[1] = true;
 				
 			}
-			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[1] == true&&
+			else if (GRAPHIC_TOP_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP_LEFT <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == true&&
 				c_flag[0] == true && c_flag[1] == true)
 			{
 					Audio::Start(1);

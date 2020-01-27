@@ -75,7 +75,7 @@ void CObjModeSelect::Action()
 		Scene::SetScene(new CSceneGallery());
 	}
 	//クレジット
-	if (460.0f <= x && 680.0f >= x && 480.0f <= y && 580.0f >= y && c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
+	if (POS_CREDITBUTTON_L <= x && POS_CREDITBUTTON_R >= x && POS_CREDITBUTTON_T <= y && POS_CREDITBUTTON_B >= y && c_flag[0] == true && c_flag[1] == true&& credit_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -160,38 +160,38 @@ void CObjModeSelect::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//まとめ表示
-	src.m_top = 456.0f;
-	src.m_left = 1.0f;
-	src.m_right = 658.0f;
-	src.m_bottom = 543.0f;
-	dst.m_top = 20.0f;
-	dst.m_left = 80.0f;
-	dst.m_right = 740.0f;
-	dst.m_bottom = 110.0f;
+	src.m_top = CUT_CONCLUSION_T;
+	src.m_left = CUT_CONCLUSION_L;
+	src.m_right = CUT_CONCLUSION_R;
+	src.m_bottom = CUT_CONCLUSION_B;
+	dst.m_top = POS_CONCLUSION_T;
+	dst.m_left = POS_CONCLUSION_L;
+	dst.m_right = POS_CONCLUSION_R;
+	dst.m_bottom = POS_CONCLUSION_B;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//クレジットボタン
-	src.m_top = 927.0f;
-	src.m_left = 0.0f;
-	src.m_right = 150.0f;
-	src.m_bottom = 998.0f;
-	dst.m_top = 480.0f;
-	dst.m_left = 460.0f;
-	dst.m_right = 680.0f;
-	dst.m_bottom = 580.0f;
+	src.m_top = CUT_CREDITBUTTON_T;
+	src.m_left = CUT_CREDITBUTTON_L;
+	src.m_right = CUT_CREDITBUTTON_R;
+	src.m_bottom = CUT_CREDITBUTTON_B;
+	dst.m_top = POS_CREDITBUTTON_T;
+	dst.m_left = POS_CREDITBUTTON_L;
+	dst.m_right = POS_CREDITBUTTON_R;
+	dst.m_bottom = POS_CREDITBUTTON_B;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	//クレジット表示
 	if (credit_flag == false)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 620.0f;
-		src.m_bottom = 450.0f;
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
+		src.m_top = CUT_CREDIT_T;
+		src.m_left = CUT_CREDIT_L;
+		src.m_right = CUT_CREDIT_R;
+		src.m_bottom = CUT_CREDIT_B;
+		dst.m_top = POS_CREDIT_T;
+		dst.m_left = POS_CREDIT_L;
+		dst.m_right = POS_CREDIT_R;
+		dst.m_bottom = POS_CREDIT_B;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 }

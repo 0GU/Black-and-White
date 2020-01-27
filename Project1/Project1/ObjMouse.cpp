@@ -87,14 +87,14 @@ void CObjMouse::Draw()
 	//クリックエフェクト(仮)
 	if (mouse_flag == true)
 	{
-		src.m_top = 72;
-		src.m_left = 800 + (m_ani_flame * 40);
-		src.m_right = src.m_left + 40;
-		src.m_bottom = 112;
-		dst.m_top = m_mou_y - 19;
-		dst.m_left = m_mou_x - 19;
-		dst.m_right = dst.m_left + 40;
-		dst.m_bottom = dst.m_top + 40;
+		src.m_top = CUT_CLICK_EFFECT_T;
+		src.m_left = CUT_CLICK_EFFECT_L + (m_ani_flame * CLICK_EFFECT_40);
+		src.m_right = src.m_left + CLICK_EFFECT_40;
+		src.m_bottom = CUT_CLICK_EFFECT_B;
+		dst.m_top = m_mou_y - CLICK_EFFECT_19;
+		dst.m_left = m_mou_x - CLICK_EFFECT_19;
+		dst.m_right = dst.m_left + CLICK_EFFECT_40;
+		dst.m_bottom = dst.m_top + CLICK_EFFECT_40;
 
 		if (back_col == true)
 		{

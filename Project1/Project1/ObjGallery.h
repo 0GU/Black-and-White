@@ -39,7 +39,9 @@ using namespace GameL;
 #define RESOURCE_GRAPHIC_RIGHT2 (1024.0f)
 #define RESOURCE_GRAPHIC_BOTTOM2 (1024.0f)
 
-
+#define GRAPHIC_TOP_LEFT (0.0f)
+#define GRAPHIC_RIGHT (800.0f)
+#define GRAPHIC_BOTTOM (600.0f)
 
 #define CUT_BACK_TOP (139.0f)
 #define CUT_BACK_LEFT (559.0f)
