@@ -112,34 +112,46 @@ void CObjReversibleMain::Action()
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (HIT_PANEL_LEFT <= x && HIT_PANEL_RIGHT >= x && HIT_PANEL_TOP <= y && HIT_PANEL_BOTTOM >= y &&
-		flag[1] == false && flag[2] == false && flag[3] == false && c_flag[0] == true && c_flag[1] == true && m_ani_flag == false)
+		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flag == false)
 	{
 		sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
 		sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
-		for (int m = 0; m < 5; m++)
-		{
-			ReversibleProcess(sx, sy, &lx, &ly, m, stage);
 
-			//反転処理の準備
-			if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
+		buttom_name = 'p';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			for (int m = 0; m < 5; m++)
 			{
-				//反転中を示す値に変更する
-				if (stage[ly][lx] == WHITE_PANEL)
+				ReversibleProcess(sx, sy, &lx, &ly, m, stage);
+
+				//反転処理の準備
+				if (lx >= ARRAY_SIZE_LEFT && ly >= ARRAY_SIZE_TOP && lx <= ARRAY_SIZE_RIGHT && ly <= ARRAY_SIZE_BOTTOM)
 				{
-					stage[ly][lx] = WHITE_PANEL_REVERSAL;
-				}
-				else if (stage[ly][lx] == BLACK_PANEL)
-				{
-					stage[ly][lx] = BLACK_PANEL_REVERSAL;
+					//反転中を示す値に変更する
+					if (stage[ly][lx] == WHITE_PANEL)
+					{
+						stage[ly][lx] = WHITE_PANEL_REVERSAL;
+					}
+					else if (stage[ly][lx] == BLACK_PANEL)
+					{
+						stage[ly][lx] = BLACK_PANEL_REVERSAL;
+					}
 				}
 			}
-		}
-		m_ani_flag = true;	//反転中はほかのパネルを反転できないようにする
+			m_ani_flag = true;	//反転中はほかのパネルを反転できないようにする
 
-		//SEを鳴らす
-		Audio::Start(1);
-		//Countを減らす
-		count[1]--;
+			//SEを鳴らす
+			Audio::Start(1);
+			//Countを減らす
+			count[1]--;
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+	else
+	{
+		col_flag[0] = false;
+		col_flag[1] = false;
 	}
 	//反転アニメーション処理------------------------------
 	if (flag[4] == false)
@@ -430,7 +442,11 @@ void CObjReversibleMain::Draw()
 		0,1,2,3,7,6,5,4,
 	};
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//描画カラー情報
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
+	float	bl[4] = { 1.0f,1.0f,1.0f,0.8f };//黒ボタン位置にカーソル
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
 	float   cchange[4] = { colorchange,0.0f,0.0f,1.0f };//テキスト用
 
@@ -481,14 +497,12 @@ void CObjReversibleMain::Draw()
 		src.m_left = SRC_STAGECOUNT_LEFT_2;
 		src.m_right = SRC_STAGECOUNT_RIGHT_2 *2;
 		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
-
 		break;
 	case 3:
 		src.m_top = SRC_STAGECOUNT_TOP_1234;
 		src.m_left = SRC_STAGECOUNT_LEFT_3 *2;
 		src.m_right = SRC_STAGECOUNT_RIGHT_3 *3;
 		src.m_bottom = SRC_STAGECOUNT_BOTTOM_1234;
-
 		break;
 	case 4:
 		src.m_top = SRC_STAGECOUNT_TOP_1234;
@@ -515,7 +529,6 @@ void CObjReversibleMain::Draw()
 	dst.m_bottom = DST_STAGECOUNT_BOTTOM;
 	Draw::Draw(11, &src, &dst, c, 0.0f);
 
-
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -533,7 +546,12 @@ void CObjReversibleMain::Draw()
 				src.m_right = ANIMATIONPANEL_SIZE_X + src.m_left;
 				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
 				//白パネル
-				Draw::Draw(6, &src, &dst, c, 0.0f);
+				//カーソルのあるパネルとその上下左右の色を変更する
+				if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+					col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+					Draw::Draw(6, &src, &dst, b, 0.0f);
+				else
+					Draw::Draw(6, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == BLACK_PANEL)
 			{
@@ -542,7 +560,12 @@ void CObjReversibleMain::Draw()
 				src.m_right = ANIMATIONPANEL_SIZE_X + src.m_left;
 				src.m_bottom = ANIMATIONPANEL_SIZE_Y + src.m_top;
 				//黒パネル
-				Draw::Draw(6, &src, &dst, c, 0.0f);
+				//カーソルのあるパネルとその上下左右の色を変更する
+				if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+					col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+					Draw::Draw(6, &src, &dst, bl, 0.0f);
+				else
+					Draw::Draw(6, &src, &dst, c, 0.0f);
 			}
 			if (stage[i][j] == WHITE_PANEL_REVERSAL)
 			{
