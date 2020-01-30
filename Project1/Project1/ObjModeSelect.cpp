@@ -18,6 +18,8 @@ void CObjModeSelect::Init()
 {
 	m_y1 = BACKGROUND_TL;
 	m_y2 = BACKGROUND_B;
+	m_r1 = 0.0f;
+	m_r2 = 0.0f;
 	C_m_y1 = 0.0f;
 	C_m_y2 = 0.0f;
 
@@ -155,15 +157,25 @@ void CObjModeSelect::Action()
 		m_y2 = BACKGROUND_B;
 
 	//クレジットのスクロール
-	//C_m_y1 += 1.0f;
-	//if(C_m_y1)
+	m_r1 += 1.5f;
+	if (m_r1 > CIRCLE)
+		m_r1 = RESET_POS_CREDIT;
+
+	C_m_y1 = sin(3.14 / 180 * m_r1);
+	
+	m_r2  -= 1.5f;
+	if (m_r2 < -CIRCLE)
+		m_r2 = RESET_POS_CREDIT;
+
+	C_m_y2 = sin(3.14 / 180 * m_r2);
+	C_m_y1 *= CREDIT_MOVE_SPEED;
+	C_m_y2 *= CREDIT_MOVE_SPEED;
 
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
 		c_flag[0] = false;
 	}
-
 }
 
 //ドロー
@@ -287,19 +299,19 @@ void CObjModeSelect::Draw()
 		src.m_left = 116.0f;
 		src.m_right = 241.0f;
 		src.m_bottom = 269.0f;
-		dst.m_top = 120.0f;
+		dst.m_top = 140.0f+C_m_y1;
 		dst.m_left = 20.0f;
 		dst.m_right = 160.0f;
-		dst.m_bottom = 440.0f;
+		dst.m_bottom = 460.0f+C_m_y1;
 		Draw::Draw(7, &src, &dst, c, 0.0f);
 		src.m_top = 2.0f;
 		src.m_left = 2.0f;
 		src.m_right = 106.0;
 		src.m_bottom = 281.0;
-		dst.m_top = 200.0f;
+		dst.m_top = 180.0f+C_m_y2;
 		dst.m_left = 670.0f;
 		dst.m_right = 780.0f;
-		dst.m_bottom = 500.0f;
+		dst.m_bottom = 480.0f+C_m_y2;
 		Draw::Draw(7, &src, &dst, c, 0.0f);
 		
 	}

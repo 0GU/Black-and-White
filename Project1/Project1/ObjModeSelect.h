@@ -54,6 +54,10 @@ using namespace GameL;
 #define POS_CREDIT_R (800.0f)
 #define POS_CREDIT_B (600.0f)
 
+//クレジットスクロール用
+#define RESET_POS_CREDIT (0.0f)
+#define CIRCLE (360.0f)
+#define CREDIT_MOVE_SPEED (30.0f)
 
 //オブジェクト：モードセレクト
 class CObjModeSelect : public CObj
@@ -71,6 +75,8 @@ private:
 
 	float C_m_y1; //クレジットの位置Y1
 	float C_m_y2; //クレジットの位置Y2
+	float m_r1; //クレジットの左側の上下運動用
+	float m_r2;	//クレジットの右側の上下運動用
 
 	bool c_flag[2];	//クリックフラグ	[0]=押している [1]=押していない
 	bool back;		//背景色判別用		true=黒 , false=白
