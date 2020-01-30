@@ -554,7 +554,7 @@ void CObjSwitchMain::Action()
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
-		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+		count[REMAINING_CNT_ARRAY_NUM] = count[INITIAL_CNT_ARRAY_NUM];
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 		//SEを鳴らす
 		Audio::Start(6);
@@ -807,6 +807,31 @@ void CObjSwitchMain::Draw()
 			{
 				//横スイッチ
 				Draw::Draw(7, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 4)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 90.0f);
+			}
+			else if (stage[i][j] == 5)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 6)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, -90.0f);
+			}
+			else if (stage[i][j] == 7)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 180.0f);
+			}
+			else if (stage[i][j] == 8)
+			{
+				//横スイッチ
+				Draw::Draw(14, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == CH_WHITE_PANEL_ID)
 			{
