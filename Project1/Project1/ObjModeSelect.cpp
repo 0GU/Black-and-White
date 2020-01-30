@@ -18,11 +18,11 @@ void CObjModeSelect::Init()
 {
 	m_y1 = BACKGROUND_TL;
 	m_y2 = BACKGROUND_B;
-	m_r1 = 0.0f;
-	m_r2 = 0.0f;
-	C_m_y1 = 0.0f;
-	C_m_y2 = 0.0f;
-
+	m_r1 = RESET_POS_CREDIT;
+	m_r2 = RESET_POS_CREDIT;
+	C_m_y1 = RESET_POS_CREDIT;
+	C_m_y2 = RESET_POS_CREDIT;
+	
 	//ÉtÉâÉOÇèâä˙âª
 	bool flag_set[2] =
 	{ false,false };
