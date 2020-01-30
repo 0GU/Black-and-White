@@ -45,9 +45,9 @@ struct UserData
 {
 	int mSeveData;	//サンプルセーブデータ
 
-	bool SPerfectFlag[3];
+	bool SPerfectFlag[6];
 	bool RPerfectFlag[6];
-	bool SClearFlag[3];
+	bool SClearFlag[6];
 	bool RClearFlag[6];
 
 };
