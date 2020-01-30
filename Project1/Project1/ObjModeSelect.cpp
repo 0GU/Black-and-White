@@ -268,14 +268,14 @@ void CObjModeSelect::Draw()
 	else
 		Draw::Draw(5, &src, &dst, b, 0.0f);
 	//helpボタン
-	src.m_top = 100.0f;
-	src.m_left = 924.0f;
-	src.m_right = 1024.0f;
-	src.m_bottom = 200.0f;
-	dst.m_top = 480.0f;
-	dst.m_left = 120.0f;
-	dst.m_right = 221.0f;
-	dst.m_bottom = 580.0f;
+	src.m_top = CUT_HELP_T;
+	src.m_left = CUT_HELP_L;
+	src.m_right = CUT_HELP_R;
+	src.m_bottom = CUT_HELP_B;
+	dst.m_top = POS_HELP_T;
+	dst.m_left = POS_HELP_L;
+	dst.m_right = POS_HELP_R;
+	dst.m_bottom = POS_HELP_B;
 	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
@@ -295,23 +295,23 @@ void CObjModeSelect::Draw()
 		dst.m_bottom = POS_CREDIT_B;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 		
-		src.m_top = 2.0f;
-		src.m_left = 116.0f;
-		src.m_right = 241.0f;
-		src.m_bottom = 269.0f;
-		dst.m_top = 140.0f+C_m_y1;
-		dst.m_left = 20.0f;
-		dst.m_right = 160.0f;
-		dst.m_bottom = 460.0f+C_m_y1;
+		src.m_top = CUT_CRE_OBJ_TOP_LEFT;
+		src.m_left = CUT_LEFT_CRE_OBJ_L;
+		src.m_right = CUT_LEFT_CRE_OBJ_R;
+		src.m_bottom = CUT_LEFT_CRE_OBJ_B;
+		dst.m_top = POS_LEFT_CRE_OBJ_T+C_m_y1;
+		dst.m_left = POS_LEFT_CRE_OBJ_L;
+		dst.m_right = POS_LEFT_CRE_OBJ_R;
+		dst.m_bottom = POS_LEFT_CRE_OBJ_B+C_m_y1;
 		Draw::Draw(7, &src, &dst, c, 0.0f);
-		src.m_top = 2.0f;
-		src.m_left = 2.0f;
-		src.m_right = 106.0;
-		src.m_bottom = 281.0;
-		dst.m_top = 180.0f+C_m_y2;
-		dst.m_left = 670.0f;
-		dst.m_right = 780.0f;
-		dst.m_bottom = 480.0f+C_m_y2;
+		src.m_top = CUT_CRE_OBJ_TOP_LEFT;
+		src.m_left = CUT_CRE_OBJ_TOP_LEFT;
+		src.m_right = CUT_RIGHT_CRE_OBJ_R;
+		src.m_bottom = CUT_RIGHT_CRE_OBJ_B;
+		dst.m_top = POS_RIGHT_CRE_OBJ_T +C_m_y2;
+		dst.m_left = POS_RIGHT_CRE_OBJ_L;
+		dst.m_right = POS_RIGHT_CRE_OBJ_R;
+		dst.m_bottom = POS_RIGHT_CRE_OBJ_B +C_m_y2;
 		Draw::Draw(7, &src, &dst, c, 0.0f);
 		
 	}
@@ -319,14 +319,14 @@ void CObjModeSelect::Draw()
 	//ヘルプ表示
 	if (help_flag == false)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1280.0f;
-		src.m_bottom = 720.0f;
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
+		src.m_top = HELP_TOP_LEFT;
+		src.m_left = HELP_TOP_LEFT;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = HELP_TOP_LEFT;
+		dst.m_left = HELP_TOP_LEFT;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
 		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
 }
