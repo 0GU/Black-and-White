@@ -43,6 +43,7 @@ void CSceneReversibleMain::InitScene()
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 	Draw::LoadImageW(L"まとめ画像/count用0~9.png", 11, TEX_SIZE_1024);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 12, TEX_SIZE_1024);
+	Draw::LoadImageW(L"まとめ画像1.png", 13, TEX_SIZE_1024);
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"Sound/ゲームメインBGM.wav", SOUND_TYPE::BACK_MUSIC);

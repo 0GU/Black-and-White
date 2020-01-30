@@ -19,7 +19,7 @@ using namespace GameL;
 #define STAGE_SW_SELECT_THREE_B (510.0f)
 
 #define RESOURCE_STAGE_L (0.0f)
-#define RESOURCE_STAGE_R (561.0f)
+#define RESOURCE_STAGE_R (560.0f)
 #define RESOURCE_STAGE1_T (268.0f)
 #define RESOURCE_STAGE1_B (359.0f)
 #define RESOURCE_STAGE2_T (358.0f)

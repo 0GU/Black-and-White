@@ -92,6 +92,7 @@ void CObjSwitchMain::Action()
 		c_flag[1] = true;
 	}
 
+
 	//当たり判定
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
@@ -554,7 +555,7 @@ void CObjSwitchMain::Action()
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
-		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+		count[REMAINING_CNT_ARRAY_NUM] = count[INITIAL_CNT_ARRAY_NUM];
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 		//SEを鳴らす
 		Audio::Start(6);
@@ -694,6 +695,9 @@ void CObjSwitchMain::Draw()
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 
+	//画面うえの説明書き
+	Font::StrDraw(L"白のパネルを黒色に変えろ！", 180, 25, 32, f);
+
 	//左下ステージ表記
 	//切り取り
 	src.m_top = 820.0f;
@@ -807,6 +811,31 @@ void CObjSwitchMain::Draw()
 			{
 				//横スイッチ
 				Draw::Draw(7, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 4)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 90.0f);
+			}
+			else if (stage[i][j] == 5)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 6)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, -90.0f);
+			}
+			else if (stage[i][j] == 7)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 180.0f);
+			}
+			else if (stage[i][j] == 8)
+			{
+				//横スイッチ
+				Draw::Draw(14, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == CH_WHITE_PANEL_ID)
 			{
