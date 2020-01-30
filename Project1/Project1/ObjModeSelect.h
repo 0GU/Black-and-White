@@ -77,14 +77,14 @@ using namespace GameL;
 #define CREDIT_MOVE_SPEED (30.0f)
 
 //helpƒ{ƒ^ƒ“
-#define CUT_HELP_T (100.0f)
-#define CUT_HELP_L (924.0f)
-#define CUT_HELP_R (1024.0f)
-#define CUT_HELP_B (200.0f)
-#define POS_HELP_T (480.0f)
-#define POS_HELP_L (120.0f)
-#define POS_HELP_R (221.0f)
-#define POS_HELP_B (580.0f)
+#define CUT_BUTTON_HELP_T (100.0f)
+#define CUT_BUTTON_HELP_L (924.0f)
+#define CUT_BUTTON_HELP_R (1024.0f)
+#define CUT_BUTTON_HELP_B (200.0f)
+#define POS_BUTTON_HELP_T (480.0f)
+#define POS_BUTTON_HELP_L (120.0f)
+#define POS_BUTTON_HELP_R (221.0f)
+#define POS_BUTTON_HELP_B (580.0f)
 
 //help•\Ž¦
 #define HELP_TOP_LEFT (0.0f)

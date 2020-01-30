@@ -268,14 +268,14 @@ void CObjModeSelect::Draw()
 	else
 		Draw::Draw(5, &src, &dst, b, 0.0f);
 	//helpƒ{ƒ^ƒ“
-	src.m_top = CUT_HELP_T;
-	src.m_left = CUT_HELP_L;
-	src.m_right = CUT_HELP_R;
-	src.m_bottom = CUT_HELP_B;
-	dst.m_top = POS_HELP_T;
-	dst.m_left = POS_HELP_L;
-	dst.m_right = POS_HELP_R;
-	dst.m_bottom = POS_HELP_B;
+	src.m_top = CUT_BUTTON_HELP_T;
+	src.m_left = CUT_BUTTON_HELP_L;
+	src.m_right = CUT_BUTTON_HELP_R;
+	src.m_bottom = CUT_BUTTON_HELP_B;
+	dst.m_top = POS_BUTTON_HELP_T;
+	dst.m_left = POS_BUTTON_HELP_L;
+	dst.m_right = POS_BUTTON_HELP_R;
+	dst.m_bottom = POS_BUTTON_HELP_B;
 	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
