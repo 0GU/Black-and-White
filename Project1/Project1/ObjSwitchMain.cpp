@@ -92,6 +92,7 @@ void CObjSwitchMain::Action()
 		c_flag[1] = true;
 	}
 
+
 	//当たり判定
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
@@ -470,6 +471,9 @@ void CObjSwitchMain::Draw()
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
+
+	//画面うえの説明書き
+	Font::StrDraw(L"白のパネルを黒色に変えろ！", 180, 25, 32, f);
 
 	//左下ステージ表記
 	//切り取り
