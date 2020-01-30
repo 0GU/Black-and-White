@@ -86,11 +86,10 @@ void CObjTitle::Action()
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			if (i < 3)
-			{
-				((UserData*)Save::GetData())->SPerfectFlag[i] = true;
-				((UserData*)Save::GetData())->SClearFlag[i] = true;
-			}
+
+			((UserData*)Save::GetData())->SPerfectFlag[i] = true;
+			((UserData*)Save::GetData())->SClearFlag[i] = true;
+
 			((UserData*)Save::GetData())->RPerfectFlag[i] = true;
 			((UserData*)Save::GetData())->RClearFlag[i] = true;
 		}
@@ -101,11 +100,10 @@ void CObjTitle::Action()
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			if (i < 3)
-			{
-				((UserData*)Save::GetData())->SPerfectFlag[i] =false;
-				((UserData*)Save::GetData())->SClearFlag[i] =false;
-			}
+
+			((UserData*)Save::GetData())->SPerfectFlag[i] = false;
+			((UserData*)Save::GetData())->SClearFlag[i] = false;
+
 			((UserData*)Save::GetData())->RPerfectFlag[i] = false;
 			((UserData*)Save::GetData())->RClearFlag[i] = false;
 		}

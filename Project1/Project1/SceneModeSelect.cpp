@@ -38,6 +38,7 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/CREDIT‰¼.png", 4, TEX_SIZE_1024);
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 5, TEX_SIZE_1024);
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/help2.png", 6, TEX_SIZE_1024);
+	Draw::LoadImageW(L"‚Ü‚Æ‚ß‰æ‘œ/CREDIT_MOVE.png", 7, TEX_SIZE_1024);
 	//SEî•ñ‚Ì“o˜^
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 

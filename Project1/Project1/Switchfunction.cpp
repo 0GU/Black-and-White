@@ -11,11 +11,11 @@ bool SwitchClearCheck(int scc[5][5])
 {
 	int Check[5][5] =
 	{
-		{1,2,1,2,1},
-		{3,1,2,1,3},
-		{1,3,1,3,1},
-		{3,1,2,1,3},
-		{1,2,1,2,1},
+		{1,99,1,99,1},
+		{99,1,99,1,99},
+		{1,99,1,99,1},	//1…黒パネル　99…ボタン
+		{99,1,99,1,99},
+		{1,99,1,99,1},
 	};
 
 	//ボタン以外が全て1(黒色)になっているかチェック
@@ -23,7 +23,9 @@ bool SwitchClearCheck(int scc[5][5])
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			if (scc[i][j] != Check[i][j])
+			if (Check[i][j] == 99)
+				;
+			else if (scc[i][j] != Check[i][j])
 			{
 				return false;
 			}
@@ -70,6 +72,16 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count3[2] = { 6,12 };
 
+	int SPStage4[5][5] =
+	{
+		{0,5,1,2,1},
+		{3,0,4,1,3},
+		{1,3,0,8,0},
+		{3,1,6,0,3},
+		{0,7,1,2,1},
+	};
+	int Count4[2] = { 99,99 };
+
 	switch (StaNum)
 	{
 	case 1:
@@ -83,6 +95,10 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	case 3:
 		memcpy(Stage, SPStage3, sizeof(int)*(5 * 5));
 		memcpy(Count, Count3, sizeof(int) * 2);
+		break;
+	case 4:
+		memcpy(Stage, SPStage4, sizeof(int)*(5 * 5));
+		memcpy(Count, Count4, sizeof(int) * 2);
 		break;
 	}
 }

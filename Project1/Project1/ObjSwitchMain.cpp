@@ -39,13 +39,13 @@ void CObjSwitchMain::Init()
 
 	Save::Open();
 	j = 0;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 6; i++)
 	{
 
 		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 		{
 			++j;
-			if (j == 3)
+			if (j == 6)
 			{
 				flag[7] = true;
 			}
@@ -111,11 +111,11 @@ void CObjSwitchMain::Action()
 
 		sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
 		sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
-		for (int m = 0; m < 2; m++)
+		for (int m = 0; m < 4; m++)
 		{
 			switch (stage[sy][sx])
 			{
-			case 2:
+			case 2://横
 				switch (m)
 				{
 				case 0://左
@@ -126,9 +126,12 @@ void CObjSwitchMain::Action()
 					ly = sy;
 					lx = sx + 1;
 					break;
+				case 2:
+				case 3:
+					break;
 				}
 				break;
-			case 3:
+			case 3://縦
 				switch (m)
 				{
 				case 0://上
@@ -138,6 +141,106 @@ void CObjSwitchMain::Action()
 				case 1://下
 					ly = sy + 1;
 					lx = sx;
+					break;
+				case 2:
+				case 3:
+					break;
+				}
+				break;
+			case 4://左抜き3方向
+				switch (m)
+				{
+				case 0://上
+					ly = sy - 1;
+					lx = sx;
+					break;
+				case 1://下
+					ly = sy + 1;
+					lx = sx;
+					break;
+				case 2:
+					break;
+				case 3://右
+					ly = sy;
+					lx = sx + 1;
+					break;
+				}
+				break;
+			case 5://上抜き3方向
+				switch (m)
+				{
+				case 0:
+					break;
+				case 1://下
+					ly = sy + 1;
+					lx = sx;
+					break;
+				case 2://左
+					ly = sy;
+					lx = sx - 1;
+					break;
+				case 3://右
+					ly = sy;
+					lx = sx + 1;
+					break;
+				}
+				break;
+			case 6://右抜き3方向
+				switch (m)
+				{
+				case 0://上
+					ly = sy - 1;
+					lx = sx;
+					break;
+				case 1://下
+					ly = sy + 1;
+					lx = sx;
+					break;
+				case 2://左
+					ly = sy;
+					lx = sx - 1;
+					break;
+				case 3:
+					break;
+				}
+				break;
+			case 7://下抜き3方向
+				switch (m)
+				{
+				case 0://上
+					ly = sy - 1;
+					lx = sx;
+					break;
+				case 1:
+					break;
+				case 2://左
+					ly = sy;
+					lx = sx - 1;
+					break;
+				case 3://右
+					ly = sy;
+					lx = sx + 1;
+					break;
+				}
+				break;
+			case 8://4方向
+				switch (m)
+				{
+				case 0://上
+					ly = sy - 1;
+					lx = sx;
+					break;
+				case 1://下
+					ly = sy + 1;
+					lx = sx;
+					break;
+				case 2://左
+					ly = sy;
+					lx = sx - 1;
+					break;
+				case 3://右
+					ly = sy;
+					lx = sx + 1;
 					break;
 				}
 				break;
@@ -160,11 +263,11 @@ void CObjSwitchMain::Action()
 
 	time_flag = true;//ループ中１回だけタイムを増やす
 
-	for (int m = 0; m < 2; m++)
+	for (int m = 0; m < 4; m++)
 	{
 		switch (stage[sy][sx])
 		{
-		case 2://左右ボタン
+		case 2://横
 			switch (m)
 			{
 			case 0://左
@@ -175,19 +278,121 @@ void CObjSwitchMain::Action()
 				ly = sy;
 				lx = sx + 1;
 				break;
+			case 2:
+			case 3:
+				break;
 			}
 			break;
-		case 3://上下ボタン
+		case 3://縦
 			switch (m)
 			{
 			case 0://上
 				ly = sy - 1;
 				lx = sx;
 				break;
-
 			case 1://下
 				ly = sy + 1;
 				lx = sx;
+				break;
+			case 2:
+			case 3:
+				break;
+			}
+			break;
+		case 4://左抜き3方向
+			switch (m)
+			{
+			case 0://上
+				ly = sy - 1;
+				lx = sx;
+				break;
+			case 1://下
+				ly = sy + 1;
+				lx = sx;
+				break;
+			case 2:
+				break;
+			case 3://右
+				ly = sy;
+				lx = sx + 1;
+				break;
+			}
+			break;
+		case 5://上抜き3方向
+			switch (m)
+			{
+			case 0:
+				break;
+			case 1://下
+				ly = sy + 1;
+				lx = sx;
+				break;
+			case 2://左
+				ly = sy;
+				lx = sx - 1;
+				break;
+			case 3://右
+				ly = sy;
+				lx = sx + 1;
+				break;
+			}
+			break;
+		case 6://右抜き3方向
+			switch (m)
+			{
+			case 0://上
+				ly = sy - 1;
+				lx = sx;
+				break;
+			case 1://下
+				ly = sy + 1;
+				lx = sx;
+				break;
+			case 2://左
+				ly = sy;
+				lx = sx - 1;
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case 7://下抜き3方向
+			switch (m)
+			{
+			case 0://上
+				ly = sy - 1;
+				lx = sx;
+				break;
+			case 1:
+				break;
+			case 2://左
+				ly = sy;
+				lx = sx - 1;
+				break;
+			case 3://右
+				ly = sy;
+				lx = sx + 1;
+				break;
+			}
+			break;
+		case 8://4方向
+			switch (m)
+			{
+			case 0://上
+				ly = sy - 1;
+				lx = sx;
+				break;
+			case 1://下
+				ly = sy + 1;
+				lx = sx;
+				break;
+			case 2://左
+				ly = sy;
+				lx = sx - 1;
+				break;
+			case 3://右
+				ly = sy;
+				lx = sx + 1;
 				break;
 			}
 			break;
@@ -277,13 +482,13 @@ void CObjSwitchMain::Action()
 			c_flag[0] == true && c_flag[1] == true)
 		{
 			Save::Open();
-			for (i = 0; i < 3; i++)
+			for (i = 0; i < 6; i++)
 			{
 
 				if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 				{
 					++j;
-					if (j == 3)
+					if (j == 6)
 					{
 						flag[6] = true;
 					}
@@ -350,7 +555,7 @@ void CObjSwitchMain::Action()
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
 		c_flag[0] == true && c_flag[1] == true)
 	{
-		count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+		count[REMAINING_CNT_ARRAY_NUM] = count[INITIAL_CNT_ARRAY_NUM];
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 		//SEを鳴らす
 		Audio::Start(6);
@@ -420,6 +625,15 @@ void CObjSwitchMain::Action()
 		case 3:
 			((UserData*)Save::GetData())->SPerfectFlag[2] = true;
 			break;
+		case 4:
+			((UserData*)Save::GetData())->SPerfectFlag[3] = true;
+			break;
+		case 5:
+			((UserData*)Save::GetData())->SPerfectFlag[4] = true;
+			break;
+		case 6:
+			((UserData*)Save::GetData())->SPerfectFlag[5] = true;
+			break;
 		}
 	}
 	//Clearフラグの管理
@@ -435,6 +649,15 @@ void CObjSwitchMain::Action()
 			break;
 		case 3:
 			((UserData*)Save::GetData())->SClearFlag[2] = true;
+			break;
+		case 4:
+			((UserData*)Save::GetData())->SClearFlag[3] = true;
+			break;
+		case 5:
+			((UserData*)Save::GetData())->SClearFlag[4] = true;
+			break;
+		case 6:
+			((UserData*)Save::GetData())->SClearFlag[5] = true;
 			break;
 		}
 	}
@@ -588,6 +811,31 @@ void CObjSwitchMain::Draw()
 			{
 				//横スイッチ
 				Draw::Draw(7, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 4)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 90.0f);
+			}
+			else if (stage[i][j] == 5)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 0.0f);
+			}
+			else if (stage[i][j] == 6)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, -90.0f);
+			}
+			else if (stage[i][j] == 7)
+			{
+				//横スイッチ
+				Draw::Draw(13, &src, &dst, c, 180.0f);
+			}
+			else if (stage[i][j] == 8)
+			{
+				//横スイッチ
+				Draw::Draw(14, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == CH_WHITE_PANEL_ID)
 			{
