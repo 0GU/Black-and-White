@@ -183,4 +183,6 @@ private:
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 
+	bool Debugflag;
+
 };
