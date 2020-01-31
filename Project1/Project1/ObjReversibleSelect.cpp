@@ -96,7 +96,7 @@ void CObjReversibleSelect::Action()
 	//戻るボタン
 	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y)
 	{
-		buttom_name = 'b';
+		buttom_name = 'b';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -118,7 +118,7 @@ void CObjReversibleSelect::Action()
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
 				scroll_flag == false)
 			{
-				buttom_name = 'r';
+				buttom_name = 'r';//明るさ変更用
 
 				if (c_flag[0] == true && c_flag[1] == true)
 				{
@@ -157,7 +157,7 @@ void CObjReversibleSelect::Action()
 			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
 				scroll_flag == false)
 			{
-				buttom_name = 'l';
+				buttom_name = 'l';//明るさ変更用
 
 				if (c_flag[0] == true && c_flag[1] == true)
 				{
@@ -197,7 +197,7 @@ void CObjReversibleSelect::Action()
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
 		Rleft == 0 && Rright == 1 && scroll_flag == false)
 	{
-		buttom_name = 1;
+		buttom_name = 1;//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -216,7 +216,7 @@ void CObjReversibleSelect::Action()
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
 			Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
-			buttom_name = 2;
+			buttom_name = 2;//明るさ変更用
 
 			if (c_flag[0] == true && c_flag[1] == true)
 			{
@@ -236,7 +236,7 @@ void CObjReversibleSelect::Action()
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
 			Rleft == 0 && Rright == 1 && scroll_flag == false)
 		{
-			buttom_name = 3;
+			buttom_name = 3;//明るさ変更用
 
 			if (c_flag[0] == true && c_flag[1] == true)
 			{
@@ -256,7 +256,7 @@ void CObjReversibleSelect::Action()
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
 			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			buttom_name = 4;
+			buttom_name = 4;//明るさ変更用
 
 			if (c_flag[0] == true && c_flag[1] == true)
 			{
@@ -276,7 +276,7 @@ void CObjReversibleSelect::Action()
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
 			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			buttom_name = 5;
+			buttom_name = 5;//明るさ変更用
 
 			if (c_flag[0] == true && c_flag[1] == true)
 			{
@@ -296,7 +296,7 @@ void CObjReversibleSelect::Action()
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
 			Rleft == 1 && Rright == 0 && scroll_flag == false)
 		{
-			buttom_name = 6;
+			buttom_name = 6;//明るさ変更用
 
 			if (c_flag[0] == true && c_flag[1] == true)
 			{
