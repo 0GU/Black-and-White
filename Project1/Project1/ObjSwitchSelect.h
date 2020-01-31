@@ -99,6 +99,6 @@ private:
 
 	int Rright;//スクロール右
 	int Rleft;//スクロール左
-
+	bool help_flag;//help表示用
 
 };

@@ -53,6 +53,7 @@ void CObjSwitchSelect::Init()
 
 	Rright = 1;
 	Rleft = 0;
+	help_flag = true;
 }
 
 //アクション
@@ -91,7 +92,7 @@ void CObjSwitchSelect::Action()
 
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+				c_flag[0] == true && c_flag[1] == true && scroll_flag == false && help_flag == true)
 			{
 				Audio::Start(1);
 				scroll_flag = true;
@@ -126,7 +127,7 @@ void CObjSwitchSelect::Action()
 	{
 		//左矢印
 		if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-			c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+			c_flag[0] == true && c_flag[1] == true && scroll_flag == false && help_flag == true)
 		{
 			Audio::Start(1);
 			scroll_flag = true;	//スクロール中にする
@@ -159,7 +160,7 @@ void CObjSwitchSelect::Action()
 
 	//right値が描画とズレていた為調整
 	if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y &&
-		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)//stage1
+		c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage1
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -170,7 +171,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[0] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)//stage2
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage2
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -182,7 +183,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[1] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false)//stage3
+			c_flag[0] == true && c_flag[1] == true && Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage3
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -194,7 +195,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[2] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage4
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage4
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -205,7 +206,7 @@ void CObjSwitchSelect::Action()
 	}
 	//戻るボタン
 	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true && help_flag == true)
 	{
 		//SEを鳴らす
 		Audio::Start(2);
@@ -220,7 +221,28 @@ void CObjSwitchSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B_GAP;
+	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y && help_flag == true)
+	{
 
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+
+	}
+	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		c_flag[0] = false;
+	}
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -238,7 +260,8 @@ void CObjSwitchSelect::Draw()
 
 	RECT_F src; //描画元切り取り位置の設定
 	RECT_F dst; //描画先表示位置
-
+	//helpボタン
+	
 
 	//背景スクロール
 	src.m_top = BACKGROUND_TL;
@@ -284,7 +307,7 @@ void CObjSwitchSelect::Draw()
 			dst.m_left = HIT_RIGHTARROW_LEFT;
 			dst.m_right = HIT_RIGHTARROW_RIGHT;
 			dst.m_bottom = HIT_RIGHTARROW_BOTTOM;
-			Draw::Draw(3, &src, &dst, c, 0.0f);
+			Draw::Draw(0, &src, &dst, c, 0.0f);
 		}
 	}
 	//左矢印の描画------------------------
@@ -300,7 +323,7 @@ void CObjSwitchSelect::Draw()
 		dst.m_left = HIT_LEFTARROW_LEFT;
 		dst.m_right = HIT_LEFTARROW_RIGHT;
 		dst.m_bottom = HIT_LEFTARROW_BOTTOM;
-		Draw::Draw(3, &src, &dst, c, 0.0f);
+		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
 
 	//STAGE1
@@ -483,5 +506,27 @@ void CObjSwitchSelect::Draw()
 		dst.m_bottom = STAGE_SW_STAR_THREE_B;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
-
+	//ヘルプボタン
+	src.m_top = CUT_HELPBUTTON_T2;
+	src.m_left = CUT_HELPBUTTON_L;
+	src.m_right = CUT_HELPBUTTON_R;
+	src.m_bottom = CUT_HELPBUTTON_B2;
+	dst.m_top = POS_HELPBUTTON_T;
+	dst.m_left = POS_HELPBUTTON_L;
+	dst.m_right = POS_HELPBUTTON_R;
+	dst.m_bottom = POS_HELPBUTTON_B;
+	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//ヘルプ表示
+	if (help_flag == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(3, &src, &dst, c, 0.0f);
+	}
 }
