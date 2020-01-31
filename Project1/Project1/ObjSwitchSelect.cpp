@@ -203,6 +203,30 @@ void CObjSwitchSelect::Action()
 			Scene::SetScene(new CSceneSwitchMain(4));
 		}
 	}
+	if (Cflag[3] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage5
+		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(5));
+		}
+	}
+	if (Cflag[4] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage6
+		{
+			//SE‚ð–Â‚ç‚·
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(6));
+		}
+	}
 	//–ß‚éƒ{ƒ^ƒ“
 	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y &&
 		c_flag[0] == true && c_flag[1] == true)
@@ -404,8 +428,8 @@ void CObjSwitchSelect::Draw()
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_THREE_T + m_scroll;
-		dst.m_bottom = STAGE_SW_STAR_THREE_B + m_scroll;
+		dst.m_top = STAGE_SW_STAR_THREE_T ;
+		dst.m_bottom = STAGE_SW_STAR_THREE_B;
 		Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 	dst.m_left = STAGE_SW_STAR_L + SCROLL_DISTANCE + m_scroll;
