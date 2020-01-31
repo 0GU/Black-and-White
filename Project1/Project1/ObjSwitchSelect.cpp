@@ -259,7 +259,7 @@ void CObjSwitchSelect::Draw()
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	//ステージを選択
+	//ステージを選択してください。
 	src.m_top = CUT_STAGE_T;
 	src.m_left = CUT_STAGE_L;
 	src.m_right = CUT_STAGE_R;
