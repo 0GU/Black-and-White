@@ -238,9 +238,34 @@ void CObjSwitchSelect::Action()
 				//SEを鳴らす
 				Audio::Start(1);
 				Sleep(SELECT_WAIT);
+
 				Scene::SetScene(new CSceneSwitchMain(4));
 			}
 			ButtomCol(c_flag, col_flag);
+		}
+	}
+	if (Cflag[3] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage5
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(5));
+		}
+	}
+	if (Cflag[4] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage6
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(6));
 		}
 	}
 	//戻るボタン
@@ -332,7 +357,7 @@ void CObjSwitchSelect::Draw()
 	dst.m_bottom = BACKGROUND_B + m_y2;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	//ステージを選択
+	//ステージを選択してください。
 	src.m_top = CUT_STAGE_T;
 	src.m_left = CUT_STAGE_L;
 	src.m_right = CUT_STAGE_R;
