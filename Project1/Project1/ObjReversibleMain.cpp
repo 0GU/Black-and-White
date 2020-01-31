@@ -300,7 +300,7 @@ void CObjReversibleMain::Action()
 	if (flag[1] == true)
 	{
 		//BGMí‚é~
-		if (StageSlect == 3)
+		if (StageSlect == 5 || StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
@@ -342,7 +342,7 @@ void CObjReversibleMain::Action()
 	if (flag[2] == true)
 	{
 		//BGMí‚é~
-		if (StageSlect == 3)
+		if (StageSlect == 5|| StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
@@ -353,7 +353,7 @@ void CObjReversibleMain::Action()
 			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//BGMçƒçƒê∂
-			if (StageSlect == 3)
+			if (StageSlect == 5||StageSlect == 6)
 				Audio::Start(7);
 			else
 				Audio::Start(0);

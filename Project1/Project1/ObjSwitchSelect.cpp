@@ -194,7 +194,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[2] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage3
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage4
 		{
 			//SE‚ð–Â‚ç‚·
 			Audio::Start(1);
