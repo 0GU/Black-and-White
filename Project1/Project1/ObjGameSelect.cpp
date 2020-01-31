@@ -97,7 +97,7 @@ void CObjGameSelect::Action()
 		ButtomCol(c_flag, col_flag);
 	}
 	//ÉwÉãÉv
-	else if (680.0f <= x && 780.0f >= x && 40.0f <= y && 140.0f >= y  && help_flag == true)
+	else if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y  && help_flag == true)
 	{
 		buttom_name = 'h';//ñæÇÈÇ≥ïœçXóp
 
