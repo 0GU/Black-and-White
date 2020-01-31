@@ -120,7 +120,7 @@ void CObjReversibleMain::Action()
 		sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
 		sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
 
-		buttom_name = 'p';
+		buttom_name = 'p';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
