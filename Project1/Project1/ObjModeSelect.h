@@ -96,7 +96,7 @@ using namespace GameL;
 
 //オブジェクト：モードセレクト
 class CObjModeSelect : public CObj
-{
+{                                                                                                                                         
 public:
 	CObjModeSelect() {};
 	~CObjModeSelect() {};

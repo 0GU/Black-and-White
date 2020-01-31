@@ -71,6 +71,9 @@ void CObjReversibleMain::Init()
 	mou_call = true;
 
 	Debugflag = false;
+
+	help_flag = true;
+	help_flag2 = true;
 }
 
 //アクション
@@ -112,12 +115,12 @@ void CObjReversibleMain::Action()
 
 	//当たり判定---------------------------------------------------------------------------------------------------------
 	if (HIT_PANEL_LEFT <= x && HIT_PANEL_RIGHT >= x && HIT_PANEL_TOP <= y && HIT_PANEL_BOTTOM >= y &&
-		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flag == false)
+		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flag == false && help_flag == true && help_flag2 == true)
 	{
 		sy = (y - HIT_PANEL_TOP) / PANEL_SIZE_Y; //クリック時のy座標を配列で使えるように直す
 		sx = (x - HIT_PANEL_LEFT) / PANEL_SIZE_X; //クリック時のx座標を配列で使えるように直す
 
-		buttom_name = 'p';
+		buttom_name = 'p';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -297,14 +300,14 @@ void CObjReversibleMain::Action()
 	if (flag[1] == true)
 	{
 		//BGM停止
-		if (StageSlect == 3)
+		if (StageSlect == 5 || StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
 		CObjReversibleMain::Reverse();
 		//StageSelectへ戻るボタン判定
 		if (x >= STAGE_SELECT_LEFT && x <= STAGE_SELECT_RIGHT && y >= STAGE_SELECT_TOP && y <= STAGE_SELECT_BOTTOM &&
-			c_flag[0] == true && c_flag[1] == true)
+			c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -339,18 +342,18 @@ void CObjReversibleMain::Action()
 	if (flag[2] == true)
 	{
 		//BGM停止
-		if (StageSlect == 3)
+		if (StageSlect == 5|| StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
 		//Yesボタン判定
 		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM &&
-			c_flag[0] == true && c_flag[1] == true)
+			c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 		{
 			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//BGM再再生
-			if (StageSlect == 3)
+			if (StageSlect == 5||StageSlect == 6)
 				Audio::Start(7);
 			else
 				Audio::Start(0);
@@ -361,7 +364,7 @@ void CObjReversibleMain::Action()
 		}
 		//Noボタン判定
 		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM &&
-			c_flag[0] == true && c_flag[1] == true)
+			c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -374,7 +377,7 @@ void CObjReversibleMain::Action()
 	//リセットボタン当たり判定-------------------------------------------------------------
 	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y &&
 		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0 &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 	{
 		count[1] = count[2];
 		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
@@ -385,7 +388,7 @@ void CObjReversibleMain::Action()
 	//ヒントボタン当たり判定----------------------------------------------------------------
 	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y &&
 		flag[1] == false && flag[2] == false && flag[3] == false &&
-		c_flag[0] == true && c_flag[1] == true)
+		c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 	{
 		flag[0] = true;
 		//SEを鳴らす
@@ -395,7 +398,7 @@ void CObjReversibleMain::Action()
 
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
 	if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM &&
-		flag[1] == false && flag[2] == false && c_flag[0] == true && c_flag[1] == true)
+		flag[1] == false && flag[2] == false && c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 	{
 		flag[3] = true;
 		//SEを鳴らす
@@ -406,7 +409,7 @@ void CObjReversibleMain::Action()
 	{
 		//Yesボタン判定
 		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM &&
-			c_flag[0] == true && c_flag[1] == true)
+			c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 		{
 			//SEを鳴らす
 			Audio::Stop(1);
@@ -417,7 +420,7 @@ void CObjReversibleMain::Action()
 		}
 		//Noボタン判定
 		if (x >= NO_BUTTON_LEFT && x <= NO_BUTTON_RIGHT && y >= NO_BUTTON_TOP && y <= NO_BUTTON_BOTTOM &&
-			c_flag[0] == true && c_flag[1] == true)
+			c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
 		{
 			//SEを鳴らす
 			Audio::Start(1);
@@ -426,6 +429,39 @@ void CObjReversibleMain::Action()
 		}
 	}
 
+	//ヘルプ
+	if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y 
+		&&flag[1] == false && flag[2] == false && flag[3]==false && help_flag == true)
+	{
+		buttom_name = 'h';
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+	 if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		help_flag2 = false;
+		c_flag[0] = false;
+	}
+	 if (help_flag2==false&&c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag2 = true;
+		c_flag[0] = false;
+	}
 
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
@@ -651,18 +687,61 @@ void CObjReversibleMain::Draw()
 	dst.m_bottom = RESET_BUTTON_BOTTOM + POSITION_CORRECTION_HEIGHT;
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 
+	//helpボタン
+	src.m_top = CUT_HELPBUTTON_T2;
+	src.m_left = CUT_HELPBUTTON_L;
+	src.m_right = CUT_HELPBUTTON_R;
+	src.m_bottom = CUT_HELPBUTTON_B2;
+	dst.m_top = POS_HELPBUTTON_T_RB;
+	dst.m_left = POS_HELPBUTTON_L_RB;
+	dst.m_right = POS_HELPBUTTON_R_RB;
+	dst.m_bottom = POS_HELPBUTTON_B_RB;
+	Draw::Draw(13, &src, &dst, c, 0.0f);
+
+	//ヘルプ表示
+	if (help_flag == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(14, &src, &dst, c, 0.0f);
+	}
+
+	//ヘルプ表示
+	if (help_flag2 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(15, &src, &dst, c, 0.0f);
+	}
+
 	//StageSelectボタン-----------------------------------------------
 	//切り取り
+	
 	src.m_top = SRC_SELECT_TOP;
 	src.m_left = SRC_SELECT_LEFT;
 	src.m_right = SRC_SELECT_RIGHT;
 	src.m_bottom = SRC_SELECT_BOTTOM;
 	//表示
-	dst.m_top = SELECT_BUTTON_TOP;
-	dst.m_left = SELECT_BUTTON_LEFT;
-	dst.m_right = SELECT_BUTTON_RIGHT;
-	dst.m_bottom = SELECT_BUTTON_BOTTOM;
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+	if (help_flag == true&&help_flag2==true)
+	{
+		dst.m_top = SELECT_BUTTON_TOP;
+		dst.m_left = SELECT_BUTTON_LEFT;
+		dst.m_right = SELECT_BUTTON_RIGHT;
+		dst.m_bottom = SELECT_BUTTON_BOTTOM;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	}
 
 	//Countの文字表示----------------------------------------------
 	//切り取り
@@ -671,20 +750,24 @@ void CObjReversibleMain::Draw()
 	src.m_right = SRC_COUNT_RIGHT;
 	src.m_bottom = SRC_COUNT_BOTTOM;
 	//表示
-	dst.m_top = DST_COUNT_TOP;
-	dst.m_left = DST_COUNT_LEFT;
-	dst.m_right = DST_COUNT_RIGHT;
-	dst.m_bottom = DST_COUNT_BOTTOM;
-	Draw::Draw(12, &src, &dst, c, 0.0f);
-
+	if (help_flag == true&&help_flag2==true)
+	{
+		dst.m_top = DST_COUNT_TOP;
+		dst.m_left = DST_COUNT_LEFT;
+		dst.m_right = DST_COUNT_RIGHT;
+		dst.m_bottom = DST_COUNT_BOTTOM;
+		Draw::Draw(12, &src, &dst, c, 0.0f);
+	}
 	//Countの値を文字列化---------------------------------------
 	wchar_t str3[128];
 	swprintf_s(str3, L"%d", count[1]);
 
-	if (count[1] >= 10)
+	if (count[1] >= 10&&help_flag == true && help_flag2 == true)
 		Font::StrDraw(str3, 700, 80, 32, f);
-	else if (count[1] <= 9)
+	else if (count[1] <= 9 && help_flag == true && help_flag2 == true)
 		Font::StrDraw(str3, 710, 80, 32, f);
+	//CountとStageSelectにhelp_flagが入っているのは
+	//描画の都合上画像の上にCount等が表示されるため
 	//シーン描画:Perfect!---------------------------------------
 
 	if (flag[4] == true)

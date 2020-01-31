@@ -197,7 +197,25 @@ using namespace GameL;
 #define DST_COUNT_RIGHT (770.0f)
 #define DST_COUNT_BOTTOM (80.0f)
 
+//Helpボタン
+#define CUT_HELPBUTTON_T2 (0.0f)
+#define CUT_HELPBUTTON_L (924.0f)
+#define CUT_HELPBUTTON_R (1024.0f)
+#define CUT_HELPBUTTON_B2 (100.0f)
+#define POS_HELPBUTTON_T_RB (120.0f)
+#define POS_HELPBUTTON_L_RB (671.0f)
+#define POS_HELPBUTTON_R_RB (771.0f)
+#define POS_HELPBUTTON_B_RB (220.0f)
 
+//ヘルプ表示
+#define CUT_HELP_T (0.0f)
+#define CUT_HELP_L (0.0f)
+#define CUT_HELP_R (1280.0f)
+#define CUT_HELP_B (720.0f)
+#define POS_HELP_T (0.0f)
+#define POS_HELP_L (0.0f)
+#define POS_HELP_R (800.0f)
+#define POS_HELP_B (600.0f)
 
 
 //オブジェクト：Reversibleメイン
@@ -252,4 +270,6 @@ private:
 	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
 	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 
+	bool help_flag;//help表示用
+	bool help_flag2;//help2ページ目表示用
 };

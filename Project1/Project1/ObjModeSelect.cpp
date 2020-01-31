@@ -68,7 +68,7 @@ void CObjModeSelect::Action()
 	if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_SELECT <= y && HIT_BOTTOM_SELECT >= y &&
 		credit_flag == true && help_flag == true)
 	{
-		buttom_name = 's';
+		buttom_name = 's';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -83,7 +83,7 @@ void CObjModeSelect::Action()
 	else if (HIT_LEFT <= x && HIT_RIGHT >= x && HIT_TOP_GALLERY <= y && HIT_BOTTOM_GALLERY >= y &&
 			 credit_flag == true && help_flag == true)
 	{
-		buttom_name = 'g';
+		buttom_name = 'g';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -97,7 +97,7 @@ void CObjModeSelect::Action()
 	//クレジット
 	else if (POS_CREDITBUTTON_L <= x && POS_CREDITBUTTON_R >= x && POS_CREDITBUTTON_T <= y && POS_CREDITBUTTON_B >= y && credit_flag == true && help_flag == true)
 	{
-		buttom_name = 'c';
+		buttom_name = 'c';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -112,7 +112,7 @@ void CObjModeSelect::Action()
 	//ヘルプ
 	else if (120.0f <= x && 220.0f >= x && 480.0f <= y && 580.0f >= y && credit_flag == true && help_flag == true)
 	{
-		buttom_name = 'h';
+		buttom_name = 'h';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{

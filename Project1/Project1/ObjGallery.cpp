@@ -99,7 +99,7 @@ void CObjGallery::Action()
 	if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y &&
 		GFlag[0] == false && GFlag[1] == false && scroll_flag == false)
 	{
-		buttom_name = 'b';
+		buttom_name = 'b';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true&& scroll_flag == false)
 		{
@@ -120,7 +120,7 @@ void CObjGallery::Action()
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
 				scroll_flag == false)
 			{
-				buttom_name = 'r';
+				buttom_name = 'r';//明るさ変更用
 
 				if (c_flag[0] == true && c_flag[1] == true)
 				{
@@ -187,7 +187,7 @@ void CObjGallery::Action()
 			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
 				scroll_flag == false)
 			{
-				buttom_name = 'l';
+				buttom_name = 'l';//明るさ変更用
 
 				if (c_flag[0] == true && c_flag[1] == true)
 				{
