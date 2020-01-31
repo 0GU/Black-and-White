@@ -266,9 +266,12 @@ void CObjSwitchSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B_GAP;
-	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y && help_flag == true)
-	{
 
+	//ヘルプボタン
+	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
+		help_flag == true)
+	{
+		buttom_name = 'h';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -278,7 +281,7 @@ void CObjSwitchSelect::Action()
 			help_flag = false;
 			c_flag[0] = false;
 		}
-
+		ButtomCol(c_flag, col_flag);
 	}
 	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
@@ -667,7 +670,12 @@ void CObjSwitchSelect::Draw()
 	dst.m_left = POS_HELPBUTTON_L;
 	dst.m_right = POS_HELPBUTTON_R;
 	dst.m_bottom = POS_HELPBUTTON_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(0, &src, &dst, c, 0.0f);
 	//ヘルプ表示
 	if (help_flag == false)
 	{

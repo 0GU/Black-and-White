@@ -90,6 +90,10 @@ void CObjReversibleMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
+	//
+	col_flag[0] = false;
+	col_flag[1] = false;
+
 	//クリックエフェクト呼び出し（１回のみ）
 	if (mou_call == true)
 	{
@@ -150,11 +154,6 @@ void CObjReversibleMain::Action()
 			count[1]--;
 		}
 		ButtomCol(c_flag, col_flag);
-	}
-	else
-	{
-		col_flag[0] = false;
-		col_flag[1] = false;
 	}
 	//反転アニメーション処理------------------------------
 	if (flag[4] == false)
@@ -342,7 +341,7 @@ void CObjReversibleMain::Action()
 	if (flag[2] == true)
 	{
 		//BGM停止
-		if (StageSlect == 5|| StageSlect == 6)
+		if (StageSlect == 5 || StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
@@ -353,7 +352,7 @@ void CObjReversibleMain::Action()
 			count[1] = count[2];
 			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 			//BGM再再生
-			if (StageSlect == 5||StageSlect == 6)
+			if (StageSlect == 5 || StageSlect == 6)
 				Audio::Start(7);
 			else
 				Audio::Start(0);
@@ -376,36 +375,52 @@ void CObjReversibleMain::Action()
 
 	//リセットボタン当たり判定-------------------------------------------------------------
 	if (RESET_BUTTON_LEFT <= x && RESET_BUTTON_RIGHT >= x && RESET_BUTTON_TOP <= y && RESET_BUTTON_BOTTOM >= y &&
-		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0 &&
-		c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
+		flag[1] == false && flag[2] == false && flag[3] == false && m_ani_flame == 0 && help_flag == true && help_flag2 == true)
 	{
-		count[1] = count[2];
-		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
-		//SEを鳴らす
-		Audio::Start(6);
+		buttom_name = 'r';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			count[1] = count[2];
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(6);
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 
 	//ヒントボタン当たり判定----------------------------------------------------------------
-	if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y &&
-		flag[1] == false && flag[2] == false && flag[3] == false &&
-		c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
+	else if (HINT_BUTTON_LEFT <= x && HINT_BUTTON_RIGHT >= x && HINT_BUTTON_TOP <= y && HINT_BUTTON_BOTTOM >= y &&
+		flag[1] == false && flag[2] == false && flag[3] == false && help_flag == true && help_flag2 == true)
 	{
-		flag[0] = true;
-		//SEを鳴らす
-		Audio::Start(5);
-		c_flag[0] = false;
+		buttom_name = 'i';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			flag[0] = true;
+			//SEを鳴らす
+			Audio::Start(5);
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
-	if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM &&
-		flag[1] == false && flag[2] == false && c_flag[0] == true && c_flag[1] == true && help_flag == true && help_flag2 == true)
+	else if (x >= SELECT_BUTTON_LEFT && x <= SELECT_BUTTON_RIGHT && y >= SELECT_BUTTON_TOP && y <= SELECT_BUTTON_BOTTOM &&
+		flag[1] == false && flag[2] == false && flag[3] == false && help_flag == true && help_flag2 == true)
 	{
-		flag[3] = true;
-		//SEを鳴らす
-		Audio::Start(1);
-		c_flag[0] = false;
+		buttom_name = 's';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			flag[3] = true;
+			//SEを鳴らす
+			Audio::Start(1);
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
-	if (flag[3] == true)
+	else if (flag[3] == true)
 	{
 		//Yesボタン判定
 		if (x >= YES_BUTTON_LEFT && x <= YES_BUTTON_RIGHT && y >= YES_BUTTON_TOP && y <= YES_BUTTON_BOTTOM &&
@@ -415,7 +430,6 @@ void CObjReversibleMain::Action()
 			Audio::Stop(1);
 			Audio::Start(1);
 			Sleep(300);
-
 			Scene::SetScene(new CSceneReversibleSelect());
 		}
 		//Noボタン判定
@@ -429,11 +443,11 @@ void CObjReversibleMain::Action()
 		}
 	}
 
-	//ヘルプ
-	if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y 
+	//ヘルプボタン
+	else if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y 
 		&&flag[1] == false && flag[2] == false && flag[3]==false && help_flag == true)
 	{
-		buttom_name = 'h';
+		buttom_name = 'h';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -445,7 +459,9 @@ void CObjReversibleMain::Action()
 		}
 		ButtomCol(c_flag, col_flag);
 	}
-	 if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+
+	//ヘルプ
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
@@ -636,7 +652,12 @@ void CObjReversibleMain::Draw()
 	dst.m_left = HINT_BUTTON_LEFT + POSITION_CORRECTION_WIDTH;
 	dst.m_right = HINT_BUTTON_RIGHT + POSITION_CORRECTION_WIDTH;
 	dst.m_bottom = HINT_BUTTON_BOTTOM + POSITION_CORRECTION_HEIGHT;
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'i')
+		Draw::Draw(3, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'i')
+		Draw::Draw(3, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//ヒントの表示
 	if (flag[0] == true)
@@ -685,7 +706,12 @@ void CObjReversibleMain::Draw()
 	dst.m_left = RESET_BUTTON_LEFT + POSITION_CORRECTION_WIDTH;
 	dst.m_right = RESET_BUTTON_RIGHT + POSITION_CORRECTION_WIDTH;
 	dst.m_bottom = RESET_BUTTON_BOTTOM + POSITION_CORRECTION_HEIGHT;
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'r')
+		Draw::Draw(4, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'r')
+		Draw::Draw(4, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(4, &src, &dst, c, 0.0f);
 
 	//helpボタン
 	src.m_top = CUT_HELPBUTTON_T2;
@@ -696,7 +722,12 @@ void CObjReversibleMain::Draw()
 	dst.m_left = POS_HELPBUTTON_L_RB;
 	dst.m_right = POS_HELPBUTTON_R_RB;
 	dst.m_bottom = POS_HELPBUTTON_B_RB;
-	Draw::Draw(13, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(13, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(13, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(13, &src, &dst, c, 0.0f);
 
 	//ヘルプ表示
 	if (help_flag == false)
@@ -740,7 +771,12 @@ void CObjReversibleMain::Draw()
 		dst.m_left = SELECT_BUTTON_LEFT;
 		dst.m_right = SELECT_BUTTON_RIGHT;
 		dst.m_bottom = SELECT_BUTTON_BOTTOM;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 's')
+			Draw::Draw(5, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 's')
+			Draw::Draw(5, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 
 	//Countの文字表示----------------------------------------------
