@@ -443,9 +443,9 @@ void CObjReversibleMain::Action()
 		}
 	}
 
-	//ヘルプボタン
-	else if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y 
-		&&flag[1] == false && flag[2] == false && flag[3]==false && help_flag == true)
+	//ヘルプ
+	if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y 
+		&&flag[1] == false && flag[2] == false && flag[3]==false && help_flag == true&&help_flag2==true)
 	{
 		buttom_name = 'h';//明るさ変更用
 
