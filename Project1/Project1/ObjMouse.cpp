@@ -75,7 +75,7 @@ void CObjMouse::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//仮マウス位置表示
-	wchar_t str[256];
+	/*wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
 	Font::StrDraw(str, 10, 20, 36, c);
 
@@ -83,7 +83,7 @@ void CObjMouse::Draw()
 		Font::StrDraw(L"L=押してる", 20, 60, 24, c);
 	else
 		Font::StrDraw(L"L=押してない", 20, 60, 24, c);
-		
+		*/
 	//クリックエフェクト(仮)
 	if (mouse_flag == true)
 	{

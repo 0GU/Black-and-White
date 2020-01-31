@@ -84,4 +84,5 @@ private:
 	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 	bool help_flag;//help表示用
 
+	
 };

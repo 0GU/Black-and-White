@@ -60,7 +60,7 @@ void CObjGameSelect::Action()
 	//スイッチのステージセレクトへ移動
 	if (SELECT_POS_L <= x && SELECT_POS_R >= x && SW_SELECT_POS_T <= y && SW_SELECT_POS_B >= y && help_flag == true)
 	{
-		buttom_name = 's';
+		buttom_name = 's';//明るさ変更用
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -73,7 +73,7 @@ void CObjGameSelect::Action()
 	//リバーシブルのステージセレクトへ移動
 	else if (SELECT_POS_L <= x && SELECT_POS_R >= x && RP_SELECT_POS_T <= y && RP_SELECT_POS_B >= y && help_flag == true)
 	{
-		buttom_name = 'r';
+		buttom_name = 'r';//明るさ変更用
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -86,7 +86,7 @@ void CObjGameSelect::Action()
 	//戻るボタン
 	else if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y && help_flag == true)
 	{
-		buttom_name = 'b';
+		buttom_name = 'b';//明るさ変更用
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
 			//SEを鳴らす
@@ -97,9 +97,9 @@ void CObjGameSelect::Action()
 		ButtomCol(c_flag, col_flag);
 	}
 	//ヘルプ
-	else if (680.0f <= x && 780.0f >= x && 40.0f <= y && 140.0f >= y  && help_flag == true)
+	else if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y  && help_flag == true)
 	{
-		buttom_name = 'h';
+		buttom_name = 'h';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
