@@ -319,7 +319,9 @@ void CObjReversibleSelect::Action()
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B;
 
-	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y && help_flag == true)
+	//ƒwƒ‹ƒvƒ{ƒ^ƒ“
+	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
+		help_flag == true)
 	{
 		buttom_name = 'h';
 
