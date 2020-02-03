@@ -45,8 +45,8 @@ using namespace GameL;
 #define STAGE_SW_STAR_25_B (366.0f)
 #define STAGE_SW_STAR_36_T (446.0f)
 #define STAGE_SW_STAR_36_B (485.0f)
-#define STAGE_SW_STAR_R (329.0f)
-#define STAGE_SW_STAR_L (290.0f)
+#define STAGE_SW_STAR_R (334.0f)
+#define STAGE_SW_STAR_L (295.0f)
 
 //êÿÇËéÊÇË:îíêØ
 #define RESOURCE_STAR_T (0.0f)
