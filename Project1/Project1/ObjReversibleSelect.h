@@ -219,5 +219,6 @@ private:
 	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
 	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 	bool help_flag;//help表示用
-
+	bool help_flag2;//help2ページ目表示用
+	bool help_flag3;//help3ページ目表示用
 };

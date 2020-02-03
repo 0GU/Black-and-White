@@ -57,6 +57,8 @@ void CObjSwitchSelect::Init()
 	buttom_name = 0;
 
 	help_flag = true;
+	help_flag2 = true;
+	help_flag3 = true;
 }
 
 //アクション
@@ -99,7 +101,7 @@ void CObjSwitchSelect::Action()
 
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				scroll_flag == false && help_flag == true)
+				scroll_flag == false && help_flag == true && help_flag2==true && help_flag3 == true)
 			{
 				buttom_name = 'r';//明るさ変更用
 
@@ -140,7 +142,7 @@ void CObjSwitchSelect::Action()
 	{
 		//左矢印
 		if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-			scroll_flag == false && help_flag == true)
+			scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 'l';//明るさ変更用
 
@@ -179,7 +181,7 @@ void CObjSwitchSelect::Action()
 
 	//right値が描画とズレていた為調整
 	if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y &&
-		Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage1
+		Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage1
 	{
 		buttom_name = 1;//明るさ変更用
 
@@ -195,7 +197,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[0] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
-			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage2
+			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage2
 		{
 			buttom_name = 2;//明るさ変更用
 
@@ -212,7 +214,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[1] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
-			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)//stage3
+			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage3
 		{
 			buttom_name = 3;//明るさ変更用
 
@@ -229,7 +231,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[2] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_ONE_T <= y && STAGE_SW_SELECT_ONE_B >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage4
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage4
 		{
 			buttom_name = 4;//明るさ変更用
 
@@ -247,7 +249,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[3] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage5
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage5
 		{
 			buttom_name = 5;//明るさ変更用
 
@@ -265,7 +267,7 @@ void CObjSwitchSelect::Action()
 	if (Cflag[4] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage6
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)//stage6
 		{
 			buttom_name = 6;//明るさ変更用
 
@@ -281,7 +283,7 @@ void CObjSwitchSelect::Action()
 	}
 	//戻るボタン
 	if (BACKBUTTON_POS_L <= x && BACKBUTTON_POS_R >= x && BACKBUTTON_POS_T <= y && BACKBUTTON_POS_B >= y && 
-		help_flag == true)
+		help_flag == true && help_flag2 == true && help_flag3 == true)
 	{
 		buttom_name = 'b';//明るさ変更用
 
@@ -305,7 +307,7 @@ void CObjSwitchSelect::Action()
 
 	//ヘルプボタン
 	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
-		help_flag == true)
+		help_flag == true && help_flag2 == true && help_flag3 == true)
 	{
 		buttom_name = 'h';//明るさ変更用
 
@@ -319,14 +321,33 @@ void CObjSwitchSelect::Action()
 		}
 		ButtomCol(c_flag, col_flag);
 	}
-	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
 		Sleep(SCENEBACK_WAIT);
 		help_flag = true;
+		help_flag2 = false;
 		c_flag[0] = false;
 	}
+	if (help_flag2 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag2 = true;
+		help_flag3 = false;
+		c_flag[0] = false;
+	}
+	if (help_flag3 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag3 = true;
+		c_flag[0] = false;
+	}
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -722,5 +743,31 @@ void CObjSwitchSelect::Draw()
 		dst.m_right = POS_HELP_R;
 		dst.m_bottom = POS_HELP_B;
 		Draw::Draw(3, &src, &dst, c, 0.0f);
+	}
+	//ヘルプ表示
+	if (help_flag2 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	}
+	//ヘルプ表示
+	if (help_flag3 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
 }

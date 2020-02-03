@@ -58,6 +58,8 @@ void CObjReversibleSelect::Init()
 	Rleft = 0;
 	buttom_name = 0;
 	help_flag = true;
+	help_flag2 = true;
+	help_flag3 = true;
 }
 
 //アクション
@@ -95,7 +97,8 @@ void CObjReversibleSelect::Action()
 
 
 	//戻るボタン
-	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y && help_flag == true)
+	if (HIT_LEFT_SCENEBACK <= x && HIT_RIGHT_SCENEBACK >= x && HIT_TOP_SCENEBACK <= y && HIT_BOTTOM_SCENEBACK >= y && help_flag == true&&
+		help_flag2 == true && help_flag3 == true)
 	{
 		buttom_name = 'b';//明るさ変更用
 
@@ -117,7 +120,7 @@ void CObjReversibleSelect::Action()
 
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				scroll_flag == false && help_flag == true)
+				scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)
 			{
 				buttom_name = 'r';//明るさ変更用
 
@@ -156,7 +159,7 @@ void CObjReversibleSelect::Action()
 		{
 			//左矢印
 			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-				scroll_flag == false && help_flag == true)
+				scroll_flag == false && help_flag == true && help_flag2 == true && help_flag3 == true)
 			{
 				buttom_name = 'l';//明るさ変更用
 
@@ -196,7 +199,8 @@ void CObjReversibleSelect::Action()
 	//Stage1--------------------------------------------------------------
 	//この場所を左クリックでリバーシブルのステージ1へ
 	if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-		Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)
+		Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true &&
+		help_flag2 == true && help_flag3 == true)
 	{
 		buttom_name = 1;//明るさ変更用
 
@@ -215,7 +219,8 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)
+			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true &&
+			help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 2;//明るさ変更用
 
@@ -235,7 +240,8 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true)
+			Rleft == 0 && Rright == 1 && scroll_flag == false && help_flag == true &&
+			help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 3;//明るさ変更用
 
@@ -255,7 +261,8 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP1 <= y && HIT_BOTTOM_RP1 >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true &&
+			help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 4;//明るさ変更用
 
@@ -275,7 +282,8 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ2へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP2 <= y && HIT_BOTTOM_RP2 >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true &&
+			help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 5;//明るさ変更用
 
@@ -295,7 +303,8 @@ void CObjReversibleSelect::Action()
 	{
 		//この場所を左クリックでリバーシブルのステージ3へ
 		if (HIT_LEFT_RP <= x && HIT_RIGHT_RP - 10.0f >= x && HIT_TOP_RP3 <= y && HIT_BOTTOM_RP3 >= y &&
-			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true &&
+			help_flag2 == true && help_flag3 == true)
 		{
 			buttom_name = 6;//明るさ変更用
 
@@ -321,7 +330,7 @@ void CObjReversibleSelect::Action()
 
 	//ヘルプボタン
 	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
-		help_flag == true)
+		help_flag == true && help_flag2 == true && help_flag3 == true)
 	{
 		buttom_name = 'h';
 
@@ -335,14 +344,33 @@ void CObjReversibleSelect::Action()
 		}
 		ButtomCol(c_flag, col_flag);
 	}
-	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
 		Audio::Start(1);
 		Sleep(SCENEBACK_WAIT);
 		help_flag = true;
+		help_flag2 = false;
+		c_flag[0] = false;
+	} 
+	if (help_flag2 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag2 = true;
+		help_flag3 = false;
 		c_flag[0] = false;
 	}
+	if (help_flag3 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag3 = true;
+		c_flag[0] = false;
+	}
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -736,7 +764,7 @@ void CObjReversibleSelect::Draw()
 			Draw::Draw(10, &src, &dst, c, 0.0f);
 	}
 
-	//helpボタン
+	//helpボタン---------------------------------------------------------------
 	src.m_top = CUT_HELPBUTTON_T2;
 	src.m_left = CUT_HELPBUTTON_L;
 	src.m_right = CUT_HELPBUTTON_R;
@@ -763,5 +791,31 @@ void CObjReversibleSelect::Draw()
 		dst.m_right = POS_HELP_R;
 		dst.m_bottom = POS_HELP_B;
 		Draw::Draw(4, &src, &dst, c, 0.0f);
+	}
+	//ヘルプ表示
+	if (help_flag2 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	}
+	//ヘルプ表示
+	if (help_flag3 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
 }
