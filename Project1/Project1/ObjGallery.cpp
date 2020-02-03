@@ -45,12 +45,15 @@ void CObjGallery::Init()
 	back = true;
 	mou_call = true;
 	buttom_name = 0;
-
+	help_flag = true;
 }
 
 //アクション
 void CObjGallery::Action()
 {
+	col_flag[0] = false;
+	col_flag[1] = false;
+
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
@@ -94,10 +97,33 @@ void CObjGallery::Action()
 		}
 	}
 
+	//ヘルプボタン
+	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
+		GFlag[0] == false && GFlag[1] == false && scroll_flag == false && help_flag == true)
+	{
+		buttom_name = 'h';
 
+		if (c_flag[0] == true && c_flag[1] == true && scroll_flag == false)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		c_flag[0] = false;
+	}
 	//戻るボタン
-	if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y &&
-		GFlag[0] == false && GFlag[1] == false && scroll_flag == false)
+	else if (HIT_BACK_LEFT <= x && HIT_BACK_RIGHT >= x && HIT_BACK_TOP <= y && HIT_BACK_BOTTOM >= y &&
+		GFlag[0] == false && GFlag[1] == false && scroll_flag == false && help_flag == true)
 	{
 		buttom_name = 'b';//明るさ変更用
 
@@ -118,7 +144,7 @@ void CObjGallery::Action()
 		{
 			//右矢印
 			if (HIT_RIGHTARROW_LEFT <= x && HIT_RIGHTARROW_RIGHT >= x && HIT_RIGHTARROW_TOP <= y && HIT_RIGHTARROW_BOTTOM >= y &&
-				scroll_flag == false)
+				scroll_flag == false && help_flag == true)
 			{
 				buttom_name = 'r';//明るさ変更用
 
@@ -161,7 +187,7 @@ void CObjGallery::Action()
 		if (scroll_flag == false &&FlagCheck(SFlag, 3)==true)
 		{
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[0] == false&&
-				c_flag[0] == true && c_flag[1] == true)
+				c_flag[0] == true && c_flag[1] == true && help_flag == true)
 			{
 				
 					Audio::Start(1);
@@ -169,7 +195,7 @@ void CObjGallery::Action()
 				
 			}
 			else if (0.0f <= x && 800.0f >= x && 0.0f <= y && 600.0f >= y && GFlag[0] == true&&
-				c_flag[0] == true && c_flag[1] == true)
+				c_flag[0] == true && c_flag[1] == true && help_flag == true)
 			{
 				
 					Audio::Start(1);
@@ -185,7 +211,7 @@ void CObjGallery::Action()
 		{
 			//左矢印
 			if (HIT_LEFTARROW_LEFT <= x && HIT_LEFTARROW_RIGHT >= x && HIT_LEFTARROW_TOP <= y && HIT_LEFTARROW_BOTTOM >= y &&
-				scroll_flag == false)
+				scroll_flag == false && help_flag == true)
 			{
 				buttom_name = 'l';//明るさ変更用
 
@@ -227,13 +253,13 @@ void CObjGallery::Action()
 		if (scroll_flag == false && FlagCheck(RFlag, 6)==true)
 		{
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[1] == false&&
-				c_flag[0] == true && c_flag[1] == true)
+				c_flag[0] == true && c_flag[1] == true && help_flag == true)
 			{
 				Audio::Start(1);
 				GFlag[1] = true;
 			}
 			else if (GRAPHIC_TOP_LEFT <= x && GRAPHIC_RIGHT_BLACK >= x && GRAPHIC_TOP_LEFT <= y && GRAPHIC_BOTTOM_BLACK >= y && GFlag[1] == true&&
-				c_flag[0] == true && c_flag[1] == true)
+				c_flag[0] == true && c_flag[1] == true && help_flag == true)
 			{
 				Audio::Start(1);
 				GFlag[1] = false;
@@ -241,12 +267,13 @@ void CObjGallery::Action()
 		}
 
 	}
-	else
+	
+	/*else
 	{
 		col_flag[0] = false;
 		col_flag[1] = false;
 	}
-
+	*/
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -470,7 +497,37 @@ void CObjGallery::Draw()
 			Draw::Draw(0, &src, &dst, b, 0.0f);
 	}
 		
-	
+	//helpボタン---------------------------------------------------------------
+	if (GFlag[0] == false && GFlag[1] == false)
+	{
+		src.m_top = CUT_HELPBUTTON_T;
+		src.m_left = CUT_HELPBUTTON_L;
+		src.m_right = CUT_HELPBUTTON_R;
+		src.m_bottom = CUT_HELPBUTTON_B;
+		dst.m_top = POS_HELPBUTTON_T;
+		dst.m_left = POS_HELPBUTTON_L;
+		dst.m_right = POS_HELPBUTTON_R;
+		dst.m_bottom = POS_HELPBUTTON_B;
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+			Draw::Draw(0, &src, &dst, c, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+			Draw::Draw(0, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(0, &src, &dst, b, 0.0f);
+	}
+	//ヘルプ表示
+	if (help_flag == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+	}
 }
 
 bool CObjGallery::FlagCheck(bool flag[], int num)
