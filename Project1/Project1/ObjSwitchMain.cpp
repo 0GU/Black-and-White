@@ -1082,7 +1082,7 @@ void CObjSwitchMain::Draw()
 			else if (stage[i][j] == 6)
 			{
 				//右抜き3方向スイッチ
-				Draw::Draw(13, &src, &dst, c, -90.0f);
+				Draw::Draw(13, &src, &dst, c, 270.0f);
 			}
 			else if (stage[i][j] == 7)
 			{
@@ -1242,7 +1242,12 @@ void CObjSwitchMain::Draw()
 	dst.m_left = POS_HELPBUTTON_L_RB;
 	dst.m_right = POS_HELPBUTTON_R_RB;
 	dst.m_bottom = POS_HELPBUTTON_B_RB;
-	Draw::Draw(15, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(15, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(15, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(15, &src, &dst, c, 0.0f);
 
 	//ヘルプ表示
 	if (help_flag == false)
