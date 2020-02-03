@@ -930,7 +930,7 @@ void CObjSwitchMain::Draw()
 			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
-		else if (StageSlect == 3 || StageSlect == 4 || StageSlect == 5 || StageSlect == 6)
+		else if (StageSlect == 3)
 		{
 			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
