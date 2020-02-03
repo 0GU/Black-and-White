@@ -530,6 +530,9 @@ void CObjSwitchSelect::Draw()
 	dst.m_left = STAGE_SW_STAR_L + m_scroll;
 	dst.m_right = STAGE_SW_STAR_R + m_scroll;
 
+
+	//星の描画判定:クリア時orパーフェクト時の場合
+
 	//(1)
 	if (Pflag[0] == false && Cflag[0] == true)
 	{
@@ -612,6 +615,7 @@ void CObjSwitchSelect::Draw()
 	src.m_bottom = RESOURCE_PSTAR_B;
 	dst.m_left = STAGE_SW_STAR_L + m_scroll;
 	dst.m_right = STAGE_SW_STAR_R + m_scroll;
+
 
 	if (Pflag[0] == true)
 	{
