@@ -70,7 +70,7 @@ void CObjReversibleMain::Init()
 	back = true;
 	mou_call = true;
 
-	Debugflag = false;
+	//Debugflag = false;
 
 	help_flag = true;
 	help_flag2 = true;
@@ -80,11 +80,11 @@ void CObjReversibleMain::Init()
 void CObjReversibleMain::Action()
 {
 
-	if (Input::GetVKey('D')==true&& Input::GetVKey('G')==true)
-	{
-		count[1] = 0;
-		Debugflag = true;
-	}
+	//if (Input::GetVKey('D')==true&& Input::GetVKey('G')==true)
+	//{
+	//	count[1] = 0;
+	//	Debugflag = true;
+	//}
 
 	//マウスの座標を読み込む
 	x = (float)Input::GetPosX();
@@ -219,7 +219,7 @@ void CObjReversibleMain::Action()
 		m_ani_flame = INITIALIZE;	//初期化
 		m_ani_flag = false;	//パネルを動かせるようにする
 
-		if (ReversibleClearCheck(stage) == true && Debugflag == false)	//クリア条件を満たした
+		if (ReversibleClearCheck(stage) == true /*&& Debugflag == false*/)	//クリア条件を満たした
 		{
 			//パーフェクト条件を満たしている
 			if (count[2] - count[0] == count[1])
@@ -233,7 +233,7 @@ void CObjReversibleMain::Action()
 				Audio::Start(3);
 			}
 		}
-		else if (ReversibleClearCheck(stage) == false && count[1] == 0 && m_ani_flag == false && Debugflag == false)	//ゲームオーバー条件を満たした
+		else if (ReversibleClearCheck(stage) == false && count[1] == 0 && m_ani_flag == false /*&& Debugflag == false*/)	//ゲームオーバー条件を満たした
 		{
 			flag[2] = true;
 			Audio::Start(2);
