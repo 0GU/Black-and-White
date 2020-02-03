@@ -90,7 +90,7 @@ void CObjReversibleMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-	//
+	//カラー状態初期化
 	col_flag[0] = false;
 	col_flag[1] = false;
 
@@ -489,7 +489,7 @@ void CObjReversibleMain::Action()
 		ButtomCol(c_flag, col_flag);
 	}
 
-	//ヘルプ
+	//ヘルプ-----------------------------------------------------------
 	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
 		//SEを鳴らす
@@ -742,7 +742,7 @@ void CObjReversibleMain::Draw()
 	else
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 
-	//helpボタン
+	//helpボタン----------------------------------------------------------
 	src.m_top = CUT_HELPBUTTON_T2;
 	src.m_left = CUT_HELPBUTTON_L;
 	src.m_right = CUT_HELPBUTTON_R;
@@ -772,7 +772,7 @@ void CObjReversibleMain::Draw()
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 
-	//ヘルプ表示
+	//ヘルプ2ページ目表示
 	if (help_flag2 == false)
 	{
 		src.m_top = CUT_HELP_T;
