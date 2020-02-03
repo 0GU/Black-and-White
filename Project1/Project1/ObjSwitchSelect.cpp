@@ -431,8 +431,6 @@ void CObjSwitchSelect::Draw()
 	if (Cflag[0] == true)
 	{
 		src.m_top = RESOURCE_STAGE2_T;
-		src.m_left = RESOURCE_STAGE_L;
-		src.m_right = RESOURCE_STAGE_R;
 		src.m_bottom = RESOURCE_STAGE2_B;
 		dst.m_top = STAGE_SW_SELECT_TWO_T;
 		dst.m_bottom = STAGE_SW_SELECT_TWO_B;
@@ -460,50 +458,46 @@ void CObjSwitchSelect::Draw()
 	//STAGE4
 	if (Cflag[2] == true)
 	{
-		src.m_top = RESOURCE_STAGE1_T;
-		src.m_left = RESOURCE_STAGE_L;
-		src.m_right = RESOURCE_STAGE_R;
-		src.m_bottom = RESOURCE_STAGE1_B;
+		src.m_top = RESOURCE_STAGE4_T;
+		src.m_bottom = RESOURCE_STAGE4_B;
 		dst.m_top = STAGE_SW_SELECT_ONE_T;
 		dst.m_left = STAGE_SW_SELECT_L + SCROLL_DISTANCE + m_scroll;
 		dst.m_right = STAGE_SW_SELECT_R_DRAW + SCROLL_DISTANCE + m_scroll;
 		dst.m_bottom = STAGE_SW_SELECT_ONE_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
-			Draw::Draw(0, &src, &dst, b, 0.0f);
+			Draw::Draw(4, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
-			Draw::Draw(0, &src, &dst, t, 0.0f);
+			Draw::Draw(4, &src, &dst, t, 0.0f);
 		else
-			Draw::Draw(0, &src, &dst, c, 0.0f);
+			Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 	//STAGE5
 	if (Cflag[3] == true)
 	{
-		src.m_top = RESOURCE_STAGE2_T;
-		src.m_left = RESOURCE_STAGE_L;
-		src.m_right = RESOURCE_STAGE_R;
-		src.m_bottom = RESOURCE_STAGE2_B;
+		src.m_top = RESOURCE_STAGE5_T;
+		src.m_bottom = RESOURCE_STAGE5_B;
 		dst.m_top = STAGE_SW_SELECT_TWO_T;
 		dst.m_bottom = STAGE_SW_SELECT_TWO_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
-			Draw::Draw(0, &src, &dst, b, 0.0f);
+			Draw::Draw(4, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
-			Draw::Draw(0, &src, &dst, t, 0.0f);
+			Draw::Draw(4, &src, &dst, t, 0.0f);
 		else
-			Draw::Draw(0, &src, &dst, c, 0.0f);
+			Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 	//STAGE6
 	if (Cflag[4] == true)
 	{
-		src.m_top = RESOURCE_STAGE3_T;
-		src.m_bottom = RESOURCE_STAGE3_B;
+		src.m_top = RESOURCE_STAGE6_T;
+		src.m_bottom = RESOURCE_STAGE6_B;
 		dst.m_top = STAGE_SW_SELECT_THREE_T;
 		dst.m_bottom = STAGE_SW_SELECT_THREE_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
-			Draw::Draw(0, &src, &dst, b, 0.0f);
+			Draw::Draw(4, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
-			Draw::Draw(0, &src, &dst, t, 0.0f);
+			Draw::Draw(4, &src, &dst, t, 0.0f);
 		else
-			Draw::Draw(0, &src, &dst, c, 0.0f);
+			Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
 
 	//–ß‚éƒ{ƒ^ƒ“

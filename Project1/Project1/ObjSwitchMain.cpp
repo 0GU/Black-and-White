@@ -58,7 +58,7 @@ void CObjSwitchMain::Init()
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
-	Debugflag = false;
+	//Debugflag = false;
 
 }
 
@@ -66,7 +66,7 @@ void CObjSwitchMain::Init()
 void CObjSwitchMain::Action()
 {
 	//------------------------------問題作成用
-	bool lock = false;
+	/*bool lock = false;
 	if (Input::GetVKey('D') == true && Input::GetVKey('G') == true)
 	{
 		count[1] = 0;
@@ -75,7 +75,7 @@ void CObjSwitchMain::Action()
 	if (Input::GetVKey(VK_SHIFT) == true&&Debugflag==true)
 		lock = true;
 	else
-		lock = false;
+		lock = false;*/
 	//-----------------------------------------------
 	int lx = 0;
 	int ly = 0;
@@ -106,39 +106,39 @@ void CObjSwitchMain::Action()
 	}
 
 
-	//-------問題作成用---------------------------------
-	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
-		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
-		(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
-		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true && m_change == true && Debugflag == true)
-	{
-		sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
-		sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
-		if (Input::GetVKey('2') == true)
-			stage[sy][sx]=2;
-		else if (Input::GetVKey('3') == true)
-			stage[sy][sx] = 3;
-		else if (Input::GetVKey('4') == true)
-			stage[sy][sx] = 4;
-		else if (Input::GetVKey('5') == true)
-			stage[sy][sx] = 5;
-		else if (Input::GetVKey('6') == true)
-			stage[sy][sx] = 6;
-		else if (Input::GetVKey('7') == true)
-			stage[sy][sx] = 7;
-		else if (Input::GetVKey('8') == true)
-			stage[sy][sx] = 8;
-		
-	}
-	//------------------------------------------------------------------------------------
+	////-------問題作成用---------------------------------
+	//if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
+	//	((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
+	//	(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
+	//	&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+	//	c_flag[0] == true && c_flag[1] == true && m_change == true /*&& Debugflag == true*/)
+	//{
+	//	sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
+	//	sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
+	//	if (Input::GetVKey('2') == true)
+	//		stage[sy][sx]=2;
+	//	else if (Input::GetVKey('3') == true)
+	//		stage[sy][sx] = 3;
+	//	else if (Input::GetVKey('4') == true)
+	//		stage[sy][sx] = 4;
+	//	else if (Input::GetVKey('5') == true)
+	//		stage[sy][sx] = 5;
+	//	else if (Input::GetVKey('6') == true)
+	//		stage[sy][sx] = 6;
+	//	else if (Input::GetVKey('7') == true)
+	//		stage[sy][sx] = 7;
+	//	else if (Input::GetVKey('8') == true)
+	//		stage[sy][sx] = 8;
+	//	
+	//}
+	////------------------------------------------------------------------------------------
 
 	//当たり判定
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
 		(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
 		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true && m_change == true&&lock==false)
+		c_flag[0] == true && c_flag[1] == true && m_change == true/*&&lock==false*/)
 	{
 		//左クリック時パネルを反転させる
 		m_change = false;	//反転中はほかのパネルを反転できないようにする
@@ -487,7 +487,7 @@ void CObjSwitchMain::Action()
 		m_ani_flame = 0;	//初期化
 		m_change = true;	//パネルを動かせるようにする
 
-		if (SwitchClearCheck(stage) == true&&Debugflag==false)	//クリア条件を満たした
+		if (SwitchClearCheck(stage) == true/*&&Debugflag==false*/)	//クリア条件を満たした
 		{
 			//パーフェクト条件を満たしている
 			if (count[INITIAL_CNT_ARRAY_NUM] - count[PERFECT_CNT_ARRAY_NUM] == count[REMAINING_CNT_ARRAY_NUM])
@@ -501,7 +501,7 @@ void CObjSwitchMain::Action()
 				Audio::Start(3);
 			}
 		}
-		else if (SwitchClearCheck(stage) == false && count[REMAINING_CNT_ARRAY_NUM] == 0&& Debugflag==false)		//ゲームオーバー条件を満たした
+		else if (SwitchClearCheck(stage) == false && count[REMAINING_CNT_ARRAY_NUM] == 0/*&& Debugflag==false*/)		//ゲームオーバー条件を満たした
 		{
 			flag[GAMEOVER_FLAG] = true;
 			Audio::Start(2);
@@ -509,7 +509,7 @@ void CObjSwitchMain::Action()
 	}
 
 	//GameClear時の判定
-	if (flag[CLEAR_FLAG] == true&& Debugflag==false)
+	if (flag[CLEAR_FLAG] == true/*&& Debugflag==false*/)
 	{
 		//BGM停止
 		if (StageSlect == 6)
@@ -920,15 +920,27 @@ void CObjSwitchMain::Draw()
 		Font::StrDraw(L"6手"	 , HIN_TEXT_POS_X_2, HIN_TEXT_POS_Y_2, HIN_TEXT_SIZE, f);*/
 		if (StageSlect == 1)
 		{
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
 		else if (StageSlect == 2)
 		{
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
 		else if (StageSlect == 3)
+		{
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
+			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+		}
+		else if (StageSlect == 4)
+		{
+			Font::StrDraw(L"同じボタンを", 6, 260, 24, f);
+			Font::StrDraw(L"2回以上", 16, 300, 24, f);
+			Font::StrDraw(L"押しても", 16, 340, 24, f);
+			Font::StrDraw(L"意味がないよ!", 6, 380, 24, f);
+		}
+		else if (StageSlect == 5|| StageSlect == 6)
 		{
 			wchar_t str2[128];
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
@@ -939,6 +951,7 @@ void CObjSwitchMain::Draw()
 
 		}
 	}
+	
 
 	//リセットボタン--------------------------------------------
 	//切り取り

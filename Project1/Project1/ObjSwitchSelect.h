@@ -30,6 +30,12 @@ using namespace GameL;
 #define RESOURCE_STAGE2_B (449.0f)
 #define RESOURCE_STAGE3_T (448.0f)
 #define RESOURCE_STAGE3_B (540.0f)
+#define RESOURCE_STAGE4_T (90.0f)
+#define RESOURCE_STAGE4_B (181.0f)
+#define RESOURCE_STAGE5_T (180.0f)
+#define RESOURCE_STAGE5_B (271.0f)
+#define RESOURCE_STAGE6_T (270.0f)
+#define RESOURCE_STAGE6_B (361.0f)
 
 
 //表示:クリア,パーフェクト時の星
