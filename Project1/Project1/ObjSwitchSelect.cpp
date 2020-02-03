@@ -544,8 +544,8 @@ void CObjSwitchSelect::Draw()
 	//(1)
 	if (Pflag[0] == false && Cflag[0] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_ONE_T ;
-		dst.m_bottom = STAGE_SW_STAR_ONE_B ;
+		dst.m_top = STAGE_SW_STAR_14_T ;
+		dst.m_bottom = STAGE_SW_STAR_14_B ;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 1)
@@ -556,8 +556,8 @@ void CObjSwitchSelect::Draw()
 	//(2)
 	if (Pflag[1] == false && Cflag[1] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_TWO_T ;
-		dst.m_bottom = STAGE_SW_STAR_TWO_B ;
+		dst.m_top = STAGE_SW_STAR_25_T ;
+		dst.m_bottom = STAGE_SW_STAR_25_B ;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 2)
@@ -568,8 +568,8 @@ void CObjSwitchSelect::Draw()
 	//(3)
 	if (Pflag[2] == false && Cflag[2] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_THREE_T + m_scroll;
-		dst.m_bottom = STAGE_SW_STAR_THREE_B + m_scroll;
+		dst.m_top = STAGE_SW_STAR_36_T + m_scroll;
+		dst.m_bottom = STAGE_SW_STAR_36_B + m_scroll;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 3)
@@ -582,8 +582,8 @@ void CObjSwitchSelect::Draw()
 	//(4)
 	if (Pflag[3] == false && Cflag[3] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_ONE_T ;
-		dst.m_bottom = STAGE_SW_STAR_ONE_B ;
+		dst.m_top = STAGE_SW_STAR_14_T ;
+		dst.m_bottom = STAGE_SW_STAR_14_B ;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
@@ -594,8 +594,8 @@ void CObjSwitchSelect::Draw()
 	//(5)
 	if (Pflag[4] == false && Cflag[4] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_TWO_T;
-		dst.m_bottom = STAGE_SW_STAR_TWO_B;
+		dst.m_top = STAGE_SW_STAR_25_T;
+		dst.m_bottom = STAGE_SW_STAR_25_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
@@ -606,8 +606,8 @@ void CObjSwitchSelect::Draw()
 	//(6)
 	if (Pflag[5] == false && Cflag[5] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_THREE_T;
-		dst.m_bottom = STAGE_SW_STAR_THREE_B;
+		dst.m_top = STAGE_SW_STAR_36_T;
+		dst.m_bottom = STAGE_SW_STAR_36_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
@@ -626,8 +626,8 @@ void CObjSwitchSelect::Draw()
 
 	if (Pflag[0] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_ONE_T;
-		dst.m_bottom = STAGE_SW_STAR_ONE_B;
+		dst.m_top = STAGE_SW_STAR_14_T;
+		dst.m_bottom = STAGE_SW_STAR_14_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 1)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 1)
@@ -638,8 +638,8 @@ void CObjSwitchSelect::Draw()
 	if (Pflag[1] == true)
 	{
 		//(2)
-		dst.m_top = STAGE_SW_STAR_TWO_T;
-		dst.m_bottom = STAGE_SW_STAR_TWO_B;
+		dst.m_top = STAGE_SW_STAR_25_T;
+		dst.m_bottom = STAGE_SW_STAR_25_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 2)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 2)
@@ -650,8 +650,8 @@ void CObjSwitchSelect::Draw()
 	if (Pflag[2] == true)
 	{
 		//(3)
-		dst.m_top = STAGE_SW_STAR_THREE_T;
-		dst.m_bottom = STAGE_SW_STAR_THREE_B;
+		dst.m_top = STAGE_SW_STAR_36_T;
+		dst.m_bottom = STAGE_SW_STAR_36_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 3)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 3)
@@ -664,8 +664,8 @@ void CObjSwitchSelect::Draw()
 	//(4)
 	if (Pflag[3] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_ONE_T;
-		dst.m_bottom = STAGE_SW_STAR_ONE_B;
+		dst.m_top = STAGE_SW_STAR_14_T;
+		dst.m_bottom = STAGE_SW_STAR_14_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 4)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 4)
@@ -676,8 +676,8 @@ void CObjSwitchSelect::Draw()
 	//(5)
 	if (Pflag[4] ==true)
 	{
-		dst.m_top = STAGE_SW_STAR_TWO_T;
-		dst.m_bottom = STAGE_SW_STAR_TWO_B;
+		dst.m_top = STAGE_SW_STAR_25_T;
+		dst.m_bottom = STAGE_SW_STAR_25_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 5)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 5)
@@ -688,8 +688,8 @@ void CObjSwitchSelect::Draw()
 	//(6)
 	if (Pflag[5] == true)
 	{
-		dst.m_top = STAGE_SW_STAR_THREE_T;
-		dst.m_bottom = STAGE_SW_STAR_THREE_B;
+		dst.m_top = STAGE_SW_STAR_36_T;
+		dst.m_bottom = STAGE_SW_STAR_36_B;
 		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 6)
 			Draw::Draw(10, &src, &dst, b, 0.0f);
 		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 6)
