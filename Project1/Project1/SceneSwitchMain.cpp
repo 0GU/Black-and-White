@@ -63,7 +63,7 @@ void CSceneSwitchMain::InitScene()
 
 	//BGM再生---------------------
 	//ステージ3だとBGM変更
-	if (stagenum == 3)
+	if (stagenum == 5 || stagenum == 6)
 		Audio::Start(7);
 	else
 		Audio::Start(0);
