@@ -892,7 +892,7 @@ void CObjSwitchMain::Draw()
 			else if (stage[i][j] == CH_BLACK_PANEL_ID)
 			{
 				//変化中黒パネル
-				src.m_top = 96.0f;
+				src.m_top = PANEL_SIZE;
 				src.m_left = 0.0f + (m_ani_flame * PANEL_SIZE);
 				src.m_right = src.m_left + PANEL_SIZE;
 				src.m_bottom = src.m_top + PANEL_SIZE;
@@ -991,15 +991,15 @@ void CObjSwitchMain::Draw()
 		Font::StrDraw(str, CNT_NUM_FEW_POS_X, CNT_NUM_POS_Y, CNT_SIZE, f);
 	//Countの文字表示----------------------------------------------
 	//切り取り
-	src.m_top = 820.0f;
-	src.m_left = 20.0f;
-	src.m_right = 130.0f;
-	src.m_bottom = 860.0f;
+	src.m_top = CUT_COUNT_T;
+	src.m_left = CUT_COUNT_L;
+	src.m_right = CUT_COUNT_R;
+	src.m_bottom = CUT_COUNT_B;
 	//表示
-	dst.m_top = 40.0f;
-	dst.m_left = 660.0f;
-	dst.m_right = 770.0f;
-	dst.m_bottom = 80.0f;
+	dst.m_top = POS_COUNT_T;
+	dst.m_left = POS_COUNT_L;
+	dst.m_right = POS_COUNT_R;
+	dst.m_bottom = POS_COUNT_B;
 	Draw::Draw(12, &src, &dst, c, 0.0f);
 	//シーン描画：PerFect!------------------------------------
 	if (flag[PERFECT_FLAG] == true)

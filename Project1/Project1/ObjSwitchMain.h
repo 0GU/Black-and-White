@@ -142,6 +142,14 @@ resource
 #define BACKSELE_TEXT_POS_R (660.0f)
 #define BACKSELE_TEXT_POS_B (270.0f)
 
+#define CUT_COUNT_T (820.0f)
+#define CUT_COUNT_L (20.0f)
+#define CUT_COUNT_R (130.0f)
+#define CUT_COUNT_B (860.0f)
+#define POS_COUNT_T (40.0f)
+#define POS_COUNT_L (660.0f)
+#define POS_COUNT_R (770.0f)
+#define POS_COUNT_B (80.0f)
 
 //オブジェクト：Reversibleメイン
 class CObjSwitchMain : public CObj
