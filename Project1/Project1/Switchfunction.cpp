@@ -86,6 +86,7 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count4[2] = { 10,25 };
 
+	//Stage5
 	int SPStage5[5][5] =
 	{
 		{0,2,1,5,0},
@@ -96,6 +97,7 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count5[2] = { 9,24 };
 
+	//Stage6
 	int SPStage6[5][5] =
 	{
 		{0,4,1,6,0},
