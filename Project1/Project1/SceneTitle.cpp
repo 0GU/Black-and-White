@@ -32,7 +32,7 @@ void CSceneTitle::InitScene()
 	CObjTitle* p = new CObjTitle();
 	Objs::InsertObj(p, OBJ_TITLE, 1);
 
-	Draw::LoadImage(L"タイトル.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/タイトル.png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//SE情報の登録

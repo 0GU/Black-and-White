@@ -30,8 +30,8 @@ CSceneModeSelect::~CSceneModeSelect()
 //ゲームタイトル初期化メソッド
 void CSceneModeSelect::InitScene()
 {
-	Draw::LoadImage(L"ギャラリー画面(移行用).png", 0, TEX_SIZE_512);
-	Draw::LoadImage(L"ゲームセレクト画面(移行用).png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/ギャラリー画面(移行用).png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/ゲームセレクト画面(移行用).png", 1, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/haikei3.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 3, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);

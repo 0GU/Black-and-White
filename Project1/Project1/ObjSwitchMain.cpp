@@ -36,6 +36,7 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+	buttom_name = 0;
 
 	Save::Open();
 	j = 0;
@@ -56,6 +57,7 @@ void CObjSwitchMain::Init()
 
 	//フラグを初期化
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	memcpy(col_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
 	//Debugflag = false;
@@ -928,7 +930,7 @@ void CObjSwitchMain::Draw()
 			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
-		else if (StageSlect == 3)
+		else if (StageSlect == 3 || StageSlect == 4 || StageSlect == 5 || StageSlect == 6)
 		{
 			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
@@ -948,7 +950,6 @@ void CObjSwitchMain::Draw()
 
 
 			Font::StrDraw(str2, 40, 320, 32, f);
-
 		}
 	}
 	

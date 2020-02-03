@@ -41,7 +41,7 @@ void CSceneGallery::InitScene()
 
 
 	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/‚Ü‚Æ‚ß‰æ‘œ1.png", 0, TEX_SIZE_512);
-	Draw::LoadImage(L"gallery‰¼˜g.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"‚Ü‚Æ‚ß‰æ‘œ/gallery‰¼˜g.png", 1, TEX_SIZE_512);
 	for (int i = 0; i < 3; i++)
 	{
 		if (((UserData*)Save::GetData())->SPerfectFlag[i] == false)

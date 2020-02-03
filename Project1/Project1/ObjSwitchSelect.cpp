@@ -247,25 +247,36 @@ void CObjSwitchSelect::Action()
 	if (Cflag[3] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage5
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage5
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
+			buttom_name = 5;//明るさ変更用
 
-			Scene::SetScene(new CSceneSwitchMain(5));
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+
+				Scene::SetScene(new CSceneSwitchMain(5));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 	if (Cflag[4] == true)
 	{
 		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
-			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage6
+			Rleft == 1 && Rright == 0 && scroll_flag == false && help_flag == true)//stage6
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(SELECT_WAIT);
+			buttom_name = 6;//明るさ変更用
 
-			Scene::SetScene(new CSceneSwitchMain(6));
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(SELECT_WAIT);
+				Scene::SetScene(new CSceneSwitchMain(6));
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 	//戻るボタン
@@ -524,6 +535,9 @@ void CObjSwitchSelect::Draw()
 	dst.m_left = STAGE_SW_STAR_L + m_scroll;
 	dst.m_right = STAGE_SW_STAR_R + m_scroll;
 
+
+	//星の描画判定:クリア時orパーフェクト時の場合
+
 	//(1)
 	if (Pflag[0] == false && Cflag[0] == true)
 	{
@@ -606,6 +620,7 @@ void CObjSwitchSelect::Draw()
 	src.m_bottom = RESOURCE_PSTAR_B;
 	dst.m_left = STAGE_SW_STAR_L + m_scroll;
 	dst.m_right = STAGE_SW_STAR_R + m_scroll;
+
 
 	if (Pflag[0] == true)
 	{
