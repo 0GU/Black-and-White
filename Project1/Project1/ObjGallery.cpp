@@ -22,11 +22,10 @@ void CObjGallery::Init()
 
 	for (int i = 0; i < 6; i++)
 	{
-		if (i<3)
-		{
-			SFlag[i] = false;
-		}
-		
+
+		SFlag[i] = false;
+
+
 		RFlag[i] = false;
 	}
 	bool setflag[2] = { false,false };
@@ -84,13 +83,12 @@ void CObjGallery::Action()
 
 	for (int i = 0; i < 6; i++)
 	{
-		if (i < 3)
+
+		if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 		{
-			if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
-			{
-				SFlag[i] = true;
-			}
+			SFlag[i] = true;
 		}
+
 		if (((UserData*)Save::GetData())->RPerfectFlag[i] == true)
 		{
 			RFlag[i] = true;
@@ -184,7 +182,7 @@ void CObjGallery::Action()
 				Gleft = 1;
 			}
 		}
-		if (scroll_flag == false &&FlagCheck(SFlag, 3)==true)
+		if (scroll_flag == false &&FlagCheck(SFlag, 6)==true)
 		{
 			if (GRAPHIC_LEFT <= x && GRAPHIC_RIGHT >= x && GRAPHIC_TOP <= y && GRAPHIC_BOTTOM >= y && GFlag[0] == false&&
 				c_flag[0] == true && c_flag[1] == true && help_flag == true)
@@ -346,7 +344,7 @@ void CObjGallery::Draw()
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 	//âºï\é¶
-	if (FlagCheck(SFlag, 3)==true)
+	if (FlagCheck(SFlag, 6)==true)
 	{
 		//ÉMÉÉÉâÉäÅ[äJï˙(âº)
 		/*src.m_top   = 0.0f;
