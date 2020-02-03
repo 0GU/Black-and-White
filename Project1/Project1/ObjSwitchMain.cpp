@@ -62,6 +62,8 @@ void CObjSwitchMain::Init()
 	mou_call = true;
 	//Debugflag = false;
 
+	help_flag = true;
+	help_flag2 = true;
 }
 
 //アクション
@@ -83,6 +85,10 @@ void CObjSwitchMain::Action()
 	int ly = 0;
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
+
+	//カラー状態初期化
+	col_flag[0] = false;
+	col_flag[1] = false;
 
 	//クリックエフェクト呼び出し（１回のみ）
 	if (mou_call == true)
@@ -140,165 +146,172 @@ void CObjSwitchMain::Action()
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
 		(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
 		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true && m_change == true/*&&lock==false*/)
+		m_change == true && help_flag == true && help_flag2 == true/*&&lock==false*/)
 	{
-		//左クリック時パネルを反転させる
-		m_change = false;	//反転中はほかのパネルを反転できないようにする
-
-		//SEを鳴らす
-		Audio::Start(1);
-
-		//Countを減らす
-		count[REMAINING_CNT_ARRAY_NUM]--;
+		buttom_name = 'p';//明るさ変更用
 
 		sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
 		sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
-		for (int m = 0; m < 4; m++)
+
+		if (c_flag[0] == true && c_flag[1] == true)
 		{
-			switch (stage[sy][sx])
+			//左クリック時パネルを反転させる
+			m_change = false;	//反転中はほかのパネルを反転できないようにする
+
+			//SEを鳴らす
+			Audio::Start(1);
+
+			//Countを減らす
+			count[REMAINING_CNT_ARRAY_NUM]--;
+
+			for (int m = 0; m < 4; m++)
 			{
-			case 2://横
-				switch (m)
+				switch (stage[sy][sx])
 				{
-				case 0://左
-					ly = sy;
-					lx = sx - 1;
+				case 2://横
+					switch (m)
+					{
+					case 0://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 1://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					case 2:
+					case 3:
+						break;
+					}
 					break;
-				case 1://右
-					ly = sy;
-					lx = sx + 1;
+				case 3://縦
+					switch (m)
+					{
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+					case 1://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+					case 2:
+					case 3:
+						break;
+					}
 					break;
-				case 2:
-				case 3:
+				case 4://左抜き3方向
+					switch (m)
+					{
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+					case 1://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+					case 2:
+						break;
+					case 3://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					}
+					break;
+				case 5://上抜き3方向
+					switch (m)
+					{
+					case 0://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+					case 1://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 2://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					case 3:
+						break;
+					}
+					break;
+				case 6://右抜き3方向
+					switch (m)
+					{
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+					case 1://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+					case 2://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 3:
+						break;
+					}
+					break;
+				case 7://下抜き3方向
+					switch (m)
+					{
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+					case 1:
+						break;
+					case 2://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 3://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					}
+					break;
+				case 8://4方向
+					switch (m)
+					{
+					case 0://上
+						ly = sy - 1;
+						lx = sx;
+						break;
+					case 1://下
+						ly = sy + 1;
+						lx = sx;
+						break;
+					case 2://左
+						ly = sy;
+						lx = sx - 1;
+						break;
+					case 3://右
+						ly = sy;
+						lx = sx + 1;
+						break;
+					}
 					break;
 				}
-				break;
-			case 3://縦
-				switch (m)
+				if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
 				{
-				case 0://上
-					ly = sy - 1;
-					lx = sx;
-					break;
-				case 1://下
-					ly = sy + 1;
-					lx = sx;
-					break;
-				case 2:
-				case 3:
-					break;
-				}
-				break;
-			case 4://左抜き3方向
-				switch (m)
-				{
-				case 0://上
-					ly = sy - 1;
-					lx = sx;
-					break;
-				case 1://下
-					ly = sy + 1;
-					lx = sx;
-					break;
-				case 2:
-					break;
-				case 3://右
-					ly = sy;
-					lx = sx + 1;
-					break;
-				}
-				break;
-			case 5://上抜き3方向
-				switch (m)
-				{
-				case 0://下
-					ly = sy + 1;
-					lx = sx;
-					break;
-				case 1://左
-					ly = sy;
-					lx = sx - 1;
-					break;
-				case 2://右
-					ly = sy;
-					lx = sx + 1;
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 6://右抜き3方向
-				switch (m)
-				{
-				case 0://上
-					ly = sy - 1;
-					lx = sx;
-					break;
-				case 1://下
-					ly = sy + 1;
-					lx = sx;
-					break;
-				case 2://左
-					ly = sy;
-					lx = sx - 1;
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 7://下抜き3方向
-				switch (m)
-				{
-				case 0://上
-					ly = sy - 1;
-					lx = sx;
-					break;
-				case 1:
-					break;
-				case 2://左
-					ly = sy;
-					lx = sx - 1;
-					break;
-				case 3://右
-					ly = sy;
-					lx = sx + 1;
-					break;
-				}
-				break;
-			case 8://4方向
-				switch (m)
-				{
-				case 0://上
-					ly = sy - 1;
-					lx = sx;
-					break;
-				case 1://下
-					ly = sy + 1;
-					lx = sx;
-					break;
-				case 2://左
-					ly = sy;
-					lx = sx - 1;
-					break;
-				case 3://右
-					ly = sy;
-					lx = sx + 1;
-					break;
-				}
-				break;
-			}
-			if (lx >= 0 && ly >= 0 && lx <= 4 && ly <= 4)//判定の正常化
-			{
-				if (stage[ly][lx] == WHITE_PANEL_ID)
-				{
-					stage[ly][lx] = CH_WHITE_PANEL_ID;
-				}
-				else if (stage[ly][lx] == BLACK_PANEL_ID)
-				{
-					stage[ly][lx] = CH_BLACK_PANEL_ID;
+					if (stage[ly][lx] == WHITE_PANEL_ID)
+					{
+						stage[ly][lx] = CH_WHITE_PANEL_ID;
+					}
+					else if (stage[ly][lx] == BLACK_PANEL_ID)
+					{
+						stage[ly][lx] = CH_BLACK_PANEL_ID;
+					}
 				}
 			}
 		}
+		ButtomCol(c_flag, col_flag);
 	}
 
 	//アニメーション処理-----
@@ -521,30 +534,36 @@ void CObjSwitchMain::Action()
 
 		//StageSELECTへ戻るボタン判定
 		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B &&
-			c_flag[0] == true && c_flag[1] == true)
+			help_flag == true && help_flag2 == true)
 		{
-			Save::Open();
-			for (i = 0; i < 6; i++)
-			{
+			buttom_name = 'c';//明るさ変更用
 
-				if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				Save::Open();
+				for (i = 0; i < 6; i++)
 				{
-					++j;
-					if (j == 6)
+
+					if (((UserData*)Save::GetData())->SPerfectFlag[i] == true)
 					{
-						flag[6] = true;
+						++j;
+						if (j == 6)
+						{
+							flag[6] = true;
+						}
 					}
 				}
-			}
 
-			if (flag[6] == true && flag[7] == false)
-			{
-				Scene::SetScene(new CSceneGalleryadd());
+				if (flag[6] == true && flag[7] == false)
+				{
+					Scene::SetScene(new CSceneGalleryadd());
+				}
+				else if (flag[6] == false || flag[7] == true)
+				{
+					Scene::SetScene(new CSceneSwitchSelect());
+				}
 			}
-			else if (flag[6] == false || flag[7] == true)
-			{
-				Scene::SetScene(new CSceneSwitchSelect());
-			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 	
@@ -559,35 +578,47 @@ void CObjSwitchMain::Action()
 
 		//Yesボタン判定
 		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
-			c_flag[0] == true && c_flag[1] == true)
+			help_flag == true && help_flag2 == true)
 		{
-			count[REMAINING_CNT_ARRAY_NUM] = COUNT;
-			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			buttom_name = 'y';//明るさ変更用
 
-			//BGM停止
-			if (StageSlect == 3)
-				Audio::Start(7);
-			else
-				Audio::Start(0);
-			//SEを鳴らす
-			Audio::Start(1);
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				count[REMAINING_CNT_ARRAY_NUM] = COUNT;
+				memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
 
-			flag[GAMEOVER_FLAG] = false;
-			if (StageSlect == 3)
-				Audio::Start(7);
-			else
-				Audio::Start(0);
-			c_flag[0] = false;
+				//BGM停止
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
+				//SEを鳴らす
+				Audio::Start(1);
+
+				flag[GAMEOVER_FLAG] = false;
+				if (StageSlect == 3)
+					Audio::Start(7);
+				else
+					Audio::Start(0);
+				c_flag[0] = false;
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 		//Noボタン判定
 		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
-			c_flag[0] == true && c_flag[1] == true)
+			help_flag == true && help_flag2 == true)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			Sleep(300);
-			Scene::SetScene(new CSceneSwitchSelect());
-			flag[GAMEOVER_FLAG] = false;
+			buttom_name = 'n';//明るさ変更用
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				Sleep(300);
+				Scene::SetScene(new CSceneSwitchSelect());
+				flag[GAMEOVER_FLAG] = false;
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -595,60 +626,90 @@ void CObjSwitchMain::Action()
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		RESET_BUTTON_POS_T <= y && RESET_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true)
+		help_flag == true && help_flag2 == true)
 	{
-		count[REMAINING_CNT_ARRAY_NUM] = count[INITIAL_CNT_ARRAY_NUM];
-		memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
-		//SEを鳴らす
-		Audio::Start(6);
-		m_change = true;
-		c_flag[0] = false;
+		buttom_name = 'r';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			count[REMAINING_CNT_ARRAY_NUM] = count[INITIAL_CNT_ARRAY_NUM];
+			memcpy(stage, stage_reset, sizeof(int)*(5 * 5));
+			//SEを鳴らす
+			Audio::Start(6);
+			m_change = true;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 
 	//ヒントボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		HINT_BUTTON_POS_T <= y && HINT_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true)
+		help_flag == true && help_flag2 == true)
 	{
-		flag[HINT_FLAG] = true;
-		//SEを鳴らす
-		Audio::Start(5);
+		buttom_name = 'i';//明るさ変更用
 
-		c_flag[0] = false;
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			flag[HINT_FLAG] = true;
+			//SEを鳴らす
+			Audio::Start(5);
+
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
 	if (x >= STAGESELE_BUTTON_POS_L && x <= STAGESELE_BUTTON_POS_L + BUTTON_SIZE_X &&
 		y >= STAGESELE_BUTTON_POS_T && y <= STAGESELE_BUTTON_POS_T + BUTTON_SIZE_Y &&
 		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true)
+		help_flag == true && help_flag2 == true)
 	{
-		flag[BACK_SELECT_FLAG] = true;
-		//SEを鳴らす
-		Audio::Start(1);
+		buttom_name = 's';//明るさ変更用
 
-		c_flag[0] = false;
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			flag[BACK_SELECT_FLAG] = true;
+			//SEを鳴らす
+			Audio::Start(1);
+
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
 	}
 	if (flag[BACK_SELECT_FLAG] == true)
 	{
 		//Yesボタン判定
 		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
-			c_flag[0] == true && c_flag[1] == true)
+			help_flag == true && help_flag2 == true)
 		{
-			//SEを鳴らす
-			Audio::Stop(1);
-			Audio::Start(1);
-			Sleep(300);
-			Scene::SetScene(new CSceneSwitchSelect());
+			buttom_name = 'y';//明るさ変更用
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Stop(1);
+				Audio::Start(1);
+				Sleep(300);
+				Scene::SetScene(new CSceneSwitchSelect());
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 		//Noボタン判定
 		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
-			c_flag[0] == true && c_flag[1] == true)
+			help_flag == true && help_flag2 == true)
 		{
-			//SEを鳴らす
-			Audio::Start(1);
-			flag[BACK_SELECT_FLAG] = false;
-			c_flag[0] = false;
+			buttom_name = 'n';//明るさ変更用
+
+			if (c_flag[0] == true && c_flag[1] == true)
+			{
+				//SEを鳴らす
+				Audio::Start(1);
+				flag[BACK_SELECT_FLAG] = false;
+				c_flag[0] = false;
+			}
+			ButtomCol(c_flag, col_flag);
 		}
 	}
 
@@ -704,6 +765,43 @@ void CObjSwitchMain::Action()
 		}
 	}
 
+	//ヘルプ
+	if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y
+		&& flag[1] == false && flag[2] == false && flag[3] == false && help_flag == true && help_flag2 == true)
+	{
+		buttom_name = 'h';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+
+	//ヘルプ-----------------------------------------------------------
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		help_flag2 = false;
+		c_flag[0] = false;
+	}
+	if (help_flag2 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag2 = true;
+		c_flag[0] = false;
+	}
+
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -716,7 +814,10 @@ void CObjSwitchMain::Action()
 void CObjSwitchMain::Draw()
 {
 	//描画カラー情報
-	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float	c[4] = { 1.0f,1.0f,1.0f,1.0f };//ボタン以外、ボタン位置にカーソル
+	float	b[4] = { 0.7f,0.7f,0.7f,1.0f };//ボタン通常
+	float	t[4] = { 0.4f,0.4f,0.4f,1.0f };//ボタン押している
+	float	bl[4] = { 1.0f,1.0f,1.0f,0.8f };//黒ボタン位置にカーソル
 	float   f[4] = { 0.0f,0.0f,0.0f,1.0f };//テキスト用
 
 	RECT_F src; //描画元切り取り位置の設定
@@ -732,7 +833,6 @@ void CObjSwitchMain::Draw()
 	dst.m_right = WINDOW_SIZE_X;
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
-
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
@@ -836,47 +936,162 @@ void CObjSwitchMain::Draw()
 			dst.m_bottom = dst.m_top + PANEL_SIZE;
 			if (stage[i][j] == WHITE_PANEL_ID)
 			{
+				if (stage[sy][sx] == 2)//横
+				{
+					if (((i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 3)//縦
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 4)//左抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx + 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 5)//上抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 6)//右抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 7)//下抜き3方向
+				{
+					if (((i == sy - 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 8)//上下左右
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(1, &src, &dst, b, 0.0f);
+					else
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				else
+					Draw::Draw(1, &src, &dst, c, 0.0f);
 				//白パネル
-				Draw::Draw(1, &src, &dst, c, 0.0f);
+				//Draw::Draw(1, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == BLACK_PANEL_ID)
 			{
 				//黒パネル
-				Draw::Draw(0, &src, &dst, c, 0.0f);
-			}
-			else if (stage[i][j] == UP_DOWN_SWIT_ID)
-			{
-				//縦スイッチ
-				Draw::Draw(6, &src, &dst, c, 0.0f);
+				if (stage[sy][sx] == 2)//横
+				{
+					if (((i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 3)//縦
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 4)//左抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx + 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 5)//上抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 6)//右抜き3方向
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 7)//下抜き3方向
+				{
+					if (((i == sy - 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else if (stage[sy][sx] == 8)//上下左右
+				{
+					if (((i == sy + 1 && j == sx) || (i == sy - 1 && j == sx) || (i == sy && j == sx + 1) || (i == sy && j == sx - 1)) &&
+						col_flag[0] == true && col_flag[1] == false && buttom_name == 'p')
+						Draw::Draw(0, &src, &dst, bl, 0.0f);
+					else
+						Draw::Draw(0, &src, &dst, c, 0.0f);
+				}
+				else
+					Draw::Draw(0, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == LEF_RIG_SWIT_ID)
 			{
 				//横スイッチ
 				Draw::Draw(7, &src, &dst, c, 0.0f);
 			}
+			else if (stage[i][j] == UP_DOWN_SWIT_ID)
+			{
+				//縦スイッチ
+				Draw::Draw(6, &src, &dst, c, 0.0f);
+			}
 			else if (stage[i][j] == 4)
 			{
-				//横スイッチ
+				//左抜き3方向スイッチ
 				Draw::Draw(13, &src, &dst, c, 90.0f);
 			}
 			else if (stage[i][j] == 5)
 			{
-				//横スイッチ
+				//上抜き3方向横スイッチ
 				Draw::Draw(13, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == 6)
 			{
-				//横スイッチ
-				Draw::Draw(13, &src, &dst, c, -90.0f);
+				//右抜き3方向スイッチ
+				Draw::Draw(13, &src, &dst, c, 270.0f);
 			}
 			else if (stage[i][j] == 7)
 			{
-				//横スイッチ
+				//下抜き3方向スイッチ
 				Draw::Draw(13, &src, &dst, c, 180.0f);
 			}
 			else if (stage[i][j] == 8)
 			{
-				//横スイッチ
+				//上下左右スイッチ
 				Draw::Draw(14, &src, &dst, c, 0.0f);
 			}
 			else if (stage[i][j] == CH_WHITE_PANEL_ID)
@@ -913,7 +1128,12 @@ void CObjSwitchMain::Draw()
 	dst.m_left = HIN_RESE_BUTTON_POS_L;
 	dst.m_right = dst.m_left + BUTTON_SIZE_X;
 	dst.m_bottom = dst.m_top + BUTTON_SIZE_Y;
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'i')
+		Draw::Draw(3, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'i')
+		Draw::Draw(3, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//ヒントの表示
 	if (flag[HINT_FLAG] == true)
@@ -966,7 +1186,12 @@ void CObjSwitchMain::Draw()
 	dst.m_left = HIN_RESE_BUTTON_POS_L;
 	dst.m_right = dst.m_left + BUTTON_SIZE_X;
 	dst.m_bottom = dst.m_top + BUTTON_SIZE_Y;
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'r')
+		Draw::Draw(4, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'r')
+		Draw::Draw(4, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(4, &src, &dst, c, 0.0f);
 
 	//StageSelectボタン-----------------------------------------------
 	src.m_top = CUT_SELE_BUTTON_T;
@@ -978,7 +1203,12 @@ void CObjSwitchMain::Draw()
 	dst.m_left = STAGESELE_BUTTON_POS_L;
 	dst.m_right = dst.m_left + BUTTON_SIZE_X;
 	dst.m_bottom = dst.m_top + BUTTON_SIZE_Y;
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 's')
+		Draw::Draw(5, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 's')
+		Draw::Draw(5, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(5, &src, &dst, c, 0.0f);
 
 
 	//Countの値を文字列化---------------------------------------
@@ -1001,6 +1231,51 @@ void CObjSwitchMain::Draw()
 	dst.m_right = POS_COUNT_R;
 	dst.m_bottom = POS_COUNT_B;
 	Draw::Draw(12, &src, &dst, c, 0.0f);
+
+
+	//helpボタン
+	src.m_top = CUT_HELPBUTTON_T2;
+	src.m_left = CUT_HELPBUTTON_L;
+	src.m_right = CUT_HELPBUTTON_R;
+	src.m_bottom = CUT_HELPBUTTON_B2;
+	dst.m_top = POS_HELPBUTTON_T_RB;
+	dst.m_left = POS_HELPBUTTON_L_RB;
+	dst.m_right = POS_HELPBUTTON_R_RB;
+	dst.m_bottom = POS_HELPBUTTON_B_RB;
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(15, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(15, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(15, &src, &dst, c, 0.0f);
+
+	//ヘルプ表示
+	if (help_flag == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(16, &src, &dst, c, 0.0f);
+	}
+
+	//ヘルプ2ページ目表示
+	if (help_flag2 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(17, &src, &dst, c, 0.0f);
+	}
 	//シーン描画：PerFect!------------------------------------
 	if (flag[PERFECT_FLAG] == true)
 	{
@@ -1023,7 +1298,12 @@ void CObjSwitchMain::Draw()
 		dst.m_left = CLEARBACK_POS_L;
 		dst.m_right = CLEARBACK_POS_R;
 		dst.m_bottom = CLEARBACK_POS_B;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'c')
+			Draw::Draw(5, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'c')
+			Draw::Draw(5, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 	//GameClear------------------------------------------
 	else if (flag[CLEAR_FLAG] == true)
@@ -1048,7 +1328,12 @@ void CObjSwitchMain::Draw()
 		dst.m_left = CLEARBACK_POS_L;
 		dst.m_right = CLEARBACK_POS_R;
 		dst.m_bottom = CLEARBACK_POS_B;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'c')
+			Draw::Draw(5, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'c')
+			Draw::Draw(5, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 
 	//GameOver------------------------------------
@@ -1077,14 +1362,24 @@ void CObjSwitchMain::Draw()
 		dst.m_left = YES_BUTTON_POS_L;
 		dst.m_right = YES_BUTTON_POS_R;
 		dst.m_bottom = YESNO_BUTTON_POS_B;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'y')
+			Draw::Draw(5, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'y')
+			Draw::Draw(5, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(5, &src, &dst, c, 0.0f);
 
 		//Noボタン
 		src.m_left = CUT_NO_BUTTON_L;
 		src.m_right = CUT_NO_BUTTON_R;
 		dst.m_left = NO_BUTTON_POS_L;
 		dst.m_right = NO_BUTTON_POS_R;
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+		if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'n')
+			Draw::Draw(5, &src, &dst, b, 0.0f);
+		else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'n')
+			Draw::Draw(5, &src, &dst, t, 0.0f);
+		else
+			Draw::Draw(5, &src, &dst, c, 0.0f);
 	}
 	//ステージに戻りますか？の描画
 	if (flag[BACK_SELECT_FLAG] == true)
