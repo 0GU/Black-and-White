@@ -238,9 +238,34 @@ void CObjSwitchSelect::Action()
 				//SEを鳴らす
 				Audio::Start(1);
 				Sleep(SELECT_WAIT);
+
 				Scene::SetScene(new CSceneSwitchMain(4));
 			}
 			ButtomCol(c_flag, col_flag);
+		}
+	}
+	if (Cflag[3] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_TWO_T <= y && STAGE_SW_SELECT_TWO_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage5
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(5));
+		}
+	}
+	if (Cflag[4] == true)
+	{
+		if (STAGE_SW_SELECT_L <= x && STAGE_SW_SELECT_R >= x && STAGE_SW_SELECT_THREE_T <= y && STAGE_SW_SELECT_THREE_B >= y &&
+			c_flag[0] == true && c_flag[1] == true && Rleft == 1 && Rright == 0 && scroll_flag == false)//stage6
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SELECT_WAIT);
+
+			Scene::SetScene(new CSceneSwitchMain(6));
 		}
 	}
 	//戻るボタン
@@ -266,9 +291,12 @@ void CObjSwitchSelect::Action()
 	m_y2 -= BACKGROUND_T_GAP;
 	if (m_y2 < -BACKGROUND_B)
 		m_y2 = BACKGROUND_B_GAP;
-	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y && help_flag == true)
-	{
 
+	//ヘルプボタン
+	if (POS_HELPBUTTON_L <= x && POS_HELPBUTTON_R >= x && POS_HELPBUTTON_T <= y && POS_HELPBUTTON_B >= y &&
+		help_flag == true)
+	{
+		buttom_name = 'h';//明るさ変更用
 
 		if (c_flag[0] == true && c_flag[1] == true)
 		{
@@ -278,7 +306,7 @@ void CObjSwitchSelect::Action()
 			help_flag = false;
 			c_flag[0] = false;
 		}
-
+		ButtomCol(c_flag, col_flag);
 	}
 	else if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
 	{
@@ -667,7 +695,12 @@ void CObjSwitchSelect::Draw()
 	dst.m_left = POS_HELPBUTTON_L;
 	dst.m_right = POS_HELPBUTTON_R;
 	dst.m_bottom = POS_HELPBUTTON_B;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	if (col_flag[0] == true && col_flag[1] == false && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, b, 0.0f);
+	else if (col_flag[0] == false && col_flag[1] == true && buttom_name == 'h')
+		Draw::Draw(0, &src, &dst, t, 0.0f);
+	else
+		Draw::Draw(0, &src, &dst, c, 0.0f);
 	//ヘルプ表示
 	if (help_flag == false)
 	{

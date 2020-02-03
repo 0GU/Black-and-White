@@ -78,13 +78,33 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	//Stage4
 	int SPStage4[5][5] =
 	{
-		{0,5,1,2,1},
-		{3,0,4,1,3},
-		{1,3,0,8,0},
-		{3,1,6,0,3},
+		{0,4,1,6,0},
+		{3,0,5,1,6},
+		{0,3,1,7,0},
+		{3,1,4,1,3},
 		{0,7,1,2,1},
 	};
-	int Count4[2] = { 99,99 };
+	int Count4[2] = { 10,25 };
+
+	int SPStage5[5][5] =
+	{
+		{0,2,1,5,0},
+		{7,0,5,1,3},
+		{1,7,0,4,1},
+		{7,1,3,1,3},
+		{0,7,0,7,0},
+	};
+	int Count5[2] = { 9,24 };
+
+	int SPStage6[5][5] =
+	{
+		{0,4,1,6,0},
+		{4,1,5,1,7},
+		{0,7,1,7,0},
+		{4,0,8,1,5},
+		{0,4,1,4,0},
+	};
+	int Count6[2] = { 11,26 };
 
 	switch (StaNum)
 	{
@@ -103,6 +123,14 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	case 4:
 		memcpy(Stage, SPStage4, sizeof(int)*(5 * 5));
 		memcpy(Count, Count4, sizeof(int) * 2);
+		break;
+	case 5:
+		memcpy(Stage, SPStage5, sizeof(int)*(5 * 5));
+		memcpy(Count, Count5, sizeof(int) * 2);
+		break;
+	case 6:
+		memcpy(Stage, SPStage6, sizeof(int)*(5 * 5));
+		memcpy(Count, Count6, sizeof(int) * 2);
 		break;
 	}
 }

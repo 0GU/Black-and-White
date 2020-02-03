@@ -512,7 +512,7 @@ void CObjSwitchMain::Action()
 	if (flag[CLEAR_FLAG] == true&& Debugflag==false)
 	{
 		//BGMí‚é~
-		if (StageSlect == 3)
+		if (StageSlect == 6)
 			Audio::Stop(7);
 		else
 			Audio::Stop(0);
@@ -652,7 +652,7 @@ void CObjSwitchMain::Action()
 
 	//PerfectÉtÉâÉOÇÃä«óù
 	Save::Seve();
-	if (flag[CLEAR_FLAG] == true && count[REMAINING_CNT_ARRAY_NUM] == count[PERFECT_CNT_ARRAY_NUM])
+	if (flag[CLEAR_FLAG] == true && flag[PERFECT_FLAG] == true)
 	{
 		switch (StageSlect)
 		{
