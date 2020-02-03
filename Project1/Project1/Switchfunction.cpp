@@ -42,6 +42,7 @@ bool SwitchClearCheck(int scc[5][5])
 //内容：指定されたステージデータをコピーする
 void LoadSPStage(int StaNum, int *Stage, int *Count)
 {
+	//Stage1
 	int SPStage1[5][5] =
 	{
 		{0,2,0,2,0},
@@ -52,6 +53,7 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count1[2] = { 6,12 };
 
+	//Stage2
 	int SPStage2[5][5] =
 	{
 		{0,2,1,2,0},
@@ -62,6 +64,7 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count2[2] = { 6,12 };
 
+	//Stage3
 	int SPStage3[5][5] =
 	{
 		{1,2,1,2,1},
@@ -72,6 +75,7 @@ void LoadSPStage(int StaNum, int *Stage, int *Count)
 	};
 	int Count3[2] = { 6,12 };
 
+	//Stage4
 	int SPStage4[5][5] =
 	{
 		{0,5,1,2,1},

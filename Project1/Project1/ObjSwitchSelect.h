@@ -10,7 +10,7 @@ using namespace GameL;
 #define SCENEBACK_WAIT (200)
 #define SELECT_WAIT (100)
 
-//
+//表示:ステージ
 #define STAGE_SW_SELECT_L (120.0f)
 #define STAGE_SW_SELECT_R (670.0f)
 #define STAGE_SW_SELECT_R_DRAW (680.0f)
@@ -33,14 +33,14 @@ using namespace GameL;
 
 
 //表示:クリア,パーフェクト時の星
-#define STAGE_SW_STAR_ONE_T (206.0f)
-#define STAGE_SW_STAR_ONE_B (245.0f)
-#define STAGE_SW_STAR_TWO_T (327.0f)
-#define STAGE_SW_STAR_TWO_B (366.0f)
-#define STAGE_SW_STAR_THREE_T (446.0f)
-#define STAGE_SW_STAR_THREE_B (485.0f)
-#define STAGE_SW_STAR_R (339.0f)
-#define STAGE_SW_STAR_L (300.0f)
+#define STAGE_SW_STAR_14_T (206.0f)
+#define STAGE_SW_STAR_14_B (245.0f)
+#define STAGE_SW_STAR_25_T (327.0f)
+#define STAGE_SW_STAR_25_B (366.0f)
+#define STAGE_SW_STAR_36_T (446.0f)
+#define STAGE_SW_STAR_36_B (485.0f)
+#define STAGE_SW_STAR_R (329.0f)
+#define STAGE_SW_STAR_L (290.0f)
 
 //切り取り:白星
 #define RESOURCE_STAR_T (0.0f)
