@@ -90,7 +90,7 @@ void CObjReversibleMain::Action()
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 
-	//
+	//ƒJƒ‰[ó‘Ô‰Šú‰»
 	col_flag[0] = false;
 	col_flag[1] = false;
 
