@@ -36,6 +36,7 @@ void CObjSwitchMain::Init()
 	sx = 0;
 	sy = 0;
 	r = 0.0f;
+	buttom_name = 0;
 
 	Save::Open();
 	j = 0;
@@ -56,6 +57,7 @@ void CObjSwitchMain::Init()
 
 	//ƒtƒ‰ƒO‚ğ‰Šú‰»
 	memcpy(c_flag, flag_set, sizeof(bool)*(2));
+	memcpy(col_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
 	Debugflag = false;
