@@ -30,6 +30,12 @@ using namespace GameL;
 #define RESOURCE_STAGE2_B (449.0f)
 #define RESOURCE_STAGE3_T (448.0f)
 #define RESOURCE_STAGE3_B (540.0f)
+#define RESOURCE_STAGE4_T (90.0f)
+#define RESOURCE_STAGE4_B (181.0f)
+#define RESOURCE_STAGE5_T (180.0f)
+#define RESOURCE_STAGE5_B (271.0f)
+#define RESOURCE_STAGE6_T (270.0f)
+#define RESOURCE_STAGE6_B (361.0f)
 
 
 //表示:クリア,パーフェクト時の星
@@ -39,8 +45,8 @@ using namespace GameL;
 #define STAGE_SW_STAR_25_B (366.0f)
 #define STAGE_SW_STAR_36_T (446.0f)
 #define STAGE_SW_STAR_36_B (485.0f)
-#define STAGE_SW_STAR_R (329.0f)
-#define STAGE_SW_STAR_L (290.0f)
+#define STAGE_SW_STAR_R (334.0f)
+#define STAGE_SW_STAR_L (295.0f)
 
 //切り取り:白星
 #define RESOURCE_STAR_T (0.0f)
@@ -112,5 +118,6 @@ private:
 	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
 	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
 	bool help_flag;//help表示用
-
+	bool help_flag2;//help2ページ目表示用
+	bool help_flag3;//help3ページ目表示用
 };

@@ -46,6 +46,9 @@ void CSceneSwitchMain::InitScene()
 	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 12, TEX_SIZE_1024);
 	Draw::LoadImage(L"Main/スイッチT字.png", 13, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/スイッチ十字.png", 14, TEX_SIZE_512);
+	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 15, TEX_SIZE_1024);
+	Draw::LoadImageW(L"まとめ画像/help4.png", 16, TEX_SIZE_1024);
+	Draw::LoadImageW(L"まとめ画像/help7.png", 17, TEX_SIZE_1024);
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"Sound/SwitchBGM.wav", SOUND_TYPE::BACK_MUSIC);
 

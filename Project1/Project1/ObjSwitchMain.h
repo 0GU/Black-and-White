@@ -82,12 +82,7 @@ resource
 #define CUT_BACKSELECT_R (520.0f)
 #define CUT_BACKSELECT_B (91.0f)
 
-/*
 
-
-
-
-*/
 #define WINDOW_SIZE_X (800.0f)
 #define WINDOW_SIZE_Y (600.0f)
 
@@ -183,9 +178,10 @@ private:
 	bool back;		//背景色判別用		true=黒 , false=白
 	bool mou_call;	//マウス呼び出し用、1回のみ動かす
 
-	bool Debugflag;
+//	bool Debugflag;
 
 	bool col_flag[2]; //カラーフラグ　[0]=明るく　[1]=暗く
 	char buttom_name;//ボタンの名前記憶用、カラー変更に使用
-
+	bool help_flag;//help表示用
+	bool help_flag2;//help2ページ目表示用
 };

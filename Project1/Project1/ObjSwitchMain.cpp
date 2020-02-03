@@ -60,15 +60,17 @@ void CObjSwitchMain::Init()
 	memcpy(col_flag, flag_set, sizeof(bool)*(2));
 	back = true;
 	mou_call = true;
-	Debugflag = false;
+	//Debugflag = false;
 
+	help_flag = true;
+	help_flag2 = true;
 }
 
 //アクション
 void CObjSwitchMain::Action()
 {
 	//------------------------------問題作成用
-	bool lock = false;
+	/*bool lock = false;
 	if (Input::GetVKey('D') == true && Input::GetVKey('G') == true)
 	{
 		count[1] = 0;
@@ -77,7 +79,7 @@ void CObjSwitchMain::Action()
 	if (Input::GetVKey(VK_SHIFT) == true&&Debugflag==true)
 		lock = true;
 	else
-		lock = false;
+		lock = false;*/
 	//-----------------------------------------------
 	int lx = 0;
 	int ly = 0;
@@ -112,39 +114,39 @@ void CObjSwitchMain::Action()
 	}
 
 
-	//-------問題作成用---------------------------------
-	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
-		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
-		(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
-		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		c_flag[0] == true && c_flag[1] == true && m_change == true && Debugflag == true)
-	{
-		sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
-		sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
-		if (Input::GetVKey('2') == true)
-			stage[sy][sx]=2;
-		else if (Input::GetVKey('3') == true)
-			stage[sy][sx] = 3;
-		else if (Input::GetVKey('4') == true)
-			stage[sy][sx] = 4;
-		else if (Input::GetVKey('5') == true)
-			stage[sy][sx] = 5;
-		else if (Input::GetVKey('6') == true)
-			stage[sy][sx] = 6;
-		else if (Input::GetVKey('7') == true)
-			stage[sy][sx] = 7;
-		else if (Input::GetVKey('8') == true)
-			stage[sy][sx] = 8;
-		
-	}
-	//------------------------------------------------------------------------------------
+	////-------問題作成用---------------------------------
+	//if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
+	//	((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
+	//	(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
+	//	&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+	//	c_flag[0] == true && c_flag[1] == true && m_change == true /*&& Debugflag == true*/)
+	//{
+	//	sy = (int)(y - PUZZLE_POS_T) / PANEL_SIZE;   //クリック時のy座標を配列で使えるように直す
+	//	sx = (int)(x - PUZZLE_POS_L) / PANEL_SIZE;  //クリック時のx座標を配列で使えるように直す
+	//	if (Input::GetVKey('2') == true)
+	//		stage[sy][sx]=2;
+	//	else if (Input::GetVKey('3') == true)
+	//		stage[sy][sx] = 3;
+	//	else if (Input::GetVKey('4') == true)
+	//		stage[sy][sx] = 4;
+	//	else if (Input::GetVKey('5') == true)
+	//		stage[sy][sx] = 5;
+	//	else if (Input::GetVKey('6') == true)
+	//		stage[sy][sx] = 6;
+	//	else if (Input::GetVKey('7') == true)
+	//		stage[sy][sx] = 7;
+	//	else if (Input::GetVKey('8') == true)
+	//		stage[sy][sx] = 8;
+	//	
+	//}
+	////------------------------------------------------------------------------------------
 
 	//当たり判定
 	if (PUZZLE_POS_L <= x && PUZZLE_POS_L + PUZZLE_SIZE >= x && PUZZLE_POS_T <= y && PUZZLE_POS_T + PUZZLE_SIZE >= y &&
 		((((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 0 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 1) ||
 		(((int)(y - PUZZLE_POS_T) / PANEL_SIZE) % 2 == 1 && ((int)(x - PUZZLE_POS_L) / PANEL_SIZE) % 2 == 0))
 		&& flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
-		m_change == true && lock == false)
+		m_change == true && help_flag == true && help_flag2 == true/*&&lock==false*/)
 	{
 		buttom_name = 'p';//明るさ変更用
 
@@ -500,7 +502,7 @@ void CObjSwitchMain::Action()
 		m_ani_flame = 0;	//初期化
 		m_change = true;	//パネルを動かせるようにする
 
-		if (SwitchClearCheck(stage) == true&&Debugflag==false)	//クリア条件を満たした
+		if (SwitchClearCheck(stage) == true/*&&Debugflag==false*/)	//クリア条件を満たした
 		{
 			//パーフェクト条件を満たしている
 			if (count[INITIAL_CNT_ARRAY_NUM] - count[PERFECT_CNT_ARRAY_NUM] == count[REMAINING_CNT_ARRAY_NUM])
@@ -514,7 +516,7 @@ void CObjSwitchMain::Action()
 				Audio::Start(3);
 			}
 		}
-		else if (SwitchClearCheck(stage) == false && count[REMAINING_CNT_ARRAY_NUM] == 0&& Debugflag==false)		//ゲームオーバー条件を満たした
+		else if (SwitchClearCheck(stage) == false && count[REMAINING_CNT_ARRAY_NUM] == 0/*&& Debugflag==false*/)		//ゲームオーバー条件を満たした
 		{
 			flag[GAMEOVER_FLAG] = true;
 			Audio::Start(2);
@@ -522,7 +524,7 @@ void CObjSwitchMain::Action()
 	}
 
 	//GameClear時の判定
-	if (flag[CLEAR_FLAG] == true&& Debugflag==false)
+	if (flag[CLEAR_FLAG] == true/*&& Debugflag==false*/)
 	{
 		//BGM停止
 		if (StageSlect == 6)
@@ -531,7 +533,8 @@ void CObjSwitchMain::Action()
 			Audio::Stop(0);
 
 		//StageSELECTへ戻るボタン判定
-		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B)
+		if (x >= CLEARBACK_POS_L && x <= CLEARBACK_POS_R && y >= CLEARBACK_POS_T && y <= CLEARBACK_POS_B &&
+			help_flag == true && help_flag2 == true)
 		{
 			buttom_name = 'c';//明るさ変更用
 
@@ -574,7 +577,8 @@ void CObjSwitchMain::Action()
 			Audio::Stop(0);
 
 		//Yesボタン判定
-		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			help_flag == true && help_flag2 == true)
 		{
 			buttom_name = 'y';//明るさ変更用
 
@@ -601,7 +605,8 @@ void CObjSwitchMain::Action()
 			ButtomCol(c_flag, col_flag);
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			help_flag == true && help_flag2 == true)
 		{
 			buttom_name = 'n';//明るさ変更用
 
@@ -620,7 +625,8 @@ void CObjSwitchMain::Action()
 	//リセットボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		RESET_BUTTON_POS_T <= y && RESET_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+		help_flag == true && help_flag2 == true)
 	{
 		buttom_name = 'r';//明るさ変更用
 
@@ -639,7 +645,8 @@ void CObjSwitchMain::Action()
 	//ヒントボタン当たり判定
 	if (HIN_RESE_BUTTON_POS_L <= x && HIN_RESE_BUTTON_POS_L + BUTTON_SIZE_X >= x &&
 		HINT_BUTTON_POS_T <= y && HINT_BUTTON_POS_T + BUTTON_SIZE_Y >= y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false && flag[BACK_SELECT_FLAG] == false &&
+		help_flag == true && help_flag2 == true)
 	{
 		buttom_name = 'i';//明るさ変更用
 
@@ -656,7 +663,8 @@ void CObjSwitchMain::Action()
 	//StageSelectへ戻るボタン判定------------------------------------------------------------
 	if (x >= STAGESELE_BUTTON_POS_L && x <= STAGESELE_BUTTON_POS_L + BUTTON_SIZE_X &&
 		y >= STAGESELE_BUTTON_POS_T && y <= STAGESELE_BUTTON_POS_T + BUTTON_SIZE_Y &&
-		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false)
+		flag[CLEAR_FLAG] == false && flag[GAMEOVER_FLAG] == false &&
+		help_flag == true && help_flag2 == true)
 	{
 		buttom_name = 's';//明るさ変更用
 
@@ -673,7 +681,8 @@ void CObjSwitchMain::Action()
 	if (flag[BACK_SELECT_FLAG] == true)
 	{
 		//Yesボタン判定
-		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= YES_BUTTON_POS_L && x <= YES_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			help_flag == true && help_flag2 == true)
 		{
 			buttom_name = 'y';//明るさ変更用
 
@@ -688,7 +697,8 @@ void CObjSwitchMain::Action()
 			ButtomCol(c_flag, col_flag);
 		}
 		//Noボタン判定
-		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B)
+		if (x >= NO_BUTTON_POS_L && x <= NO_BUTTON_POS_R && y >= YESNO_BUTTON_POS_T && y <= YESNO_BUTTON_POS_B &&
+			help_flag == true && help_flag2 == true)
 		{
 			buttom_name = 'n';//明るさ変更用
 
@@ -755,6 +765,43 @@ void CObjSwitchMain::Action()
 		}
 	}
 
+	//ヘルプ
+	if (POS_HELPBUTTON_L_RB <= x && POS_HELPBUTTON_R_RB >= x && POS_HELPBUTTON_T_RB <= y && POS_HELPBUTTON_B_RB >= y
+		&& flag[1] == false && flag[2] == false && flag[3] == false && help_flag == true && help_flag2 == true)
+	{
+		buttom_name = 'h';//明るさ変更用
+
+		if (c_flag[0] == true && c_flag[1] == true)
+		{
+			//SEを鳴らす
+			Audio::Start(1);
+			Sleep(SCENEBACK_WAIT);
+			help_flag = false;
+			c_flag[0] = false;
+		}
+		ButtomCol(c_flag, col_flag);
+	}
+
+	//ヘルプ-----------------------------------------------------------
+	if (help_flag == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag = true;
+		help_flag2 = false;
+		c_flag[0] = false;
+	}
+	if (help_flag2 == false && c_flag[0] == true && c_flag[1] == true)
+	{
+		//SEを鳴らす
+		Audio::Start(1);
+		Sleep(SCENEBACK_WAIT);
+		help_flag2 = true;
+		c_flag[0] = false;
+	}
+
+
 	//ボタン類がない、もしくは動作が終わったら押していない状態に戻す
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
@@ -786,7 +833,6 @@ void CObjSwitchMain::Draw()
 	dst.m_right = WINDOW_SIZE_X;
 	dst.m_bottom = WINDOW_SIZE_Y;
 	Draw::Draw(2, &src, &dst, c, 0.0f);
-
 
 	//stageの描画
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
@@ -1096,15 +1142,27 @@ void CObjSwitchMain::Draw()
 		Font::StrDraw(L"6手"	 , HIN_TEXT_POS_X_2, HIN_TEXT_POS_Y_2, HIN_TEXT_SIZE, f);*/
 		if (StageSlect == 1)
 		{
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
 		else if (StageSlect == 2)
 		{
-			Font::StrDraw(L"まずはパネル", 15, 260, 24, f);
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
 			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
 		}
 		else if (StageSlect == 3)
+		{
+			Font::StrDraw(L"まずはボタン", 15, 260, 24, f);
+			Font::StrDraw(L"をクリック！", 15, 300, 24, f);
+		}
+		else if (StageSlect == 4)
+		{
+			Font::StrDraw(L"同じボタンを", 6, 260, 24, f);
+			Font::StrDraw(L"2回以上", 16, 300, 24, f);
+			Font::StrDraw(L"押しても", 16, 340, 24, f);
+			Font::StrDraw(L"意味がないよ!", 6, 380, 24, f);
+		}
+		else if (StageSlect == 5|| StageSlect == 6)
 		{
 			wchar_t str2[128];
 			Font::StrDraw(L"最短手数", 20, 260, 32, f);
@@ -1112,9 +1170,9 @@ void CObjSwitchMain::Draw()
 
 
 			Font::StrDraw(str2, 40, 320, 32, f);
-
 		}
 	}
+	
 
 	//リセットボタン--------------------------------------------
 	//切り取り
@@ -1173,6 +1231,46 @@ void CObjSwitchMain::Draw()
 	dst.m_right = 770.0f;
 	dst.m_bottom = 80.0f;
 	Draw::Draw(12, &src, &dst, c, 0.0f);
+
+
+	//helpボタン
+	src.m_top = CUT_HELPBUTTON_T2;
+	src.m_left = CUT_HELPBUTTON_L;
+	src.m_right = CUT_HELPBUTTON_R;
+	src.m_bottom = CUT_HELPBUTTON_B2;
+	dst.m_top = POS_HELPBUTTON_T_RB;
+	dst.m_left = POS_HELPBUTTON_L_RB;
+	dst.m_right = POS_HELPBUTTON_R_RB;
+	dst.m_bottom = POS_HELPBUTTON_B_RB;
+	Draw::Draw(15, &src, &dst, c, 0.0f);
+
+	//ヘルプ表示
+	if (help_flag == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(16, &src, &dst, c, 0.0f);
+	}
+
+	//ヘルプ2ページ目表示
+	if (help_flag2 == false)
+	{
+		src.m_top = CUT_HELP_T;
+		src.m_left = CUT_HELP_L;
+		src.m_right = CUT_HELP_R;
+		src.m_bottom = CUT_HELP_B;
+		dst.m_top = POS_HELP_T;
+		dst.m_left = POS_HELP_L;
+		dst.m_right = POS_HELP_R;
+		dst.m_bottom = POS_HELP_B;
+		Draw::Draw(17, &src, &dst, c, 0.0f);
+	}
 	//シーン描画：PerFect!------------------------------------
 	if (flag[PERFECT_FLAG] == true)
 	{
