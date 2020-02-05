@@ -53,6 +53,7 @@
     </ClInclude>
     <ClInclude Include="SceneGameSelect.h" />
     <ClInclude Include="SceneModeSelect.h" />
+    <ClInclude Include="MoveScenefunction.h" />
     <ClInclude Include="SceneReversibleMain.h" />
     <ClInclude Include="SceneReversibleSelect.h" />
     <ClInclude Include="SceneSwitchMain.h" />
@@ -95,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="SceneGameSelect.cpp" />
     <ClCompile Include="SceneModeSelect.cpp" />
+    <ClCompile Include="MoveScenefunction.cpp" />
     <ClCompile Include="SceneReversibleMain.cpp" />
     <ClCompile Include="SceneReversibleSelect.cpp" />
     <ClCompile Include="SceneSwitchMain.cpp" />

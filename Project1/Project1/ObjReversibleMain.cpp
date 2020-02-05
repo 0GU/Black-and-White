@@ -7,6 +7,7 @@
 #include "ObjReversibleMain.h"
 #include"GameL\Audio.h"
 #include "Reversiblefunction.h"
+#include "MoveScenefunction.h"
 
 
 //使用するネームスペース
@@ -512,6 +513,11 @@ void CObjReversibleMain::Action()
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
 		c_flag[0] = false;
+	}
+
+	if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey(VK_RCONTROL) == true)
+	{
+		MoveTitle();
 	}
 
 }

@@ -7,6 +7,7 @@
 
 #include "GameHead.h"
 #include "Windows.h"
+#include "MoveScenefunction.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -140,6 +141,11 @@ void CObjGameSelect::Action()
 		c_flag[0] = false;
 	}
 
+
+	if (Input::GetVKey(VK_RETURN)==true&& Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey(VK_RCONTROL) == true)
+	{
+		MoveTitle();
+	}
 }
 
 //ドロー

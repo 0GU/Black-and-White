@@ -159,6 +159,9 @@
     <ClInclude Include="Switchfunction.h">
       <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
+    <ClInclude Include="MoveScenefunction.h">
+      <Filter>ソース ファイル\関数</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -268,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="ObjGalleryadd.cpp">
       <Filter>ソース ファイル\Galleryadd</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveScenefunction.cpp">
+      <Filter>ソース ファイル\関数</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

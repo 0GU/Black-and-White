@@ -10,6 +10,7 @@
 #include"ObjSwitchSelect.h"
 #include"ObjSwitchMain.h"
 #include"Windows.h"
+#include "MoveScenefunction.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -352,6 +353,11 @@ void CObjSwitchSelect::Action()
 	if (c_flag[0] == true && c_flag[1] == true)
 	{
 		c_flag[0] = false;
+	}
+
+	if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey(VK_RCONTROL) == true)
+	{
+		MoveTitle();
 	}
 
 }
