@@ -31,7 +31,9 @@ CSceneReversibleSelect::~CSceneReversibleSelect()
 void CSceneReversibleSelect::InitScene()
 {
 	//SEèÓïÒÇÃìoò^
-	Audio::LoadAudio(0, L"Sound/É^ÉCÉgÉã.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(0, L"Sound/ReversibleBackBGM.wav", SOUND_TYPE::BACK_MUSIC);
+
+
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
