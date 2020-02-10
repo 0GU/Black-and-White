@@ -38,6 +38,7 @@ void CSceneGameSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 
 	//SE情報の登録
+	Audio::LoadAudio(0, L"Sound/タイトル.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
@@ -52,9 +53,9 @@ void CSceneGameSelect::InitScene()
 
 	CObjMouse*m = new CObjMouse(back);
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
-
+	
 	*/
-
+	Audio::Start(0);
 }
 
 //ゲームタイトル実行メソッド

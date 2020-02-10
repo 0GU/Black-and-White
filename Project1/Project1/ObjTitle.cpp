@@ -46,6 +46,7 @@ void CObjTitle::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjTitle::Action()
 {
+	
 	x = (float)Input::GetPosX();
 	y = (float)Input::GetPosY();
 

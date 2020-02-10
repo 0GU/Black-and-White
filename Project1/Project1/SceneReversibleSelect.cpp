@@ -31,6 +31,7 @@ CSceneReversibleSelect::~CSceneReversibleSelect()
 void CSceneReversibleSelect::InitScene()
 {
 	//SE情報の登録
+	Audio::LoadAudio(0, L"Sound/タイトル.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
@@ -48,6 +49,7 @@ void CSceneReversibleSelect::InitScene()
 	CObjMouse*m = new CObjMouse();
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
 	*/
+	Audio::Start(0);
 }
 
 //ゲームタイトル実行メソッド
