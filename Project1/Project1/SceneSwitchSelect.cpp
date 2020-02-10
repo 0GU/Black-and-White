@@ -31,7 +31,7 @@ CSceneSwitchSelect::~CSceneSwitchSelect()
 void CSceneSwitchSelect::InitScene()
 {
 	//SE情報の登録
-	Audio::LoadAudio(0, L"Sound/タイトル.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(0, L"Sound/スイッチセレクト.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 	Audio::LoadAudio(2, L"Sound/BackButton.wav", EFFECT);
 
