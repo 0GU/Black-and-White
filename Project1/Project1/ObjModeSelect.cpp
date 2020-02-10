@@ -111,7 +111,7 @@ void CObjModeSelect::Action()
 		ButtomCol(c_flag, col_flag);
 	}
 	//ƒwƒ‹ƒv
-	else if (120.0f <= x && 220.0f >= x && 480.0f <= y && 580.0f >= y && credit_flag == true && help_flag == true)
+	else if (POS_BUTTON_HELP_L <= x && POS_BUTTON_HELP_R >= x && POS_BUTTON_HELP_T <= y && POS_BUTTON_HELP_B >= y && credit_flag == true && help_flag == true)
 	{
 		buttom_name = 'h';//–¾‚é‚³•ÏX—p
 
