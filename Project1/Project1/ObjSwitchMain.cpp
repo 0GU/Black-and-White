@@ -812,7 +812,6 @@ void CObjSwitchMain::Action()
 	{
 		MoveTitle();
 	}
-
 }
 
 //ƒhƒ[
