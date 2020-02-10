@@ -40,6 +40,7 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/help2.png", 6, TEX_SIZE_1024);
 	Draw::LoadImageW(L"まとめ画像/CREDIT_MOVE.png", 7, TEX_SIZE_1024);
 	//SE情報の登録
+	Audio::LoadAudio(0, L"Sound/タイトル.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);
 
 	CObjModeSelect* p = new CObjModeSelect();
@@ -48,6 +49,7 @@ void CSceneModeSelect::InitScene()
 	CObjMouse*m = new CObjMouse(back);
 	Objs::InsertObj(m, OBJ_MOUSE, 2);//仮
 	*/
+	Audio::Start(0);
 }
 
 //ゲームタイトル実行メソッド

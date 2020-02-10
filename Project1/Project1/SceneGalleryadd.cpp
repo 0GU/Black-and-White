@@ -37,6 +37,10 @@ void CSceneGalleryadd::InitScene()
 
 	//SE情報の登録
 	Audio::LoadAudio(1, L"Sound/クリックSE.wav", EFFECT);
+	Audio::LoadAudio(2, L"Sound/GalleryAdd.wav", EFFECT);
+
+
+	Audio::Start(2);
 }
 
 //ゲームタイトル実行メソッド
