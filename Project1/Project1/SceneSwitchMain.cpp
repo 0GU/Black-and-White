@@ -36,19 +36,19 @@ void CSceneSwitchMain::InitScene()
 	Draw::LoadImage(L"Main/白背景.png", 2, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/ヒントボタン.png", 3, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/リセットボタン.png", 4, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像/まとめ画像2.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/まとめ画像2.png", 5, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/スイッチ上下.png", 6, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/スイッチ左右.png", 7, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像/SPGアニメーション.png", 8, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像/まとめ画像3.png", 9, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/SPGアニメーション.png", 8, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/まとめ画像3.png", 9, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
-	Draw::LoadImageW(L"まとめ画像/count用0~9.png", 11, TEX_SIZE_1024);
-	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 12, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/count用0~9.png", 11, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/リバステージまとめ.png", 12, TEX_SIZE_1024);
 	Draw::LoadImage(L"Main/スイッチT字.png", 13, TEX_SIZE_512);
 	Draw::LoadImage(L"Main/スイッチ十字.png", 14, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像/まとめ画像1.png", 15, TEX_SIZE_1024);
-	Draw::LoadImageW(L"まとめ画像/help4.png", 16, TEX_SIZE_1024);
-	Draw::LoadImageW(L"まとめ画像/help7.png", 17, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 15, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/help4.png", 16, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/help7.png", 17, TEX_SIZE_1024);
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"Sound/SwitchBGM.wav", SOUND_TYPE::BACK_MUSIC);
 

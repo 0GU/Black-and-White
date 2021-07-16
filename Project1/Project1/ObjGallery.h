@@ -79,7 +79,7 @@ private:
 	float x, y;
 	int Gright;
 	int Gleft;
-	bool SFlag[3]; //Switchのフラグ
+	bool SFlag[6]; //Switchのフラグ
 	bool RFlag[6]; //Reversibleのフラグ
 	bool GFlag[2]; //Galleryのフラグ
 

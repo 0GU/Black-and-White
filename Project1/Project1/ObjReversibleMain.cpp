@@ -36,15 +36,18 @@ void CObjReversibleMain::Init()
 	{ false,false,false,false,false,false,false,false };
 	memcpy(flag, flag_set, sizeof(bool)*(8));
 
-
+	//アニメーション用変数の初期化
 	m_ani_flame = INITIALIZE;
 	m_time = INITIALIZE;
 	m_ani_flag = false;
+
+	//反転に使用する変数の初期化
 	sx = INITIALIZE;
 	sy = INITIALIZE;
 	lx = INITIALIZE;
 	ly = INITIALIZE;
 
+	//user_dataを開き、ReversiblePanelの
 	Save::Open();
 	j = 0;
 	for (i = 0; i < 6; i++)

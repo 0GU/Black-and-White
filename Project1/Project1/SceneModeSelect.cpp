@@ -33,12 +33,12 @@ void CSceneModeSelect::InitScene()
 	Draw::LoadImage(L"まとめ画像/ギャラリー画面(移行用).png", 0, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/ゲームセレクト画面(移行用).png", 1, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/haikei3.png", 2, TEX_SIZE_512);
-	Draw::LoadImageW(L"まとめ画像/リバステージまとめ.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"まとめ画像/リバステージまとめ.png", 3, TEX_SIZE_512);
 	Draw::LoadImage(L"まとめ画像/マウス、シーン、クリア（透過）.png", 10, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/CREDIT仮.png", 4, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/まとめ画像1.png", 5, TEX_SIZE_1024);
 	Draw::LoadImage(L"まとめ画像/help2.png", 6, TEX_SIZE_1024);
-	Draw::LoadImageW(L"まとめ画像/CREDIT_MOVE.png", 7, TEX_SIZE_1024);
+	Draw::LoadImage(L"まとめ画像/CREDIT_MOVE.png", 7, TEX_SIZE_1024);
 	//SE情報の登録
 	Audio::LoadAudio(0, L"Sound/タイトル.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"Sound/SelectButton.wav", EFFECT);

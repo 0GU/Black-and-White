@@ -245,7 +245,7 @@ private:
 	bool time_flag;
 	int m_time;
 
-	int sx, sy;
+	int sx, sy;//クリックした座標を配列で使用するために保存するための変数
 	int lx, ly;//反転処理用変数
 	int i, j;
 

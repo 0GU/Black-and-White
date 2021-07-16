@@ -52,9 +52,9 @@ void CSceneManager::GameLoop()
 	{
 		static wchar_t  c[8];
 		static float cl[4]={1.0f,1.0f,1.0f,1.0f};
-		if(m_TimeCount>100)
+		if(m_TimeCount>30)
 		{
-			swprintf_s(c,L"%d",m_Time/100);
+			swprintf_s(c,L"%d",m_Time/60);
 			m_Time=0;
 			m_TimeCount=0;
 		}
